@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+	<!-- Safe Software, 2013 -->
+	<!-- http://www.safe.com -->
+
+	<title>FME Server WebSockets Tutorial</title>
+
+	<!-- JQuery -->
+	<script src="libs/jquery-1.10.1.js"></script>
+
+	<!-- Bootstrap -->
+	<!--http://getbootstrap.com/2.3.2/-->
+	<script src="libs/bootstrap/js/bootstrap.js"></script>
+	<link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  
+	<!-- Google Maps -->
+	<link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<!-- Stylesheet for demo/tutorial -->
+	<link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body onload="initialize()">
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">        
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+
+			<div class="brand">FME Server<span class="hidden-tiny"> WebSocket Tutorial</span></div>
+				 
+			<div class="nav-collapse collapse">
+				<a href="https://github.com/safesoftware/fmepedia-tutorial-websockets" class="btn">
+					<img src="libs/github.png"> Fork GitHub
+				</a>
+				<a href="https://github.com/safesoftware/fmepedia-tutorial-websockets/archive/master.zip" class="btn">
+					<i class="icon-download-alt"></i> Download Zip
+				</a>
+			</div>
+			<span class="hidden-phone" id="safe-ribbon"><a href="http://www.safe.com">Powered by FME</a></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+	  <div id="map_canvas"></div>
+
+      <div class="row">
+        <div class="span6">
+          <h2>Messages sent</h2>
+		  <p><a class="btn" onclick="clearlog('sent_log')">Clear log</a></p>
+          <div id="sent_log" class="log"></div>
+        </div>
+        <div class="span6">
+          <h2>Messages received</h2>
+		  <p><a class="btn" onclick="clearlog('rcvd_log')">Clear log</a></p>
+          <div id="rcvd_log" class="log"></div>
+       </div>
+      </div>
+	</div>
+	
+	<script type="text/javascript">
+	var location;
+	var mapZoom;
+	
+
+	function initialize() {
+		/*** FME Server WebSocket initialization ***/
+		var sendconn = new WebSocket('ws://localhost:7078/websocket');
+		var rcvconn = new WebSocket('ws://localhost:7078/websocket');
+		
+		var connmsg = null;
+		
+		/*** connect to server input stream ***/
+		sendconn.onopen = function() {
+			//connmsg = '{ ws_op : "open", ws_stream_id : "points" }';
+			connmsg = '{ ws_op : "open", ws_stream_id : "sample_stream_in" }';
+			sendconn.send(connmsg);
+			log_message(connmsg, 'sent_log');
+		}
+		
+		/*** connect to server output stream ***/
+		rcvconn.onopen = function() {
+			connmsg = '{ ws_op : "open", ws_stream_id : "disp_pnts" }';
+			rcvconn.send(connmsg);
+			log_message(connmsg, 'sent_log');
+		}
+	
+		/*** Google Maps initialization ***/
+		var myLatLng = new google.maps.LatLng(49.138077,-122.857472);
+		var myOptions = {
+			zoom: 11,
+			center: myLatLng
+		}
+		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		
+		/*** Sending lat/longs from click events to FME Server ***/
+		google.maps.event.addListener(map, 'click', function(event) {
+			var point_msg = '{ ws_op : "send", ws_msg : "' + event.latLng + '" }'
+			log_message(point_msg, 'sent_log');
+			sendconn.send(point_msg);
+			
+			// place a marker to show where user clicked
+			var marker = new google.maps.Marker({
+				position: event.latLng,
+				map: map,
+				icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					fillColor: "green",
+					strokeColor: "green",
+					scale: 8
+				},
+				title:"Original point"
+			});
+		});
+		
+		/*** Reacting to incoming messages on WebSocket ***/
+		rcvconn.onmessage = function(event) {
+			log_message(event.data, 'rcvd_log');
+			var coord = JSON.parse(event.data);
+			
+			var myLatlng = new google.maps.LatLng(coord['lat'], coord['lon']);
+			var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				title:"Displaced point",
+				animation: google.maps.Animation.DROP
+			});
+		}
+	}
+	
+	/*** Function to log sent and received WebSocket messages ***/
+	function log_message(message, div_id) {
+		var div = document.getElementById(div_id);
+		div.innerHTML = '<p>'+new Date().toLocaleTimeString()+'<br>'+message+'</p>' + div.innerHTML;
+	}
+	
+	/*** Clear logs, triggered by button click ***/
+	function clearlog(div_id) {
+		var div = document.getElementById(div_id);
+		div.innerHTML = '';
+	}
+	</script>
+</body>
+
+</html>
