@@ -4,12 +4,14 @@ For the best results the files and folders within the zip file should be extract
 
 Exercises
 ---------
-The data and workspaces herein relate to FME 2015 training, tutorials and demonstations 
+The data and workspaces herein relate to FME 2016 training, tutorials and demonstations 
 If you would like further details on our training sessions, please contact a sales representative at (604) 501-9985 x287, e-mail sales@safe.com or visit http://www.safe.com/training
 
 Versions
 --------
-FMEData: v15.1.1 (17th March 2015 - Careful now!)
+FMEData v16
+
+See GitHub branches for specific revisions and other versions of this dataset
 
 
 Document and Copyright Information
