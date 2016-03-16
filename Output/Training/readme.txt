@@ -1,0 +1,1 @@
+This folder is where you can write output for the training course
