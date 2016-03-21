@@ -1,6 +1,6 @@
 Installation
 ------------
-For the best results the files and folders within the zip file should be extracted to C:\FMEData2015
+For the best results the files and folders within the zip file should be extracted to C:\FMEData2016
 
 Exercises
 ---------
@@ -49,7 +49,7 @@ OpenStreetMap Datasets: © OpenStreetMap contributors. See http://www.openstreetm
 
 Copyright
 ---------
-2005-2015 Safe Software Inc. All rights are reserved.
+2005-2016 Safe Software Inc. All rights are reserved.
 
 Revisions
 ---------
