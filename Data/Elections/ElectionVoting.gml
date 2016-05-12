@@ -8,8 +8,9 @@
 </gml:boundedBy>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id2a483603-57a3-4347-b7e3-55e5006538bc">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>35</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -21,13 +22,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idd7ae6cc6-381e-4729-a899-f5f3c90a5965">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>15</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -39,13 +41,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idc1449819-7478-4256-bd1f-778278251ffd">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>19</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -57,13 +60,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id6d87e2c8-9e42-4e1b-a338-6f7218168962">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>18</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -75,13 +79,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id465b45b3-83f7-4d0d-87c4-5aa839211525">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>38</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -93,13 +98,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id8a4509e0-9ac8-4974-8b3a-72f2b767c915">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>37</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -111,13 +117,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id2ee5132b-2f0b-461f-a7dd-54a88da4e9bb">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>24</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -133,7 +140,7 @@
 <gml:posList>494397.682691161 5459010.26930867 0 494397.682680976 5459010.26424821 0</gml:posList>
 </gml:LineStringSegment>
 <gml:LineStringSegment>
-<gml:posList>494397.682680976 5459010.26424821 0 494397.682680976 5459010.26424821 0 494396.140708093 5458926.75124704 0 494394.499785078 5458838.1792756 0 494393.856609223 5458787.96949566 0 494393.032024793 5458732.59076784 0 494392.026031789 5458677.94189146 0 494390.574763193 5458626.98226414 0 494389.78316214 5458576.99243943 0 494388.78541498 5458526.88263913 0 494388.068026527 5458476.67285919 0 494386.756937284 5458425.15334584 0 494385.511814795 5458374.93356793 0 494384.134758797 5458324.29387549 0 494383.46684541 5458274.03410572 0 494382.675244357 5458225.00408564 0 494382.922619686 5458216.03591109 0 494382.881390464 5458174.70432401 0 494381.883643305 5458124.15461326 0 494380.523078996 5458023.5850839 0 494379.47585677 5457972.79542198 0 494378.47810961 5457922.37568478 0 494376.375419315 5457822.62598854 0 494376.243485806 5457772.3862147 0 494375.130296826 5457693.23232624 0 494374.709758767 5457641.44286784 0 494374.511858504 5457589.21349898 0 494374.239745642 5457536.96413418 0 494373.423407057 5457486.67437052 0 494372.697772759 5457437.484383 0 494371.246504163 5457335.84507139 0 494369.770498034 5457235.26554406 0 494368.401687881 5457134.63602691 0 494367.304990589 5457058.8614506 0 494366.950711387 5457034.05695489 0</gml:posList>
+<gml:posList>494397.682680976 5459010.26424821 0 494396.140708093 5458926.75124704 0 494394.499785078 5458838.1792756 0 494393.856609223 5458787.96949566 0 494393.032024793 5458732.59076784 0 494392.026031789 5458677.94189146 0 494390.574763193 5458626.98226414 0 494389.78316214 5458576.99243943 0 494388.78541498 5458526.88263913 0 494388.068026527 5458476.67285919 0 494386.756937284 5458425.15334584 0 494385.511814795 5458374.93356793 0 494384.134758797 5458324.29387549 0 494383.46684541 5458274.03410572 0 494382.675244357 5458225.00408564 0 494382.922619686 5458216.03591109 0 494382.881390464 5458174.70432401 0 494381.883643305 5458124.15461326 0 494380.523078996 5458023.5850839 0 494379.47585677 5457972.79542198 0 494378.47810961 5457922.37568478 0 494376.375419315 5457822.62598854 0 494376.243485806 5457772.3862147 0 494375.130296826 5457693.23232624 0 494374.709758767 5457641.44286784 0 494374.511858504 5457589.21349898 0 494374.239745642 5457536.96413418 0 494373.423407057 5457486.67437052 0 494372.697772759 5457437.484383 0 494371.246504163 5457335.84507139 0 494369.770498034 5457235.26554406 0 494368.401687881 5457134.63602691 0 494367.304990589 5457058.8614506 0 494366.950711387 5457034.05695489 0</gml:posList>
 </gml:LineStringSegment>
 </gml:segments>
 </gml:Curve>
@@ -143,13 +150,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id79b051f7-c178-4f38-84ef-45edb4eb7679">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>131</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -172,13 +180,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ide50f08fe-0673-4079-8219-75fd1d3f0f45">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>25</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -201,13 +210,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idd5482d84-876c-4977-a2c8-a8f58ab5e799">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>121</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -230,13 +240,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ide28e2d9a-5eda-4576-a117-907d7e122149">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>133</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -248,13 +259,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id1789759e-02e2-4eb1-b569-9c1f987c18cf">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>17</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -266,13 +278,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ide4db3afc-0c43-4af3-8032-b8b4e75eb1ef">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>50</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -284,13 +297,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id0cb9c660-560b-4539-a792-cf0a0736bb7e">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>51</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -313,13 +327,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idc568776b-b7e5-4e3c-9368-342fda9a48b5">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>120</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -331,13 +346,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id3d53fbb9-fe3e-48df-8b3f-b6900b7b8345">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>141</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -349,13 +365,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idf44236d0-30a3-4d2c-8cf3-7eeb42e73947">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>142</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -367,102 +384,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="id352927c4-aff4-41ce-ba82-2a4db975aaa6">
-<fme:Division>119</fme:Division>
-<gml:surfaceProperty>
-<gml:Surface srsName="EPSG:26910" srsDimension="3">
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>490742.497462223 5456049.97498375 0 490742.497804809 5456049.98680612 0 490785.615324634 5456048.61708492 0 490948.701633122 5456043.44813705 0 490996.733676145 5456041.91844841 0 491120.380111364 5456037.99924615 0 491213.838510616 5456035.04984649 0 491262.274600011 5456033.51015989 0 491310.60349343 5456032.07045294 0 491320.712898536 5456031.77051399 0 491404.185580346 5456029.28102072 0 491529.24205494 5456025.60176962 0 491560.955572103 5456024.67195888 0 491625.842120868 5456022.03249614 0 491625.841362849 5456022.01054765 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>491625.841362849 5456022.01054765 0 491625.792645793 5456022.01249821 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>491625.792645793 5456022.01249821 0 491560.897851183 5456024.66195892 0 491529.192579865 5456025.59176966 0 491404.136105271 5456029.27102076 0 491320.663423462 5456031.76051403 0 491310.554018355 5456032.06045297 0 491262.225124936 5456033.50015993 0 491213.789035541 5456035.02984856 0 491120.330636289 5456037.94925433 0 490996.68420107 5456041.90844844 0 490948.643912201 5456043.42813911 0 490785.565849558 5456048.60708496 0 490742.497462223 5456049.97498375 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="id2ab3e94a-e964-4e81-9bcb-186c0680fc63">
-<fme:Division>118</fme:Division>
-<gml:multiSurfaceProperty>
-<gml:MultiSurface srsName="EPSG:26910" srsDimension="3">
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>490081.87691023 5456140.7069581 0 490081.881989033 5456140.70834001 0 490174.557033076 5456138.27883453 0 490179.9415694 5456138.07887523 0 490186.084723402 5456137.73894442 0 490192.227877402 5456137.289036 0 490198.362785558 5456136.73914793 0 490204.481202025 5456136.07928225 0 490210.591372649 5456135.30943894 0 490216.685051584 5456134.42961803 0 490222.762238831 5456133.44981746 0 490228.822934388 5456132.37003725 0 490234.867138256 5456131.17028146 0 490240.886604593 5456129.87054601 0 490246.881333395 5456128.47083092 0 490252.851324666 5456126.97113618 0 490258.796578404 5456125.35146586 0 490264.708848764 5456123.64181385 0 490270.588135748 5456121.82218423 0 490276.442685198 5456119.90257497 0 490282.256005426 5456117.88298605 0 490288.036342278 5456115.76341748 0 490293.783695753 5456113.5338713 0 490299.481574161 5456111.21434343 0 490305.146469193 5456108.79483591 0 490310.761889157 5456106.27534875 0 490316.336079901 5456103.65588193 0 490321.860795581 5456100.93643547 0 490327.336036192 5456098.12700732 0 490332.770047584 5456095.21759952 0 490338.146338064 5456092.21821004 0 490342.376456188 5456089.75871066 0 490343.464907636 5456089.12883887 0 490348.734002141 5456085.93948805 0 490353.945375735 5456082.66015555 0 490359.099028421 5456079.29084137 0 490364.194960197 5456075.84154346 0 490369.216679372 5456072.30226387 0 490408.400931467 5456043.96803122 0 490460.795026125 5456042.59831003 0 490518.845769968 5456041.08861732 0 490690.285118727 5456036.5595392 0 490742.019866986 5456035.19111816 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>490742.019866986 5456035.19111816 0 490742.019545831 5456035.17981804 0 490690.235643652 5456036.54953923 0 490518.796294893 5456041.07861735 0 490460.737305204 5456042.59830802 0 490408.351456391 5456043.96802922 0 490369.167204296 5456072.29226391 0 490364.14548512 5456075.8315435 0 490359.049553345 5456079.29083937 0 490353.89590066 5456082.66015355 0 490348.684527065 5456085.93948605 0 490343.41543256 5456089.11883891 0 490342.326981113 5456089.75870866 0 490338.088617145 5456092.21820804 0 490332.712326664 5456095.21759752 0 490327.286561117 5456098.11700735 0 490321.80307466 5456100.93643347 0 490316.278358982 5456103.64588197 0 490310.704168237 5456106.26534878 0 490305.088748272 5456108.78483595 0 490299.432099085 5456111.20434347 0 490293.725974832 5456113.5338693 0 490287.986867202 5456115.75341751 0 490282.20653035 5456117.88298405 0 490276.384964277 5456119.90257297 0 490270.538660671 5456121.82218223 0 490264.651127844 5456123.63181389 0 490258.738857484 5456125.35146386 0 490252.801849591 5456126.96113622 0 490246.83185832 5456128.47082892 0 490240.828883673 5456129.87054401 0 490234.817663181 5456131.17027946 0 490228.773459312 5456132.36003728 0 490222.712763754 5456133.44981546 0 490216.635576508 5456134.42961603 0 490210.541897573 5456135.29943898 0 490204.43172695 5456136.06928228 0 490198.305064638 5456136.72914797 0 490192.178402326 5456137.289034 0 490186.035248325 5456137.72894446 0 490179.883848481 5456138.06887527 0 490174.507558 5456138.27883253 0 490081.87691023 5456140.7069581 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>489899.994491479 5456041.14733563 0 489899.99515555 5456041.15860307 0 489909.667530909 5456041.15860307 0 489915.035575546 5456042.02842602 0 489921.277679679 5456043.76807192 0 489926.711691069 5456046.32755095 0 489931.065496858 5456048.94701776 0 489934.660684971 5456051.6464683 0 489938.907294784 5456055.81561968 0 489942.824070824 5456060.37469169 0 489960.956682431 5456077.50120564 0 489973.061581857 5456087.79910953 0 489984.679976471 5456096.46734514 0 489998.425798912 5456105.45551562 0 490017.894237294 5456116.2433198 0 490045.097277627 5456129.21068033 0 490058.843100069 5456134.43961599 0 490081.696132192 5456140.65776964 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>490081.696132192 5456140.65776964 0 490033.841700153 5456121.77219241 0 490027.813987973 5456119.27270117 0 490021.843996702 5456116.62324046 0 490014.002198777 5456112.84400972 0 490006.300580204 5456108.79483391 0 490000.619193484 5456105.58548717 0 489995.020265207 5456102.22617095 0 489987.697955473 5456097.51712946 0 489980.548808468 5456092.55813885 0 489973.572824193 5456087.35919708 0 489966.778248493 5456081.91030618 0 489960.189818901 5456076.23146209 0 489953.791043727 5456070.33266278 0 489950.674114583 5456067.29328143 0 489928.822627199 5456040.39875574 0 489899.994491479 5456041.14733563 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-</gml:MultiSurface>
-</gml:multiSurfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id87a92e74-3512-47eb-b01f-48b373036979">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>1</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -474,13 +403,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idf9693c8f-6343-4db7-8f52-d33e9ad74c43">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>5</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -492,13 +422,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id68ea9ee8-5077-4ea5-931b-036bdd040051">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>6</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -510,13 +441,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id2bbd4735-9125-4755-af91-03b27ac750e2">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>7</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -528,13 +460,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id8a159dff-a3b0-4133-95ec-049e6b591fcc">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>13</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -546,13 +479,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id89da07a3-d639-46f5-ba14-e5223531b1cf">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>123</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -575,13 +509,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ida661c0c5-2f30-4991-9cfd-ca601909e6b3">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>3</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -593,13 +528,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id57fde91a-00e4-463c-8915-05b83d535b1e">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>9</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -611,13 +547,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id74531f18-a27e-4cc0-a3c1-6e6ee2c44662">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>2</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -629,13 +566,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idbee1c9ec-7e5f-4200-a371-ab15e3b4d3b1">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>36</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -647,13 +585,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id5dd6f229-2be1-4f9d-ba44-94922608d257">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>12</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -665,13 +604,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id84eb66b7-1fb7-4783-8b02-6d2fe8fc9dc6">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>14</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -683,13 +623,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id55163fca-34e0-4d7b-ad88-964d743e7570">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>16</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -701,70 +642,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="idb6634aeb-c13d-4842-864c-8128d92b4edb">
-<fme:Division>53</fme:Division>
-<gml:multiSurfaceProperty>
-<gml:MultiSurface srsName="EPSG:26910" srsDimension="3">
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>492675.133932082 5455983.4905694 0 492675.092824154 5455983.47034335 0 492634.069122078 5455984.58878366 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>492634.069122078 5455984.58878366 0 492634.069748791 5455984.61011335 0 492675.133932082 5455983.4905694 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>493460.846542254 5455966.26263397 0 493460.798097903 5455966.26384568 0 493400.298338303 5455967.82352822 0 493316.87513156 5455969.90310492 0 493288.591885624 5455970.65295229 0 493176.365944755 5455973.46238044 0 493010.50078674 5455978.09143821 0 492978.325502297 5455978.64132628 0 492837.48648172 5455982.14061401 0 492680.221905786 5455985.98962463 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>492680.221905786 5455985.98962463 0 492680.262968537 5455986.00982845 0 492837.535956795 5455982.16061194 0 492978.374977371 5455978.67132218 0 493010.550261815 5455978.12143411 0 493176.415419829 5455973.49237634 0 493288.641360699 5455970.68294819 0 493316.91636079 5455969.93310082 0 493400.339567532 5455967.85352411 0 493460.847572977 5455966.30383954 0 493460.846542254 5455966.26263397 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-</gml:MultiSurface>
-</gml:multiSurfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id44b207bd-02c9-408d-b008-e113ce91f6dc">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>4</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -776,13 +661,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id7a76f243-62af-4cd5-9bc3-910d602e934e">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>8</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -794,13 +680,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="iddcf2cf44-73e2-49f5-bf13-c47425484a13">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>11</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -812,13 +699,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id61b1e77f-3c43-45b3-aedf-a40a2f794d80">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>126</fme:Division>
-<gml:multiSurfaceProperty>
+<fme:gml_multiSurfaceProperty>
 <gml:MultiSurface srsName="EPSG:26910" srsDimension="3">
 <gml:surfaceMember>
 <gml:Surface>
@@ -869,13 +757,14 @@
 </gml:Surface>
 </gml:surfaceMember>
 </gml:MultiSurface>
-</gml:multiSurfaceProperty>
+</fme:gml_multiSurfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id33d656c2-434b-49d3-8779-869c67a8029f">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>140</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -887,13 +776,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id514c3f00-2e6b-4406-92c3-2469bb4ce772">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>122</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -916,154 +806,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="id00ca7ec2-917e-4813-bfad-527626e90315">
-<fme:Division>115</fme:Division>
-<gml:multiSurfaceProperty>
-<gml:MultiSurface srsName="EPSG:26910" srsDimension="3">
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>488077.126735393 5456089.89810008 0 488077.119340389 5456089.89868017 0 488060.949239725 5456092.49815106 0 488045.801623753 5456096.25738588 0 488001.025332076 5456106.95174442 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>488001.025332076 5456106.95174442 0 488001.026689236 5456106.95521036 0 488045.859344675 5456096.24738991 0 488061.01520649 5456092.48815509 0 488077.126735393 5456089.89810008 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>488654.708711934 5456073.80895376 0 488681.952019515 5456073.08210514 0 488801.61571194 5456069.88275635 0 488823.615624522 5456069.27288049 0 488854.257181925 5456068.49303923 0 488874.764596689 5456067.96314709 0 488874.76437131 5456067.95461296 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>488874.76437131 5456067.95461296 0 488874.706875769 5456067.96314509 0 488854.19121516 5456068.49303723 0 488823.549657756 5456069.27287849 0 488797.039268344 5456069.47283779 0 488681.894298594 5456073.08210314 0 488654.708711934 5456073.80895376 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-</gml:MultiSurface>
-</gml:multiSurfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="id7f0105d3-3481-4b1a-8950-e26c096323fd">
-<fme:Division>117</fme:Division>
-<gml:multiSurfaceProperty>
-<gml:MultiSurface srsName="EPSG:26910" srsDimension="3">
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>489817.426465737 5456043.29320086 0 489848.301957659 5456042.48833241 0 489899.99515555 5456041.15860307 0 489899.994491479 5456041.14733563 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>489899.994491479 5456041.14733563 0 489899.945680474 5456041.14860311 0 489848.244236738 5456042.48833041 0 489817.426465737 5456043.29320086 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>489700.574137077 5456046.34504344 0 489376.235617543 5456054.81582119 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>489376.235617543 5456054.81582119 0 489203.897471756 5456059.36489523 0 489028.829951506 5456063.95396114 0 489018.252761027 5456064.22695311 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>489018.252761027 5456064.22695311 0 489028.887672428 5456063.95396314 0 489203.955192677 5456059.36489723 0 489376.293338464 5456054.81582319 0 489548.318142167 5456050.35673082 0 489700.574137077 5456046.34504344 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-<gml:surfaceMember>
-<gml:Surface>
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>488917.15777007 5456066.85244325 0 488909.875401692 5456067.04333231 0 488897.613831223 5456064.563837 0 488874.76437131 5456067.95461296 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>488874.76437131 5456067.95461296 0 488874.764596689 5456067.96314709 0 488909.933122613 5456067.04333431 0 488917.15777007 5456066.85244325 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceMember>
-</gml:MultiSurface>
-</gml:multiSurfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id57984dea-c17e-4514-a05d-d6fc88173132">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>54</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1086,13 +836,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idc6bdd18d-ce92-42bd-9cd0-0256b59533c0">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>40</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1118,13 +869,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idc400a59c-506c-41f4-bc46-3148392ed7a0">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>39</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1136,13 +888,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idb169c45d-f866-4f99-a767-6a4d98ec829a">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>125</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1165,13 +918,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id76202627-f670-485f-96ea-1d0bd072048d">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>49</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1194,13 +948,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id987d3b88-cf6e-4d01-aed1-e2d73afa37ba">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>47</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1223,13 +978,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id07c05e42-3d63-4867-a816-8e94c9aa9042">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>48</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1252,13 +1008,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id9d06e697-7330-4ba8-9e38-9e5ecae0e464">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>135</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1270,13 +1027,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idc1a98373-a092-4c03-846b-a7b8071466db">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>136</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1288,13 +1046,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ida934fd35-b374-4138-ba6f-6b70830a1328">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>134</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1306,13 +1065,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id07759a87-8280-407d-97bb-e85ce0fa27db">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>124</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1335,13 +1095,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id60d79400-0124-446c-9445-e1bde2f00802">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>138</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1353,13 +1114,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id9d5790fa-9286-43b7-b411-e267f47bc4a7">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>137</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1371,13 +1133,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="ide5b6618a-d6b4-4d30-b1d1-994d4ab107e9">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>139</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1389,13 +1152,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id2fe7e965-d7d7-4858-a549-01be76b4ad2a">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>132</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1407,13 +1171,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="idb3514935-8a0b-41f4-b50a-39275dd53b58">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>127</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1442,13 +1207,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id645525af-466a-44b2-8903-f065de8f0b48">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>22</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1460,13 +1226,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id0cd5c0af-ee6e-40fb-9a7e-21514b8d0776">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>23</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1478,13 +1245,14 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingDivisions gml:id="id1f2dbcbf-f1fe-437e-994c-39f77d5a3bef">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>10</fme:Division>
-<gml:surfaceProperty>
+<fme:gml_surfaceProperty>
 <gml:Surface srsName="EPSG:26910" srsDimension="3">
 <gml:patches>
 <gml:PolygonPatch>
@@ -1496,767 +1264,787 @@
 </gml:PolygonPatch>
 </gml:patches>
 </gml:Surface>
-</gml:surfaceProperty>
-</fme:VotingDivisions>
-</gml:featureMember>
-<gml:featureMember>
-<fme:VotingDivisions gml:id="id4c0f3122-7f4d-4295-8e55-89d1ddda5527">
-<fme:Division>130</fme:Division>
-<gml:surfaceProperty>
-<gml:Surface srsName="EPSG:26910" srsDimension="3">
-<gml:patches>
-<gml:PolygonPatch>
-<gml:exterior>
-<gml:Ring>
-<gml:curveMember>
-<gml:Curve>
-<gml:segments>
-<gml:LineStringSegment>
-<gml:posList>486506.467112218 5458061.75774872 0 486509.642060632 5458057.31821962 0 486505.519138485 5457898.8404773 0 486504.241032618 5457849.79046129 0 486503.144335328 5457808.79880502 0 486501.34674127 5457739.83284285 0 486501.272321361 5457739.83489835 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>486501.272321361 5457739.83489835 0 486501.27252866 5457739.84283881 0 486503.070122716 5457808.80880099 0 486504.166820008 5457849.80045725 0 486504.175065852 5457850.56030259 0</gml:posList>
-</gml:LineStringSegment>
-<gml:LineStringSegment>
-<gml:posList>486504.175065852 5457850.56030259 0 486504.175065852 5457850.56030259 0 486506.467112218 5458061.75774872 0</gml:posList>
-</gml:LineStringSegment>
-</gml:segments>
-</gml:Curve>
-</gml:curveMember>
-</gml:Ring>
-</gml:exterior>
-</gml:PolygonPatch>
-</gml:patches>
-</gml:Surface>
-</gml:surfaceProperty>
+</fme:gml_surfaceProperty>
 </fme:VotingDivisions>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id06ae9ace-a642-49ea-86b5-bed77d63565f">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>131</fme:Division>
 <fme:Name>Bayview Elementary School</fme:Name>
 <fme:Number>2251</fme:Number>
 <fme:Street>COLLINGWOOD ST</fme:Street>
 <fme:Room>Lunchroom</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>486705.342620023 5457091.57585616</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id1f77a0b1-e3ae-4ea6-a4ac-7f310768c7a5">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>127</fme:Division>
 <fme:Name>Point Grey Community Church</fme:Name>
 <fme:Number>3512</fme:Number>
 <fme:Street>W 7TH AV</fme:Street>
 <fme:Room>Sanctuary</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>486752.679769428 5457016.27306426</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idf30eb179-e81d-417a-b513-f28999d69b02">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>132</fme:Division>
 <fme:Name>General Gordon Elementary School</fme:Name>
 <fme:Number>2896</fme:Number>
 <fme:Street>W 6TH AV</fme:Street>
 <fme:Room>Activity Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>487598.072020905 5457044.38583903</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id2a678bf6-2400-40ad-b310-916e3078d872">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>136</fme:Division>
 <fme:Name>St. Mark's Anglican Church - Basement Hall</fme:Name>
 <fme:Number>1805</fme:Number>
 <fme:Street>LARCH ST</fme:Street>
 <fme:Room>Basement Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>488182.768797362 5457459.98654889</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idd0100691-2de0-440b-bfe0-ef781709642a">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>135</fme:Division>
 <fme:Name>St. Mark's Anglican Church - Sanctuary</fme:Name>
 <fme:Number>1805</fme:Number>
 <fme:Street>LARCH ST</fme:Street>
 <fme:Room>Sanctuary</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>488182.768797362 5457459.98654889</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id3c66b583-6a66-4e58-9bc8-e3c68d8d6e81">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>125</fme:Division>
 <fme:Name>Kitsilano Community Centre</fme:Name>
 <fme:Number>2690</fme:Number>
 <fme:Street>LARCH ST</fme:Street>
 <fme:Room>Lobby Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>488351.033170573 5456600.22658271</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idcd783ade-1570-42f8-b582-a440ccb36fe7">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>133</fme:Division>
 <fme:Name>Kitsilano Secondary School</fme:Name>
 <fme:Number>2550</fme:Number>
 <fme:Street>W 10TH AV</fme:Street>
 <fme:Room>Large Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>488096.793809505 5456603.63258964</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="ide8a3bb2b-a973-4e12-82df-437dcf4e9c41">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>139</fme:Division>
 <fme:Name>St. Augustine's Church</fme:Name>
 <fme:Number>2028</fme:Number>
 <fme:Street>W 7TH AV</fme:Street>
 <fme:Room>Parish Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489006.575645605 5456957.06760315</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id9df9fa52-1c3a-405f-9038-5dd1611e62b9">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>124</fme:Division>
 <fme:Name>Vancouver Resource Society</fme:Name>
 <fme:Number>2006</fme:Number>
 <fme:Street>W 10TH AV</fme:Street>
 <fme:Room>Main Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489008.750096446 5456654.91794554</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idb4612e43-dbe4-4247-a334-6aee365a352c">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>140</fme:Division>
 <fme:Name>Vancouver Masonic Centre</fme:Name>
 <fme:Number>1495</fme:Number>
 <fme:Street>W 8TH AV</fme:Street>
 <fme:Room>Lobby</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489995.3366175 5456921.40419776</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idd18f1d8b-c063-4800-b17d-4768d6161f69">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>123</fme:Division>
 <fme:Name>Fairview Presbyterian Church</fme:Name>
 <fme:Number>2725</fme:Number>
 <fme:Street>FIR ST</fme:Street>
 <fme:Room>Main Lounge</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489714.926032588 5456533.65063831</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id2ca01071-5a0d-438f-bc30-55baab3fb305">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>5</fme:Division>
 <fme:Name>Lord Roberts Elementary School</fme:Name>
 <fme:Number>1100</fme:Number>
 <fme:Street>BIDWELL ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489969.979533594 5459344.05211074</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id15986924-260a-4e41-8aa1-c7fa3f69e9c9">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>4</fme:Division>
 <fme:Name>Sunset Towers</fme:Name>
 <fme:Number>1655</fme:Number>
 <fme:Street>BARCLAY ST</fme:Street>
 <fme:Room>Ground Floor Lounge</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490194.112766841 5459555.24781194</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id7b876f9c-2549-43cd-84b7-15c35160f383">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>2</fme:Division>
 <fme:Name>King George Secondary School</fme:Name>
 <fme:Number>1755</fme:Number>
 <fme:Street>BARCLAY ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490105.115473699 5459693.7494991</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idb52f1e2d-f8a4-4310-a2bb-3be913ad2e32">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>ADV A</fme:Division>
 <fme:Name>West End Community Centre</fme:Name>
 <fme:Number>870</fme:Number>
 <fme:Street>DENMAN ST</fme:Street>
 <fme:Room>Bidwell Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490105.115473699 5459693.7494991</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id2e798960-9c35-44cb-9eba-23105443fc56">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>3</fme:Division>
 <fme:Name>West End Community Centre</fme:Name>
 <fme:Number>870</fme:Number>
 <fme:Street>DENMAN ST</fme:Street>
 <fme:Room>Auditorium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490105.115473699 5459693.7494991</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id2490f428-cf02-4177-871c-d26957186885">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>7</fme:Division>
 <fme:Name>St. Paul's Anglican Church</fme:Name>
 <fme:Number>1140</fme:Number>
 <fme:Street>JERVIS ST</fme:Street>
 <fme:Room>Lower Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490257.156097079 5458944.24670175</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id3f3a0281-74ef-4b65-af49-0e66addfad07">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>142</fme:Division>
 <fme:Name>False Creek Elementary School</fme:Name>
 <fme:Number>900</fme:Number>
 <fme:Street>SCHOOL GREEN</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490783.883206403 5457156.42976492</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id94d2e696-2015-4d0f-af61-65260b0e4374">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>121</fme:Division>
 <fme:Name>L'Ecole Bilingue</fme:Name>
 <fme:Number>1166</fme:Number>
 <fme:Street>W 14TH AV</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490514.252888648 5456180.5361446</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id6e7f2018-9fa6-4d5a-b6b3-c14775910c05">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>11</fme:Division>
 <fme:Name>Lord Roberts School Annex</fme:Name>
 <fme:Number>1150</fme:Number>
 <fme:Street>NELSON ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490564.563083816 5458940.45214519</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id29d121a9-3b7c-4eb7-a288-735070c8d77f">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>14</fme:Division>
 <fme:Name>Century Plaza Hotel</fme:Name>
 <fme:Number>1015</fme:Number>
 <fme:Street>BURRARD ST</fme:Street>
 <fme:Room>Salon A</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490738.965373684 5458704.2068557</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id0ff6f346-2c63-4e31-a67c-017931921565">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>16</fme:Division>
 <fme:Name>Jubilee House</fme:Name>
 <fme:Number>508</fme:Number>
 <fme:Street>HELMCKEN ST</fme:Street>
 <fme:Room>Large Meeting Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491046.660492368 5458259.01355981</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id024aafdd-46ce-4a38-a289-2c7be290dae8">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>12</fme:Division>
 <fme:Name>Twin Arms Apartments</fme:Name>
 <fme:Number>1030</fme:Number>
 <fme:Street>BURNABY ST</fme:Street>
 <fme:Room>Games Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490438.421205571 5458455.04559907</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idd149cef4-fea2-4937-a1bf-900b50fdf00b">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>15</fme:Division>
 <fme:Name>The Gathering Place</fme:Name>
 <fme:Number>609</fme:Number>
 <fme:Street>HELMCKEN ST</fme:Street>
 <fme:Room>Theatre</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491013.508396709 5458364.26218888</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idd880deda-b3c0-47a0-8b39-6eb91b61e928">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>141</fme:Division>
 <fme:Name>Developmental Disabilities Association</fme:Name>
 <fme:Number>624</fme:Number>
 <fme:Street>W 8TH AV</fme:Street>
 <fme:Room>Main Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491371.444498718 5456762.57896088</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id3b9d43d9-d693-4f6d-84f2-d9fb6eec7513">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>10</fme:Division>
 <fme:Name>Vancouver Public Library</fme:Name>
 <fme:Number>350</fme:Number>
 <fme:Street>W GEORGIA ST</fme:Street>
 <fme:Room>Alice MacKay Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491595.355408335 5458555.67549522</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id5dfcb394-f840-4fd5-b512-66f42d9143ad">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>18</fme:Division>
 <fme:Name>Chinese Cultural Centre of Greater Vancouver</fme:Name>
 <fme:Number>50</fme:Number>
 <fme:Street>E PENDER ST</fme:Street>
 <fme:Room>Auditorium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492488.074279863 5458560.83168508</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="iddb2ba495-4fc6-46a5-9b27-d43d04c319e0">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>38</fme:Division>
 <fme:Name>Mount Pleasant Elementary School</fme:Name>
 <fme:Number>2300</fme:Number>
 <fme:Street>GUELPH ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493157.952503804 5456812.76987526</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idc81cd7f5-7351-4bcf-85f1-0b1a8d56319f">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>22</fme:Division>
 <fme:Name>Carnegie Centre</fme:Name>
 <fme:Number>401</fme:Number>
 <fme:Street>MAIN ST</fme:Street>
 <fme:Room>Theatre</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492717.738565298 5458704.58382669</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idacb5fa65-752c-4dbc-982b-6983848ff4ca">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>36</fme:Division>
 <fme:Name>BC Housing</fme:Name>
 <fme:Number>705</fme:Number>
 <fme:Street>JACKSON AV</fme:Street>
 <fme:Room>Lounge</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493070.867716154 5458419.50803628</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id8450be34-4c9a-4e89-bc8d-33bb29fd3114">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>24</fme:Division>
 <fme:Name>Ray-Cam Co-operative Centre</fme:Name>
 <fme:Number>920</fme:Number>
 <fme:Street>E HASTINGS ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493884.135828281 5458668.0523021</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id1e665743-44a5-4cb2-b1f5-d0692908f46c">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>ADV E</fme:Division>
 <fme:Name>Vancouver City Hall</fme:Name>
 <fme:Number>453</fme:Number>
 <fme:Street>W 12TH AV</fme:Street>
 <fme:Room>Main Floor</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491710.136897776 5456511.93518492</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="ided385949-7d05-424a-a8e4-376aa6ed8670">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>120</fme:Division>
 <fme:Name>St. Mary's Ukrainian Catholic Centre</fme:Name>
 <fme:Number>3150</fme:Number>
 <fme:Street>ASH ST</fme:Street>
 <fme:Room>Boardroom</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491449.91937186 5456134.71505069</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idd7d244db-645d-45cc-aaac-d94ca0694e0f">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>49</fme:Division>
 <fme:Name>Kivan Boys' and Girls' Club</fme:Name>
 <fme:Number>2875</fme:Number>
 <fme:Street>ST. GEORGE ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493191.125235235 5456232.16413417</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="ida774822c-dd42-445f-b85b-581f6de16e64">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>39</fme:Division>
 <fme:Name>Mount Pleasant Neighbourhood House</fme:Name>
 <fme:Number>800</fme:Number>
 <fme:Street>E BROADWAY</fme:Street>
 <fme:Room>East &amp; West Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493686.541118737 5456601.43951586</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id9a88126d-6d4f-483a-997c-05ee7fb2fa68">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>48</fme:Division>
 <fme:Name>Grace Memorial United Church</fme:Name>
 <fme:Number>803</fme:Number>
 <fme:Street>E 16TH AV</fme:Street>
 <fme:Room>Lower Level Activity Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493657.233534258 5455975.23772146</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id301658c2-2d82-43c1-9747-8c6dc23a9ba4">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>50</fme:Division>
 <fme:Name>St Patrick's Regional Secondary School</fme:Name>
 <fme:Number>140</fme:Number>
 <fme:Street>E 11TH AV</fme:Street>
 <fme:Room>Lunchroom</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492518.400717054 5456460.59937062</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idf7cf8517-759e-43af-a0f7-59b71b05bd6c">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>13</fme:Division>
 <fme:Name>Vancouver Aquatic Centre</fme:Name>
 <fme:Number>1050</fme:Number>
 <fme:Street>BEACH AV</fme:Street>
 <fme:Room>Top Landing</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489996.715726851 5458517.66291914</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id16b822d0-6536-4765-a381-a46ebf8d5f1e">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>23</fme:Division>
 <fme:Name>Strathcona Community Centre</fme:Name>
 <fme:Number>601</fme:Number>
 <fme:Street>KEEFER ST</fme:Street>
 <fme:Room>Seniors Activity Lounge</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>493341.664451962 5458562.36220655</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="iddb36ae15-1ebb-4d21-b451-f1cef3c9c3ad">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>1</fme:Division>
 <fme:Name>Stanley Park Lawn Bowling Club</fme:Name>
 <fme:Number>2099</fme:Number>
 <fme:Street>BEACH AV</fme:Street>
 <fme:Room>Club Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489422.830653 5459790.850672</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id18d5d5ba-343f-4375-bee2-fb1a979ef0ba">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>17</fme:Division>
 <fme:Name>Elsie Roy Elementary School</fme:Name>
 <fme:Number>150</fme:Number>
 <fme:Street>DRAKE ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491080.700576928 5457717.06503638</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id0305e781-05b0-4c90-b0d8-56f3459314a1">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>9</fme:Division>
 <fme:Name>Coal Harbour Community Centre</fme:Name>
 <fme:Number>480</fme:Number>
 <fme:Street>BROUGHTON ST</fme:Street>
 <fme:Room>Multi-Purpose Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490846.053252835 5459720.50692373</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id3bd09dd1-21fd-4fbc-bf75-6fe4c57ce4d3">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>137</fme:Division>
 <fme:Name>Henry Hudson Elementary School</fme:Name>
 <fme:Number>1551</fme:Number>
 <fme:Street>CYPRESS ST</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489137.324741736 5457732.53939398</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="ida96159cc-af4a-462b-9793-cc55556c77cb">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>138</fme:Division>
 <fme:Name>Vancouver Museum</fme:Name>
 <fme:Number>1100</fme:Number>
 <fme:Street>CHESTNUT ST</fme:Street>
 <fme:Room>Joyce Walley Learning Centre</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>489556.874135096 5458186.45796698</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id8171fdf9-e6df-416b-ade5-a08181c7cf0d">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>19</fme:Division>
 <fme:Name>Vancouver Community College (Downtown)</fme:Name>
 <fme:Number>250</fme:Number>
 <fme:Street>W PENDER ST</fme:Street>
 <fme:Room>Foyer</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>491909.492254205 5458733.38676723</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id4278e316-cc58-40bb-bab1-c0d446868765">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>134</fme:Division>
 <fme:Name>St Augustine's Parish School</fme:Name>
 <fme:Number>2145</fme:Number>
 <fme:Street>W 8TH AV</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>488851.596748106 5456912.81531313</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idb8262fc3-dcc4-4ed4-8566-1e5163ca6497">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>51</fme:Division>
 <fme:Name>Simon Fraser Elementary School</fme:Name>
 <fme:Number>100</fme:Number>
 <fme:Street>W 15TH AV</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492113.579196971 5456050.74501589</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idc761c66f-bd54-4052-a1c8-8588dc791596">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>122</fme:Division>
 <fme:Name>L'Ecole Bilingue</fme:Name>
 <fme:Number>1166</fme:Number>
 <fme:Street>W 14TH AV</fme:Street>
 <fme:Room>Main Cafeteria</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490514.252888648 5456180.5361446</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id2fc9b19f-af9e-4467-af99-5be782a25701">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>37</fme:Division>
 <fme:Name>Mount Pleasant Community Centre</fme:Name>
 <fme:Number>1</fme:Number>
 <fme:Street>KINGSWAY</fme:Street>
 <fme:Room>Multi-Purpose Room 2</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492718.589324402 5456824.00514594</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id33821db2-d067-48ff-b64b-12a418e2aaee">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>8</fme:Division>
 <fme:Name>Gordon Neighbouhood House</fme:Name>
 <fme:Number>1019</fme:Number>
 <fme:Street>BROUGHTON ST</fme:Street>
 <fme:Room>Conference Room</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490276.763787515 5459221.09771996</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="id68a38588-d5b1-4e1b-b33c-8e4f500a3d11">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>6</fme:Division>
 <fme:Name>Guardian Angels Parish</fme:Name>
 <fme:Number>1175</fme:Number>
 <fme:Street>BROUGHTON ST</fme:Street>
 <fme:Room>Millenium Hall</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>490087.361954942 5459044.29796127</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 <gml:featureMember>
 <fme:VotingPlaces gml:id="idc34b92ea-69d9-4738-a387-7f2c213a281a">
+<fme:gml_parent_property>featureMember</fme:gml_parent_property>
 <fme:Division>35</fme:Division>
 <fme:Name>Creekside Community Recreation Centre</fme:Name>
 <fme:Number>1</fme:Number>
 <fme:Street>ATHLETES WAY</fme:Street>
 <fme:Room>Gymnasium</fme:Room>
-<gml:pointProperty>
+<fme:gml_pointProperty>
 <gml:Point srsName="EPSG:26910" srsDimension="2">
 <gml:pos>492309.956700852 5457675.22906096</gml:pos>
 </gml:Point>
-</gml:pointProperty>
+</fme:gml_pointProperty>
 </fme:VotingPlaces>
 </gml:featureMember>
 </gml:FeatureCollection>
