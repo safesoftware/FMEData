@@ -16,14 +16,14 @@ See GitHub branches for specific revisions and other versions of this dataset
 
 Document and Copyright Information
 ----------------------------------
-Permission is hereby granted to use, modify and distribute the FME Tutorials and related data and documentation (collectively, the ìTutorialsî), subject to the following restrictions:
+Permission is hereby granted to use, modify and distribute the FME Tutorials and related data and documentation (collectively, the ‚ÄúTutorials‚Äù), subject to the following restrictions:
 
-1)	The origin of the Tutorials and any associated FMEÆ software must not be misrepresented.
-2)	Redistributions in original or modified form must include Safe Softwareís copyright notice and any applicable Data Source(s) notices. 
+1)	The origin of the Tutorials and any associated FME¬Æ software must not be misrepresented.
+2)	Redistributions in original or modified form must include Safe Software‚Äôs copyright notice and any applicable Data Source(s) notices. 
 3)	You may not suggest that any modified version of the Tutorials is endorsed or approved by Safe Software Inc. 
-4)	Redistributions in original or modified form must include a disclaimer similar to that below which: (a) states that the Tutorials are provided ìas-isî; (b) disclaims any warranties;  and (c) waives any liability claims. 
+4)	Redistributions in original or modified form must include a disclaimer similar to that below which: (a) states that the Tutorials are provided ‚Äúas-is‚Äù; (b) disclaims any warranties;  and (c) waives any liability claims. 
 
-Safe Software Inc. makes no warranty either expressed or implied, including, but not limited to, any implied warranties of merchantability, non-infringement, or fitness for a particular purpose regarding these Tutorials, and makes such Tutorials available solely on an ìas-isî basis. In no event shall Safe Software Inc. be liable to anyone for direct, indirect, special, collateral, incidental, or consequential damages in connection with or arising out of the use, modification or distribution of these Tutorials. 
+Safe Software Inc. makes no warranty either expressed or implied, including, but not limited to, any implied warranties of merchantability, non-infringement, or fitness for a particular purpose regarding these Tutorials, and makes such Tutorials available solely on an ‚Äúas-is‚Äù basis. In no event shall Safe Software Inc. be liable to anyone for direct, indirect, special, collateral, incidental, or consequential damages in connection with or arising out of the use, modification or distribution of these Tutorials. 
 
 This manual describes the functionality and use of the software at the time of publication. The software described herein, and the descriptions themselves, are subject to change without notice.
 
@@ -36,15 +36,15 @@ Unless otherwise stated, the data used here originates from open data made avail
 
 Others
 ------
-Forward Sortation Areas: Statistics Canada, 2011 Census Digital Boundary Files, 2013. Reproduced and distributed on an "as is" basis with the permission of Statistics Canada. © This data includes information copied with permission from Canada Post Corporation
+Forward Sortation Areas: Statistics Canada, 2011 Census Digital Boundary Files, 2013. Reproduced and distributed on an "as is" basis with the permission of Statistics Canada. ¬© This data includes information copied with permission from Canada Post Corporation
 
-Digital Elevation Model: GeoBaseÆ
+Digital Elevation Model: GeoBase¬Æ
 
-Fire Hall Data: Some attribute data adapted from content © 2013 by Wikipedia (http://en.wikipedia.org/wiki/Vancouver_Fire_and_Rescue_Services), used under a Creative Commons Attribution-ShareAlike license
+Fire Hall Data: Some attribute data adapted from content ¬© 2013 by Wikipedia (http://en.wikipedia.org/wiki/Vancouver_Fire_and_Rescue_Services), used under a Creative Commons Attribution-ShareAlike license
 
 Stanley Park GPS Trail: Used with kind permission of VancouverTrails.com. See http://www.vancouvertrails.com/trails/stanley-park/
 
-OpenStreetMap Datasets: © OpenStreetMap contributors. See http://www.openstreetmap.org/copyright
+OpenStreetMap Datasets: ¬© OpenStreetMap contributors. See http://www.openstreetmap.org/copyright
 
 
 Copyright
