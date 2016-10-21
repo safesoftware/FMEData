@@ -1,15 +1,15 @@
 Installation
 ------------
-For the best results the files and folders within the zip file should be extracted to C:\FMEData2016
+For the best results the files and folders within the zip file should be extracted to C:\FMEData2017
 
 Exercises
 ---------
-The data and workspaces herein relate to FME 2016 training, tutorials and demonstations 
+The data and workspaces herein relate to FME 2017 training, tutorials and demonstations 
 If you would like further details on our training sessions, please contact a sales representative at (604) 501-9985 x287, e-mail sales@safe.com or visit http://www.safe.com/training
 
 Versions
 --------
-FMEData v16
+FMEData v17
 
 See GitHub branches for specific revisions and other versions of this dataset
 
@@ -49,7 +49,7 @@ OpenStreetMap Datasets: © OpenStreetMap contributors. See http://www.openstreetm
 
 Copyright
 ---------
-2005-2016 Safe Software Inc. All rights are reserved.
+2005-2017 Safe Software Inc. All rights are reserved.
 
 Revisions
 ---------
