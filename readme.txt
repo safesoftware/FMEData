@@ -46,6 +46,7 @@ Stanley Park GPS Trail: Used with kind permission of VancouverTrails.com. See ht
 
 OpenStreetMap Datasets: © OpenStreetMap contributors. See http://www.openstreetmap.org/copyright
 
+Contains information licensed under the Open Government Licence – British Columbia. See https://www2.gov.bc.ca/gov/content/data/open-data/open-government-license-bc
 
 Copyright
 ---------
