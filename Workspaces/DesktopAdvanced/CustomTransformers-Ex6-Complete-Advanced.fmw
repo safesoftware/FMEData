@@ -1,9 +1,11 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        "C:\Program Files\FME18\fme.exe" C:\Users\lsanderson\Documents\GitHub\FMEData\Workspaces\DesktopAdvanced\CustomTransformers-Ex6-Complete.fmw
+#        "C:\Program Files\FME18\fme.exe" C:\Users\lsanderson\Documents\GitHub\FMEData\Workspaces\DesktopAdvanced\CustomTransformers-Ex6-Complete-Advanced.fmw
 #              --VAL "100"
 #              --ANGLE "15"
+#              --MODE "Random"
+#              --FILL_COLOR ""
 #    
 #!   ATTR_TYPE_ENCODING="SDF"
 #!   BEGIN_PYTHON=""
@@ -12,7 +14,7 @@
 #!   DESCRIPTION=""
 #!   DESTINATION="NONE"
 #!   DESTINATION_ROUTING_FILE=""
-#!   DOC_EXTENTS="2299.51 18.5"
+#!   DOC_EXTENTS="2784.76 649.131"
 #!   DOC_TOP_LEFT="-1203.14 78.1258"
 #!   END_PYTHON=""
 #!   END_TCL=""
@@ -28,7 +30,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2018.0.0.0 (20180308 - Build 18284 - WIN64)"
-#!   LAST_SAVE_DATE="2018-04-03T15:46:53"
+#!   LAST_SAVE_DATE="2018-04-03T15:48:37"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -46,7 +48,7 @@
 #!   TITLE=""
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="-1950.02 703.132"
+#!   VIEW_POSITION="-1950.02 1081.26"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -72,8 +74,30 @@
 #!   DEFAULT_VALUE="15"
 #!   IS_STAND_ALONE="false"
 #! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI CHOICE MODE Fixed%Random%&quot;Random (Offset)&quot;%&quot;Map Coloring: Five Color&quot;%&quot;Map Coloring: N Color (Fast)&quot; Color Scheme:"
+#!   DEFAULT_VALUE="Random"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL COLOR_PICK_OR_ATTR FILL_COLOR If set to Fixed enter Fill Color:"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
 #! </GLOBAL_PARAMETERS>
 #! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="12"
+#!   COMMENT_VALUE="&lt;b&gt;FeatureColorSetter&amp;nbsp;[FeatureColorSetter&amp;nbsp;Version&amp;nbsp;2]&lt;/b&gt;&lt;br&gt;Mode:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Color&amp;nbsp;Scheme:&amp;nbsp;$(MODE)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Randomize&amp;nbsp;Based&amp;nbsp;On:&amp;nbsp;Color&amp;nbsp;Limit&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Unique&amp;nbsp;Color&amp;nbsp;Limit:&amp;nbsp;0&lt;br&gt;Parameters:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Pen&amp;nbsp;Color:&amp;nbsp;&amp;lt;not&amp;nbsp;set&amp;gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Fill&amp;nbsp;Color:&amp;nbsp;$(FILL_COLOR)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Color&amp;nbsp;ID&amp;nbsp;Attribute:&amp;nbsp;_color_id&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Pre-existing&amp;nbsp;Area&amp;nbsp;ID&amp;nbsp;Attribute:&amp;nbsp;&amp;lt;not&amp;nbsp;set&amp;gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Pre-existing&amp;nbsp;Neighbor&amp;nbsp;IDs&amp;nbsp;Attribute:&amp;nbsp;&amp;lt;not&amp;nbsp;set&amp;gt;"
+#!   POSITION="1301.3660936609344 727.2564375643758"
+#!   TOP_LEFT="1301.3660936609344 727.2564375643758"
+#!   BOTTOM_RIGHT="1300.3660936609344 728.2564375643758"
+#!   BOUNDING_RECT="1301.3660936609344 727.2564375643758 -1 -1"
+#!   ORDER="500000000000016"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="true"
+#!   ANCHORED_NODE="10"
+#! />
 #! </COMMENTS>
 #! <CONSTANTS>
 #! </CONSTANTS>
@@ -194,8 +218,8 @@
 #!   IDENTIFIER="15"
 #!   TYPE="SubDocumentTransformer"
 #!   VERSION="0"
-#!   POSITION="1096.3693436934345 96.625781257812747"
-#!   BOUNDING_RECT="1096.3693436934345 96.625781257812747 -1 -1"
+#!   POSITION="1027.6186561865597 96.625781257812747"
+#!   BOUNDING_RECT="1027.6186561865597 96.625781257812747 -1 -1"
 #!   ORDER="500000000000000"
 #!   PARMS_EDITED="true"
 #!   ENABLED="true"
@@ -213,6 +237,48 @@
 #!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Looper"/>
 #!     <XFORM_PARM PARM_NAME="_COUNT" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;_count&lt;closeparen&gt;"/>
 #!     <XFORM_PARM PARM_NAME="__COMPOUND_PARAMETERS" PARM_VALUE=""/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="FeatureColorSetter"
+#!   VERSION="2"
+#!   POSITION="1581.6186561865597 96.625781257812747"
+#!   BOUNDING_RECT="1581.6186561865597 96.625781257812747 -1 -1"
+#!   ORDER="500000000000015"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18284"
+#! >
+#!     <OUTPUT_FEAT NAME="COLORED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="CopyNum" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_copynum" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_count" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_color" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_fill_color" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_color_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="CopyNum" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_copynum" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_count" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_color_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="AREA_ID_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="COLOR_ID_ATTR" PARM_VALUE="_color_id"/>
+#!     <XFORM_PARM PARM_NAME="FILL_COLOR" PARM_VALUE="$(FILL_COLOR)"/>
+#!     <XFORM_PARM PARM_NAME="MODE" PARM_VALUE="$(MODE)"/>
+#!     <XFORM_PARM PARM_NAME="MODE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NEIGHBOR_IDS_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RANDOM_COLOR_CAP" PARM_VALUE="0"/>
+#!     <XFORM_PARM PARM_NAME="RANDOM_MODE" PARM_VALUE="Color Limit"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="FeatureColorSetter"/>
 #! </TRANSFORMER>
 #! </TRANSFORMERS>
 #! <FEAT_LINKS>
@@ -255,6 +321,17 @@
 #!   TARGET_NODE="15"
 #!   SOURCE_PORT_DESC="fo 0 OUTPUT"
 #!   TARGET_PORT_DESC="fi 0 Rotator_Input"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="15"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
 #!   ENABLED="true"
 #!   EXECUTION_IDX="0"
 #!   HIDDEN="false"
@@ -493,7 +570,12 @@ DEFAULT_MACRO VAL 100
 GUI OPTIONAL TEXT VAL Number of squares:
 DEFAULT_MACRO ANGLE 15
 GUI FLOAT ANGLE Rotation Angle (degrees):
+DEFAULT_MACRO MODE Random
+GUI CHOICE MODE Fixed%Random%"Random (Offset)"%"Map Coloring: Five Color"%"Map Coloring: N Color (Fast)" Color Scheme:
+DEFAULT_MACRO FILL_COLOR 
+GUI OPTIONAL COLOR_PICK FILL_COLOR If set to Fixed enter Fill Color:
 INCLUDE [ if {{$(ANGLE)} == {}} { puts_real {Parameter 'ANGLE' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(MODE)} == {}} { puts_real {Parameter 'MODE' must be given a value.}; exit 1; }; ]
 #! START_HEADER
 #! START_WB_HEADER
 READER_TYPE MULTI_READER
@@ -508,7 +590,7 @@ NULL_DEST_DATASET null
 
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)CustomTransformers-Ex6-Complete.log"
+LOG_FILENAME "$(FME_MF_DIR)CustomTransformers-Ex6-Complete-Advanced.log"
 LOG_APPEND NO
 LOG_MAX_FEATURES 200
 LOG_MAX_RECORDED_FEATURES 200
@@ -524,7 +606,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME CustomTransformers-Ex6-Complete
+MACRO WORKSPACE_NAME CustomTransformers-Ex6-Complete-Advanced
 MACRO FME_VIEWER_APP fmedatainspector
 DEFAULT_MACRO WB_CURRENT_CONTEXT
 # -------------------------------------------------------------------------
@@ -580,7 +662,7 @@ MACRO $(Looper_WORKSPACE_NAME)_ANGLE $(ANGLE)
 MACRO $(Looper_WORKSPACE_NAME)__COUNT <at>Value<openparen>_count<closeparen>
 DEFAULT_MACRO Looper_WORKSPACE_NAME ""
 INCLUDE [puts {MACRO WB_OLD_CONTEXT_$(Looper_WORKSPACE_NAME) $(WB_CURRENT_CONTEXT)};          puts {MACRO WB_CURRENT_CONTEXT $(Looper_WORKSPACE_NAME)}]
-FACTORY_DEF * TeeFactory   FACTORY_NAME "$(Looper_WORKSPACE_NAME)_Rotator_Input1522795613 Input Splitter"   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input"   OUTPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input" "@EvaluateExpression(ATTR_CREATE_EXPR_PROPAGATE_MISSING_FDIV,_count,$($(Looper_WORKSPACE_NAME)__COUNT), FEATURE_TYPE)"
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(Looper_WORKSPACE_NAME)_Rotator_Input1522795717 Input Splitter"   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input"   OUTPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input" "@EvaluateExpression(ATTR_CREATE_EXPR_PROPAGATE_MISSING_FDIV,_count,$($(Looper_WORKSPACE_NAME)__COUNT), FEATURE_TYPE)"
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory    FACTORY_NAME $(Looper_WORKSPACE_NAME)_Rotator_Rotator    INPUT  FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input"    OUTPUT FEATURE_TYPE ___TOREJECTOR___       @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code)       @Rotate2D(REJECTABLE,ALLOW_NULLS,"@EvaluateExpression(FDIV,FLOAT,$($(Looper_WORKSPACE_NAME)_ANGLE$encode),$(Looper_WORKSPACE_NAME)_Rotator)","0","0")
@@ -599,10 +681,17 @@ MACRO __fme_expressionevaluator_evaluateArgs__
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TestFactory    FACTORY_NAME $(Looper_WORKSPACE_NAME)_Tester    INPUT  FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_ExpressionEvaluator_OUTPUT"    TEST @EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>_count<closeparen>,$(Looper_WORKSPACE_NAME)_Tester) = 100 ENCODED    BOOLEAN_OPERATOR OR    OUTPUT PASSED FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_PASSED"    OUTPUT FAILED FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_FAILED"
-FACTORY_DEF * BranchingFactory   TARGET_FACTORY "$(Looper_WORKSPACE_NAME)_Rotator_Input1522795613 Input Splitter"   FACTORY_NAME "Loop to $(Looper_WORKSPACE_NAME)_Rotator_Input1522795613 Input Splitter"   MAXIMUM_COUNT -1   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_FAILED"   OUTPUT PASSED FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input"
-FACTORY_DEF * TeeFactory   FACTORY_NAME "$(Looper_WORKSPACE_NAME)_Output1522795613 Output Collector"   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_PASSED"   OUTPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Output"
+FACTORY_DEF * BranchingFactory   TARGET_FACTORY "$(Looper_WORKSPACE_NAME)_Rotator_Input1522795717 Input Splitter"   FACTORY_NAME "Loop to $(Looper_WORKSPACE_NAME)_Rotator_Input1522795717 Input Splitter"   MAXIMUM_COUNT -1   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_FAILED"   OUTPUT PASSED FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Rotator_Input"
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(Looper_WORKSPACE_NAME)_Output1522795717 Output Collector"   INPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Tester_PASSED"   OUTPUT FEATURE_TYPE "$(Looper_WORKSPACE_NAME)_Output"
 INCLUDE [puts {MACRO WB_CURRENT_CONTEXT $(WB_OLD_CONTEXT_$(Looper_WORKSPACE_NAME))}]
-FACTORY_DEF * TeeFactory   FACTORY_NAME "Looper Output Output Renamer/Nuker"   INPUT FEATURE_TYPE Looper_Output
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Looper Output Output Renamer/Nuker"   INPUT FEATURE_TYPE Looper_Output   OUTPUT FEATURE_TYPE Looper_Output
+# -------------------------------------------------------------------------
+INCLUDE [ switch {$(MODE)} {   {Fixed} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM MANUAL"; }   {Random (Offset)} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM RANDOM_OFFSET"; }   {Random} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM RANDOM"; }   {Map Coloring: Five Color} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM FIVE_COLOR"; }   {Map Coloring: N Color (Fast)} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM SIMPLE"; }   {} { puts_real "FeatureColorSetter - 'Color Scheme:' must be given a value."; exit 1; }   {default} { puts "MACRO fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM $(MODE)"; } } ]
+
+FACTORY_DEF {*} NeighborColorSetterFactory    FACTORY_NAME FeatureColorSetter    INPUT  FEATURE_TYPE Looper_Output    ALGORITHM $(fe3cac7d_aaaa_40fa_8135_40e301cfe078ALGORITHM)    RANDOM_MODE RAND_WITH_CAP    RANDOM_COLOR_CAP "0"    FILL_COLOR "@EvaluateExpression(FDIV,STRING,$(FILL_COLOR$encode),FeatureColorSetter)"    COLOR_ID_ATTR "_color_id"    REJECT_INVALID_PARAMS Yes    OUTPUT REJECTED FEATURE_TYPE FeatureColorSetter_<REJECTED>
+
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME FeatureColorSetter_<Rejected> INPUT FEATURE_TYPE FeatureColorSetter_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, FeatureColorSetter<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
