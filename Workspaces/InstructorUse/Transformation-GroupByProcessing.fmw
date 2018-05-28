@@ -1,0 +1,939 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command-line to run this workspace:
+#        C:\apps\FME2018\fme.exe C:\Users\imark\Documents\Training\MaterialsAndData\FMEData\Workspaces\InstructorUse\Transformation-GroupByProcessing.fmw
+#              --SourceDataset_GEOPACKAGE "C:\FMEData2018\Data\Planning\PlanningRestrictions.gpkg"
+#    
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="2779.41 724.51"
+#!   DOC_TOP_LEFT="517.5 -1356.26"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="18310"
+#!   FME_DOCUMENT_GUID="4e9fef20-3c3b-4706-9732-704c8bd898ba"
+#!   FME_DOCUMENT_PRIORGUID=""
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2018.0.1.0 (20180518 - Build 18310 - WIN64)"
+#!   LAST_SAVE_DATE="2018-05-28T09:49:55"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="2or3"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-96.876 0"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="GEOPACKAGE"
+#!   DATASET="$(SourceDataset_GEOPACKAGE)"
+#!   KEYWORD="GEOPACKAGE_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="geopackage_type {FME_GEN_GEOMETRY}"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename text(50) fme_type text(50) fme_secondary_axis double fme_geometry text(50) fme_feature_type text(50) geopackage_type text(255) multi_reader_id mediumint fme_rotation double fme_primary_axis double fme_dataset text(50) fme_fill_color text(50) multi_reader_type text(50) multi_reader_full_id mediumint fme_start_angle double fme_color text(50) geopackage_fid int fme_text_string text(50) multi_reader_keyword text(50) fme_text_size double fme_sweep_angle double"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   GENERATE_FME_BUILD_NUM="18310"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="GEOPACKAGE_OUT_TRANSACTION_SIZE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ALLOW_DATASET_CONFLICT"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="GeoPackage file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Table1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the GeoPackage file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the GeoPackage file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="tinyint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mediumint"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mediumint"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(20)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_point_xyzm"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_point_xyz"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_point_xym"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_point_xyzm"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_point_xyz"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_point_xym"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_point_xyzm"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_line_xyzm"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_line_xyz"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_line_xym"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_curve_xyzm"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_curve_xyz"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_curve_xym"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_curve"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line_xyzm"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line_xyz"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line_xym"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_compound_curve_xyzm"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_compound_curve_xyz"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_compound_curve_xym"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_compound_curve"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_circular_string_xyzm"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_circular_string_xyz"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_circular_string_xym"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_circular_string"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line_xyzm"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_line_xyzm"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_polygon_xyzm"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_polygon_xyz"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_polygon_xym"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_surface_xyzm"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_surface_xyz"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_surface_xym"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_multi_surface"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyzm"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyz"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xym"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_curve_polygon_xyzm"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_curve_polygon_xyz"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_curve_polygon_xym"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_curve_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_curve_polygon_xyzm"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyzm"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyzm"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyzm"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_polygon_xyzm"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry_collection_xyzm"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry_collection_xyz"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry_collection_xym"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="wkb_geometry"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="GEOPACKAGE"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="ViewCones"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="5"
+#!   FEAT_GEOMTYPE="wkb_point wkb_point_xyz wkb_line wkb_line_xyz wkb_polygon wkb_polygon_xyz wkb_circular_string wkb_circular_string_xyz wkb_compound_curve wkb_compound_curve_xyz wkb_curve_polygon wkb_curve_polygon_xyz wkb_geometry_collection wkb_geometry_collection_xyz wkb_multi_point wkb_multi_point_xyz wkb_multi_line wkb_multi_line_xyz wkb_multi_polygon wkb_multi_polygon_xyz wkb_multi_curve wkb_multi_curve_xyz wkb_multi_surface wkb_multi_surface_xyz"
+#!   POSITION="581.25481254812553 -896.75518755187545"
+#!   BOUNDING_RECT="581.25481254812553 -896.75518755187545 -1 -1"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEOPACKAGE_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ViewID" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ViewDescription" ATTR_TYPE="text" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LastUpdated" ATTR_TYPE="date" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_GEOPACKAGE GeoPackage_Files(*.gpkg)|*.gpkg|All_files(*)|* GeoPackage File:"
+#!   DEFAULT_VALUE="C:\FMEData2018\Data\Planning\PlanningRestrictions.gpkg"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="4"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Dissolver has a group by on the ViewDescription field.&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;It will merge adjacent or overlapping polygons, but only where they have the same value for ViewDescription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="913.37759377593829 -631.75318753187548"
+#!   TOP_LEFT="913.37759377593829 -631.75318753187548"
+#!   BOTTOM_RIGHT="2000.020000200002 -730.50387503875049"
+#!   BOUNDING_RECT="913.37759377593829 -631.75318753187548 1086.6424064240637 98.750687506875067"
+#!   ORDER="500000000000012"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   COLOUR="1,1,0.78431372549019607,0.19607843137254902"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="7"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="6"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Restricted development to protect known views&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="517.50037500375015 -1053.8825938259381"
+#!   TOP_LEFT="517.50037500375015 -1053.8825938259381"
+#!   BOTTOM_RIGHT="1011.2553125531256 -1196.3837188371881"
+#!   BOUNDING_RECT="517.50037500375015 -1053.8825938259381 493.75493754937548 142.50112501125011"
+#!   ORDER="500000000000013"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   COLOUR="1,1,0.78431372549019607,0.19607843137254902"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="5"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="9"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Notice how all the polygons for Queen Elizabeth Park have been merged together, because they had the same description.&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;But Queen Elizabeth Park has not merged with Olympic Plaza (for example) because they do not have the same description.&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Two polygons with the same description (Choklit Park to Grouse and Mount Fromme) have not merged, but that&apos;s because they don&apos;t overlap and aren&apos;t adjacent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="2121.8962189621893 -703.87909379093753"
+#!   TOP_LEFT="2121.8962189621893 -703.87909379093753"
+#!   BOTTOM_RIGHT="3296.9079690796902 -1021.3819688196878"
+#!   BOUNDING_RECT="2121.8962189621893 -703.87909379093753 1175.0117501175009 317.50287502875028"
+#!   ORDER="500000000000014"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   COLOUR="1,1,0.78431372549019607,0.19607843137254902"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="10"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Why not try the workspace with and without the group-by to really illustrate the difference in results!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="2121.8962189621893 -1306.2630626306263"
+#!   TOP_LEFT="2121.8962189621893 -1306.2630626306263"
+#!   BOTTOM_RIGHT="2871.8962189621893 -1356.2630626306263"
+#!   BOUNDING_RECT="2121.8962189621893 -1306.2630626306263 750 50"
+#!   ORDER="500000000000015"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   COLOUR="1,1,0.78431372549019607,0.19607843137254902"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="Dissolver"
+#!   VERSION="15"
+#!   POSITION="1212.3803438034383 -896.75518755187545"
+#!   BOUNDING_RECT="1212.3803438034383 -896.75518755187545 -1 -1"
+#!   ORDER="500000000000008"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18310"
+#! >
+#!     <OUTPUT_FEAT NAME="AREA"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="ViewID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ViewDescription" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LastUpdated" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="REMNANTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="ViewDescription" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_remnant_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="ViewID" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ViewDescription" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="LastUpdated" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="ACCUM_INPUT_ATTRS" PARM_VALUE="Use Attributes From One Feature"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="AV" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE" PARM_VALUE=".001"/>
+#!     <XFORM_PARM PARM_NAME="CONNECT_Z_MODE" PARM_VALUE="First Wins"/>
+#!     <XFORM_PARM PARM_NAME="DEAGGREGATE_INPUT" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="DIS_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="FME_PROCESS_COUNTDISP" PARM_VALUE="No Parallelism"/>
+#!     <XFORM_PARM PARM_NAME="FME_PROCESS_GROUPS_ORDERED" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="ViewDescription"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NO_OVRLP" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP_ADVANCED" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SUM" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WEIGHT" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Dissolver"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="8"
+#!   SOURCE_NODE="5"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+FME_PYTHON_VERSION 2or3
+GUI IGNORE SourceDataset_GEOPACKAGE_1,GEOPACKAGE_IN_FME_CONNECTION_GROUP_GEOPACKAGE_1,GEOPACKAGE_IN_ADVANCED_GROUP_GEOPACKAGE_1,GEOPACKAGE_IN_ENFORCE_FOREIGN_KEY_INTEGRITY_GEOPACKAGE_1,GEOPACKAGE_IN_USE_SEARCH_ENVELOPE_GEOPACKAGE_1,GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1,GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1,GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1,GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1,GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1,GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1,GEOPACKAGE_IN_NETWORK_AUTHENTICATION_GEOPACKAGE_1
+DEFAULT_MACRO SourceDataset_GEOPACKAGE C:\FMEData2018\Data\Planning\PlanningRestrictions.gpkg
+GUI MULTIFILE SourceDataset_GEOPACKAGE GeoPackage_Files(*.gpkg)|*.gpkg|All_files(*)|* GeoPackage File:
+INCLUDE [ if {{$(SourceDataset_GEOPACKAGE)} == {}} { puts_real {Parameter 'SourceDataset_GEOPACKAGE' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} GEOPACKAGE
+MULTI_READER_KEYWORD{0} GEOPACKAGE_1
+MULTI_READER_GEN_DIRECTIVES{0} ENFORCE_FOREIGN_KEY_INTEGRITY,YES,OPEN_SINGLE_RASTER_AS_SUBDATASET,YES,GEOPACKAGE_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_MINX,0,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,ADVANCED_GROUP,,EXPOSE_ATTRS_GROUP,,CLIP_TO_ENVELOPE,NO,SEARCH_ENVELOPE_MAXY,0,READ_BOOLEANS_AS_YES_NO,YES,ENCODE_FEATURE_TYPE_AND_ATTR_NAMES,YES,SEARCH_ENVELOPE_MAXX,0,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,READ_NULLS,YES,TABLELIST,,_MERGE_SCHEMAS,YES,SEARCH_ENVELOPE_MINY,0
+
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GEOPACKAGE_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOPACKAGE GEOPACKAGE_1
+# ============================================================================
+# The following GUI line prompts for a folder to be used as the
+# source of the GEOPACKAGE Files.
+# The user input is stored in a macro, which is then used to define
+# the dataset to be read.
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_GEOPACKAGE_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOPACKAGE GEOPACKAGE_1
+DEFAULT_MACRO SourceDataset_GEOPACKAGE_1 $(SourceDataset_GEOPACKAGE)
+GUI MULTIFILE SourceDataset_GEOPACKAGE_1 GeoPackage_Files(*.gpkg)|*.gpkg|All_files(*)|* GeoPackage File:
+DEFAULT_MACRO GEOPACKAGE_IN_FME_CONNECTION_GROUP_GEOPACKAGE_1 
+GUI OPTIONAL DISCLOSUREGROUP GEOPACKAGE_IN_FME_CONNECTION_GROUP_GEOPACKAGE_1 GEOPACKAGE_IN_NAMED_CONNECTION Database Connection
+DEFAULT_MACRO GEOPACKAGE_IN_TABLELIST_GEOPACKAGE_1
+GEOPACKAGE_1_TABLELIST "$(GEOPACKAGE_IN_TABLELIST_GEOPACKAGE_1)"
+DEFAULT_MACRO GEOPACKAGE_IN_ADVANCED_GROUP_GEOPACKAGE_1 
+GUI OPTIONAL DISCLOSUREGROUP GEOPACKAGE_IN_ADVANCED_GROUP_GEOPACKAGE_1 FME_DISCLOSURE_CLOSED%GEOPACKAGE_IN_ENFORCE_FOREIGN_KEY_INTEGRITY_GEOPACKAGE_1 Advanced
+DEFAULT_MACRO GEOPACKAGE_IN_ENFORCE_FOREIGN_KEY_INTEGRITY_GEOPACKAGE_1 YES
+GEOPACKAGE_1_ENFORCE_FOREIGN_KEY_INTEGRITY "$(GEOPACKAGE_IN_ENFORCE_FOREIGN_KEY_INTEGRITY_GEOPACKAGE_1)"
+GUI LOOKUP_CHOICE GEOPACKAGE_IN_ENFORCE_FOREIGN_KEY_INTEGRITY_GEOPACKAGE_1 Yes,YES%No,NO Enforce Foreign Key Integrity:
+DEFAULT_MACRO GEOPACKAGE_IN_EXPOSE_ATTRS_GROUP_GEOPACKAGE_1 
+GEOPACKAGE_1_EXPOSE_ATTRS_GROUP "$(GEOPACKAGE_IN_EXPOSE_ATTRS_GROUP_GEOPACKAGE_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO GEOPACKAGE_IN_USE_SEARCH_ENVELOPE_GEOPACKAGE_1 NO
+GEOPACKAGE_1_USE_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_USE_SEARCH_ENVELOPE_GEOPACKAGE_1)"
+GUI ACTIVEDISCLOSUREGROUP GEOPACKAGE_IN_USE_SEARCH_ENVELOPE_GEOPACKAGE_1 GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1%GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1%GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1%GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1%GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1%GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1%GEOPACKAGE_IN_SEARCH_METHOD%GEOPACKAGE_IN_SEARCH_METHOD_FILTER%GEOPACKAGE_IN_SEARCH_ORDER%GEOPACKAGE_IN_SEARCH_FEATURE%GEOPACKAGE_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1 <Unused>,0 
+DEFAULT_MACRO GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1 0
+GEOPACKAGE_1_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1)"
+GUI OPTIONAL FLOAT GEOPACKAGE_IN_SEARCH_ENVELOPE_MINX_GEOPACKAGE_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1 <Unused>,0 
+DEFAULT_MACRO GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1 0
+GEOPACKAGE_1_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1)"
+GUI OPTIONAL FLOAT GEOPACKAGE_IN_SEARCH_ENVELOPE_MINY_GEOPACKAGE_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1 <Unused>,0 
+DEFAULT_MACRO GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1 0
+GEOPACKAGE_1_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1)"
+GUI OPTIONAL FLOAT GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXX_GEOPACKAGE_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1 <Unused>,0 
+DEFAULT_MACRO GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1 0
+GEOPACKAGE_1_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1)"
+GUI OPTIONAL FLOAT GEOPACKAGE_IN_SEARCH_ENVELOPE_MAXY_GEOPACKAGE_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1 <Unused>, 
+DEFAULT_MACRO GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1 
+GEOPACKAGE_1_SEARCH_ENVELOPE "$(GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1)"
+GUI OPTIONAL COORDSYS GEOPACKAGE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOPACKAGE_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1 <Unused>,NO 
+DEFAULT_MACRO GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1 NO
+GEOPACKAGE_1_CLIP_TO_ENVELOPE "$(GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1)"
+GUI OPTIONAL CHECKBOX GEOPACKAGE_IN_CLIP_TO_ENVELOPE_GEOPACKAGE_1 YES%NO Clip to Search Envelope
+DEFAULT_MACRO GEOPACKAGE_IN_READ_BOOLEANS_AS_YES_NO_GEOPACKAGE_1 YES
+GEOPACKAGE_1_READ_BOOLEANS_AS_YES_NO "$(GEOPACKAGE_IN_READ_BOOLEANS_AS_YES_NO_GEOPACKAGE_1)"
+DEFAULT_MACRO GEOPACKAGE_IN_READ_NULLS_GEOPACKAGE_1 YES
+GEOPACKAGE_1_READ_NULLS "$(GEOPACKAGE_IN_READ_NULLS_GEOPACKAGE_1)"
+DEFAULT_MACRO GEOPACKAGE_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_GEOPACKAGE_1 Yes
+GEOPACKAGE_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(GEOPACKAGE_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_GEOPACKAGE_1)"
+DEFAULT_MACRO GEOPACKAGE_IN_ENCODE_FEATURE_TYPE_AND_ATTR_NAMES_GEOPACKAGE_1 YES
+GEOPACKAGE_1_ENCODE_FEATURE_TYPE_AND_ATTR_NAMES "$(GEOPACKAGE_IN_ENCODE_FEATURE_TYPE_AND_ATTR_NAMES_GEOPACKAGE_1)"
+DEFAULT_MACRO GEOPACKAGE_IN_OPEN_SINGLE_RASTER_AS_SUBDATASET_GEOPACKAGE_1 YES
+GEOPACKAGE_1_OPEN_SINGLE_RASTER_AS_SUBDATASET "$(GEOPACKAGE_IN_OPEN_SINGLE_RASTER_AS_SUBDATASET_GEOPACKAGE_1)"
+# ===========================================================================
+DEFAULT_MACRO GEOPACKAGE_IN_NETWORK_AUTHENTICATION_GEOPACKAGE_1 
+GEOPACKAGE_1_NETWORK_AUTHENTICATION "$(GEOPACKAGE_IN_NETWORK_AUTHENTICATION_GEOPACKAGE_1)"
+GUI OPTIONAL AUTHENTICATOR GEOPACKAGE_IN_NETWORK_AUTHENTICATION_GEOPACKAGE_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================ 
+DEFAULT_MACRO GEOPACKAGE_IN_ATTRIBUTE_READING_GEOPACKAGE_1 DEFLINE
+GEOPACKAGE_1_ATTRIBUTE_READING "$(GEOPACKAGE_IN_ATTRIBUTE_READING_GEOPACKAGE_1)"
+# ============================================================================ 
+GEOPACKAGE_1_GENERATE_FME_BUILD_NUM 18310
+GEOPACKAGE_1_DATASET "$(SourceDataset_GEOPACKAGE_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)Transformation-GroupByProcessing.log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+DEFAULT_MACRO DATASET_KEYWORD_GEOPACKAGE_1 GEOPACKAGE_1
+# -------------------------------------------------------------------------
+
+GEOPACKAGE_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME Transformation-GroupByProcessing
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_GEOPACKAGE_1)   INPUT FEATURE_TYPE *    ROUTE GEOPACKAGE GEOPACKAGE_1::ViewCones multi_reader_keyword,$(DATASET_KEYWORD_GEOPACKAGE_1) TO FME_GENERIC ::ViewCones ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+GEOPACKAGE_1_MERGE_DEF GEOPACKAGE_1::ViewCones EXACT ViewCones DEFLINE geopackage_type,wkb_point<space>wkb_point_xyz<space>wkb_line<space>wkb_line_xyz<space>wkb_polygon<space>wkb_polygon_xyz<space>wkb_circular_string<space>wkb_circular_string_xyz<space>wkb_compound_curve<space>wkb_compound_curve_xyz<space>wkb_curve_polygon<space>wkb_curve_polygon_xyz<space>wkb_geometry_collection<space>wkb_geometry_collection_xyz<space>wkb_multi_point<space>wkb_multi_point_xyz<space>wkb_multi_line<space>wkb_multi_line_xyz<space>wkb_multi_polygon<space>wkb_multi_polygon_xyz<space>wkb_multi_curve<space>wkb_multi_curve_xyz<space>wkb_multi_surface<space>wkb_multi_surface_xyz,fme_attribute_reading,defined,ViewID,smallint,ViewDescription,text,LastUpdated,date
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "ViewCones (GEOPACKAGE_1) Splitter"    INPUT FEATURE_TYPE ViewCones    OUTPUT FEATURE_TYPE ViewCones_GEOPACKAGE_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+
+FACTORY_DEF {*} PolygonDissolveFactory    INPUT  FEATURE_TYPE ViewCones_GEOPACKAGE_1    FACTORY_NAME Dissolver    GROUP_BY { ViewDescription }    NON_OVERLAPPING_INPUT No    ACCUM_INPUT_ATTRS One    DEAGGREGATE_INPUT Yes    LIST_ATTRS_TO_INCLUDE { <Unused> }    LIST_ATTRS_TO_INCLUDE_MODE <Unused>    MODE COMPLETE    CONNECT_Z_MODE FIRST_WINS    CLEANING_TOLERANCE .001    OUTPUT_REMNANTS    OUTPUT REJECTED FEATURE_TYPE Dissolver_<REJECTED>
+
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME Dissolver_<Rejected> INPUT FEATURE_TYPE Dissolver_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, Dissolver<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
