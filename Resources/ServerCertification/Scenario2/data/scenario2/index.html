@@ -1,0 +1,86 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+	<head id='head'>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title id='pageTitle'>Data Distribution Example</title>
+
+		<!--Google Maps Stuff -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0PV4qXA9_Kjb_0hMu5sYHeeAMW8X2ApU&sensor=false&libraries=drawing"></script>
+		<script type="text/javascript" src="js/google/polygoncontrol.js"></script>
+		<script type="text/javascript" src="js/google/maps-controller.js"></script>
+
+		<!--ArcGIS Maps Stuff -->
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="http://js.arcgis.com/3.14/esri/css/esri.css">
+		<script type="text/javascript" src="http://js.arcgis.com/3.14/"></script>
+		<script type="text/javascript" src="js/arcgis/arcgis-polygoncontrol.js"></script>
+		<script type="text/javascript" src="js/arcgis/arcgis-maps-controller.js"></script>
+
+		<script src="libs/jquery-1.10.1.js"></script>
+		<script src="http://api.fmeserver.com/js/v1.1/FMEServer.js" type="text/javascript"></script>
+
+		<script src="js/datadistribution.js" type="text/javascript"></script>
+
+		  <!-- Bootstrap -->
+  		<script src="libs/bootstrap/js/bootstrap.js"></script>
+ 		<link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<link href="libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="css/reset.css">
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="css/ie.css">
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="css/index.css">
+
+	</head>
+	<body>
+	<span id="safe-ribbon"><a href="http://www.safe.com">Powered by FME</a></span>
+	  <div class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+	      <div class="container">
+	        <div class="brand">FME Server Demos</div>
+	        <ul class="nav pull-left">
+            <a href="https://knowledge.safe.com/articles/1117/data-distribution-with-web-maps.html" class="btn">View KC article</a>
+      			<a href="http://playground.fmeserver.com/demos/" class="btn"><img src="libs/server-icon.png">View all Demos</a>
+	          <a href="https://github.com/safesoftware/fmepedia-datadistribution-webmap" class="btn"><img src="libs/github.png"> Fork GitHub</a>
+	          <a href="https://github.com/safesoftware/fmepedia-datadistribution-webmap/archive/master.zip" class="btn"><i class="icon-download-alt"></i> Download Zip
+	          </a>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+
+		<div id="mapwrapper">
+			<div id="map_canvas"></div>
+			<div id="request_form">
+				<div id="draw-tools">
+					<h1>Step 1: Create Clipping Area</h1>
+					<button type="button" onclick="polygonControl.drawPolygon()">
+						Draw Polygon
+					</button>
+					<button type="button" onclick="polygonControl.clearPolygon()">
+						Clear
+					</button>
+				</div>
+
+				<h1>Step 2: Set Parameters</h1>
+				<form id="fmeForm" name="fmeForm" onsubmit="return dataDist.orderData(this);" onchange="dataDist.updateQuery()">
+					<!-- Extra service-specific directives -->
+					<input type="hidden" name="opt_servicemode" value="sync">
+					<input type="hidden" name="opt_responseformat" value="json">
+					<input type="hidden" id="geom" name="GEOM" value="" />
+					<input id='submit' class='btn' type="submit" value="Request Data" >
+				</form>
+			</div>
+		</div>
+		<div id="footer">
+			<div id="results-panel">
+				<h1>Translation Results</h1>
+				<div id="results" ></div>
+			</div>
+			<div id="query-panel">
+				<h1>Query</h1>
+				<div id="query-panel-results" ></div>
+			</div>
+		</div>
+	</body>
+</html>
