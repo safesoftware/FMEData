@@ -1,0 +1,11 @@
+/Data/Addresses
+/Data/Addresses/Addresses.gdb
+/Data/Boundaries/CoastalZones
+/Data/Boundaries/LandBoundary
+/Data/CommunityMapping/CommunityMap.gdb
+/Data/ElevationModel/Contours
+/Data/Engineering/BuildingFootprints
+/Data/Parcels/CityProperties
+/Data/Parks
+/Data/Transportation/Cycling
+/Data/Transportation/Cycling/Parking
