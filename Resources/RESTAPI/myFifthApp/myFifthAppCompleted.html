@@ -1,0 +1,409 @@
+<!-- Upload Files In Session Example from FME Server Developer Playground -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<title>Upload Files In Session Example from FME Server Developer Playground</title>
+	<!-- Styles for example -->
+	<link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
+	<!-- Include FMEServer.js -->
+	<script type="text/javascript" src="https://api.fmeserver.com/js/v1.2/FMEServer.js"></script>
+	<!-- The following are Required for Google Maps Integration -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0PV4qXA9_Kjb_0hMu5sYHeeAMW8X2ApU&amp;v=3&amp;libraries=drawing"></script>
+
+	<!-- Styles for example -->
+	<link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
+
+
+	<style>    
+    body{ 
+	font-family:Helvetica,Arial,sans-serif;
+	font-size:14px;
+    }
+    
+    input, select, textarea{
+	margin:5px;
+	vertical-align:middle;
+    }
+
+    input[type=text]{
+	width:200px;
+    }
+
+    textarea{ 
+	min-width:300px;
+	min-height:150px;
+    }
+
+    label{
+	display:inline;
+	vertical-align:middle;
+    }
+
+    hr{
+	clear:both;
+	margin:10px 0px;
+    }
+    
+    #h1{
+     margin: 0 auto;
+     width: 250px; 
+    }
+
+    #mapDiv{ 
+	width:45%;
+	height:480px;
+	position:absolute;
+    right: 10px;
+    top: 100px; 
+    z-index:10002;
+    }
+    
+    #results{ 
+	width:100%;
+	height:480px;
+	position:absolute;
+    z-index:10002;
+    top: 700px;
+    }
+    
+    #text{ 
+	width:50%;
+	height:400px;
+	margin:10px 0px;
+	position:relative;
+    z-index:10002;
+    }
+     #allWeb{ 
+	margin:10px 10px 10px 10px;	
+    }
+
+    #loadingImg{
+	display:none;
+	position:absolute;
+	left:50%;
+	top:50%;
+	z-index:10002;
+    }
+    
+    #finalResults{ 
+	width:50%;
+	height:100px;
+	position:relative;
+    z-index:10002;
+    top: 50px;
+    left: 10px; 
+    }
+    
+    #resultsText{
+    margin: 0 auto;
+    width: 450px;
+    }
+
+    .topic{
+	padding:5px;
+	margin:2px;
+	border:1px solid #EEE;
+	float:left;
+   }
+    </style>
+
+
+
+
+</head>
+<body>
+
+	<div id= "allWeb">
+   
+    
+	<div id="h1"> <h1> Data Validation </h1> </div>
+    
+    <div id="text">
+	<h2> Upload an AutoCAD file for Quality Analysis </h2>
+    <p> If the file passes the Quality Analysis process, the map will will display the features in the correct location. Then the user will be presented with the KML link. </p>
+    <p> If the file does not pass the map will not show any geometry and the user will be presented with a link with the details of the errors. </p>
+	<hr/>
+	<label><b>File List </b>(Be patient, some files may take a while to upload) : </label>
+	<input id="refresh" type="button" onclick="getFiles();" value="Refresh File List" />
+	<div id="fileList"></div>
+	<hr />
+	<form id="options"></form>
+	<hr />
+	<input type="button" onclick="streamResults();" value="Display Results on Map" />
+	<input type="button" onclick="downloadWorkspace();" value="Download Results" />
+	<input type="button" onclick="newSession();" value="Upload a New File" />
+  
+    
+    <!-- End of text div -->
+    </div>
+    
+    <div id="results"></div>
+
+	<div id="mapDiv" class="map"> </div>
+    
+    <div id="finalResults">
+    
+    <div id="resultsText">
+    <h2> The final results link will appear here: </h2><br>
+    </div>
+    
+    
+    <!-- End of finalResults -->
+    </div>
+    
+    <!-- End of allWeb -->
+    </div>
+
+
+	<script type="text/javascript">
+		var jsid, path, fileInput, files, archives, repository, workspace;
+
+		var layer, map;
+		var loading = new Image();
+		loading.src = "http://demos.fmeserver.com/easygeocoder/libs/upload/img/loading.gif";
+		loading.id = "loadingImg";
+
+		window.onload = function() {
+			FMEServer.init({
+				server : "http://52.55.238.186",
+				token : "6179d3f0b8cf52f6b97a4372bf80b358e0e773b7"
+			});
+
+			// Initialize variables
+			setWorkspace();
+
+			// Generate a JSID  for the session
+			FMEServer.getSession( repository, workspace, setVars );
+
+			// Get options for the workspace
+			generateOptions();
+
+			//Google Maps Stuff
+
+			var mapStyles = [ {
+				featureType : "all",
+				elementType : "labels",
+				stylers : [ { visibility : "off" } ]
+			}];
+
+			var mapOptions = {
+				zoom: 14,
+				center: new google.maps.LatLng( 30.302610, -97.660829 ),
+				mapTypeId : google.maps.MapTypeId.SATELLITE
+			};
+			map = new google.maps.Map( document.getElementById( "mapDiv" ), mapOptions );
+
+			google.maps.event.addListenerOnce( map, 'idle', function() {
+				map.setOptions( { styles : mapStyles } );
+			    document.getElementById( "mapDiv" ).appendChild( loading );
+			});
+
+		};
+
+	// Show Loading Icon
+		function showLoading() {
+			loading.style.display = "block";
+		}
+
+		// Hide Loading Icon
+		function hideLoading() {
+			loading.style.display = "none";
+		}
+
+		
+
+		function setWorkspace() {
+			repository = "WebApplication";
+			workspace = "webapp.kml.fmw";
+			server= "http://52.55.238.186";
+	    
+	    }
+
+	    function generateOptions() {
+			setWorkspace();
+
+			// Get the workspace parameters from FME Server
+			FMEServer.getWorkspaceParameters( repository, workspace, buildOptions );
+		}
+
+		function setVars( json ) {
+			if( json.serviceResponse.files ) {
+				jsid = json.serviceResponse.session;
+				path = json.serviceResponse.files.folder[0].path;
+			} else {
+				showResults( json );
+			}
+		}
+
+		function buildOptions( json ) {
+			// Use the API to build the form items
+			FMEServer.generateFormItems( "options", json );
+
+			// Attach the upload button to the form file input
+			var inputs = document.getElementById( "options" ).getElementsByTagName( "input" );
+			var added = false;
+
+			for( var i in inputs ) {
+				if( inputs[i].type == "file" && added === false ){
+					fileInput = inputs[i];
+
+					// Create the drop area and style the elements accordingly
+					// See FMEServerExample.css for example styling
+					// You can also use any other drag and drop library
+					// You just have to attach the onchange handler specific to the library
+					var drop = document.createElement( "div" );
+					drop.innerHTML = "br";
+					drop.id = "drop";
+					drop.setAttribute( "class", "drop" );
+					fileInput.setAttribute( "class", "drop drop-file" );
+					fileInput.id = "filebox";
+					fileInput.parentNode.insertBefore( drop, fileInput.nextSibling );
+
+					// Custom Code for Internet Explorer
+					if( navigator.appName == 'Microsoft Internet Explorer' ) {
+						drop.innerHTML = "Drop File Here, or Double Click to Select";
+						window.addEventListener( "drop", function( event ) {
+							event.stopPropagation();
+  							event.preventDefault();
+  						}, false );
+  						window.addEventListener( "dragover", function( event ) {
+							event.stopPropagation();
+  							event.preventDefault();
+  						}, false );
+  						fileInput.addEventListener( "drop", function( event ) {
+  							if( event.dataTransfer.files !== undefined ) {
+  								fileInput = {
+  									files : event.dataTransfer.files
+  								};
+  								uploadFile();
+  							}
+  						}, false );
+					} else { // All modern browsers
+						drop.innerHTML = "Drop File Here, or Click to Select File";
+						// Add the on "drop" handler
+						fileInput.onchange = function() {
+							uploadFile();
+						};
+					}
+
+					drop.appendChild( fileInput );
+					// End Drop Area Code
+
+					
+					added = true;
+				}
+			}
+		}
+
+		function uploadFile() {
+			setWorkspace();
+
+			// Ask FME Server to upload the file
+			FMEServer.dataUpload( repository, workspace, fileInput, jsid, processFiles );
+		}
+		function getFiles() {
+			// Ask FME Server for the list of uploaded files
+			FMEServer.getDataUploads( repository, workspace, jsid, processFiles );
+		}
+		function processFiles( json ) {
+			var list = document.getElementById( "fileList" );
+			if( json.serviceResponse != undefined ) {
+				list.innerHTML = "";
+				files = json.serviceResponse.files.file;
+				for( var file in files ){
+					list.innerHTML += "<p>"+files[file].name+", <em>"+files[file].size+" bytes</em></p>";
+
+					filename=files[file].name;
+				}
+				archives = json.serviceResponse.files.archive;
+				for( var archive in archives ){
+					list.innerHTML += "<p>"+archives[archive].name+", <em>"+archives[archive].size+" bytes</em></p>";
+
+					
+				}
+				showResults( json );
+			} else {
+				// Required for proper list refresh on IE9 below and older browsers
+				setTimeout("getFiles();", 2000);
+			}
+		}
+		function streamResults() {
+			if( files != undefined || archives != undefined ) {
+				if( archives != undefined) {
+					files = archives;
+				}
+			
+				setWorkspace();
+
+				resultUrl= server + '/fmedatastreaming/' + repository + '/' + workspace + '?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' +  jsid + '%2F' + filename;  
+
+			 if( layer ) {
+				layer.setMap( null );
+			    }
+			    showLoading();
+           
+			    var directURL = resultUrl; 
+			    layer = new google.maps.KmlLayer( directURL, {
+				preserveViewport : true,
+				map : map
+			    });
+
+			layer.status_changed = function() {
+				hideLoading();
+			}
+
+			FMEServer.getSession( repository, workspace, setVars );
+
+			} else {
+				alert( "No Files Uploaded.  Please upload a file." );
+			}
+		}
+		function downloadWorkspace() {
+			if( files != undefined || archives != undefined ) {
+				if( archives != undefined) {
+					files = archives;
+				}
+			
+				setWorkspace();
+
+				resultUrl= server + '/fmedatastreaming/' + repository + '/' + 'webapp.downloadresults.fmw?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' +  jsid + '%2F' + filename;
+
+				       
+                var finalResults = document.getElementById( "finalResults" )
+				finalResults.innerHTML += ('<a href="' + resultUrl + '">' + 'Display Result </a>')
+			    document.body.appendChild( finalResults );
+                
+			
+
+			} else {
+				alert( "No Files Uploaded.  Please upload a file." );
+			}
+		}
+	
+		function showResults( json ) {
+			// The following is to write out the return object
+			// for visualization of the example
+			var div = document.createElement( "div" );
+			div.innerHTML = "<hr /><h4>"+new Date().toLocaleTimeString()+" &gt; Return Object:</h4>";
+
+
+			if( json.serviceResponse && json.serviceResponse.url ) {
+				var a = document.createElement( "a" );
+				a.href = json.serviceResponse.url;
+				a.innerHTML = "Download Result";
+				div.appendChild( a );
+			}
+			
+		}
+		function newSession(){
+			FMEServer.getSession( repository, workspace, setVars );
+		}
+
+
+    </script>
+
+	
+	
+</body>
+</html>
