@@ -15,8 +15,8 @@ var map, toolbar, clippingGeometry;
 				map = new Map( "mapDiv", {
 					basemap: "streets",
 					center: [ -123.114166, 49.264549 ],
-					zoom: 12,
-					minZoom: 12,
+					zoom: 8,
+					minZoom: 6,
 					smartNavigation: false
 				});
 
@@ -59,7 +59,7 @@ var map, toolbar, clippingGeometry;
 
 			FMEServer.init({
 				server : "http://localhost",
-				token : "YOURTOKEN"
+				token : "<yourToken>"
 			});
 		};
 
@@ -95,9 +95,8 @@ var map, toolbar, clippingGeometry;
 			geometry = geometry.substr( 0, geometry.length - 1 );
 			geometry += "))";
 
-			// Set the parameters for the Data Download Service (ESRI Shapefile Format)
-			// FORMAT OPTIONS: ACAD, SHAPE, GML, OGCKML
-			var params = "GEOM="+geometry+"&FORMAT=SHAPE";
+			
+			var params = "GEOM="+geometry;
 
 			// Use the FME Server Data Download Service
 			FMEServer.runDataDownload( repository, workspace, params, showResults );
