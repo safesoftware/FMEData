@@ -1,3 +1,5 @@
+<! For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing. You must also upload the associated projects into your FME Server>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,28 +18,28 @@
       "dojo/on",
       "dojo/domReady!"
       ],
-      function(
+      function( // Change localhost to your public IP address in all four layer urls
         Map, MapView, KMLLayer, dom, on
         ) {
 
         var transportationLyr = new KMLLayer({
-          url: "http://52.55.238.186/fmedatastreaming/WebApplication/webapp.skytrains.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fshape_rapid_transit.zip", // Skytrain Layer
+          url: "http://localhost/fmedatastreaming/WebApplication/webapp.skytrains.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fshape_rapid_transit.zip", // Skytrain Layer
           id: "skytrainlayer",
           visible: false
         });
 
         var skytrainbufferLyr = new KMLLayer({
-          url: "http://52.55.238.186/fmedatastreaming/WebApplication/webapp.skytrainbuffer.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fshape_rapid_transit.zip", // Skytrain Buffer Layer
+          url: "http://localhost/fmedatastreaming/WebApplication/webapp.skytrainbuffer.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fshape_rapid_transit.zip", // Skytrain Buffer Layer
           id: "skytrainbufferlayer",
           visible: false
         });
         var parksLyr = new KMLLayer({
-          url: "http://52.55.238.186/fmedatastreaming/WebApplication/webapp.parks.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fpark_polygons_shp.zip&DestDataset_OGCKML=C%3A%5CUsers%5CAdministrator%5CDocuments%5CFME%5CWorkspaces%5Coutput.kml", // Parks Layer
+          url: "http://localhost/fmedatastreaming/WebApplication/webapp.parks.fmw?SourceDataset_ESRISHAPE=ftp%3A%2F%2Fwebftp.vancouver.ca%2FOpenData%2Fshape%2Fpark_polygons_shp.zip&DestDataset_OGCKML=C%3A%5CUsers%5CAdministrator%5CDocuments%5CFME%5CWorkspaces%5Coutput.kml", // Parks Layer
           id: "parkslayer",
           visible: false
         });
         var foodLyr = new KMLLayer({
-          url: "http://52.55.238.186/fmedatastreaming/WebApplication/webapp.foodTrucks.fmw?DestDataset_OGCKML=%24(FME_SHAREDRESOURCE_DATA)%2FSienna%2FOutput%2FfoodTrucks.kml", // Food Truck Layer
+          url: "http://localhost/fmedatastreaming/WebApplication/webapp.foodTrucks.fmw?DestDataset_OGCKML=%24(FME_SHAREDRESOURCE_DATA)%2FSienna%2FOutput%2FfoodTrucks.kml", // Food Truck Layer
           id: "foodlayer",
           visible: false
         });
