@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        C:\apps\FME2018.1\fme.exe C:\Users\imark\Documents\Training\MaterialsAndData\FMEData\Workspaces\InstructorUse\DesktopAdv\3.10-ReadersWriters-DynamicSchemas.fmw
+#        C:\apps\FME2018.1\fme.exe C:\Users\imark\Documents\Training\MaterialsAndData\FMEData\Workspaces\InstructorUse\DesktopAdv\3.12-ReadersWriters-DynamicFeatureTypeHandling.fmw
 #              --SourceDataset_MITAB "C:\FMEData2018\Data\Parks\Parks.tab"
 #              --FEATURE_TYPES ""
 #              --DestDataset_FILEGDB "C:\FMEData2018\Output\DynamicData.gdb"
@@ -29,7 +29,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2018.1.0.0 (20180717 - Build 18520 - WIN64)"
-#!   LAST_SAVE_DATE="2018-07-31T12:40:31"
+#!   LAST_SAVE_DATE="2018-07-31T15:21:21"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -47,7 +47,7 @@
 #!   TITLE=""
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="0 100.001"
+#!   VIEW_POSITION="0 503.13"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -698,8 +698,8 @@
 #! </FEATURE_TYPE>
 #! <FEATURE_TYPE
 #!   IS_SOURCE="false"
-#!   NODE_NAME="DYNAMIC"
-#!   FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#!   NODE_NAME="Downtown"
+#!   FEATURE_TYPE_NAME="@Value(NeighborhoodName)"
 #!   FEATURE_TYPE_NAME_QUALIFIER=""
 #!   IS_EDITABLE="true"
 #!   IDENTIFIER="3"
@@ -714,8 +714,8 @@
 #!   SCHEMA_ATTRIBUTE_SOURCE="2"
 #!   DYNAMIC_SCHEMA="true"
 #!   DYNAMIC_SCHEMA_SOURCES="MITAB_1"
-#!   DYNAMIC_SCHEMA_FEATURE_TYPE="AUTOMATIC"
-#!   DYNAMIC_SCHEMA_FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#!   DYNAMIC_SCHEMA_FEATURE_TYPE="FROM_ATTRIBUTE"
+#!   DYNAMIC_SCHEMA_FEATURE_TYPE_NAME="@Value(NeighborhoodName)"
 #!   DYNAMIC_SCHEMA_DEFINITION="AUTOMATIC"
 #!   DYNAMIC_SCHEMA_DEFINITION_NAME=""
 #!   DYNAMIC_SCHEMA_GEOMETRY="AUTOMATIC"
@@ -778,7 +778,7 @@
 #! <COMMENTS>
 #! <COMMENT
 #!   IDENTIFIER="7"
-#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Instructor Notes&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This workspace converts MapInfo TAB to Geodatabase format. It is a dynamic translation (both reader and writer) and so the MapInfo reader can point to any MapInfo dataset (change the source dataset to Zones.tab and see what happens) and the Geodatabase writer can write any schema that is provided to it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Instructor Notes&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This workspace converts MapInfo TAB to Geodatabase format. It is a dynamic translation (both reader and writer) and so the MapInfo reader can point to any MapInfo dataset.&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Geodatabase writer is set to fanout by NeighborhoodName, rather than fme_feature_type - this means there must be a schema for West End, Downtown, etc&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Because there is no such schema here the translation will drop the offending features. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
 #!   POSITION="1031.2614086175045 -241.25285605578222"
 #!   TOP_LEFT="1031.2614086175045 -241.25285605578222"
 #!   BOTTOM_RIGHT="2075.0218462218809 -602.50616858890749"
@@ -1076,7 +1076,7 @@ FILEGDB_1_DATASET "$(DestDataset_FILEGDB_1)"
 #! END_WB_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)3.10-ReadersWriters-DynamicSchemas.log"
+LOG_FILENAME "$(FME_MF_DIR)3.12-ReadersWriters-DynamicFeatureTypeHandling.log"
 LOG_APPEND NO
 LOG_FILTER_MASK -1
 LOG_MAX_FEATURES 200
@@ -1098,7 +1098,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME 3.10-ReadersWriters-DynamicSchemas
+MACRO WORKSPACE_NAME 3.12-ReadersWriters-DynamicFeatureTypeHandling
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 MITAB_1_DEF Parks   ParkId                       smallint   RefParkId                    smallint   ParkName                     char(40)   NeighborhoodName             char(40)   VisitorCount                 smallint   TreeCount                    smallint   DogPark                      char(1)   Washrooms                    char(1)   SpecialFeatures              char(1)
@@ -1112,10 +1112,10 @@ FACTORY_DEF * TeeFactory    FACTORY_NAME "Parks (MITAB_1) Splitter"    INPUT FEA
 DEFAULT_MACRO WB_CURRENT_CONTEXT
 # -------------------------------------------------------------------------
 
-FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC Parks_MITAB_1 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>DYNAMIC<closeparen>,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>DYNAMIC<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>fme_feature_type<lt>closeparen<gt><comma>DYNAMIC<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC Parks_MITAB_1 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>Downtown<closeparen>,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>Downtown<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>NeighborhoodName<lt>closeparen<gt><comma>Downtown<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
 
 # -------------------------------------------------------------------------
-FILEGDB_1_DEF_TEMPLATE DYNAMIC   filegdb_type                 {FME_GEN_GEOMETRY}   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   fme_schema_readers           MITAB_1   fme_schema_feature_first     No   fme_schema_attributes_to_remove ""
+FILEGDB_1_DEF_TEMPLATE Downtown   filegdb_type                 {FME_GEN_GEOMETRY}   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   fme_schema_readers           MITAB_1   fme_schema_feature_first     No   fme_schema_attributes_to_remove ""
