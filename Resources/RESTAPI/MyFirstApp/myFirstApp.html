@@ -1,16 +1,16 @@
- <! For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing.>
+ <!-- For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing.-->
 
 <head>
 
-	<title>Populate Forms</title>
+    <title>Populate Forms</title>
 
-	<!-- Styles for example -->
-	<link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
+    <!-- Styles for example -->
+    <link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
 
-	<!-- Include FMEServer.js -->
-	<script type="text/javascript" src="https://api.fmeserver.com/js/v1.2/FMEServer.js"></script>
+    <!-- Include FMEServer.js -->
+    <script type="text/javascript" src="https://api.fmeserver.com/js/v1.2/FMEServer.js"></script>
 
-	<base target="_top">
+    <base target="_top">
 
 
 </head>
@@ -18,96 +18,92 @@
 
 <body>
 
-	<form id="exampleForm">
+    <form id="exampleForm">
 
-		<label>Repository: </label>
-		<input id="repository-name" type="text" value="Samples" /><br />
-
-
-		<label>Workspace: </label>
-		<input id="workspace-name" type="text" value="austinDownload.fmw" /><br />
-
-		<input type="button" onclick="processForm();" value="Generate Full Form" />
-
-	</form>
+        <label>Repository: </label>
+        <input id="repository-name" type="text" value="Samples" /><br />
 
 
+        <label>Workspace: </label>
+        <input id="workspace-name" type="text" value="austinDownload.fmw" /><br />
 
-	<hr />
-	<form id="output-form"></form>
+        <input type="button" onclick="processForm();" value="Generate Full Form" />
 
-	<script type="text/javascript">
-
-
-		window.onload = function() {
-			FMEServer.init({
-				server : "https://demos-safe-software.fmecloud.com",	//Update with your Server hostname - on FME training machines this is http://fmetraining
-				token : "568c604bc1f235bbe137c514e7c61a8436043070"	//Update with your Server fmetoken 	
-			});
-		};
-
-		function processForm() {
-			var repository = document.getElementById( "repository-name" ).value;
-			var workspace = document.getElementById( "workspace-name" ).value;
-
-			// Get the workspace parameters from FME Server
-			FMEServer.getWorkspaceParameters( repository, workspace, generateForm );
-		}
-
-		function generateForm( json ) {
-			// Build the form items using the API
-			FMEServer.generateFormItems( "output-form", json );
-
-			var form = document.getElementById( "output-form" );
-
-			// Create the Run Data Download Button
-			var submitButton = document.createElement( "input" );
-			submitButton.type = "button";
-			submitButton.value = "Run Data Download";
-			submitButton.setAttribute( "onclick", "runDataDownload();" );
-			form.appendChild( submitButton );
-		}
-
-		function showResults( json ) {
-			// The following is to write out the full return object
-			// for visualization of the example
-			var hr = document.createElement( "hr" );
-			var div = document.createElement( "div" );
-
-			// This extracts the download link to the clipped data
-			var download = json.serviceResponse.url;
-			div.innerHTML += "<hr><a href=\""+download+"\">Download Result</a>";
-			document.body.appendChild( div );
-		}
-
-		function runDataDownload() {
-			var repository = document.getElementById( "repository-name" ).value;
-			var workspace = document.getElementById( "workspace-name" ).value;
-			var form = document.getElementById( "output-form" );
-			var params = "";
-
-			// Loop through unique parameters and build the parameter string
-			for( var i = 0; i < form.length; i++ ){
-				var element = form.elements[i];
-				if( element.type == "select" ) {
-					params += element.name+"="+element[element.selectedIndex].value+"&";
-				} else if( element.type == "checkbox" ){
-					if( element.checked ) {
-						params += element.name+"="+element.value+"&";
-					}
-				} else {
-					params += element.name+"="+element.value+"&";
-				}
-			}
-
-			// Remove trailing & from string
-			params = params.substr( 0, params.length - 1 );
-
-			// Use the FME Server Data Download Service
-			FMEServer.runDataDownload( repository, workspace, params, showResults );
-		}
+    </form>
 
 
 
-	</script>
+    <hr />
+    <form id="output-form"></form>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            FMEServer.init({
+                server: "https://demos-safe-software.fmecloud.com", //Update with your Server hostname - on FME training machines this is http://fmetraining
+                token: "568c604bc1f235bbe137c514e7c61a8436043070" //Update with your Server fmetoken 	
+            });
+        };
+
+        function processForm() {
+            var repository = document.getElementById("repository-name").value;
+            var workspace = document.getElementById("workspace-name").value;
+
+            // Get the workspace parameters from FME Server
+            FMEServer.getWorkspaceParameters(repository, workspace, generateForm);
+        }
+
+        function generateForm(json) {
+            // Build the form items using the API
+            document.getElementById("output-form").innerHTML = "";
+            FMEServer.generateFormItems("output-form", json);
+
+            var form = document.getElementById("output-form");
+
+            // Create the Run Data Download Button
+            var submitButton = document.createElement("input");
+            submitButton.type = "button";
+            submitButton.value = "Run Data Download";
+            submitButton.setAttribute("onclick", "runDataDownload();");
+            form.appendChild(submitButton);
+        }
+
+        function showResults(json) {
+            // The following is to write out the full return object
+            // for visualization of the example
+            var hr = document.createElement("hr");
+            var div = document.createElement("div");
+
+            // This extracts the download link to the clipped data
+            var download = json.serviceResponse.url;
+            div.innerHTML += "<hr><a href=\"" + download + "\">Download Result</a>";
+            document.body.appendChild(div);
+        }
+
+        function runDataDownload() {
+            var repository = document.getElementById("repository-name").value;
+            var workspace = document.getElementById("workspace-name").value;
+            var form = document.getElementById("output-form");
+            var params = "";
+
+            // Loop through unique parameters and build the parameter string
+            for (var i = 0; i < form.length; i++) {
+                var element = form.elements[i];
+                if (element.type == "select") {
+                    params += element.name + "=" + element[element.selectedIndex].value + "&";
+                } else if (element.type == "checkbox") {
+                    if (element.checked) {
+                        params += element.name + "=" + element.value + "&";
+                    }
+                } else {
+                    params += element.name + "=" + element.value + "&";
+                }
+            }
+
+            // Remove trailing & from string
+            params = params.substr(0, params.length - 1);
+
+            // Use the FME Server Data Download Service
+            FMEServer.runDataDownload(repository, workspace, params, showResults);
+        }
+    </script>
 </body>

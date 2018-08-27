@@ -1,16 +1,17 @@
-<! For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing. You must also upload the associated projects into your FME Server>
+<!--- For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing. You must also upload the associated projects into your FME Server--->
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Data Loading Example</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.7/"></script>
-  <script>
-    require([
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Data Loading Example</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.7/"></script>
+    <script>
+        require([
       "esri/Map",
       "esri/views/MapView",
       "esri/layers/KMLLayer",
@@ -65,7 +66,7 @@
 
         /*****************************************************************
          * Creates the view for the basemap, adjusts the center and the zoom 
-		 * level.
+     * level.
          *****************************************************************/
          var view = new MapView({
           container: "viewDiv",
@@ -74,9 +75,9 @@
           zoom: 14
         });
 
-		/*****************************************************************
+    /*****************************************************************
          * Variables are created for the Toggles, these 
-		 * toggles are attached to the ids assigned to the checkboxes
+     * toggles are attached to the ids assigned to the checkboxes
          *****************************************************************/
 
          var streetsLyrToggle = dom.byId("streetsLyr");
@@ -88,7 +89,7 @@
 
         /*****************************************************************
          * The following code manipulates the visibility of the layer. 
-		 * When the layer is checked then the layer becomes visible.
+     * When the layer is checked then the layer becomes visible.
          *******************************************************************/
          on(streetsLyrToggle, "change", function() {
           transportationLyr.visible = streetsLyrToggle.checked;
@@ -104,59 +105,58 @@
         })
        });
      </script>
-   </head>
+</head>
 
-   <body>
+<body>
     <div id="viewDiv"></div>
-    <div id="heading"> <h1> Data Loading Example </h1> </div>
+    <div id="heading">
+        <h1> Data Loading Example </h1>
+    </div>
     <span id="layerToggle">
-      <legend> Map Layers: </legend>
-      <input type="checkbox" id="streetsLyr"> Skytrain
-      <br>
-      <input type="checkbox" id="skytrainbufferLyr"> Skytrain Buffer
-      <br>
-      <input type="checkbox" id="parksLyr"> Parks
-      <br>
-      <input type="checkbox" id="foodLyr"> Food Trucks
+        <legend> Map Layers: </legend>
+        <input type="checkbox" id="streetsLyr"> Skytrain
+        <br>
+        <input type="checkbox" id="skytrainbufferLyr"> Skytrain Buffer
+        <br>
+        <input type="checkbox" id="parksLyr"> Parks
+        <br>
+        <input type="checkbox" id="foodLyr"> Food Trucks
 
     </span>
-  </body>
-  <style type="text/css">
+</body>
+<style type="text/css">
+    #heading {
+        position: absolute;
+        text-align: center;
+        z-index: 99;
+        background-color: white;
+        border-radius: 8px;
+        margin: 0 auto;
+        max-width: 700px;
+        left: 500px;
+        top: 30px;
+        opacity: 0.75;
+    }
 
-  #heading{
-    position: absolute;
-    text-align: center;
-    z-index: 99;
-    background-color: white;
-    border-radius: 8px;
-    margin: 0 auto;
-    max-width: 700px;
-    left: 500px;
-    top: 30px;
-    opacity: 0.75;
-  }  
+    html,
+    body,
+    #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
 
-  html,
-  body,
-  #viewDiv {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
-
-  #layerToggle {
-    top: 20px;
-    right: 20px;
-    position: absolute;
-    z-index: 99;
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px;
-    opacity: 0.75;
-  }
-
-
+    #layerToggle {
+        top: 20px;
+        right: 20px;
+        position: absolute;
+        z-index: 99;
+        background-color: white;
+        border-radius: 8px;
+        padding: 10px;
+        opacity: 0.75;
+    }
 </style>
 
 </html>

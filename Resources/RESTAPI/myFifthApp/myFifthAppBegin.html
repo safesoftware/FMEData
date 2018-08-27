@@ -1,13 +1,15 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Upload Files In Session Example from FME Server Developer Playground</title>
     <!-- Styles for example -->
     <link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
     <!-- Include FMEServer.js -->
     <script type="text/javascript" src="https://api.fmeserver.com/js/v1.2/FMEServer.js"></script>
 </head>
+
 <body>
     <form id="exampleForm">
         <label>Repository: </label>
@@ -23,158 +25,198 @@
     <form id="options"></form>
     <hr />
     <input type="button" onclick="runWorkspace();" value="Run Workspace With Data" />
-  <div id="finalResults"></div>
+    <div id="finalResults"></div>
     <div id="results"></div>
 </body>
-<script type="text/javascript">
-  var jsid, path, fileInput, files, archives, repository, workspace;
+<script type = "text/javascript" >
+    var jsid, path, fileInput, files, archives, repository, workspace;
 
-  window.onload = function() {
-    FMEServer.init({
-      server : "<yourSeverHost>",
-      token : "<yourToken>"
+window.onload = function()
+{
+    FMEServer.init(
+    {
+        server: "<yourSeverHost>",
+        token: "<yourToken>"
     });
 
     // Initialize variables
     setWorkspace();
 
     // Generate a JSID  for the session
-    FMEServer.getSession( repository, workspace, setVars );
+    FMEServer.getSession(repository, workspace, setVars);
 
     // Get options for the workspace
     generateOptions();
-  };
-  function setWorkspace() {
-        repository = document.getElementById( "repository-name").value.trim();
-        workspace = document.getElementById("workspace-name").value.trim();
-    }
-    function generateOptions() {
-            setWorkspace();
+};
 
-            // Get the workspace parameters from FME Server
-            FMEServer.getWorkspaceParameters( repository, workspace, buildOptions );
-        }
-    function setVars( json ) {
-            if( json.serviceResponse.files ) {
-                jsid = json.serviceResponse.session;
-                path = json.serviceResponse.files.folder[0].path;
-            } else {
-                showResults( json );
-            }
-        }
-    function buildOptions( json ) {
+function setWorkspace()
+{
+    repository = document.getElementById("repository-name").value.trim();
+    workspace = document.getElementById("workspace-name").value.trim();
+}
+
+function generateOptions()
+{
+    setWorkspace();
+
+    // Get the workspace parameters from FME Server
+    FMEServer.getWorkspaceParameters(repository, workspace, buildOptions);
+}
+
+function setVars(json)
+{
+    if (json.serviceResponse.files)
+    {
+        jsid = json.serviceResponse.session;
+        path = json.serviceResponse.files.folder[0].path;
+    }
+    else
+    {
+        showResults(json);
+    }
+}
+
+function buildOptions(json)
+{
     // Use the API to build the form items
-    FMEServer.generateFormItems( "options", json );
+    FMEServer.generateFormItems("options", json);
 
     // Attach the upload button to the form file input
-    var inputs = document.getElementById( "options" ).getElementsByTagName( "input" );
+    var inputs = document.getElementById("options").getElementsByTagName("input");
     var added = false;
 
-    for( var i in inputs ) {
-      if( inputs[i].type == "file" && added === false ){
-        fileInput = inputs[i];
-        var button = document.createElement( "input" );
-        button.type = "button";
-        button.value = "Upload File";
-        button.setAttribute( "onclick", "uploadFile();" );
-        fileInput.parentNode.insertBefore( button, fileInput.nextSibling );
-        added = true;
-      }
-    }
-  }
-  function uploadFile() {
-            setWorkspace();
-
-            // Ask FME Server to upload the file
-            FMEServer.dataUpload( repository, workspace, fileInput, jsid, processFiles );
+    for (var i in inputs)
+    {
+        if (inputs[i].type == "file" && added === false)
+        {
+            fileInput = inputs[i];
+            var button = document.createElement("input");
+            button.type = "button";
+            button.value = "Upload File";
+            button.setAttribute("onclick", "uploadFile();");
+            fileInput.parentNode.insertBefore(button, fileInput.nextSibling);
+            added = true;
         }
-        function getFiles() {
-            // Ask FME Server for the list of uploaded files
-            FMEServer.getDataUploads( repository, workspace, jsid, processFiles );
-        }
-        function processFiles( json ) {
-    var list = document.getElementById( "fileList" );
-    if( json.serviceResponse != undefined ) {
-      list.innerHTML = "";
-      files = json.serviceResponse.files.file;
-      for( var file in files ){
-        list.innerHTML += "<p>"+files[file].name+", <em>"+files[file].size+" bytes</em></p>";
-      }
-      archives = json.serviceResponse.files.archive;
-      for( var archive in archives ){
-        list.innerHTML += "<p>"+archives[archive].name+", <em>"+archives[archive].size+" bytes</em></p>";
-      }
-      showResults( json );
-    } else {
-      // Required for proper list refresh on IE9 below and older browsers
-      setTimeout("getFiles();", 2000);
     }
-  }
+}
 
-function processParams() {
-    var inputs = document.getElementById( "options" ).getElementsByTagName( "input" );
-    var selects = document.getElementById( "options" ).getElementsByTagName( "select" );
+function uploadFile()
+{
+    setWorkspace();
+
+    // Ask FME Server to upload the file
+    FMEServer.dataUpload(repository, workspace, fileInput, jsid, processFiles);
+}
+
+function getFiles()
+{
+    // Ask FME Server for the list of uploaded files
+    FMEServer.getDataUploads(repository, workspace, jsid, processFiles);
+}
+
+function processFiles(json)
+{
+    var list = document.getElementById("fileList");
+    if (json.serviceResponse != undefined)
+    {
+        list.innerHTML = "";
+        files = json.serviceResponse.files.file;
+        for (var file in files)
+        {
+            list.innerHTML += "<p>" + files[file].name + ", <em>" + files[file].size + " bytes</em></p>";
+        }
+        archives = json.serviceResponse.files.archive;
+        for (var archive in archives)
+        {
+            list.innerHTML += "<p>" + archives[archive].name + ", <em>" + archives[archive].size + " bytes</em></p>";
+        }
+        showResults(json);
+    }
+    else
+    {
+        // Required for proper list refresh on IE9 below and older browsers
+        setTimeout("getFiles();", 2000);
+    }
+}
+
+function processParams()
+{
+    var inputs = document.getElementById("options").getElementsByTagName("input");
+    var selects = document.getElementById("options").getElementsByTagName("select");
     var options = [];
     var properties = "";
- 
+
     // Convert HTML NodeList types to regular array types
-    inputs = Array.prototype.slice.call( inputs );
-    selects = Array.prototype.slice.call( selects );
- 
+    inputs = Array.prototype.slice.call(inputs);
+    selects = Array.prototype.slice.call(selects);
+
     // Merge the regular arrays
-    options = inputs.concat( selects );
- 
-    for( var opt in options ) {
-      var option = options[opt];
-      if( option.value && option.name != fileInput.name && option.type != "button" ) {
-        properties += option.name+"=";
-        if( option.type == "select" ) {
-          properties += option[ option.selectedIndex ].value;
-        } else {
-          properties += option.value;
+    options = inputs.concat(selects);
+
+    for (var opt in options)
+    {
+        var option = options[opt];
+        if (option.value && option.name != fileInput.name && option.type != "button")
+        {
+            properties += option.name + "=";
+            if (option.type == "select")
+            {
+                properties += option[option.selectedIndex].value;
+            }
+            else
+            {
+                properties += option.value;
+            }
+            properties += "&";
         }
-        properties += "&";
-      }
     }
-    properties = properties.substr( 0, properties.length - 1 );
+    properties = properties.substr(0, properties.length - 1);
     return properties;
-  }
-  function runWorkspace() {
-      if( files != undefined || archives != undefined ) {
-        if( archives != undefined) {
-          files = archives;
+}
+
+function runWorkspace()
+{
+    if (files != undefined || archives != undefined)
+    {
+        if (archives != undefined)
+        {
+            files = archives;
         }
         setWorkspace();
- 
+
         var params = {
-          filename : fileInput.name,
-          files : files,
-          params : processParams()
+            filename: fileInput.name,
+            files: files,
+            params: processParams()
         }
         // Ask FME Server to run the workspace with the uploaded data
-        FMEServer.runWorkspaceWithData( path, params, showResults );
-      } else {
-        alert( "No Files Uploaded.  Please upload a file." );
-      }
+        FMEServer.runWorkspaceWithData(path, params, showResults);
     }
+    else
+    {
+        alert("No Files Uploaded.  Please upload a file.");
+    }
+}
 
-function showResults( json ) {
+function showResults(json)
+{
     // The following is to write out the return object
     // for visualization of the example
-    var div = document.createElement( "div" );
-    div.innerHTML = "<hr /><h4>"+new Date().toLocaleTimeString()+" &gt; Return Object:</h4>";
-    if( json.serviceResponse && json.serviceResponse.url ) {
-      var a = document.createElement( "a" );
-      a.href = json.serviceResponse.url;
-      a.innerHTML = "Download Result";
-      div.appendChild( a );
+    var div = document.createElement("div");
+    div.innerHTML = "<hr /><h4>" + new Date().toLocaleTimeString() + " &gt; Return Object:</h4>";
+    if (json.serviceResponse && json.serviceResponse.url)
+    {
+        var a = document.createElement("a");
+        a.href = json.serviceResponse.url;
+        a.innerHTML = "Download Result";
+        div.appendChild(a);
     }
-    var pre = document.createElement( "pre" );
+    var pre = document.createElement("pre");
     pre.innerHTML = JSON.stringify(json, undefined, 4);
-    div.appendChild( pre );
-    var results = document.getElementById( "results" )
-    results.insertBefore( div, results.firstChild );
-  }
+    div.appendChild(pre);
+    var results = document.getElementById("results")
+    results.insertBefore(div, results.firstChild);
+}
 
 
 </script>
