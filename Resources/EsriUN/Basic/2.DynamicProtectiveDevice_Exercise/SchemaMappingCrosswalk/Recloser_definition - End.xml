@@ -1,0 +1,71 @@
+<assemblies>
+<!-- ================ Updates============= -->
+<!-- 	2018-09-11 MAS 	-  clean-up definitions - organised by device, by OH/UG
+						- Reclosers & Switches
+						- Fuses
+						- Transformers
+
+ -->
+<!-- ====================================================================== -->
+<!-- ================ Reclosers and Switches  ============= -->
+<!-- ====================================================================== -->
+<!-- ================ OH Switch Bank Gang Operated N (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Switch Bank -->
+		<assemblyDefNum>4</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Switch Bank (no Phase Expansion & no arrestors) ++++++++ -->
+<!-- ================ OH Recloser (with Arrestors & no phase expansion) ============= -->
+<!-- ================ Insert Recloser Definition here ===================== -->
+
+
+<!-- ++++++++ END: OH Recloser and Switch (with Arrestors) ++++++++ -->
+</assemblies>
