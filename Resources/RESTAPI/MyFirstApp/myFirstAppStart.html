@@ -1,0 +1,111 @@
+ <!-- For this exercise to work properly you will need to have completed Exercise 14 or have an existing web server for testing.-->
+
+<head>
+
+    <title>Populate Forms</title>
+
+    <!-- Styles for example -->
+    <link rel="stylesheet" href="https://playground.fmeserver.com/css/FMEServerExamples.css" type="text/css" />
+
+    <!-- Include FMEServer.js -->
+    <script type="text/javascript" src="<!--- Connect to the JavaScript API --->"></script>
+
+    <base target="_top">
+
+
+</head>
+
+
+<body>
+
+    <form id="exampleForm">
+
+        <label>Repository: </label>
+        <input id="repository-name" type="text" value="//Repository Name" /><br />
+
+
+        <label>Workspace: </label>
+        <input id="workspace-name" type="text" value="// Workspace Name" /><br />
+
+        <input type="// Input Type" onclick="processForm();" value="Generate Full Form" />
+
+    </form>
+
+
+
+    <hr />
+    <form id="// Form id"></form>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            FMEServer.init({
+                server: "https://demos-safe-software.fmecloud.com", //Update with your Server hostname - on FME training machines this is http://fmetraining
+                token: "568c604bc1f235bbe137c514e7c61a8436043070" //Update with your Server fmetoken 	
+            });
+        };
+
+        function processForm() {
+            var repository = document.getElementById("Find the repository ID and Update it here").value;
+            var workspace = document.getElementById("Find the workspace ID and Update it here").value;
+
+            // Get the workspace parameters from FME Server
+            FMEServer.getWorkspaceParameters(repository, workspace, generateForm);
+        }
+
+        function generateForm(json) {
+            // Build the form items using the API
+            document.getElementById("output-form").innerHTML = ""; //Clears the output form
+            FMEServer.generateFormItems(); //Fill in the parameters here
+
+            var form = document.getElementById("output-form");
+
+            // Create the Run Data Download Button
+            var submitButton = document.createElement("input");
+            submitButton.type = ""; //Fill in the type
+            submitButton.value = ""; //Fill in the value
+            submitButton.setAttribute("onclick", "runDataDownload();");
+            form.appendChild(submitButton);
+        }
+
+        function showResults(json) {
+            // The following is to write out the full return object for visualization of the example
+            console.dir(json);
+            var hr = document.createElement("hr");
+            var div = document.createElement("div");
+
+            // This extracts the download link to the clipped data
+            var download = // find where the url is located in the JSON Object Returned from the Server
+            div.innerHTML += "<hr><a href=\"" + download + "\">Download Result</a>";
+            document.body.appendChild(div);
+        }
+
+        function runDataDownload() {
+            var repository = document.getElementById("repository-name").value;
+            var workspace = document.getElementById("workspace-name").value;
+            var form = document.getElementById("output-form");
+            var params = "";
+
+            // Loop through unique parameters and build the parameter string
+            for (var i = 0; i < form.length; i++) {
+                var element = form.elements[i];
+                if (element.type == "") //Fill in Element Type 
+                {
+                    params += element.name + "=" + element[element.selectedIndex].value + "&";
+                } else if (element.type == "") // Fill in Element Type
+                {
+                    if (element.checked) {
+                        params += element.name + "=" + element.value + "&";
+                    }
+                } else {
+                    params += element.name + "=" + element.value + "&";
+                }
+            }
+
+            // Remove trailing & from string
+            params = params.substr(0, params.length - 1);
+
+            // Use the FME Server Data Download Service
+            FMEServer.runDataDownload(repository, workspace, params, showResults);
+        }
+    </script>
+</body>
