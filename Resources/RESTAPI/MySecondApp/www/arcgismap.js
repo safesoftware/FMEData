@@ -70,8 +70,8 @@ window.onload = function()
         token: "568c604bc1f235bbe137c514e7c61a8436043070" //Update to your fmetoken
     });
 };
-/*
-function showResults(json)
+
+/*function showResults(json)
 {
     // The following is to write out the full return object
     // for visualization of the example
