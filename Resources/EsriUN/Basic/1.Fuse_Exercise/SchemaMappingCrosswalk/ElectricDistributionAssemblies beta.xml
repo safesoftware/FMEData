@@ -1,0 +1,2283 @@
+<assemblies>
+<!-- ================ Updates============= -->
+<!-- 	2018-09-11 MAS 	-  clean-up definitions - organised by device, by OH/UG
+						- Reclosers & Switches
+						- Fuses
+						- Transformers
+
+ -->
+<!-- ====================================================================== -->
+<!-- ================ Reclosers and Switches  ============= -->
+<!-- ====================================================================== -->
+
+<!-- ================ OH Switch Bank (with Arrestors & no phase expansion) ============= -->
+    <assembly>
+		<assemblyDefNum>1</assemblyDefNum>
+        <!-- Overhead Switch-->
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Switch</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with arrestors - set the attr assemblyKey2 = withArrestors-->
+		<assemblyKey2>ArrestorsY</assemblyKey2>
+        <asset> <!-- Junction -->
+            <id>JN1</id>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+             <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset> <!-- Arrestor -->
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset> 
+        <asset> <!-- Switch -->
+            <id>S1</id>
+            <linkTo>
+                <id>AR1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+		<asset> <!-- Arrestor -->
+            <id>AR2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>
+        <asset> <!-- Junction -->
+            <id>JN2</id>
+            <linkTo>
+                <id>AR2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ END: OH Switch (with Arrestors) ++++++++ -->
+
+<!-- ================ OH Switch Bank(no arrestors)============= -->
+    <assembly>
+        <!-- OH Switch Bank -->
+		<assemblyDefNum>2</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Switch</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>ArrestorsN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ OH Switch Bank (no arrestors ++++++++ -->
+
+<!-- ================ OH Switch Bank (Gang Operated (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Switch Bank -->
+		<assemblyDefNum>3</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Switch</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Switch Bank (no Phase Expansion & no arrestors)++++++++  -->
+
+<!-- ================ OH Switch Bank(Gang Operated N (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Switch Bank -->
+		<assemblyDefNum>4</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Switch</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Switch Bank (no Phase Expansion & no arrestors) ++++++++ -->
+
+<!-- ================ OH Recloser (with Arrestors & no phase expansion) ============= -->
+    <assembly>
+		<assemblyDefNum>5</assemblyDefNum>
+        <!-- Overhead Recloser-->
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with arrestors - set the attr assemblyKey2 = withArrestors-->
+		<assemblyKey2>ArrestorsY</assemblyKey2>
+        <asset> <!-- Junction -->
+            <id>JN1</id>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+             <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset> <!-- Arrestor -->
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset> 
+        <asset> <!-- Recloser -->
+            <id>S1</id>
+            <linkTo>
+                <id>AR1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Source</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+		<asset> <!-- Arrestor -->
+            <id>AR2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>DT:Load</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>
+        <asset> <!-- Junction -->
+            <id>JN2</id>
+            <linkTo>
+                <id>AR2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ END: OH Recloser(with Arrestors) ++++++++ -->
+
+<!-- ================ OH Recloser Bank(no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>6</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>ArrestorsN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Source</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>DT:Load</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ OH Switch Bank (no arrestors ++++++++ -->
+
+<!-- ================ OH Recloser (Gang Operated (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>7</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Source</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>DT:Load</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Recloser Bank (no Phase Expansion & no arrestors)++++++++  -->
+
+<!-- ================ OH Recloser (Gang Operated N (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>8</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Source</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>DT:Load</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Recloser Bank (no Phase Expansion & no arrestors) ++++++++ -->
+
+<!-- ================ OH Circuit Breaker  Bank(no arrestors)============= -->
+<!-- MAS 2018-09-20 -->
+    <assembly>
+        <!-- OH Circuit Breaker -->
+		<assemblyDefNum>9</assemblyDefNum>
+        <assemblyGroupDesc>Circuit Breaker Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Circuit Breaker</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Unknown</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Load</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Circuit Breaker</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+		<!-- always at a line end. No JN2 -->
+		<!-- becasue there is no JN2 we don't need to set the DT:Source terminal -->
+    </assembly>
+<!-- ++++++++ OH Circuit Breaker (no arrestors) ++++++++ -->
+
+<!-- ================ UG Switch non-Gang Operated - part of Switch Facility ============= -->
+<!--                  only difference to Gang Operated is the phase expansion =  yes       -->
+    <assembly>
+		<assemblyDefNum>10</assemblyDefNum>
+        <assemblyCabinetKey>Switch</assemblyCabinetKey>
+        <assemblyGroupDesc>Electric Bay</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Cabinet Bay</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+       <asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <!-- <phaseExpansion>yes</phaseExpansion>     -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+    </assembly> 
+
+<!-- ++++++++ END: UG Switch part of Switch Facility ++++++++ -->
+
+<!-- ================ UG Switch gang Operated - part of Switch Facility ============= -->
+    <assembly>
+		<assemblyDefNum>11</assemblyDefNum>
+        <assemblyCabinetKey>Switch</assemblyCabinetKey>
+        <assemblyGroupDesc>Electric Bay</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Cabinet Bay</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+       <asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <!-- <phaseExpansion>yes</phaseExpansion>     -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+    </assembly> 
+
+<!-- ++++++++ END: UG Switch part of Switch Facility ++++++++ -->
+	
+<!-- ================ UG  Recloser non-Gang Operated Pad Mounted ============= -->
+<!--                  only difference to Gang Operated is the phase assemblyKey2 expansion =  yes       -->
+    <assembly>
+		<assemblyDefNum>12</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Recloser</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+       <asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>DT:Load</fromTerminal>
+				<toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <!-- <phaseExpansion>yes</phaseExpansion>     -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E2</id>
+            <linkTo>
+                <id>S1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>DT:Source</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>E2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly> 
+
+<!-- ++++++++ END: UG Switch part of Switch Facility ++++++++ -->	
+	
+	
+<!-- ++++++++ Reclosers and Switches  ++++++++ -->
+<!-- +++++++++          END           ++++++++ -->
+
+
+<!-- ====================================================================== -->
+<!-- ================ Fuses  ============= -->
+<!-- ====================================================================== -->
+
+<!-- ================ Fuse OH Mid Line============= -->
+    <assembly>
+		<assemblyDefNum>20</assemblyDefNum>
+        <assemblyGroupDesc>Fuse Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Fuse</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+        <asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>F1</id>
+            <linkTo>
+                <id>AR1</id>
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>F1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: Fuse OH Mid Line ++++++++ -->
+
+<!-- ================ Fuse UG Pad Mounted ============= -->
+    <assembly>
+		<assemblyDefNum>21</assemblyDefNum>
+        <assemblyGroupDesc>Fuse Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Fuse</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+        <asset>    <!-- Junction -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Connection Point</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Fuse -->
+            <id>F1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E2</id>
+            <linkTo>
+                <id>F1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>E2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly>
+<!-- ++++++++++++++++ end of Fuse UG Pad Mounted ++++++++++++++++ -->
+
+<!-- ================ UG Electric Bay Fuse (Structure Junction) - part of switch facility ============= -->
+    <assembly>
+		<assemblyDefNum>22</assemblyDefNum>
+        <assemblyCabinetKey>Fuse</assemblyCabinetKey>
+        <assemblyGroupDesc>Electric Bay</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Cabinet Bay</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+        <asset>    <!-- Junction -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Connection Point</assetGroupDesc>
+            <id>JN1</id>            
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Fuse -->
+            <id>F1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>F1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+    </assembly>	
+<!-- ++++++++ END: UG Electric Bay Fuse (Structure Junction) - part of switch facility ++++++++ -->
+
+<!-- +++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++ END: Fuses  ++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++ -->
+
+
+<!-- ====================================================================== -->
+<!-- ================ Transformers  ============= -->
+<!-- ====================================================================== -->
+
+<!-- ================ OH Tap 1,2,3 Phase Transformer ============= -->
+<!-- in line OH XFR is always a TAP so there is no JN2. Assembly is rotated around JN1 (0,0) -->
+<!-- JN3 is used for the low side junctions.  JN0 used to create a slightly bigger clip circle  -->
+     
+<assembly>
+		<assemblyDefNum>30</assemblyDefNum>
+        <assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Three Phase Wye</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Single Phase</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<asset>    <!-- Junction 3 low side -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Connection Point</assetGroupDesc>         
+            <id>JN3</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- assetTypeDesc probably should be "Tap" -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+        <asset>    <!-- Junction -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+			<assetTypeDesc>Tap</assetTypeDesc>            
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- assetTypeDesc probably should be "Tap" -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>  <!-- Arrestor -->
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Fuse -->
+            <id>F1</id>
+            <linkTo>
+                <id>AR1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Transformer -->
+            <id>XFR1</id>
+            <linkTo>
+                <id>F1</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<assetTypeDesc>Overhead Single Phase</assetTypeDesc>
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>-0.25</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0A</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>3.25</column>
+        </asset>
+	</assembly>   <!-- end of OH Three Phase Transformer  -->  
+<!-- end of OH Single Phase Transformer  -->
+
+<!-- ================ OH Single Phase Delta Transformer  ============= -->
+<!-- Special case for a 1P Delta. It is a single phase XFR, but is actually a Delta XFR  -->
+<!-- 2P medium and 1P low and XFR asset is PhaseExpansion = NO  -->
+<!--- AssetGroupt/type do not differentiate so using assemblyKey2 tag -->
+<!-- Assembly is rotated around JN1 (0,0) -->
+<!-- JN3 is used for the low side junctions.  JN0 used to create a slightly bigger clip circle  -->
+     
+<assembly>
+		<assemblyDefNum>31</assemblyDefNum>
+        <assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Single Phase</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+		<asset>    <!-- Junction 3 low voltage side -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Connection Point</assetGroupDesc>         
+            <id>JN3</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- assetTypeDesc probably should be "Tap" -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+        <asset>    <!-- Junction -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+			<assetTypeDesc>Tap</assetTypeDesc>            
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- assetTypeDesc probably should be "Tap" -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>  <!-- Arrestor -->
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Fuse -->
+            <id>F1</id>
+            <linkTo>
+                <id>AR1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Transformer -->
+            <id>XFR1</id>
+            <linkTo>
+                <id>F1</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<assetTypeDesc>Overhead Single Phase</assetTypeDesc>
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>3</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>-0.25</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0A</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>3.25</column>
+        </asset>
+	</assembly>   <!-- end of OH Three Phase Transformer  -->  
+<!-- end of OH Single Phase Delta Transformer  -->
+	
+<!-- ================ OH three Phase Delta Transformer ============= -->
+	
+	<assembly>
+		<assemblyDefNum>32</assemblyDefNum>
+		<assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+			<assemblyTypeDesc>Overhead Three Phase Delta</assemblyTypeDesc>
+		</assemblyTypeConfiguration>
+		<asset>   <!-- Junction 3 low side  -->
+			<id>JN3</id>
+			<!-- Phase expansion used for two things: -->
+			<!--    - expand for the number of phases on the assembly -->
+			<!--    - extract additioanl attrs from the unit table    -->
+			<phaseExpansion>no</phaseExpansion>
+			<featureClass>Junction</featureClass>
+			<assetGroupDesc>Connection Point</assetGroupDesc>
+			<row>0</row>
+			<column>2</column>
+		</asset>
+		<asset>   <!-- Junction 1  -->
+			<id>JN1</id>
+			<!-- Phase expansion used for two things: -->
+			<!--    - expand for the number of phases on the assembly -->
+			<!--    - extract additioanl attrs from the unit table    -->
+			<phaseExpansion>no</phaseExpansion>
+			<featureClass>Junction</featureClass>
+			<assetGroupDesc>Connection Point</assetGroupDesc>
+			<row>0</row>
+			<column>0</column>
+		</asset>
+		<asset>  <!-- Fuse -->
+			<id>F1</id>
+			<linkTo>
+				<id>JN1</id>
+				<fromTerminal>Single Terminal</fromTerminal>
+				<toTerminal>Single Terminal</toTerminal>
+				<phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+			</linkTo>
+			<!-- Phase expansion used for two things: -->
+			<!--    - expand for the number of phases on the assembly -->
+			<!--    - extract additional attrs from the unit table    -->
+			<phaseExpansion>yes</phaseExpansion>
+			<featureClass>Device</featureClass>
+			<assetGroupDesc>Fuse</assetGroupDesc>
+			<assetTypeConfiguration>
+				<assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+			</assetTypeConfiguration>
+			<row>0</row>
+			<column>1</column>
+		</asset>
+		<asset>   <!-- Transformer -->
+			<id>XFR1</id>
+			<linkTo>
+				<id>F1</id>
+				<fromTerminal>XFR:High</fromTerminal>
+				<toTerminal>Single Terminal</toTerminal>
+				<phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+			</linkTo>
+			<linkTo>
+				<id>F1</id>
+				<fromTerminal>XFR:High</fromTerminal>
+				<toTerminal>Single Terminal</toTerminal>
+				<phaseOffset>-1</phaseOffset>  <!-- default: added for clarity -->
+			</linkTo>
+			<phaseExpansion>yes</phaseExpansion>
+			<featureClass>Device</featureClass>
+			<assetGroupDesc>Transformer</assetGroupDesc>
+			<!-- asset type desc depends on number of phases -->
+			<keepID>yes</keepID>
+			<!-- <assetTypeDesc> from unit table for 'primary' device-->
+			<row>0</row>
+			<column>2</column>
+		</asset>
+		<!-- Junction JN2 removed - always a Tap or end-of-line-->
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>-0.25</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0A</id>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>null</assetGroupDesc>
+            <row>0</row>
+            <column>2.25</column>
+        </asset>
+	</assembly>   <!-- end of OH Delta Transformer w/o Arrestors  -->
+
+	<!-- ================ Pad Mounted Transformer in line ============= -->
+    <assembly>
+		<assemblyDefNum>33</assemblyDefNum>
+        <assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Three Phase Wye</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Single Phase</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyKey2NOTUSED>inline</assemblyKey2NOTUSED>
+		<asset>   <!-- Junction 1 low side  -->
+            <id>JN3</id>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <row>-1</row>
+            <column>0</column>
+        </asset>
+        <asset>    <!-- Junction -->
+			<id>JN1</id>  
+			<featureClass>Junction</featureClass>
+			<assetGroupDesc>Line End</assetGroupDesc>              
+			<phaseExpansion>no</phaseExpansion>
+			<!-- a junction asset type desc from attached lines. -->
+			<!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+			<!-- assetTypeDesc probably should be "Tap" -->
+			<row>0</row>
+			<column>-2</column>
+        </asset>
+        <asset>  <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>-1</column>
+        </asset>
+        <asset>   <!-- Transformer -->
+            <id>XFR1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+			<linkTo>
+                <id>JN3</id>
+                <fromTerminal>XFR:Low</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<assetTypeDesc>Pad Mounted Three Phase</assetTypeDesc>
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+		<asset>   <!-- Elbow -->
+            <id>E2</id>
+            <linkTo>
+                <id>XFR1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>XFR:High</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>  <!-- Junction -->
+            <id>JN2</id>
+            <linkTo>
+                <id>E2</id>
+                 <fromTerminal>Single Terminal</fromTerminal>
+                 <toTerminal>Single Terminal</toTerminal>
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <!-- assetGroup could be Line End or Riser -->
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- could be assetGroup "Line End" assetType  "Low Voltage Single Phase Line End" -->
+            <!-- could be assetGroup "Riser"    assetType  "Low Voltage Single Phase" -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>   <!-- end of OH three Phase pad mount Transformer  -->
+
+	
+	<!-- ================ UG Three Phase Wye Transformer at end of line ============= -->
+	<!-- slightly different to inline XFR as there are dummy junctions & no 'output' arresters -->
+    <assembly>
+		<assemblyDefNum>34</assemblyDefNum>
+        <assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+        <assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Three Phase Wye</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Single Phase</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyKey2>endofline</assemblyKey2>
+		<asset>   <!-- Junction 1 low side  -->
+            <id>JN3</id>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <row>-1</row>
+            <column>2</column>
+        </asset>
+        <asset>    <!-- Junction -->
+			<id>JN1</id>  
+			<featureClass>Junction</featureClass>
+			<assetGroupDesc>Line End</assetGroupDesc>              
+			<phaseExpansion>no</phaseExpansion>
+			<!-- a junction asset type desc from attached lines. -->
+			<!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+			<!-- assetTypeDesc probably should be "Tap" -->
+			<row>0</row>
+			<column>0</column>
+        </asset>
+        <asset>  <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Transformer -->
+            <id>XFR1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+			<linkTo>
+                <id>JN3</id>
+                <fromTerminal>XFR:Low</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<!-- assetTypeDesc>Pad Mounted Three Phase</assetTypeDesc -->
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0</id>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <row>0</row>
+            <column>3</column>
+        </asset>
+		<asset>   <!-- Dummy Junction for clipping circle  -->
+            <id>JN0A</id>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <row>0</row>
+            <column>-3</column>
+        </asset>
+    </assembly>   
+	<!-- end of endofline UG three/single Phase Transformer  -->
+
+<!-- ================ Overhead Three Phase Open Delta Transformer ============= -->
+<!-- This device is explicitly laid out because of it complex links. Added a new tag <unitTableIndex> which explicitly sets the unit table index  -->
+<!-- Open Delta hard codes each device, so no phase expansion for each device and we manually link to each individual device -->
+<assembly>
+		<assemblyDefNum>35</assemblyDefNum>
+        <assemblyGroupDesc>Transformer Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Three Phase Open Delta</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+		<assemblyKey2></assemblyKey2>
+        <asset>    <!-- Junction 1 -->
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+			<assetTypeDesc>Tap</assetTypeDesc>            
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <!-- assetTypeDesc probably should be "Tap" -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>  <!-- Arrestor -->
+            <id>AR1a</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>-1</row>
+            <column>1</column>
+        </asset>        <asset>  <!-- Arrestor -->
+            <id>AR1b</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>        <asset>  <!-- Arrestor -->
+            <id>AR1c</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>1</row>
+            <column>1</column>
+        </asset>
+        <asset>   <!-- Fuse -->
+            <id>F1a</id>
+            <linkTo>
+                <id>AR1a</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>-1</row>
+            <column>2</column>
+        </asset>        <asset>   <!-- Fuse -->
+            <id>F1b</id>
+            <linkTo>
+                <id>AR1b</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>2</column>
+        </asset>        <asset>   <!-- Fuse -->
+            <id>F1c</id>
+            <linkTo>
+                <id>AR1c</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Overhead Cutout Fuse Load Breaking</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>1</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Transformer -->
+            <id>XFR1a</id>
+            <linkTo>
+                <id>F1b</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+			<linkTo>
+                <id>F1c</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<assetTypeDesc>Overhead Single Phase</assetTypeDesc>
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <unitTableIndex>0</unitTableIndex>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>-0.5</row>
+            <column>3</column>
+        </asset>
+		<asset>   <!-- Transformer -->
+            <id>XFR1b</id>
+            <linkTo>
+                <id>F1a</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+			<linkTo>
+                <id>F1c</id>
+                <fromTerminal>XFR:High</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Transformer</assetGroupDesc>
+			<assetTypeDesc>Overhead Single Phase</assetTypeDesc>
+            <!-- asset type desc depends on number of phases -->
+            <keepID>yes</keepID>
+            <unitTableIndex>1</unitTableIndex>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0.5</row>
+            <column>3</column>
+        </asset>
+		<asset>   <!-- Junction 3 low side  -->
+            <id>JN3</id>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <row>0</row>
+            <column>4</column>
+        </asset>
+	</assembly>   <!-- end of OH Three Phase Open Delta Transformer  -->  
+	
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++ END: Transformers  ++++++++ -->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+
+<!-- ====================================================================== -->
+<!-- ================ Capacitors  ============= -->
+<!-- ====================================================================== -->
+<!-- Overhead Phase Capacitor w/o Arrestor -->
+<assembly>
+	<assemblyDefNum>40</assemblyDefNum>
+	<assemblyGroupDesc>Capacitor Bank</assemblyGroupDesc>
+	<assemblyTypeConfiguration>
+		<assemblyTypeDesc>Overhead Capacitor</assemblyTypeDesc>
+	</assemblyTypeConfiguration>
+	<assemblyTypeConfiguration>
+		<assemblyTypeDesc>Pad Mounted Capacitor</assemblyTypeDesc>
+	</assemblyTypeConfiguration>
+	<asset>    <!-- Junction Medium side-->
+		<id>JN1</id>  
+		<featureClass>Junction</featureClass>
+		<assetGroupDesc>Connection Point</assetGroupDesc>              
+		<phaseExpansion>no</phaseExpansion>
+		<!-- a junction asset type desc from attached lines. -->
+		<!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+		<!-- assetTypeDesc probably should be "Tap" -->
+		<row>0</row>
+		<column>0</column>
+	</asset>
+	<asset>  <!-- Elbow -->
+		<id>F1</id>
+		<linkTo>
+			<id>JN1</id>
+			<fromTerminal>Single Terminal</fromTerminal>
+			<toTerminal>Single Terminal</toTerminal>
+			<phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+		</linkTo>
+		<!-- Phase expansion used for two things: -->
+		<!--    - expand for the number of phases on the assembly -->
+		<!--    - extract additional attrs from the unit table    -->
+		<phaseExpansion>yes</phaseExpansion>
+		<featureClass>Device</featureClass>
+		<assetGroupDesc>Fuse</assetGroupDesc>
+		<assetTypeConfiguration>
+			<assetTypeDesc>Overhead Cutout Fuse Non Load Breaking</assetTypeDesc>
+		</assetTypeConfiguration>
+		<row>0</row>
+		<column>1</column>
+	</asset>
+	<asset>   <!-- Transformer -->
+		<id>C1</id>
+		<linkTo>
+			<id>F1</id>
+			<toTerminal>Single Terminal</toTerminal>
+			<phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->
+		</linkTo>
+		<phaseExpansion>yes</phaseExpansion>
+		<featureClass>Device</featureClass>
+		<assetGroupDesc>Power Factor Correcting Equipment</assetGroupDesc>
+		<!-- assetTypeDesc>Pad Mounted Three Phase</assetTypeDesc -->
+		<!-- asset type desc depends on number of phases -->
+		<keepID>yes</keepID>
+		<!-- <assetTypeDesc> from unit table for 'primary' device-->
+		<row>0</row>
+		<column>2</column>
+	</asset>
+</assembly>   
+<!-- end of Overhead Phase Capacitor w/o Arrestor -->
+
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++ END: Capacitors  ++++++++ -->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+
+<!-- ++++++++ START: Sectionalizer ++++++++ -->
+
+<assembly>
+		<assemblyDefNum>42</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Pad Mounted Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+ 		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+       <asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>          
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>E1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+				<toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <!-- <phaseExpansion>yes</phaseExpansion>     -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>2</column>
+        </asset>
+        <asset>   <!-- Elbow -->
+            <id>E2</id>
+            <linkTo>
+                <id>S1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <toTerminal>Single Terminal</toTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Fuse</assetGroupDesc>
+            <!-- asset type desc depends on number of phases -->
+            <assetTypeConfiguration>
+                <numberofphases>1</numberofphases>
+                <assetTypeDesc>Underground Single Phase Elbow</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>E2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly> 
+	<assembly>
+		<assemblyDefNum>43</assemblyDefNum>
+        <!-- Overhead Recloser-->
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with arrestors - set the attr assemblyKey2 = withArrestors-->
+		<assemblyKey2>ArrestorsY</assemblyKey2>
+        <asset> <!-- Junction -->
+            <id>JN1</id>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+             <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset> <!-- Arrestor -->
+            <id>AR1</id>
+            <linkTo>
+                <id>JN1</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>1</column>
+        </asset> 
+        <asset> <!-- Recloser -->
+            <id>S1</id>
+            <linkTo>
+                <id>AR1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>DT:Source</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additioanl attrs from the unit table    -->
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <!-- keepID used to flag the 'primary' device. -->
+            <!-- this will get the GlobalID from the unit tables -->
+            <keepID>yes</keepID>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <!-- <assetTypeDesc> from unit table for 'primary' device-->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+		<asset> <!-- Arrestor -->
+            <id>AR2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Arrester</assetGroupDesc>
+            <assetTypeConfiguration>
+                <assetTypeDesc>Medium Voltage Line Arrester</assetTypeDesc>
+            </assetTypeConfiguration>
+            <row>0</row>
+            <column>3</column>
+        </asset>
+        <asset> <!-- Junction -->
+            <id>JN2</id>
+            <linkTo>
+                <id>AR2</id>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>4</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ END: OH Recloser(with Arrestors) ++++++++ -->
+
+<!-- ================ OH Sectionalizer(no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>44</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>ArrestorsN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ OH Switch Bank (no arrestors ++++++++ -->
+
+<!-- ================ OH Sectionalizer (Gang Operated (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>45</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionN</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Sectionalizer Bank (no Phase Expansion & no arrestors)++++++++  -->
+
+<!-- ================ OH Recloser (Gang Operated N (no Phase Expansion) - no arrestors)============= -->
+    <assembly>
+        <!-- OH Recloser Bank -->
+		<assemblyDefNum>46</assemblyDefNum>
+        <assemblyGroupDesc>Switch Bank</assemblyGroupDesc>
+		<assemblyTypeConfiguration>
+            <assemblyTypeDesc>Overhead Sectionalizer</assemblyTypeDesc>
+        </assemblyTypeConfiguration>
+        <!-- optional key for assemblies with NO arrestors - set the attr assemblyKey2 = noArrestors-->
+		<assemblyKey2>PhaseExpansionY</assemblyKey2>
+		<asset>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <id>JN1</id>     
+            <phaseExpansion>no</phaseExpansion>
+            <!-- a junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>0</column>
+        </asset>
+        <asset>
+            <id>S1</id>
+            <linkTo>
+                <id>JN1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <!-- Phase expansion used for two things: -->
+            <!--    - expand for the number of phases on the assembly -->
+            <!--    - extract additional attrs from the unit table    -->
+            <keepID>yes</keepID>
+            <phaseExpansion>yes</phaseExpansion>
+            <featureClass>Device</featureClass>
+            <assetGroupDesc>Switch</assetGroupDesc>
+            <row>0</row>
+            <column>1</column>
+        </asset>
+        <asset>
+            <id>JN2</id>
+            <linkTo>
+                <id>S1</id>
+                <toTerminal>Single Terminal</toTerminal>
+                <fromTerminal>Single Terminal</fromTerminal>
+                <phaseOffset>0</phaseOffset>  <!-- default: added for clarity -->                                
+            </linkTo>
+            <phaseExpansion>no</phaseExpansion>
+            <featureClass>Junction</featureClass>
+            <assetGroupDesc>Line End</assetGroupDesc>
+            <!--  junction asset type desc from attached lines. -->
+            <!-- we don't use the <assetTypeConfiguration> tag for Junctions -->
+            <row>0</row>
+            <column>2</column>
+        </asset>
+    </assembly>
+<!-- ++++++++ End: OH Sectionalizer (no Phase Expansion & no arrestors) ++++++++ -->
+
+
+</assemblies>
