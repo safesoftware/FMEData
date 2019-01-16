@@ -1,15 +1,15 @@
 Installation
 ------------
-For the best results the files and folders within the zip file should be extracted to C:\FMEData2018
+For the best results the files and folders within the zip file should be extracted to C:\FMEData2019
 
 Exercises
 ---------
-The data and workspaces herein relate to FME 2018 training, tutorials and demonstations 
+The data and workspaces herein relate to FME 2019 training, tutorials and demonstations 
 If you would like further details on our training sessions, please contact a sales representative at (604) 501-9985 x287, e-mail sales@safe.com or visit http://www.safe.com/training
 
 Versions
 --------
-FMEData v18
+FMEData v19
 
 See GitHub branches for specific revisions and other versions of this dataset
 
@@ -50,7 +50,7 @@ Contains information licensed under the Open Government Licence – British Colu
 
 Copyright
 ---------
-2005-2018 Safe Software Inc. All rights are reserved.
+2005-2019 Safe Software Inc. All rights are reserved.
 
 Revisions
 ---------
