@@ -10,14 +10,14 @@
 #!   DESCRIPTION=""
 #!   DESTINATION="NONE"
 #!   DESTINATION_ROUTING_FILE=""
-#!   DOC_EXTENTS="3320.27 817.257"
-#!   DOC_TOP_LEFT="-2412.52 -1271.01"
+#!   DOC_EXTENTS="3289.02 817.257"
+#!   DOC_TOP_LEFT="-2381.27 -1271.01"
 #!   END_PYTHON=""
 #!   END_TCL=""
 #!   EXPLICIT_BOOKMARK_ORDER="false"
-#!   FME_BUILD_NUM="19220"
-#!   FME_DOCUMENT_GUID="0a6c992b-36d9-40f8-8337-c88456405e2c"
-#!   FME_DOCUMENT_PRIORGUID="a318eec8-d1c7-4896-91e4-2b8cf4766f9d"
+#!   FME_BUILD_NUM="19229"
+#!   FME_DOCUMENT_GUID="e7b2c980-46b7-4c5f-a020-b0700c5fe197"
+#!   FME_DOCUMENT_PRIORGUID="a318eec8-d1c7-4896-91e4-2b8cf4766f9d,0a6c992b-36d9-40f8-8337-c88456405e2c"
 #!   FME_GEOMETRY_HANDLING="Enhanced"
 #!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
 #!   FME_REPROJECTION_ENGINE="FME"
@@ -25,8 +25,8 @@
 #!   FME_STROKE_MAX_DEVIATION="0"
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
-#!   LAST_SAVE_BUILD="FME(R) 2019.0.0.0 (20190304 - Build 19220 - WIN64)"
-#!   LAST_SAVE_DATE="2019-03-08T08:39:47"
+#!   LAST_SAVE_BUILD="FME(R) 2019.0.0.0 (20190315 - Build 19229 - WIN64)"
+#!   LAST_SAVE_DATE="2019-03-20T07:56:39"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -88,8 +88,8 @@
 #!   IDENTIFIER="2"
 #!   TYPE="Creator"
 #!   VERSION="5"
-#!   POSITION="-2412.524125241252 -1000.0100001000006"
-#!   BOUNDING_RECT="-2412.524125241252 -1000.0100001000006 430 71"
+#!   POSITION="-2381.2738127381272 -1000.0100001000006"
+#!   BOUNDING_RECT="-2381.2738127381272 -1000.0100001000006 430 71"
 #!   ORDER="500000000000015"
 #!   PARMS_EDITED="false"
 #!   ENABLED="true"
@@ -410,6 +410,7 @@ NULL_DEST_DATASET null
 
 LOG_FILENAME "$(FME_MF_DIR)5.02.CustomTransformers-Question.log"
 LOG_APPEND NO
+LOG_TIMINGS YES
 LOG_FILTER_MASK -1
 LOG_MAX_FEATURES 200
 LOG_MAX_RECORDED_FEATURES 200
@@ -462,8 +463,8 @@ FACTORY_DEF * TeeFactory    FACTORY_NAME GeometryFilter_InputPassThrough    INPU
 FACTORY_DEF $(INSTANCE_FILTERING) TestFactory    FACTORY_NAME GeometryFilter_InstanceTest    INPUT FEATURE_TYPE GeometryFilter___Input___    TEST @Geometry(IS_GEOMETRY_INSTANCE) == 1    OUTPUT PASSED FEATURE_TYPE $(OUTPUT_INSTANCE_FTYPE)    OUTPUT FAILED FEATURE_TYPE GeometryFilter___Input___
 FACTORY_DEF $(COLLECTION_HANDLING) TestFactory    FACTORY_NAME GeometryFilter_CollectionTest    INPUT FEATURE_TYPE GeometryFilter___Input___    TEST &fme_type == "fme_collection"    OUTPUT FAILED FEATURE_TYPE GeometryFilter___Not_Collection___    OUTPUT PASSED FEATURE_TYPE GeometryFilter___Collection___
 FACTORY_DEF $(COLLECTION_HANDLING) DeaggregateFactory    FACTORY_NAME GeometryFilter_Deagg    INPUT FEATURE_TYPE GeometryFilter___Collection___    HOMOGENIZE_COLLECTIONS YES    RECURSIVE YES    SET_FME_TYPE YES    INSTANTIATE_GEOMETRY_INSTANCES_NEW <Unused>    OUTPUT POINT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    OUTPUT LINE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    OUTPUT POLYGON FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    OUTPUT DONUT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    OUTPUT AGGREGATE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___
-FACTORY_DEF * TeeFactory    FACTORY_NAME GeometryFilter_RouterPrepper    INPUT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    INPUT FEATURE_TYPE GeometryFilter___Not_Collection___    INPUT FEATURE_TYPE GeometryFilter___Input___    OUTPUT FEATURE_TYPE GeometryFilter___Prepped___        GeometryFilter_420381f4_b44e_468f_b2ad_9d7cb381d9cc0_targetFeatureType @Lookup(GeometryFilter_RouterTable,&fme_type)
-FACTORY_DEF * TestFactory    FACTORY_NAME GeometryFilter_Router    INPUT FEATURE_TYPE GeometryFilter___Prepped___    TEST @Value(GeometryFilter_420381f4_b44e_468f_b2ad_9d7cb381d9cc0_targetFeatureType) != "not_selected"    OUTPUT PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_420381f4_b44e_468f_b2ad_9d7cb381d9cc0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_420381f4_b44e_468f_b2ad_9d7cb381d9cc0_targetFeatureType)    OUTPUT FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_420381f4_b44e_468f_b2ad_9d7cb381d9cc0_targetFeatureType)
+FACTORY_DEF * TeeFactory    FACTORY_NAME GeometryFilter_RouterPrepper    INPUT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___    INPUT FEATURE_TYPE GeometryFilter___Not_Collection___    INPUT FEATURE_TYPE GeometryFilter___Input___    OUTPUT FEATURE_TYPE GeometryFilter___Prepped___        GeometryFilter_d674cbc0_85e8_466f_83bb_80194d1efdea0_targetFeatureType @Lookup(GeometryFilter_RouterTable,&fme_type)
+FACTORY_DEF * TestFactory    FACTORY_NAME GeometryFilter_Router    INPUT FEATURE_TYPE GeometryFilter___Prepped___    TEST @Value(GeometryFilter_d674cbc0_85e8_466f_83bb_80194d1efdea0_targetFeatureType) != "not_selected"    OUTPUT PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_d674cbc0_85e8_466f_83bb_80194d1efdea0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_d674cbc0_85e8_466f_83bb_80194d1efdea0_targetFeatureType)    OUTPUT FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_d674cbc0_85e8_466f_83bb_80194d1efdea0_targetFeatureType)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter <UNFILTERED> Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_<UNFILTERED>
 # -------------------------------------------------------------------------
 INCLUDE [          if { ({Plane Area} == {Sloped Area}) } {             puts {MACRO AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,SLOPED_AREAS,"1")};          } else {             puts {MACRO AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,"1")};          }          ]
@@ -479,12 +480,12 @@ FACTORY_DEF * TestFactory    FACTORY_NAME LengthCalculator_Rejector    INPUT FEA
 DEFAULT_MACRO _WB_BYPASS_TERMINATION No
 FACTORY_DEF * TeeFactory FACTORY_NAME LengthCalculator_<Rejected> INPUT FEATURE_TYPE LengthCalculator_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, LengthCalculator<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
 # -------------------------------------------------------------------------
-DEFAULT_MACRO __StatisticsCalculator_f5753ea3_705a_41ef_adb9_b456b2e0d9720_GROUP_BY
-MACRO StatisticsCalculator_f5753ea3_705a_41ef_adb9_b456b2e0d9720_PORT_SPECIFIED no
-INCLUDE [puts_real {$(StatisticsCalculator_f5753ea3_705a_41ef_adb9_b456b2e0d9720_PORT_SPECIFIED)}
+DEFAULT_MACRO __StatisticsCalculator_d2072763_6edf_4fd9_8daa_9b261c0b77660_GROUP_BY
+MACRO StatisticsCalculator_d2072763_6edf_4fd9_8daa_9b261c0b77660_PORT_SPECIFIED no
+INCLUDE [puts_real {$(StatisticsCalculator_d2072763_6edf_4fd9_8daa_9b261c0b77660_PORT_SPECIFIED)}
 DYNAMIC_FUNCTION_CONFIGURATION Python FMEOBJECTS
 DYNAMIC_FUNCTION_CONFIGURATION Python import StatisticsCalculator
-DYNAMIC_FUNCTION_CONFIGURATION Python "StatisticsCalculator.connectTransformer(    'StatisticsCalculator',{     'GROUP_BY_MACRO':'__StatisticsCalculator_f5753ea3_705a_41ef_adb9_b456b2e0d9720_GROUP_BY',     'STATS_ATTRS':'_area',     'MIN_ATTR':'_min',     'MAX_ATTR':'_max',     'COUNT_ATTR':'_count',     'SUM_ATTR':'_sum',     'MEAN_ATTR':'_mean',     'COMPUTE_HISTOGRAM':'NO',     'HISTO_ATTR':'<Unused>',     'PREPEND_ATTR_NAME':'No',     'encoded_result_attrs':True,     'cumulative_mode':'$(StatisticsCalculator_f5753ea3_705a_41ef_adb9_b456b2e0d9720_PORT_SPECIFIED)',     None:None})"
+DYNAMIC_FUNCTION_CONFIGURATION Python "StatisticsCalculator.connectTransformer(    'StatisticsCalculator',{     'GROUP_BY_MACRO':'__StatisticsCalculator_d2072763_6edf_4fd9_8daa_9b261c0b77660_GROUP_BY',     'STATS_ATTRS':'_area',     'MIN_ATTR':'_min',     'MAX_ATTR':'_max',     'COUNT_ATTR':'_count',     'SUM_ATTR':'_sum',     'MEAN_ATTR':'_mean',     'COMPUTE_HISTOGRAM':'NO',     'HISTO_ATTR':'<Unused>',     'PREPEND_ATTR_NAME':'No',     'encoded_result_attrs':True,     'cumulative_mode':'$(StatisticsCalculator_d2072763_6edf_4fd9_8daa_9b261c0b77660_PORT_SPECIFIED)',     None:None})"
 FACTORY_DEF * TeeFactory    FACTORY_NAME StatisticsCalculator_InputProcessor    INPUT  FEATURE_TYPE LengthCalculator_OUTPUT    INPUT  FEATURE_TYPE AreaCalculator_OUTPUT    OUTPUT FEATURE_TYPE __ORIGINAL__       @Python(StatisticsCalculator.recordFeature,StatisticsCalculator)
 FACTORY_DEF * TeeFactory    FACTORY_NAME StatisticsCalculator_UnneededInputNuker    INPUT FEATURE_TYPE __ORIGINAL__    OUTPUT FEATURE_TYPE StatisticsCalculator_COMPLETE
 FACTORY_DEF * SortFactory    FACTORY_NAME StatisticsCalculator_CompleteOutputter    INPUT FEATURE_TYPE __UNUSED_INPUT_TO_GUARANTEE_FACTORY_DOESNT_CONSUME_EVERYTHING__    INPUT FEATURE_TYPE StatisticsCalculator_COMPLETE    OUTPUT SORTED FEATURE_TYPE StatisticsCalculator_COMPLETE       @Python(StatisticsCalculator.summarizeStatistics,StatisticsCalculator,__ORIGINAL__)
