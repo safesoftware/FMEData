@@ -66,7 +66,7 @@ window.onload = function()
 
     FMEServer.init(
     {
-        server: "https://demos-safe-software.fmecloud.com", //Update to your public IP Address
+        server: "https://demos-safe-software.fmecloud.com", //Update with your Server hostname - on FME training machines this is http://fmetraining
         token: "568c604bc1f235bbe137c514e7c61a8436043070" //Update to your fmetoken
     });
 };
