@@ -87,8 +87,7 @@ window.onload = function()
     document.body.appendChild(div);
 }
 */
-/*
-function processClip()
+/*function processClip()
 {
     var repository = ""; //Enter repository name
     var workspace = ""; //Enter the workspace name
@@ -111,4 +110,5 @@ function processClip()
 
     // Use the FME Server Data Download Service
     FMEServer.runDataDownload(repository, workspace, params, showResults);
-}*/
+}
+*/
