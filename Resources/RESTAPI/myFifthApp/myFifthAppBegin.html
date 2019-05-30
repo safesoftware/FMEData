@@ -218,7 +218,7 @@ function streamResults()
             }
             setWorkspace();
 
-            resultUrl = server + '/fmedatastreaming/' + repository + '/' + workspace + '?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + //jsid + '%2F' + filename;
+            resultUrl = server + '/fmedatastreaming/' + repository + '/' + workspace + '?token=' + token +'&SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + //jsid + '%2F' + filename;
         }
         // Create the ArcGIS Layer and display on the map
         layer = new KMLLayer(resultUrl);
@@ -240,7 +240,7 @@ function downloadWorkspace()
 
         setWorkspace();
 
-        resultUrl = server + '/fmedatastreaming/' + repository + '/' + 'webapp.downloadresults.fmw?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
+        resultUrl = server + '/fmedatastreaming/' + repository + '/' + 'webapp.downloadresults.fmw?token=' + token + '&SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
 
         var finalResults = document.getElementById("finalResults");
         finalResults.innerHTML += ('<a href="' + resultUrl + '">' + 'Display Result </a>');
