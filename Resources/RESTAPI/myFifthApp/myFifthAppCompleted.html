@@ -16,8 +16,6 @@
 
 <body>
     <div id="allWeb">
-
-
         <div id="h1">
             <h1> Data Validation </h1>
         </div>
@@ -68,7 +66,7 @@
     </div>
 </body>
 <script type = "text/javascript" >
-    var jsid, path, fileInput, files, archives, repository, workspace;
+var jsid, path, fileInput, files, archives, repository, workspace;
 
 var layer, map;
 
@@ -82,8 +80,8 @@ window.onload = function()
     {
         FMEServer.init(
         {
-            server: "http://localhost", //Update to your FME Server hostname - if you are using an FME training machine this will be http://fmetraining
-            token: "824edb30d90f2d951e3587ce7337505d90332d15" //Update to your fmetoken
+            server: "http://18.220.65.60", //Update to your IP Address
+            token: "59427841faee360b6cca856bbe97cfde2aa0d8d8" //Update to your fmetoken
         });
 
         // Initialize variables
@@ -97,9 +95,9 @@ window.onload = function()
 
         map = new Map("mapDiv",
         {
-            basemap: "streets",
-            center: [-97.650, 30.299],
-            zoom: 14,
+            basemap: "streets", // Fill in basemap type
+            center: [-97.650, 30.299], // Write to the coordinates set the zoom level
+            zoom: 14, // Set the zoom level
             minZoom: 5,
             smartNavigation: false
         });
@@ -107,15 +105,12 @@ window.onload = function()
     });
 }
 
-
-
-
 function setWorkspace()
 {
-    repository = "WebApplication";
-    workspace = "webapp.kml.fmw";
-    server = "http://34.224.41.4"; //Update to your Public IP address
-    token = "824edb30d90f2d951e3587ce7337505d90332d15"
+    repository = "WebApplication"; //Update to your repository
+    workspace = "webapp.kml.fmw"; // Update to your workspace
+    server = "http://18.220.65.60"; //Update to your Public IP address
+    token = "59427841faee360b6cca856bbe97cfde2aa0d8d8";
 }
 
 function generateOptions()
@@ -205,9 +200,7 @@ function processFiles(json)
 
 function streamResults()
 {
-
-
-    if (layer)
+    if (layer)// Complete if statement
     {
         map.removeLayer(layer);
     }
@@ -217,21 +210,17 @@ function streamResults()
         KMLLayer, parser
     )
     {
-
         if (files != undefined || archives != undefined)
         {
             if (archives != undefined)
             {
                 files = archives;
             }
-
-
             setWorkspace();
 
-            resultUrl = server + '/fmedatastreaming/' + repository + '/' + workspace + '?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
+            resultUrl = server + '/fmedatastreaming/' + repository + '/' + workspace +  '?token=' + token + '&SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
         }
         // Create the ArcGIS Layer and display on the map
-
         layer = new KMLLayer(resultUrl);
         map.addLayer(layer, 1000);
         layer.on("load", function() {
@@ -239,6 +228,7 @@ function streamResults()
         });
     });
 }
+
 
 
 function downloadWorkspace()
@@ -252,23 +242,17 @@ function downloadWorkspace()
 
         setWorkspace();
 
-        resultUrl = server + '/fmedatastreaming/' + repository + '/' + 'webapp.downloadresults.fmw?SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
-
+        resultUrl = server + '/fmedatastreaming/' + repository + '/' + 'webapp.downloadresults.fmw?token=' + token + '&SourceDataset_ACAD=%24(FME_SHAREDRESOURCE_SYSTEM)%2Ftemp%2Fupload%2F' + repository + '%2F' + workspace + '%2F' + jsid + '%2F' + filename;
 
         var finalResults = document.getElementById("finalResults");
         finalResults.innerHTML += ('<a href="' + resultUrl + '">' + 'Display Result </a>');
         document.body.appendChild(finalResults);
-
-
-
     }
     else
     {
         alert("No Files Uploaded.  Please upload a file.");
     }
 }
-
-
 
 function showResults(json)
 {
@@ -292,7 +276,7 @@ function showResults(json)
 
 function newSession()
 {
-    FMEServer.getSession(repository, workspace, setVars);
+    FMEServer.getSession(reopository, workspace, setVars);
     FMEServer.getDataUploads(repository, workspace, jsid, processFiles);
 
     function processFiles(json)
@@ -312,8 +296,6 @@ function newSession()
             for (var archive in archives)
             {
                 list.innerHTML += "<p>" + archives[archive].name + ", <em>" + archives[archive].size + " bytes</em></p>";
-
-
             }
             showResults(json);
         }
