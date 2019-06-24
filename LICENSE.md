@@ -35,4 +35,4 @@ OpenStreetMap Datasets: [© OpenStreetMap contributors](http://www.openstreetmap
 Contains information licensed under the [Open Government Licence – British Columbia](https://www2.gov.bc.ca/gov/content/data/open-data/open-government-license-bc)
 
 ## Trademarks ##
-FME® is a registered trademark of Safe Software Inc. All brand or product names are trademarks or registered trademarks of their respective companies or organizations.
+FME® is a registered trademark of Safe Software Inc. All brand or product names are trademarks or registered trademarks of their respective companies or organizations. 
