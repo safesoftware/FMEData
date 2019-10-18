@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<script src="libs/jquery-1.10.1.js"></script>
+<!-- Bootstrap -->
+<script src="libs/bootstrap/js/bootstrap.js"></script>
+<link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" href="leaflet/leaflet.css" />
+<script src="leaflet/leaflet.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/ie.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
+<head>
+	<title>INSPIRE Flood Warning Assistant</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<span id="safe-ribbon"><a href="http://www.safe.com">Powered by FME</a></span>
+	  <div class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+	      <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+	        <div class="brand"><span class="hidden-phone">Safe Software Demos | INSPIRE Flood Warning Assistant<br><small><sub>UK flood data provided by: <a href="https://www.gov.uk/government/organisations/environment-agency">UK Environment Agency.</a> Finnish flood data provided by: <a href="https://www.maanmittauslaitos.fi/en/maps-and-spatial-data">National Land Survey of Finland.</a> </sub></small></div>
+	        <div class="nav-collapse collapse">
+            <!-- <a href="https://knowledge.safe.com/articles/Samples_and_Demos/Point-Cloud-Data-Download-with-FME-Server" class="btn">
+      				View KC article
+      			</a> 
+      			<a href="http://playground.fmeserver.com/demos/" class="btn">
+      				<img src="libs/server-icon.png"> View all Demos
+      			</a>
+            <a href="https://github.com/safesoftware/fmepedia-pointcloud" class="btn">
+              <img src="libs/github.png"> Fork GitHub
+            </a> -->
+            <!-- <a href="https://github.com/safesoftware/fmepedia-pointcloud/archive/master.zip" class="btn">
+              <i class="icon-download-alt"></i> Download Zip
+            </a> -->
+          </div>
+	      </div>
+	    </div>
+	  </div>
+
+	<div class="container-fluid" id="mainwrapper">
+	    <div class="row-fluid" id="maprow">
+	        <div class="span4" id="request_form">
+	         	<h1>Instructions</h1>
+	        	<div id="draw-tools">
+	        		<div id='instructions'>
+	        			<p>Select warning type and set buffer amount. Click on map to select an area of interest. Then select impact type. Leave impact type = None for flood warnings.</p>
+						<p>A new page will open with a report of the flood or impact warnings related to your area of interest.</p>
+					</div>
+				</div>
+				<h1>Parameters</h1>
+
+				<div id="parameters">
+
+					<label>Warning Type (Uncheck Past to see current):</label>
+					<div class="checkbox">
+						<label><input type="checkbox" id="Past" value="Past" checked>Past</label><br/>
+						<label><input type="checkbox" id="Expired" value="Expired" checked>Expired</label><br/>
+						<label><input type="checkbox" id="Alert" value="Alert" checked>Alert</label><br/>
+						<label><input type="checkbox" id="Warning" value="Warning" checked>Warning</label><br/>
+					</div>
+					<div 'form-horizontal'>
+					
+					 <div class="impact-group">
+						<label for="ImpactTypeSelect">Impact Type:</label>
+						<select class="form-control" id="ImpactType">
+						<option>None</option>
+						<option>Roads</option>
+						<option>Junctions</option>
+						<option>Infrastructure</option>
+						</select>
+					</div>
+
+	  					<div class="form-group">
+	  					 	<label for="Buffer" class="span4 control-label">Buffer distance:</label>
+	    					<div class="span3">
+	      						<input type="text" class="form-control span9" id="Buffer" value="20">km
+	    					</div>
+	  					</div>
+					</div><br/>
+					<button id="submit" class='btn btn-primary' onClick='submit()'>Submit</button>
+				</div>
+	        </div>
+
+	        <div class="span8" id="map_canvas"></div>
+	    </div>
+	</div>
+
+
+	<script>
+
+		var map = L.map('map_canvas', { zoomControl: false }).setView([52.0, -1.0], 8);
+		var layer,circle;
+
+		var baselayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			maxZoom: 10,	
+		}).addTo(map);
+
+		new L.Control.Zoom({position: 'bottomright'}).addTo(map);
+
+		map.on('click', onMapClick);
+
+
+		//function onMapClick(e) {
+		//	if (layer){
+		//		layer.removeFrom(map);
+		//	}
+		//	layer = L.marker(e.latlng);
+		//	layer.addTo(map);
+		//}
+		
+		function onMapClick(e) {
+            if (layer){
+                layer.removeFrom(map);
+            }
+            if (circle){
+                circle.removeFrom(map);
+            }
+            layer = L.marker(e.latlng);
+            //add pin where user clicked
+            layer.addTo(map);
+            var radius = document.getElementById("Buffer").value * 1000.0;
+            //probably need to do a calculation here to make sure the buffer units match the radius units on the map
+            //create and add circle showing area that will be selected
+			circle = L.circle([e.latlng.lat, e.latlng.lng], {color:'red', fillColor: '#f03', fillOpacity:0.3, radius:radius});
+            circle.addTo(map);
+			}		
+
+		function submitJob() {
+			var serverHost = 'https://inspiredemos-dean.fmecloud.com';
+			var repository = 'dataChallenge';
+			var workspace = 'floodMaps2html.fmw';
+			
+			var warningType = '';
+			if (document.getElementById("Past").checked) {
+				warningType = "Past"
+			}
+			else if (document.getElementById("Expired").checked) {
+				warningType = "Expired"
+			}
+			else if (document.getElementById("Alert").checked) {
+				warningType = "Alert"
+			}
+			else
+			{
+				warningType = "Warning"
+			}
+			
+			var impactType = '';
+			var impactType = document.getElementById('ImpactType').value;
+
+			var coords = layer.getLatLng();
+			var buffer = document.getElementById('Buffer').value;
+
+			//add message
+			var message = '<div class="alert alert-success"> Your request has been submitted. <br/> Please wait as your request will take a few minutes for FME Server to retrieve and compile your results.</div>';
+
+			var elem = document.getElementById('parameters');
+			elem.innerHTML = message;
+
+    		window.open(serverHost+"/fmedatastreaming/"+repository+"/"+workspace+"?LONGITUDE="+coords.lng+"&LATITUDE="+coords.lat+"&BUFFER="+buffer+"&WARNINGTYPE="+warningType+"&IMPACTTYPE="+impactType+"&token=65980b8357d33b79808c0debfd68ad4c4d02f596", "_self");
+		}
+
+		function submit() {
+			//make sure a point was selected before attempting to run the job	
+			if (layer) {
+				submitJob();
+			}
+			else {
+				var error = document.createElement('div');
+				error.innerHTML = '<div class="alert alert-error"> Please select a location by clicking on the map. <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+
+				var myDiv = document.getElementById("parameters");
+				myDiv.insertBefore(error, myDiv.firstChild);
+			}
+		}
+
+	</script>
+</body>
+</html>
