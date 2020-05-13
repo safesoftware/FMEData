@@ -29,7 +29,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2020.0.1.0 (20200407 - Build 20218 - WIN64)"
-#!   LAST_SAVE_DATE="2020-05-13T06:30:39"
+#!   LAST_SAVE_DATE="2020-05-13T06:46:23"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -48,7 +48,7 @@
 #!   TITLE=""
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="-412.504 484.38"
+#!   VIEW_POSITION="-409.379 62.5006"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -750,8 +750,8 @@
 #!   IS_EDITABLE="false"
 #!   IDENTIFIER="2"
 #!   FEAT_GEOMTYPE="xlsx_none xlsx_point"
-#!   POSITION="20 -260.00025000250002"
-#!   BOUNDING_RECT="20 -260.00025000250002 512.00106825772946 71"
+#!   POSITION="20 -235"
+#!   BOUNDING_RECT="20 -235 512.00106825772946 71"
 #!   ORDER="500000000000000"
 #!   COLLAPSED="true"
 #!   KEYWORD="XLSXR_1"
@@ -791,8 +791,8 @@
 #!   PARMS_EDITED="false"
 #!   ENABLED="true"
 #!   HIDDEN_USER_ATTRS=""
-#!   READ_SELECT_ATTRS="true"
-#!   MERGE_FILTER="*"
+#!   READ_SELECT_ATTRS="false"
+#!   MERGE_FILTER=""
 #!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
 #!   MERGE_FILTER_CASE_SENSITIVE="true"
 #!   DYNAMIC_SCHEMA="false"
@@ -822,8 +822,8 @@
 #!   PARMS_EDITED="false"
 #!   ENABLED="true"
 #!   HIDDEN_USER_ATTRS=""
-#!   READ_SELECT_ATTRS="true"
-#!   MERGE_FILTER="*"
+#!   READ_SELECT_ATTRS="false"
+#!   MERGE_FILTER=""
 #!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
 #!   MERGE_FILTER_CASE_SENSITIVE="true"
 #!   DYNAMIC_SCHEMA="false"
@@ -978,9 +978,9 @@
 #!   ENABLED="true"
 #!   SCHEMA_ATTRIBUTE_SOURCE="1"
 #! >
-#!     <FEAT_ATTRIBUTE ATTR_NAME="First" ATTR_TYPE="text(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="First" ATTR_TYPE="text(12)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
 #!     <FEAT_ATTRIBUTE ATTR_NAME="Last_Name" ATTR_TYPE="text(11)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
-#!     <FEAT_ATTRIBUTE ATTR_NAME="Company" ATTR_TYPE="text(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Company" ATTR_TYPE="text(41)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
 #!     <FEAT_ATTRIBUTE ATTR_NAME="License_Number" ATTR_TYPE="text(7)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
 #!     <FEAT_ATTRIBUTE ATTR_NAME="Longitude" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
 #!     <FEAT_ATTRIBUTE ATTR_NAME="Latitude" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
@@ -1135,7 +1135,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="34"
+#!   IDENTIFIER="13"
 #!   SOURCE_NODE="3"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1150,7 +1150,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="31"
+#!   IDENTIFIER="14"
 #!   SOURCE_NODE="4"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1165,7 +1165,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="21"
+#!   IDENTIFIER="15"
 #!   SOURCE_NODE="5"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1180,7 +1180,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="33"
+#!   IDENTIFIER="19"
 #!   SOURCE_NODE="6"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1195,7 +1195,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="32"
+#!   IDENTIFIER="20"
 #!   SOURCE_NODE="7"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1210,7 +1210,7 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="30"
+#!   IDENTIFIER="21"
 #!   SOURCE_NODE="8"
 #!   TARGET_NODE="16"
 #!   SOURCE_PORT_DESC="-1"
@@ -1482,12 +1482,12 @@ MACRO FME_VIEWER_APP fmedatainspector
 
 FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE XLSXR XLSXR_1::BusinessOwners multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_1) TO FME_GENERIC ::BusinessOwners ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Downtown multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Downtown ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Fairview multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Fairview ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Kitsilano multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Kitsilano ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Strathcona multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Strathcona ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::West End" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::West End" ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::Mount Pleasant" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::Mount Pleasant" ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
 XLSXR_1_MERGE_DEF XLSXR_1::BusinessOwners EXACT BusinessOwners DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,First,char<openparen>12<closeparen>,Last<space>Name,char<openparen>11<closeparen>,Company,char<openparen>41<closeparen>,License<space>Number,char<openparen>7<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF XLSXR_2::Downtown EXACT Downtown DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>51<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF XLSXR_2::Downtown EXACT Downtown DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,all,Name,char<openparen>51<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 XLSXR_2_MERGE_DEF XLSXR_2::Fairview EXACT Fairview DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>27<closeparen>,Title,char<openparen>50<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 XLSXR_2_MERGE_DEF XLSXR_2::Kitsilano EXACT Kitsilano DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>41<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 XLSXR_2_MERGE_DEF XLSXR_2::Strathcona EXACT Strathcona DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>45<closeparen>,Title,char<openparen>33<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 XLSXR_2_MERGE_DEF "XLSXR_2::West End" EXACT West<space>End DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>26<closeparen>,Title,char<openparen>35<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF "XLSXR_2::Mount Pleasant" EXACT Mount<space>Pleasant DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,defined,Name,char<openparen>46<closeparen>,Title,char<openparen>32<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF "XLSXR_2::Mount Pleasant" EXACT Mount<space>Pleasant DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_schema_start_row,1,xlsx_header_row,0,xlsx_schema_end_col,0,xlsx_schema_start_col,0,xlsx_schema_end_row,0,fme_attribute_reading,all,Name,char<openparen>46<closeparen>,Title,char<openparen>32<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory    FACTORY_NAME "BusinessOwners_XLSXR_1 Splitter"    INPUT FEATURE_TYPE BusinessOwners    OUTPUT FEATURE_TYPE BusinessOwners_XLSXR_1
@@ -1512,7 +1512,7 @@ FACTORY_DEF * TeeFactory    FACTORY_NAME "West End_XLSXR_2 Splitter"    INPUT FE
 DEFAULT_MACRO WB_CURRENT_CONTEXT
 # -------------------------------------------------------------------------
 
-FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC BusinessOwners_XLSXR_1 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>BusinessOwners<closeparen> GEOMETRY    ROUTE FME_GENERIC Strathcona_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC "West End_XLSXR_2" TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC "Mount Pleasant_XLSXR_2" TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Kitsilano_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Fairview_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Downtown_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC BusinessOwners_XLSXR_1 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>BusinessOwners<closeparen> GEOMETRY    ROUTE FME_GENERIC Downtown_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC "Mount Pleasant_XLSXR_2" TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Strathcona_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Fairview_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC Kitsilano_XLSXR_2 TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY    ROUTE FME_GENERIC "West End_XLSXR_2" TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>PublicArt<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
@@ -1520,4 +1520,4 @@ FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYP
 # -------------------------------------------------------------------------
 FILEGDB_1_DEF PublicArt   filegdb_type                 geodb_point   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(51)   Title                        text(51)   Longitude                    double   Latitude                     double
 # -------------------------------------------------------------------------
-FILEGDB_1_DEF BusinessOwners   filegdb_type                 geodb_point   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   First                        text(1)   Last_Name                    text(11)   Company                      text(1)   License_Number               text(7)   Longitude                    double   Latitude                     double
+FILEGDB_1_DEF BusinessOwners   filegdb_type                 geodb_point   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   First                        text(12)   Last_Name                    text(11)   Company                      text(41)   License_Number               text(7)   Longitude                    double   Latitude                     double
