@@ -1,3 +1,6 @@
+-------------------------------------------------
+------- PART 1 ----------------------------------
+-------------------------------------------------
 --1) Run SQL Scripts to create sample data
 
 create table demonstration1 (
@@ -40,23 +43,3 @@ insert into demonstration3 (id, variant1)
     ;
 
 --2) Run Workspace
---3) Review Data in Web Console
-
---demo table 1
-select * 
-    from demonstration1;
-
---FME Table
-desc table mydemonstration_1;    
-
-select * 
-    from mydemonstration_1;
-
--- demo table 3
-select * 
-	from demonstration3;
--- FME Table
-desc table mydemonstration_3;
-
-select * 
-	from mydemonstration_3;
