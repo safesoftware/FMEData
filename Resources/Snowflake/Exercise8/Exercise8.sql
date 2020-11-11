@@ -21,5 +21,14 @@ select * from PRD_PARKINGTICKETS;  -- should return 11 records
 
 -- End of Ex8.1
 
---#### Ex8.2 - Part 1 Web Console ####
+-- Ex8.2 - Web Console
 
+select * from STG_PARKINGTICKETS;   -- confirm records were written
+
+-- Ex8.3 - Web Console
+-- Run Part 1 - check table created
+desc table "TEST_DB"."PUBLIC"."PARQUET_DEMO";
+-- Run Part 3 - check data loaded
+select * from "TEST_DB"."PUBLIC"."PARQUET_DEMO";
+select count (*) from "TEST_DB"."PUBLIC"."PARQUET_DEMO"; 
+-- truncate table "TEST_DB"."PUBLIC"."PARQUET_DEMO"; -- if running again
