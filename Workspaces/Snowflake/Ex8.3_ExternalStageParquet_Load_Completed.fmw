@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        "C:\Program Files\FME_b20787\fme.exe" "C:\FMEData2020\Workspaces\Snowflake\Ex8.3_ExternalStageParquet_Load_Completed v2.fmw"
+#        "C:\Program Files\FME_b20787\fme.exe" C:\FMEData2020\Workspaces\Snowflake\Ex8.3_ExternalStageParquet_Load_Completed.fmw
 #              --SourceDataset_SAFE-LAB.PARQUET.PARQUET_3 "C:\FMEData2020\Resources\Snowflake\Exercise8\Parquet\USERDATA_DEMO"
 #              --aws_key_id "AKIAWNXOG3HYRIGTOVHB"
 #              --aws_secret_key "********"
@@ -22,8 +22,8 @@
 #!   END_TCL=""
 #!   EXPLICIT_BOOKMARK_ORDER="false"
 #!   FME_BUILD_NUM="20787"
-#!   FME_DOCUMENT_GUID="262cc7a9-428a-4339-a96d-3bc6b0eef80b"
-#!   FME_DOCUMENT_PRIORGUID="d2a57b8c-e5fd-4fde-9a4a-07abcc877f80,55546699-2434-4cdb-a51b-bf45272c3609,2e330bb3-74c0-43e9-9799-21dfb72f41c5,feee4ead-c4d7-4d6d-b8a3-5391aa0ed55d,823d8281-3415-429f-be84-6cf48f652d01,0173d2f4-f79f-48af-82c0-02bfee729b55,ced46f56-007d-4b31-af5b-851c29bb9e1c,043a9763-de34-42c4-a5d6-8c7c3a09f212,f1eee750-8533-4d09-a59a-571bcc0857a7,7f2cf5da-2d4e-46bb-a721-fb8739b1b5b1,588bfadf-4928-4b17-b552-a82c198203d9"
+#!   FME_DOCUMENT_GUID="bdefa481-0ed0-4a25-99a6-67b0e9e5c48d"
+#!   FME_DOCUMENT_PRIORGUID="d2a57b8c-e5fd-4fde-9a4a-07abcc877f80,55546699-2434-4cdb-a51b-bf45272c3609,2e330bb3-74c0-43e9-9799-21dfb72f41c5,feee4ead-c4d7-4d6d-b8a3-5391aa0ed55d,823d8281-3415-429f-be84-6cf48f652d01,0173d2f4-f79f-48af-82c0-02bfee729b55,ced46f56-007d-4b31-af5b-851c29bb9e1c,043a9763-de34-42c4-a5d6-8c7c3a09f212,f1eee750-8533-4d09-a59a-571bcc0857a7,7f2cf5da-2d4e-46bb-a721-fb8739b1b5b1,588bfadf-4928-4b17-b552-a82c198203d9,262cc7a9-428a-4339-a96d-3bc6b0eef80b"
 #!   FME_GEOMETRY_HANDLING="Enhanced"
 #!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
 #!   FME_REPROJECTION_ENGINE="FME"
@@ -32,7 +32,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2020.2.0.0 (20201027 - Build 20787 - WIN64)"
-#!   LAST_SAVE_DATE="2020-11-13T16:23:08"
+#!   LAST_SAVE_DATE="2020-11-14T11:08:57"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -70,7 +70,7 @@
 #!   WRITE_DEFS="true"
 #!   DEFLINE_TEMPLATE=""
 #!   DEFLINE_ATTRS="true"
-#!   EXPOSABLE_ATTRS="fme_color string fme_text_size float64 fme_secondary_axis float64 fme_feature_type string fme_sweep_angle float64 fme_dataset string multi_reader_full_id int32 multi_reader_id int32 fme_primary_axis float64 fme_fill_color string parquet_type varchar(254) multi_reader_keyword string multi_reader_type string fme_text_string string fme_start_angle float64 fme_geometry string fme_type string fme_rotation float64 fme_basename string"
+#!   EXPOSABLE_ATTRS="multi_reader_full_id int32 multi_reader_type string fme_basename string fme_primary_axis float64 multi_reader_keyword string fme_secondary_axis float64 fme_fill_color string fme_sweep_angle float64 parquet_type varchar(254) fme_text_size float64 fme_feature_type string fme_type string fme_color string fme_start_angle float64 fme_geometry string fme_dataset string multi_reader_id int32 fme_rotation float64 fme_text_string string"
 #!   DEFLINE_PARMS=""
 #!   ATTR_INDEX_TYPES=""
 #!   ATTR_NAME_INVALID_CHARS=""
@@ -439,12 +439,12 @@
 #! <DEPENDENCIES>
 #! <PACKAGES>
 #! <PACKAGE
-#!   NAME="safe-lab.parquet"
-#!   VERSION="0.1.4"
-#! />
-#! <PACKAGE
 #!   NAME="safe.s3connector"
 #!   VERSION="1.0.11"
+#! />
+#! <PACKAGE
+#!   NAME="safe-lab.parquet"
+#!   VERSION="0.1.4"
 #! />
 #! </PACKAGES>
 #! </DEPENDENCIES>
@@ -462,7 +462,7 @@
 #! />
 #! <GLOBAL_PARAMETER
 #!   GUI_LINE="GUI OPTIONAL PASSWORD_OR_ATTR aws_secret_key Provide aws_secret_key:"
-#!   DEFAULT_VALUE="fme_decrypt(MDowfCN8I3xcG3GQ/TeRRUJUZ5LDPtdvpscbh7Nj9gG/INBkAGA+fkaDrNbhZtfa3rmkUUrCxKWaAFwiYsKgWJNl/0mRpxUuP+IT2c+Qhh26JEZtUWAmpuoaQCdQ3ykKWm2zaoAM5MBCGaGEuYe+6AS07/nLNRJwqp1jdwP1FgVCbXRvZtWfKjEZlNJYQ+EicVc6cv2DxCYJyTljvXwF8mKxenML6FKJiHARQCO8OMJidKKZQJP1SeYIhqB0YrtGw4cGV2ZquQKifvRjB2Tl6wBAWDmeCg+R1jvft1tR17SISyTDv77K+mV80w2aaUSgybbF7coM0BrQPcpehfjlW+YxV73+9mPMFXKQeznZ22T8MJor57O44p8U2NQCw35HiFBs0oVP9VkkY0D/WzGRevseyX1pIEWJSQSFwkJVhiyXavMDz5E5SEYgTZHfVeGBXCDuIEEbfRRkPU5yD2nw2ZAVimDRD7UQhEEY6PosGqU17He4y35WEfAggQ40+EKuupOQSZRsKotTTqlYGHJtX49ymuKqfyZzOAUSUzDMcj8gfDgzOCcuhw2sK3fJaMsz+evKj32UOv8SCeY0bdQvngHfikqcvX716IBFbqOqV+8IdNNJ9lIGRH6xvu+WyFEpD3Pisoi+LtcUz7x46eStIjYUPFbsbOUUyKif+JpjALVJu48iyqNkTWHqtDVWB6kaX/mIC9bR7wWD0JBKOiDT9SDii4p8QRq5dTfiEW0CUV8ChDCN3TzX1pjbnOM37Lwp75GuoE2wK1zp5USKW5eC9/DMjd2NL8N51jUrO7eJBR2dw1Bl9Y8IX+Y02HUF6QSuMot0zU96FjfvOOmy714tPEEFdaOI46Sp+Vws3/YePkbG0qU8kH1kh6Hb4vmDLsSPB5EFL3/bt0mgsV4bneVo7387wgxRz909)"
+#!   DEFAULT_VALUE=""
 #!   IS_STAND_ALONE="true"
 #! />
 #! <GLOBAL_PARAMETER
@@ -782,7 +782,7 @@
 #!   BOUNDING_RECT="-337.50337503375033 278.1277812778128 5421.9292192921921 1253.1375313753124"
 #!   STICKY="true"
 #!   COLOUR="1,0.85490196078431369,0.59999999999999998,1"
-#!   CONTENTS="117 64 109 101 78 110 63 164 62 60 111 162 66 61 105 13 116 14 71 70 136 99 74 107 108 115 77 113 119 67 76 127 98 9 12 69 75 103 57 59 10 106 100 79 15 68 "
+#!   CONTENTS="78 109 64 74 10 110 15 66 79 101 9 115 69 61 12 127 116 111 164 71 62 98 63 162 108 113 13 77 59 70 100 105 76 60 67 136 103 75 68 106 117 57 107 119 99 14 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -796,7 +796,7 @@
 #!   BOUNDING_RECT="-332.87473518413344 1734.9003807310382 3402.777039560825 874.14680819221962"
 #!   STICKY="true"
 #!   COLOUR="0.81568627450980391,0.5607843137254902,0.85882352941176465,1"
-#!   CONTENTS="84 87 93 83 86 96 72 94 89 80 88 91 7 135 82 85 81 90 95 92 "
+#!   CONTENTS="85 90 89 80 96 93 94 86 72 7 81 92 135 87 83 82 84 88 95 91 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -810,7 +810,7 @@
 #!   BOUNDING_RECT="2960.2555722177694 159.37659376593763 1308.5371157091095 1081.2608126081259"
 #!   STICKY="true"
 #!   COLOUR="0.81568627450980391,0.5607843137254902,0.85882352941176465,1"
-#!   CONTENTS="108 109 107 61 101 105 103 110 62 "
+#!   CONTENTS="103 101 107 61 105 62 109 108 110 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -824,7 +824,7 @@
 #!   BOUNDING_RECT="-300.25032894007097 165.62665626656266 933.03657324296717 1112.5111251112523"
 #!   STICKY="true"
 #!   COLOUR="0.59999999999999998,0.80000000000000004,0.80000000000000004,1"
-#!   CONTENTS="136 59 66 57 10 98 67 "
+#!   CONTENTS="98 66 136 67 59 57 10 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -838,7 +838,7 @@
 #!   BOUNDING_RECT="666.96742258558493 165.62665626656266 1423.6784838734795 1100.0110001100011"
 #!   STICKY="true"
 #!   COLOUR="0.63529411764705879,0.80000000000000004,0.59999999999999998,1"
-#!   CONTENTS="99 15 13 12 14 74 9 "
+#!   CONTENTS="14 13 15 74 99 9 12 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -852,7 +852,7 @@
 #!   BOUNDING_RECT="2129.0744477844787 165.62665626656266 789.70474000739932 1093.760937609376"
 #!   STICKY="true"
 #!   COLOUR="1,0.85490196078431369,0.59999999999999998,1"
-#!   CONTENTS="100 68 79 77 63 "
+#!   CONTENTS="77 63 68 100 79 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -866,7 +866,7 @@
 #!   BOUNDING_RECT="4316.47882972356 159.37659376593763 724.1965770305078 1068.760687606876"
 #!   STICKY="true"
 #!   COLOUR="0.85098039215686272,0.92941176470588238,0.60392156862745094,1"
-#!   CONTENTS="117 115 78 116 106 111 113 119 "
+#!   CONTENTS="111 106 117 115 116 113 119 78 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -880,7 +880,7 @@
 #!   BOUNDING_RECT="4357.1042359776238 -184.43251731665114 645.09754108129346 690.63190631906321"
 #!   STICKY="true"
 #!   COLOUR="0.59607843137254901,0.91764705882352937,0.72549019607843135,1"
-#!   CONTENTS="117 115 116 106 111 "
+#!   CONTENTS="111 106 117 115 116 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -894,7 +894,7 @@
 #!   BOUNDING_RECT="5123.9294864014646 263.6976963050729 2394.8957018504179 1204.3321026491362"
 #!   STICKY="true"
 #!   COLOUR="0.59215686274509804,0.8901960784313725,0.90980392156862744,1"
-#!   CONTENTS="58 104 118 123 121 124 129 120 73 122 112 "
+#!   CONTENTS="121 118 123 122 58 120 129 104 124 73 112 "
 #! >
 #! </BOOKMARK>
 #! <BOOKMARK
@@ -2405,7 +2405,7 @@ DEFAULT_MACRO SourceDataset_SAFE-LAB.PARQUET.PARQUET_3 C:\FMEData2020\Resources\
 GUI DIRNAME_SRC SourceDataset_SAFE-LAB.PARQUET.PARQUET_3 Parquet Dataset:
 DEFAULT_MACRO aws_key_id AKIAWNXOG3HYRIGTOVHB
 GUI OPTIONAL TEXT aws_key_id Provide aws_key_id:
-DEFAULT_MACRO aws_secret_key fme_decrypt(MDowfCN8I3xcG3GQ/TeRRUJUZ5LDPtdvpscbh7Nj9gG/INBkAGA+fkaDrNbhZtfa3rmkUUrCxKWaAFwiYsKgWJNl/0mRpxUuP+IT2c+Qhh26JEZtUWAmpuoaQCdQ3ykKWm2zaoAM5MBCGaGEuYe+6AS07/nLNRJwqp1jdwP1FgVCbXRvZtWfKjEZlNJYQ+EicVc6cv2DxCYJyTljvXwF8mKxenML6FKJiHARQCO8OMJidKKZQJP1SeYIhqB0YrtGw4cGV2ZquQKifvRjB2Tl6wBAWDmeCg+R1jvft1tR17SISyTDv77K+mV80w2aaUSgybbF7coM0BrQPcpehfjlW+YxV73+9mPMFXKQeznZ22T8MJor57O44p8U2NQCw35HiFBs0oVP9VkkY0D/WzGRevseyX1pIEWJSQSFwkJVhiyXavMDz5E5SEYgTZHfVeGBXCDuIEEbfRRkPU5yD2nw2ZAVimDRD7UQhEEY6PosGqU17He4y35WEfAggQ40+EKuupOQSZRsKotTTqlYGHJtX49ymuKqfyZzOAUSUzDMcj8gfDgzOCcuhw2sK3fJaMsz+evKj32UOv8SCeY0bdQvngHfikqcvX716IBFbqOqV+8IdNNJ9lIGRH6xvu+WyFEpD3Pisoi+LtcUz7x46eStIjYUPFbsbOUUyKif+JpjALVJu48iyqNkTWHqtDVWB6kaX/mIC9bR7wWD0JBKOiDT9SDii4p8QRq5dTfiEW0CUV8ChDCN3TzX1pjbnOM37Lwp75GuoE2wK1zp5USKW5eC9/DMjd2NL8N51jUrO7eJBR2dw1Bl9Y8IX+Y02HUF6QSuMot0zU96FjfvOOmy714tPEEFdaOI46Sp+Vws3/YePkbG0qU8kH1kh6Hb4vmDLsSPB5EFL3/bt0mgsV4bneVo7387wgxRz909)
+DEFAULT_MACRO aws_secret_key 
 GUI OPTIONAL PASSWORD aws_secret_key Provide aws_secret_key:
 DEFAULT_MACRO s3_bucket_parquet safe-training-bucket
 GUI OPTIONAL TEXT s3_bucket_parquet s3 bucket name:
@@ -2453,7 +2453,7 @@ SAFE-LAB.PARQUET.PARQUET_1_DATASET "$(SourceDataset_SAFE-LAB.PARQUET.PARQUET_1)"
 #! END_WB_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)Ex8.3_ExternalStageParquet_Load_Completed v2.log"
+LOG_FILENAME "$(FME_MF_DIR)Ex8.3_ExternalStageParquet_Load_Completed.log"
 LOG_APPEND NO
 LOG_FILTER_MASK -1
 LOG_MAX_FEATURES 200
@@ -2474,7 +2474,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME Ex8.3_ExternalStageParquet_Load_Completed v2
+MACRO WORKSPACE_NAME Ex8.3_ExternalStageParquet_Load_Completed
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 
@@ -2504,7 +2504,7 @@ FACTORY_DEF * TeeFactory   FACTORY_NAME "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TA
 FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME AttributeCreator    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE Creator_CREATED    MULTI_FEATURE_MODE NO    NULL_ATTR_MODE NO_OP     ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV     ATTR_ACTION { "" "temp_folder" "SET_TO" "9994" }      ATTR_ACTION { "" "my_folder" "SET_TO" "$(s3_upload_folder)<at>Value<openparen>temp_folder<closeparen>" }    OUTPUT OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT
 FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeCreator OUTPUT Splitter"   INPUT FEATURE_TYPE AttributeCreator_OUTPUT   OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT_0_lQ+3mj5tm0E=   OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT_1_Et/p63Aqn4M=
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME OutputFolders_Logger    INPUT  FEATURE_TYPE AttributeCreator_OUTPUT_1_Et/p63Aqn4M=    OUTPUT FEATURE_TYPE OutputFolders_LOGGED                  @Log(ENCODED, "OutputFolders:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,OutputFolders_9d6c5a69_e415_4e01_97f2_a67b2e4ca7c00)
+FACTORY_DEF * TeeFactory    FACTORY_NAME OutputFolders_Logger    INPUT  FEATURE_TYPE AttributeCreator_OUTPUT_1_Et/p63Aqn4M=    OUTPUT FEATURE_TYPE OutputFolders_LOGGED                  @Log(ENCODED, "OutputFolders:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,OutputFolders_b8abca23_dcec_4395_9746_402baeef3b250)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "OutputFolders LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE OutputFolders_LOGGED
 # -------------------------------------------------------------------------
 FACTORY_DEF {*} TeeFactory    FACTORY_NAME { S3Connector_CATCHER }    INPUT  FEATURE_TYPE AttributeCreator_OUTPUT_0_lQ+3mj5tm0E=    OUTPUT { FEATURE_TYPE S3Connector_INITIATOR }    OUTPUT { FEATURE_TYPE S3Connector         @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code) 	        CREDENTIAL_SOURCE Embedded     AMAZONS3_NAMED_CONNECTION <Unused>     _FME_S3_AWS_REGION ca-central-1     _FME_S3_ENDPOINT ""     _FME_S3_VERIFY_SSL yes     _FME_S3_REQUESTER_PAYS yes     AWS_ACCESS_KEY "@EvaluateExpression(FDIV,STRING,$(aws_key_id$encode),S3Connector)"     AWS_SECRET "@EvaluateExpression(FDIV,STRING,$(aws_secret_key$encode),S3Connector)"     _FME_AWS_SESSION_TOKEN ""     OPERATION_TYPE Upload     _FME_SOURCE_TYPE Folder     _FME_SOURCE_FILE <Unused>     _FME_SOURCE_FOLDER C:<backslash>FMEData2020<backslash>Resources<backslash>Snowflake<backslash>Exercise8<backslash>Parquet<backslash>S3Load     _FME_INCLUDE_SUBFOLDERS No     _FME_DATA_TO_UPLOAD <Unused>     _FME_BUCKET "@EvaluateExpression(FDIV,STRING_ENCODED,$(s3_bucket_parquet$encode),S3Connector)"     _FME_UPLOAD_DESTINATION_PATH "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>my_folder<closeparen>,S3Connector)"     _FME_UPLOAD_ATTR_FILENAME <Unused>     _FME_HANDLE_EXISTING_FILE Overwrite     _FME_S3_ACCELERATION No     _FME_S3_UPLOAD_ENCRYPTION None     _FME_S3_CANNED_ACL private     _FME_SIGNED_URL_GENERATE NO     _FME_SIGNED_URL_EXPIRY_TIME <Unused>     _FME_S3_CUSTOM_HEADERS ""     _FME_OBJECT_NAME_ATTRIBUTE _name     _FME_OBJECT_PATH_ATTRIBUTE _full_path     _FME_OBJECT_ID_ATTRIBUTE _bucket_name     _FME_OBJECT_URL_ATTRIBUTE _url  }
@@ -2515,23 +2515,23 @@ FACTORY_DEF * TeeFactory   FACTORY_NAME "S3Connector_INITIATOR_1_RfUnJkGYo6Y= Di
 DEFAULT_MACRO _WB_BYPASS_TERMINATION No
 FACTORY_DEF * TeeFactory FACTORY_NAME S3Connector_<Rejected> INPUT FEATURE_TYPE S3Connector_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, S3Connector<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME s3_Upload_Logger    INPUT  FEATURE_TYPE S3Connector_INITIATOR_0_t0Xi3Bs/DuM=    OUTPUT FEATURE_TYPE s3_Upload_LOGGED                  @Log(ENCODED, "s3_Upload:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_Upload_0d6994e4_143f_4b99_bea1_4f81455c9ed90)
+FACTORY_DEF * TeeFactory    FACTORY_NAME s3_Upload_Logger    INPUT  FEATURE_TYPE S3Connector_INITIATOR_0_t0Xi3Bs/DuM=    OUTPUT FEATURE_TYPE s3_Upload_LOGGED                  @Log(ENCODED, "s3_Upload:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_Upload_4c033fc9_6713_4be8_8537_a0351f0ac8ab0)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "s3_Upload LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE s3_Upload_LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME s3_Upload_Output_Logger    INPUT  FEATURE_TYPE S3Connector_OUTPUT    OUTPUT FEATURE_TYPE s3_Upload_Output_LOGGED                  @Log(ENCODED, "s3_Upload_Output:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_Upload_Output_6d110ef6_e372_45fd_8cc0_c697d0a1b5220)
+FACTORY_DEF * TeeFactory    FACTORY_NAME s3_Upload_Output_Logger    INPUT  FEATURE_TYPE S3Connector_OUTPUT    OUTPUT FEATURE_TYPE s3_Upload_Output_LOGGED                  @Log(ENCODED, "s3_Upload_Output:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_Upload_Output_707ff877_99ac_4691_b1e6_6d80f8944ea90)
 # -------------------------------------------------------------------------
 FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME AttributeCreator_2    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE s3_Upload_Output_LOGGED    INPUT  FEATURE_TYPE S3Connector_INITIATOR_1_RfUnJkGYo6Y=    MULTI_FEATURE_MODE NO    NULL_ATTR_MODE NO_OP     ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV     ATTR_ACTION { "" "my_folder" "SET_TO" "<at>Value<openparen>my_folder<closeparen><solidus>S3Load" }    OUTPUT OUTPUT FEATURE_TYPE AttributeCreator_2_OUTPUT
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME my_folder_updated_Logger    INPUT  FEATURE_TYPE AttributeCreator_2_OUTPUT    OUTPUT FEATURE_TYPE my_folder_updated_LOGGED                  @Log(ENCODED, "my_folder_updated:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,my_folder_updated_19db632f_006d_43cf_9727_022e4cb0850b0)
+FACTORY_DEF * TeeFactory    FACTORY_NAME my_folder_updated_Logger    INPUT  FEATURE_TYPE AttributeCreator_2_OUTPUT    OUTPUT FEATURE_TYPE my_folder_updated_LOGGED                  @Log(ENCODED, "my_folder_updated:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,my_folder_updated_9f03609f_5c65_48b8_b435_22367b60c2a10)
 # -------------------------------------------------------------------------
 FACTORY_DEF {*} TeeFactory    FACTORY_NAME { S3Connector_2_CATCHER }    INPUT  FEATURE_TYPE my_folder_updated_LOGGED    OUTPUT { FEATURE_TYPE S3Connector_2_INITIATOR }    OUTPUT { FEATURE_TYPE S3Connector_2         @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code) 	        CREDENTIAL_SOURCE Embedded     AMAZONS3_NAMED_CONNECTION <Unused>     _FME_S3_AWS_REGION ca-central-1     _FME_S3_ENDPOINT ""     _FME_S3_VERIFY_SSL yes     _FME_S3_REQUESTER_PAYS yes     AWS_ACCESS_KEY "@EvaluateExpression(FDIV,STRING,$(aws_key_id$encode),S3Connector_2)"     AWS_SECRET "@EvaluateExpression(FDIV,STRING,$(aws_secret_key$encode),S3Connector_2)"     _FME_AWS_SESSION_TOKEN ""     OPERATION_TYPE List     _FME_BUCKET "@EvaluateExpression(FDIV,STRING_ENCODED,$(s3_bucket_parquet$encode),S3Connector_2)"     _FME_FILES "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>my_folder<closeparen>,S3Connector_2)"     _FME_INCLUDE_SUBFOLDERS Yes     _FME_OBJECT_NAME_ATTRIBUTE _name     _FME_OBJECT_PATH_ATTRIBUTE _full_path     _FME_OBJECT_URL_ATTRIBUTE _url     _FME_OBJECT_ID_ATTRIBUTE _bucket_name     _FME_OBJECT_TYPE_ATTRIBUTE _file_or_folder     _FME_OBJECT_SIZE_ATTRIBUTE _file_size     _FME_OBJECT_MODIFIED_ATTRIBUTE _file_last_modified     _FME_OBJECT_RELATIVE_PATH_ATTRIBUTE _relative_path  }
 FACTORY_DEF {*} PythonFactory    FACTORY_NAME { S3Connector_2_CALLER }    INPUT { FEATURE_TYPE S3Connector_2 }    PYTHON_NAMESPACE FMEOBJECTS    SYMBOL_NAME fmepy_amazons3.connector.S3Connector    OUTPUT { PYOUTPUT FEATURE_TYPE S3Connector_2_PROCESSED }
 FACTORY_DEF {*} TestFactory    FACTORY_NAME { S3Connector_2_ROUTER }    INPUT { FEATURE_TYPE S3Connector_2_PROCESSED }    TEST &fme_rejection_code == ""    OUTPUT { PASSED FEATURE_TYPE S3Connector_2_OUTPUT         @RenameAttributes(FME_STRICT,fme_rejection_code,___fme_rejection_code___)          }    OUTPUT { FAILED FEATURE_TYPE S3Connector_2_<REJECTED>         @RemoveAttributes(___fme_rejection_code___)          }
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME S3C2_Rejected_Logger    INPUT  FEATURE_TYPE S3Connector_2_<REJECTED>    OUTPUT FEATURE_TYPE S3C2_Rejected_LOGGED                  @Log(ENCODED, "S3C2_Rejected:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,S3C2_Rejected_2156bd72_3246_455c_a599_a1d5ea0cf6180)
+FACTORY_DEF * TeeFactory    FACTORY_NAME S3C2_Rejected_Logger    INPUT  FEATURE_TYPE S3Connector_2_<REJECTED>    OUTPUT FEATURE_TYPE S3C2_Rejected_LOGGED                  @Log(ENCODED, "S3C2_Rejected:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,S3C2_Rejected_27cb335b_b83e_4815_beed_c992fa914fd30)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "S3C2_Rejected LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE S3C2_Rejected_LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME s3_List_Files_Logger    INPUT  FEATURE_TYPE S3Connector_2_OUTPUT    OUTPUT FEATURE_TYPE s3_List_Files_LOGGED                  @Log(ENCODED, "s3_List_Files:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_List_Files_2bd489ab_a8b9_4c05_8931_14cfdaebcffd0)
+FACTORY_DEF * TeeFactory    FACTORY_NAME s3_List_Files_Logger    INPUT  FEATURE_TYPE S3Connector_2_OUTPUT    OUTPUT FEATURE_TYPE s3_List_Files_LOGGED                  @Log(ENCODED, "s3_List_Files:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_List_Files_8e5fb5e0_dfc5_423d_aced_cec586e8bb350)
 # -------------------------------------------------------------------------
 FACTORY_DEF * TestFactory    FACTORY_NAME Tester_3    INPUT  FEATURE_TYPE s3_List_Files_LOGGED    CASE_INSENSITIVE_TEST "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>_full_path<closeparen>,Tester_3)" CONTAINS .parquet ENCODED    BOOLEAN_OPERATOR OR    COMPOSITE_TEST_EXPR "1"    FEATURE_TABLE_SHIM_SUPPORT Yes    PRESERVE_FEATURE_ORDER PER_OUTPUT_PORT    OUTPUT PASSED FEATURE_TYPE Tester_3_PASSED
 # -------------------------------------------------------------------------
@@ -2542,7 +2542,7 @@ Tcl2 set ListConcatenator__separator [FME_DecodeText {<apos><comma><apos>}];    
 Tcl2 proc ListConcatenator__Concatenate {} {   upvar \#0 ListConcatenator__separator separator             ListConcatenator__listPattern listPattern;   set allAttrs [lsort -dictionary [FME_AttributeNames]];   set keepEmptyParts [string equal {Yes} {No}];   set result {};   foreach attrName $allAttrs {     if {[regexp $listPattern $attrName]} {       set attrValue [FME_GetAttribute $attrName];       if {$keepEmptyParts || $attrValue != {}} {         lappend result $attrValue;       };     };   };   FME_SetAttribute {"_all_parquet_files"} [join $result $separator]; }
 FACTORY_DEF * TeeFactory    FACTORY_NAME ListConcatenator    INPUT  FEATURE_TYPE ListBuilder_OUTPUT    OUTPUT FEATURE_TYPE ListConcatenator_OUTPUT         @Tcl2(ListConcatenator__Concatenate)
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME ListBuilder_Output_Logger    INPUT  FEATURE_TYPE ListConcatenator_OUTPUT    OUTPUT FEATURE_TYPE ListBuilder_Output_LOGGED                  @Log(ENCODED, "ListBuilder_Output:<space>Feature is:","20","20","",INFO,LOG_ONLY,ListBuilder_Output_9bffb99b_a4ec_45d0_a3f9_cc58486cd7390)
+FACTORY_DEF * TeeFactory    FACTORY_NAME ListBuilder_Output_Logger    INPUT  FEATURE_TYPE ListConcatenator_OUTPUT    OUTPUT FEATURE_TYPE ListBuilder_Output_LOGGED                  @Log(ENCODED, "ListBuilder_Output:<space>Feature is:","20","20","",INFO,LOG_ONLY,ListBuilder_Output_97f43d15_411f_4993_b322_b0bb5acf374b0)
 # -------------------------------------------------------------------------
 MACRO SQLExecutor_2_DIRECTIVES QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS Yes CREATE_FEATURE_TABLES_FROM_DATA Yes QUERY_TIMEOUT 30 NAMED_CONNECTION mySnowflake
 FACTORY_DEF * QueryFactory    FACTORY_NAME SQLExecutor_2    INPUT  FEATURE_TYPE ListBuilder_Output_LOGGED    QUERY_SQL            "@EvaluateExpression(FDIV,STRING_ENCODED,FME_SQL_DELIMITER<space><semicolon><lf>copy<space>into<space>PARQUET_DEMO<space><lf><space><space>from<space>s3:<solidus><solidus>$(s3_bucket_parquet$encode)<solidus><at>Value<openparen>_parquet_files<opencurly>0<closecurly>.my_folder<closeparen><solidus><lf><space><space>credentials=<openparen>aws_key_id=<apos>$(aws_key_id$encode)<apos><space>aws_secret_key=<apos>$(aws_secret_key$encode)<apos><closeparen><lf><space><space>file_format<space>=<space><openparen>TYPE<space>=<space>PARQUET<closeparen><space>MATCH_BY_COLUMN_NAME<space>=<space>CASE_INSENSITIVE<lf><space><space>files=<openparen><apos><at>Value<openparen>_all_parquet_files<closeparen><apos><closeparen><lf><space><space>FORCE=TRUE<semicolon><lf><space>commit<semicolon>,SQLExecutor_2)"    READER_TYPE          SNOWFLAKE_NONSPATIAL    READER_DATASET       "mySnowflake"    COMBINE_ATTRIBUTES   RESULT_ONLY    COMBINE_GEOMETRY     QUERY_ONLY    CONTINUE_ON_READER_ERROR YES    QUERYFCT_PROPAGATE_IDS_ON_SQL_EXECUTE YES    READER_PARAMS        $(SQLExecutor_2_DIRECTIVES)    OUTPUT RESULT FEATURE_TYPE SQLExecutor_2_RESULT        @SupplyAttributes(fme_feature_type,SQLExecutor_2)    OUTPUT QUERY FEATURE_TYPE SQLExecutor_2_INITIATOR    OUTPUT READER_ERROR FEATURE_TYPE SQLExecutor_2_<REJECTED>
@@ -2550,7 +2550,7 @@ FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLExecutor_2 INITIATOR Splitter"   INP
 DEFAULT_MACRO _WB_BYPASS_TERMINATION No
 FACTORY_DEF * TeeFactory FACTORY_NAME SQLExecutor_2_<Rejected> INPUT FEATURE_TYPE SQLExecutor_2_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SQLExecutor_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME SQLE2_Initiator_Logger    INPUT  FEATURE_TYPE SQLExecutor_2_INITIATOR_1_nzknL+7/xfw=    OUTPUT FEATURE_TYPE SQLE2_Initiator_LOGGED                  @Log(ENCODED, "SQLE2_Initiator:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,SQLE2_Initiator_09d80aee_37e9_46a4_8f21_f3854dc8b2e80)
+FACTORY_DEF * TeeFactory    FACTORY_NAME SQLE2_Initiator_Logger    INPUT  FEATURE_TYPE SQLExecutor_2_INITIATOR_1_nzknL+7/xfw=    OUTPUT FEATURE_TYPE SQLE2_Initiator_LOGGED                  @Log(ENCODED, "SQLE2_Initiator:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,SQLE2_Initiator_c648705f_0e45_49d4_a620_296e6ae3d2180)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLE2_Initiator LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE SQLE2_Initiator_LOGGED
 # -------------------------------------------------------------------------
 MACRO SQLExecutor_5_DIRECTIVES QUERY_TIMEOUT 30 CREATE_FEATURE_TABLES_FROM_DATA Yes NAMED_CONNECTION mySnowflake QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS Yes
@@ -2559,13 +2559,13 @@ FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLExecutor_5 INITIATOR Transformer Out
 DEFAULT_MACRO _WB_BYPASS_TERMINATION No
 FACTORY_DEF * TeeFactory FACTORY_NAME SQLExecutor_5_<Rejected> INPUT FEATURE_TYPE SQLExecutor_5_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SQLExecutor_5<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME Log_Record_Count_Logger    INPUT  FEATURE_TYPE SQLExecutor_5_RESULT    OUTPUT FEATURE_TYPE Log_Record_Count_LOGGED                  @Log(ENCODED, "Log_Record_Count:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,Log_Record_Count_2cf7e8a2_7933_4e6f_92f1_27ba93d9a7b10)
+FACTORY_DEF * TeeFactory    FACTORY_NAME Log_Record_Count_Logger    INPUT  FEATURE_TYPE SQLExecutor_5_RESULT    OUTPUT FEATURE_TYPE Log_Record_Count_LOGGED                  @Log(ENCODED, "Log_Record_Count:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,Log_Record_Count_ab8e169f_b68d_48dd_8931_0ea77d7f64f00)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Log_Record_Count LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE Log_Record_Count_LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME SQLE2_Result_Logger    INPUT  FEATURE_TYPE SQLExecutor_2_RESULT    OUTPUT FEATURE_TYPE SQLE2_Result_LOGGED                  @Log(ENCODED, "SQLE2_Result:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,SQLE2_Result_82f95da2_c520_462f_851b_d0c6e1be8f990)
+FACTORY_DEF * TeeFactory    FACTORY_NAME SQLE2_Result_Logger    INPUT  FEATURE_TYPE SQLExecutor_2_RESULT    OUTPUT FEATURE_TYPE SQLE2_Result_LOGGED                  @Log(ENCODED, "SQLE2_Result:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,SQLE2_Result_b8ad39b9_282a_4301_ad0a_a1eb049839580)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLE2_Result LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE SQLE2_Result_LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME s3_List_Files_Initiator_Logger    INPUT  FEATURE_TYPE S3Connector_2_INITIATOR    OUTPUT FEATURE_TYPE s3_List_Files_Initiator_LOGGED                  @Log(ENCODED, "s3_List_Files_Initiator:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_List_Files_Initiator_0dd46e1f_9cca_4ac3_ab8a_6b6e754678ea0)
+FACTORY_DEF * TeeFactory    FACTORY_NAME s3_List_Files_Initiator_Logger    INPUT  FEATURE_TYPE S3Connector_2_INITIATOR    OUTPUT FEATURE_TYPE s3_List_Files_Initiator_LOGGED                  @Log(ENCODED, "s3_List_Files_Initiator:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,s3_List_Files_Initiator_9c702759_e4ae_4df1_b615_94c554db0dc60)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "s3_List_Files_Initiator LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE s3_List_Files_Initiator_LOGGED
 # -------------------------------------------------------------------------
 # If we're doing LAST N features, then the multiplier comes in as 0.
@@ -2578,24 +2578,24 @@ FACTORY_DEF {*} SamplingFactory    FACTORY_NAME Sampler    COMMAND_PARM_EVALUATI
 # This way we behave nicely even if there are no output connections on the transformer. See PR#28886.
 FACTORY_DEF * TeeFactory    FACTORY_NAME Sampler_Sampled    INPUT FEATURE_TYPE ___SAMPLED___    OUTPUT FEATURE_TYPE Sampler_SAMPLED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME Logger_Logger    INPUT  FEATURE_TYPE Sampler_NOT_SAMPLED    OUTPUT FEATURE_TYPE Logger_LOGGED                  @Log(ENCODED, "Logger:<space>Feature is:","20","20","",INFO,LOG_ONLY,Logger_b19bbc2b_563b_47a5_b9e7_459b2eceba800)
+FACTORY_DEF * TeeFactory    FACTORY_NAME Logger_Logger    INPUT  FEATURE_TYPE Sampler_NOT_SAMPLED    OUTPUT FEATURE_TYPE Logger_LOGGED                  @Log(ENCODED, "Logger:<space>Feature is:","20","20","",INFO,LOG_ONLY,Logger_e2a719ee_d39e_46bc_b6ea_d30a170963710)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Logger LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE Logger_LOGGED
 # -------------------------------------------------------------------------
 INCLUDE [    puts {DEFAULT_MACRO FeatureWriterDataset_FeatureWriter mySnowflake}; ]
 FACTORY_DEF {*} WriterFactory    FACTORY_NAME FeatureWriter    WRITER_TYPE SNOWFLAKE_NONSPATIAL    WRITER_DATASET "$(FeatureWriterDataset_FeatureWriter)"    WRITER_SETTINGS "RUNTIME_MACROS,NAMED_CONNECTION<comma>mySnowflake<comma>WTR_ADV_PARM_GROUP<comma><comma>TRANSACTION_INTERVAL<comma>100000<comma>QUERY_TIMEOUT<comma>30<comma>BEGIN_SQL<comma><comma>END_SQL<comma><comma>COORDINATE_SYSTEM_GRANULARITY<comma>FEATURE,METAFILE,SNOWFLAKE_NONSPATIAL"    WRITER_METAFILE "ATTRIBUTE_CASE,ANY,ATTRIBUTE_INVALID_CHARS,<backslash><backslash><quote>,ATTRIBUTE_LENGTH,127,ATTR_TYPE_MAP,<quote>number<openparen>width<comma>decimal<closeparen><quote><comma><quote>fme_decimal<openparen>width<comma>decimal<closeparen><quote><comma><quote>number<openparen>3<comma>0<closeparen><quote><comma>fme_int8<comma><quote>number<openparen>5<comma>0<closeparen><quote><comma>fme_int16<comma><quote>number<openparen>10<comma>0<closeparen><quote><comma>fme_int32<comma><quote>number<openparen>20<comma>0<closeparen><quote><comma>fme_int64<comma><quote>number<openparen>3<comma>0<closeparen><quote><comma>fme_uint8<comma><quote>number<openparen>5<comma>0<closeparen><quote><comma>fme_uint16<comma><quote>number<openparen>10<comma>0<closeparen><quote><comma>fme_uint32<comma><quote>number<openparen>21<comma>0<closeparen><quote><comma>fme_uint64<comma>float<comma>fme_real64<comma>float<comma>fme_real32<comma>varchar<openparen>width<closeparen><comma>fme_varchar<openparen>width<closeparen><comma>varchar<openparen>width<closeparen><comma>fme_char<openparen>width<closeparen><comma>varchar<comma>fme_buffer<comma>binary<openparen>width<closeparen><comma>fme_varbinary<openparen>width<closeparen><comma>binary<openparen>width<closeparen><comma>fme_binary<openparen>width<closeparen><comma>binary<comma>fme_binarybuffer<comma>boolean<comma>fme_boolean<comma>date<comma>fme_date<comma>time<comma>fme_time<comma>timestamp_ntz<comma>fme_datetime<comma>varchar<comma>fme_xml<comma>variant<comma>fme_json,DEST_ILLEGAL_ATTR_LIST,,FEATURE_TYPE_CASE,ANY,FEATURE_TYPE_INVALID_CHARS,<backslash><backslash><quote>~`!<at>#<dollar>%^<amp>*<openparen><closeparen>-+=<space><opencurly><closecurly><openbracket><closebracket>|:<apos><lt><gt><comma>?<solidus><semicolon>,FEATURE_TYPE_LENGTH,127,FEATURE_TYPE_LENGTH_INCLUDES_PREFIX,false,FEATURE_TYPE_RESERVED_WORDS,,FORMAT_METAFILE,$(FME_HOME_ENCODED)metafile<backslash>SNOWFLAKE_NONSPATIAL.fmf,FORMAT_NAME,SNOWFLAKE_NONSPATIAL,GEOM_MAP,snowflake_none<comma>fme_no_geom<comma>snowflake_point<comma>fme_point<comma>snowflake_point<comma>fme_text<comma>snowflake_multipoint<comma>fme_point<comma>snowflake_linestring<comma>fme_line<comma>snowflake_linestring<comma>fme_arc<comma>snowflake_multilinestring<comma>fme_line<comma>snowflake_polygon<comma>fme_polygon<comma>snowflake_polygon<comma>fme_rectangle<comma>snowflake_polygon<comma>fme_rounded_rectangle<comma>snowflake_polygon<comma>fme_raster<comma>snowflake_polygon<comma>fme_ellipse<comma>snowflake_multipolygon<comma>fme_polygon<comma>snowflake_geometrycollection<comma>fme_collection<comma>snowflake_linestring<comma>fme_surface<comma>snowflake_linestring<comma>fme_solid<comma>snowflake_polygon<comma>fme_point_cloud<comma>snowflake_none<comma>fme_feature_table,READER_ATTR_INDEX_TYPES,,READER_USES_DEF,yes,SOURCE,no,SUPPORTS_FEAT_TYPE_FANOUT,yes,SUPPORTS_MULTI_GEOM,yes,WORKBENCH_CANNED_SCHEMA,,WRITER,SNOWFLAKE_NONSPATIAL,WRITER_ATTR_INDEX_TYPES,PrimaryKey<comma>Unique<comma>NotNull<comma>UniqueNotNull,WRITER_DEFLINE_PARMS,<quote>GUI<space>NAMEDGROUP<space>fme_configuration_group<space>fme_configuration_common_group%fme_spatial_group%fme_advanced_group%oracle_advanced_group<space>Table<quote><comma><comma><quote>GUI<space>NAMEDGROUP<space>fme_configuration_common_group<space>fme_feature_operation%fme_table_handling%mie_pack%oracle_model%fme_update_geometry%fme_selection_group%fme_table_creation_group<space>General<quote><comma><comma><quote>GUI<space>ACTIVECHOICE_LOOKUP<space>fme_feature_operation<space>Insert<comma>INSERT<comma>fme_update_geometry<comma>fme_selection_group<comma>++snowflake_use_bulk_loading+YES%Update<comma>UPDATE<comma>snowflake_use_bulk_loading<comma>++snowflake_use_bulk_loading+NO<comma>++fme_table_handling+USE_EXISTING<comma>++fme_selection_group+FME_DISCLOSURE_OPEN%Delete<comma>DELETE<comma>snowflake_use_bulk_loading<comma>++snowflake_use_bulk_loading+NO<comma>++fme_table_handling+USE_EXISTING<comma>fme_update_geometry<comma>++fme_selection_group+FME_DISCLOSURE_OPEN<comma>fme_spatial_group<comma>fme_advanced_group%<lt>at<gt>Value<lt>openparen<gt>fme_db_operation<lt>closeparen<gt><comma>MULTIPLE<comma>snowflake_use_bulk_loading<comma>++snowflake_use_bulk_loading+NO<comma>++fme_table_handling+USE_EXISTING<comma>++fme_selection_group+FME_DISCLOSURE_OPEN<space>Feature<space>Operation<quote><comma>INSERT<comma><quote>GUI<space>ACTIVECHOICE_LOOKUP<space>fme_table_handling<space>Use<lt>space<gt>Existing<comma>USE_EXISTING<comma>fme_table_creation_group%Create<lt>space<gt>If<lt>space<gt>Needed<comma>CREATE_IF_MISSING%Drop<lt>space<gt>and<lt>space<gt>Create<comma>DROP_CREATE%Truncate<lt>space<gt>Existing<comma>TRUNCATE_EXISTING<comma>fme_table_creation_group<space>Table<space>Handling<quote><comma>CREATE_IF_MISSING<comma><quote>GUI<space>DISCLOSUREGROUP<space>fme_selection_group<space>fme_selection_method<space>Row<space>Selection<quote><comma><comma><quote>GUI<space>WHOLE_LINE<space>RADIOPARAMETERGROUP<space>fme_selection_method<space>fme_match_columns<comma>MATCH_COLUMNS%fme_where_builder_clause<comma>BUILDER<space>Row<space>Selection<space>Method<quote><comma>MATCH_COLUMNS<comma><quote>GUI<space>WHOLE_LINE<space>ATTRLIST_COMMAS<space>fme_match_columns<space>Match<space>Columns<quote><comma><comma><quote>GUI<space>WHOLE_LINE<space>TEXT_EDIT_SQL_CFG_OR_ATTR<space>fme_where_builder_clause<space>MODE<comma>WHERE<space>WHERE<space>Clause<quote><comma><comma><quote>GUI<space>ACTIVECHECK_WITHLABEL<space>snowflake_use_bulk_loading<space>YES%NO<space>Use<space>Bulk<space>Loading<quote><comma>YES,WRITER_DEF_LINE_TEMPLATE,<opencurly>FME_GEN_GROUP_NAME<closecurly><comma>fme_feature_operation<comma>INSERT<comma>fme_table_handling<comma>CREATE_IF_MISSING<comma>fme_selection_method<comma>MATCH_COLUMNS<comma>fme_match_columns<comma><quote><quote><quote><quote><quote><quote><comma>fme_where_builder_clause<comma><quote><quote><quote><quote><quote><quote><comma>snowflake_use_bulk_loading<comma>YES,WRITER_FORMAT_PARAMETER,PARAMS_TO_NOT_PROPAGATE_ON_INSPECT<comma><quote>BEGIN_SQL<space>END_SQL<quote><comma>NETWORK_AUTHENTICATION<comma>NO<comma>NETWORK_PROXY<comma>NO<comma>FEATURE_TYPE_NAME<comma>Table<comma>FEATURE_TYPE_DEFAULT_NAME<comma>Table1<comma>ATTRIBUTE_READING<comma>DEFLINE_ATTRS<comma>ADVANCED_PARMS<comma><quote>SNOWFLAKE_NONSPATIAL_OUT_BEGIN_SQL<space>SNOWFLAKE_NONSPATIAL_OUT_END_SQL<space>SNOWFLAKE_NONSPATIAL_OUT_TRANSACTION_INTERVAL<space>SNOWFLAKE_NONSPATIAL_OUT_QUERY_TIMEOUT<quote>,WRITER_HAS_DEFLINE_ATTRS,yes,WRITER_USES_DEF,yes"    WRITER_FEATURE_TYPES "PARQUET_DEMO:USERDATA_DEMO,ftp_feature_type_name,PARQUET_DEMO,ftp_writer,SNOWFLAKE_NONSPATIAL,ftp_dynamic_schema,no,ftp_dynamic_feature_type_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_geometry_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_def_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_sources,<lt>lt<gt>Unused<lt>gt<gt>,ftp_attribute_source,1,ftp_user_attributes,registration_dttm<comma>timestamp_ntz<comma>id<comma>number<lt>openparen<gt>10<lt>comma<gt>0<lt>closeparen<gt><comma>first_name<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>last_name<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>email<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>gender<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>ip_address<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>cc<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>country<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>birthdate<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>salary<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>title<comma>varchar<lt>openparen<gt>200<lt>closeparen<gt><comma>comments<comma>variant,ftp_user_attribute_values,<comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma>,ftp_format_parameters,fme_configuration_group<comma><comma>fme_configuration_common_group<comma><comma>fme_feature_operation<comma>INSERT<comma>fme_table_handling<comma>DROP_CREATE<comma>fme_selection_group<comma><comma>fme_selection_method<comma><lt>lt<gt>Unused<lt>gt<gt><comma>fme_match_columns<comma><lt>lt<gt>Unused<lt>gt<gt><comma>fme_where_builder_clause<comma><lt>lt<gt>Unused<lt>gt<gt><comma>snowflake_use_bulk_loading<comma>YES"    WRITER_PARAMS "QUERY_TIMEOUT,30,COORDINATE_SYSTEM_GRANULARITY,FEATURE,TRANSACTION_INTERVAL,100000,NAMED_CONNECTION,mySnowflake"    DATASET_ATTR "_dataset"    FEATURE_TYPE_LIST_ATTR "_feature_type"    TOTAL_FEATURES_WRITTEN_ATTR "_total_features_written"    OUTPUT_PORTS ""    INPUT USERDATA_DEMO FEATURE_TYPE Sampler_SAMPLED  @FeatureType(ENCODED,PARQUET_DEMO)    OUTPUT SUMMARY FEATURE_TYPE FeatureWriter_SUMMARY
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME FR_Summary_Logger    INPUT  FEATURE_TYPE FeatureWriter_SUMMARY    OUTPUT FEATURE_TYPE FR_Summary_LOGGED                  @Log(ENCODED, "FR_Summary:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,FR_Summary_632bc20c_874d_47b7_bb6d_11682a6962070)
+FACTORY_DEF * TeeFactory    FACTORY_NAME FR_Summary_Logger    INPUT  FEATURE_TYPE FeatureWriter_SUMMARY    OUTPUT FEATURE_TYPE FR_Summary_LOGGED                  @Log(ENCODED, "FR_Summary:<space>Feature<space>is:","20","20","",INFO,LOG_ONLY,FR_Summary_640b2ee6_ad29_47bf_b529_54510051b4d60)
 # -------------------------------------------------------------------------
 MACRO SQLExecutor_4_DIRECTIVES QUERY_TIMEOUT 30 CREATE_FEATURE_TABLES_FROM_DATA Yes NAMED_CONNECTION mySnowflake QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS Yes
 FACTORY_DEF * QueryFactory    FACTORY_NAME SQLExecutor_4    INPUT  FEATURE_TYPE FR_Summary_LOGGED    QUERY_SQL            "-truncate<space>table<space>PARQUET_DEMO<semicolon>"    READER_TYPE          SNOWFLAKE_NONSPATIAL    READER_DATASET       "mySnowflake"    COMBINE_ATTRIBUTES   RESULT_ONLY    IGNORE_NULLS         <Unused>    COMBINE_GEOMETRY     QUERY_ONLY    CONTINUE_ON_READER_ERROR YES    QUERYFCT_PROPAGATE_IDS_ON_SQL_EXECUTE YES    READER_PARAMS        $(SQLExecutor_4_DIRECTIVES)    OUTPUT RESULT FEATURE_TYPE SQLExecutor_4_RESULT        @SupplyAttributes(fme_feature_type,SQLExecutor_4)    OUTPUT QUERY FEATURE_TYPE SQLExecutor_4_INITIATOR    OUTPUT READER_ERROR FEATURE_TYPE SQLExecutor_4_<REJECTED>
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4__Rejected__Logger    INPUT  FEATURE_TYPE SQLExecutor_4_<REJECTED>    OUTPUT FEATURE_TYPE SQLExecutor_4__Rejected__LOGGED                  @Log(ENCODED, "SQLExecutor_4__Rejected_:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4__Rejected__89235424_109f_4013_ab06_de7f70042da40)
+FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4__Rejected__Logger    INPUT  FEATURE_TYPE SQLExecutor_4_<REJECTED>    OUTPUT FEATURE_TYPE SQLExecutor_4__Rejected__LOGGED                  @Log(ENCODED, "SQLExecutor_4__Rejected_:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4__Rejected__d232e9ec_06fd_4881_a85f_77a99e28bee60)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLExecutor_4__Rejected_ LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE SQLExecutor_4__Rejected__LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4_Initiator_Logger    INPUT  FEATURE_TYPE SQLExecutor_4_INITIATOR    OUTPUT FEATURE_TYPE SQLExecutor_4_Initiator_LOGGED                  @Log(ENCODED, "SQLExecutor_4_Initiator:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4_Initiator_62b1acad_802b_4fd4_8ceb_21f302c91d300)
+FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4_Initiator_Logger    INPUT  FEATURE_TYPE SQLExecutor_4_INITIATOR    OUTPUT FEATURE_TYPE SQLExecutor_4_Initiator_LOGGED                  @Log(ENCODED, "SQLExecutor_4_Initiator:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4_Initiator_c19e4276_a9ea_41c6_a2c6_9ba1d28bda290)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLExecutor_4_Initiator LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE SQLExecutor_4_Initiator_LOGGED
 # -------------------------------------------------------------------------
-FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4_Result_Logger    INPUT  FEATURE_TYPE SQLExecutor_4_RESULT    OUTPUT FEATURE_TYPE SQLExecutor_4_Result_LOGGED                  @Log(ENCODED, "SQLExecutor_4_Result:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4_Result_f2887361_ccba_4d12_a1c7_3c2d566c05c80)
+FACTORY_DEF * TeeFactory    FACTORY_NAME SQLExecutor_4_Result_Logger    INPUT  FEATURE_TYPE SQLExecutor_4_RESULT    OUTPUT FEATURE_TYPE SQLExecutor_4_Result_LOGGED                  @Log(ENCODED, "SQLExecutor_4_Result:<space>Feature is:","20","20","",INFO,LOG_ONLY,SQLExecutor_4_Result_491aeeac_590f_4366_840a_3a039e80729f0)
 FACTORY_DEF * TeeFactory   FACTORY_NAME "SQLExecutor_4_Result LOGGED Transformer Output Nuker"   INPUT FEATURE_TYPE SQLExecutor_4_Result_LOGGED
 # -------------------------------------------------------------------------
 
