@@ -8,11 +8,11 @@ Safe Software training material assumes the files and folders within the zip fil
 
 ## Exercises
 
-The data and workspaces herein relate to FME 2020 training, tutorials and demonstrations. If you would like further details on our training sessions, please visit http://www.safe.com/training.
+The data and workspaces herein relate to FME 2021 training, tutorials and demonstrations. If you would like further details on our training sessions, please visit http://www.safe.com/training.
 
 ## Versions
 
-FMEData v20
+FMEData v2021
 
 See GitHub branches for specific revisions and other versions of this dataset
 
@@ -51,7 +51,7 @@ Contains information licensed under the Open Government Licence – British Colu
 
 ## Copyright
 
-2005-2020 Safe Software Inc. All rights are reserved.
+2005-2021 Safe Software Inc. All rights are reserved.
 
 ## Revisions
 
