@@ -1,11 +1,10 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
-#    Command line to run this workspace:
-#        "C:\Program Files\FME 2021.1\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\InstructorUse\IntegrateYourDataWithTheFMEPlatform\write-data-and-basic-troubleshooting-complete.fmw
-#          --SourceDataset_XLSXR "https://s3.amazonaws.com/FMEData/FMEData2021/Data/Planning/BusinessOwners.xlsx"
-#          --SourceDataset_XLSXR_3 "https://s3.amazonaws.com/FMEData/FMEData2021/Data/Culture/PublicArt.xlsx"
-#          --DestDataset_FILEGDB "C:\FMEData2021\Output\Training\Vancouver.gdb"
-#          --FME_LAUNCH_VIEWER_APP "YES"
+#    Command-line to run this workspace:
+#        "C:\Program Files\FME 2021.0\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\IntegrateDataWithTheFMEPlatform\write-data-and-basic-troubleshooting-complete.fmw
+#              --SourceDataset_XLSXR "https://s3.amazonaws.com/FMEData/FMEData2021/Data/Planning/BusinessOwners.xlsx"
+#              --SourceDataset_XLSXR_3 "https://s3.amazonaws.com/FMEData/FMEData2021/Data/Culture/PublicArt.xlsx"
+#              --DestDataset_FILEGDB "C:\FMEData2021\Output\Training\Vancouver.gdb"
 #    
 #!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
 #!   ATTR_TYPE_ENCODING="SDF"
@@ -20,9 +19,9 @@
 #!   END_PYTHON=""
 #!   END_TCL=""
 #!   EXPLICIT_BOOKMARK_ORDER="false"
-#!   FME_BUILD_NUM="21585"
-#!   FME_DOCUMENT_GUID="207bcc9c-fa48-41e0-b334-ae64883decc6"
-#!   FME_DOCUMENT_PRIORGUID="497d6022-9f5a-4fe4-ab36-65ebc07e2fae,9d695f81-c832-44ce-9084-096f07115efb"
+#!   FME_BUILD_NUM="21306"
+#!   FME_DOCUMENT_GUID="ac0f3e7a-4212-4b09-b565-f35695e759e3"
+#!   FME_DOCUMENT_PRIORGUID="497d6022-9f5a-4fe4-ab36-65ebc07e2fae,9d695f81-c832-44ce-9084-096f07115efb,207bcc9c-fa48-41e0-b334-ae64883decc6"
 #!   FME_GEOMETRY_HANDLING="Enhanced"
 #!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
 #!   FME_NAMES_ENCODING="windows-1252"
@@ -31,8 +30,8 @@
 #!   FME_STROKE_MAX_DEVIATION="0"
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
-#!   LAST_SAVE_BUILD="FME(R) 2021.1.0.0 (20210531 - Build 21585 - WIN64)"
-#!   LAST_SAVE_DATE="2021-06-08T14:10:53"
+#!   LAST_SAVE_BUILD="FME(R) 2021.0.0.1 (20210315 - Build 21306 - WIN64)"
+#!   LAST_SAVE_DATE="2021-06-14T13:29:23"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -51,7 +50,7 @@
 #!   TITLE=""
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="-1340.64 246.877"
+#!   VIEW_POSITION="-1340.64 0"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -1631,17 +1630,14 @@ MACRO WORKSPACE_NAME write-data-and-basic-troubleshooting-complete
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 
-FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE XLSXR XLSXR_1::BusinessOwners multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_1) TO FME_GENERIC ::BusinessOwners ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::Mount Pleasant" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::Mount Pleasant" ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Downtown multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Downtown ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Strathcona multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Strathcona ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Fairview multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Fairview ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::West End" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::West End" ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Kitsilano multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Kitsilano ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
-XLSXR_1_MERGE_DEF XLSXR_1::BusinessOwners EXACT BusinessOwners DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,First,char<openparen>12<closeparen>,Last<space>Name,char<openparen>11<closeparen>,Company,char<openparen>41<closeparen>,License<space>Number,char<openparen>7<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF "XLSXR_2::Mount Pleasant" EXACT Mount<space>Pleasant DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>46<closeparen>,Title,char<openparen>32<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF XLSXR_2::Downtown EXACT Downtown DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>51<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF XLSXR_2::Strathcona EXACT Strathcona DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>45<closeparen>,Title,char<openparen>33<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF XLSXR_2::Fairview EXACT Fairview DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>27<closeparen>,Title,char<openparen>50<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF "XLSXR_2::West End" EXACT West<space>End DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>26<closeparen>,Title,char<openparen>35<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-XLSXR_2_MERGE_DEF XLSXR_2::Kitsilano EXACT Kitsilano DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>41<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
-# -------------------------------------------------------------------------
-
-FACTORY_DEF * TeeFactory    FACTORY_NAME "BusinessOwners_XLSXR_1 Splitter"    INPUT FEATURE_TYPE BusinessOwners    OUTPUT FEATURE_TYPE BusinessOwners_XLSXR_1
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE XLSXR XLSXR_1::BusinessOwners multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_1) TO FME_GENERIC ::BusinessOwners ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Strathcona multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Strathcona ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Kitsilano multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Kitsilano ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::West End" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::West End" ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Downtown multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Downtown ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_2::Mount Pleasant" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC "::Mount Pleasant" ALIAS_GEOMETRY    ROUTE XLSXR XLSXR_2::Fairview multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_2) TO FME_GENERIC ::Fairview ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+XLSXR_1_MERGE_DEF XLSXR_1::BusinessOwners EXACT BusinessOwners DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,First,char<openparen>12<closeparen>,Last<space>Name,char<openparen>11<closeparen>,Company,char<openparen>41<closeparen>,License<space>Number,char<openparen>7<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF XLSXR_2::Strathcona EXACT Strathcona DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>45<closeparen>,Title,char<openparen>33<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF XLSXR_2::Kitsilano EXACT Kitsilano DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>41<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF "XLSXR_2::West End" EXACT West<space>End DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>26<closeparen>,Title,char<openparen>35<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF XLSXR_2::Downtown EXACT Downtown DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>51<closeparen>,Title,char<openparen>51<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF "XLSXR_2::Mount Pleasant" EXACT Mount<space>Pleasant DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>46<closeparen>,Title,char<openparen>32<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
+XLSXR_2_MERGE_DEF XLSXR_2::Fairview EXACT Fairview DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_start_row,1,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_end_row,0,xlsx_schema_end_col,0,fme_attribute_reading,defined,Name,char<openparen>27<closeparen>,Title,char<openparen>50<closeparen>,Longitude,x_coordinate,Latitude,y_coordinate
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory    FACTORY_NAME "Downtown_XLSXR_2 Splitter"    INPUT FEATURE_TYPE Downtown
@@ -1660,6 +1656,9 @@ FACTORY_DEF * TeeFactory    FACTORY_NAME "Kitsilano_XLSXR_2 Splitter"    INPUT F
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory    FACTORY_NAME "West End_XLSXR_2 Splitter"    INPUT FEATURE_TYPE "West End"
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "BusinessOwners_XLSXR_1 Splitter"    INPUT FEATURE_TYPE BusinessOwners    OUTPUT FEATURE_TYPE BusinessOwners_XLSXR_1
 DEFAULT_MACRO WB_CURRENT_CONTEXT
 # -------------------------------------------------------------------------
 
@@ -1669,16 +1668,16 @@ FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Corr
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
 
 # -------------------------------------------------------------------------
-FILEGDB_1_DEF Fairview   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(27)   Title                        text(50)   Longitude                    double   Latitude                     double
-# -------------------------------------------------------------------------
-FILEGDB_1_DEF Downtown   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(51)   Title                        text(51)   Longitude                    double   Latitude                     double
+FILEGDB_1_DEF Mount_Pleasant   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(46)   Title                        text(32)   Longitude                    double   Latitude                     double
 # -------------------------------------------------------------------------
 FILEGDB_1_DEF Strathcona   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(45)   Title                        text(33)   Longitude                    double   Latitude                     double
 # -------------------------------------------------------------------------
-FILEGDB_1_DEF BusinessOwners   filegdb_type                 geodb_point   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   First                        text(12)   Last_Name                    text(11)   Company                      text(41)   License_Number               text(7)   Longitude                    double   Latitude                     double
-# -------------------------------------------------------------------------
 FILEGDB_1_DEF Kitsilano   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(41)   Title                        text(51)   Longitude                    double   Latitude                     double
 # -------------------------------------------------------------------------
-FILEGDB_1_DEF Mount_Pleasant   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(46)   Title                        text(32)   Longitude                    double   Latitude                     double
+FILEGDB_1_DEF Downtown   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(51)   Title                        text(51)   Longitude                    double   Latitude                     double
+# -------------------------------------------------------------------------
+FILEGDB_1_DEF BusinessOwners   filegdb_type                 geodb_point   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   First                        text(12)   Last_Name                    text(11)   Company                      text(41)   License_Number               text(7)   Longitude                    double   Latitude                     double
+# -------------------------------------------------------------------------
+FILEGDB_1_DEF Fairview   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(27)   Title                        text(50)   Longitude                    double   Latitude                     double
 # -------------------------------------------------------------------------
 FILEGDB_1_DEF West_End   filegdb_type                 <NO_GEOMETRY>   filegdb_drop_table           ""   filegdb_truncate_table       ""   fme_feature_operation        INSERT   fme_table_handling           CREATE_IF_MISSING   fme_selection_method         MATCH_COLUMNS   fme_update_geometry          YES   filegdb_object_id_field      OBJECTID   filegdb_object_id_alias      OBJECTID   filegdb_shape_field          SHAPE   filegdb_shape_alias          SHAPE   filegdb_config_keyword       DEFAULTS   filegdb_xy_tolerance         ""   filegdb_z_tolerance          0.001   filegdb_m_tolerance          0.001   Name                         text(26)   Title                        text(35)   Longitude                    double   Latitude                     double
