@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        "C:\Program Files\FME 2021.0\fme.exe" C:\FMEData2021\Workspaces\IntegrateDataWithTheFMEPlatform\author-and-debug.fmw
+#        "C:\Program Files\FME 2021.0\fme.exe" C:\FMEData2021\Workspaces\IntegrateDataWithTheFMEPlatform\find-the-right-transformer-complete.fmw
 #              --SourceDataset_POSTGIS "FME<space>Training<space>PostGIS<space>Database"
 #              --DestDataset_FILEGDB "C:\FMEData2021\Output\Training\BusinessOwners.gdb"
 #    
@@ -13,14 +13,14 @@
 #!   DESCRIPTION=""
 #!   DESTINATION="NONE"
 #!   DESTINATION_ROUTING_FILE=""
-#!   DOC_EXTENTS="3000.49 694.5"
-#!   DOC_TOP_LEFT="-65.6252 -1098"
+#!   DOC_EXTENTS="3672.37 682"
+#!   DOC_TOP_LEFT="-65.6252 -1076.12"
 #!   END_PYTHON=""
 #!   END_TCL=""
 #!   EXPLICIT_BOOKMARK_ORDER="false"
 #!   FME_BUILD_NUM="21306"
-#!   FME_DOCUMENT_GUID="ba440f4c-51e9-4812-875b-69994874ae62"
-#!   FME_DOCUMENT_PRIORGUID="aa9ad750-88b2-4cd4-a731-6f1e3ac84fb9,ebe6d94f-12fd-41ca-8161-348c50f26618"
+#!   FME_DOCUMENT_GUID="4410b04b-db5e-4e91-b330-5fde8a170315"
+#!   FME_DOCUMENT_PRIORGUID="aa9ad750-88b2-4cd4-a731-6f1e3ac84fb9,ebe6d94f-12fd-41ca-8161-348c50f26618,0787d3eb-b751-447a-bd43-daea9bd92a39"
 #!   FME_GEOMETRY_HANDLING="Enhanced"
 #!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
 #!   FME_NAMES_ENCODING="windows-1252"
@@ -30,7 +30,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2021.0.0.1 (20210315 - Build 21306 - WIN64)"
-#!   LAST_SAVE_DATE="2021-06-15T09:35:43"
+#!   LAST_SAVE_DATE="2021-06-15T09:35:23"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -49,7 +49,7 @@
 #!   TITLE=""
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="-700.007 184.377"
+#!   VIEW_POSITION="-690.632 187.502"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -838,8 +838,8 @@
 #!   IS_EDITABLE="true"
 #!   IDENTIFIER="5"
 #!   FEAT_GEOMTYPE="geodb_point"
-#!   POSITION="2071.8647186471871 -526"
-#!   BOUNDING_RECT="2071.8647186471871 -526 465.00106825772946 71"
+#!   POSITION="2743.746437464376 -504.12478124781256"
+#!   BOUNDING_RECT="2743.746437464376 -504.12478124781256 465.00106825772946 71"
 #!   ORDER="500000000000001"
 #!   COLLAPSED="false"
 #!   KEYWORD="FILEGDB_1"
@@ -878,8 +878,8 @@
 #!   IS_EDITABLE="false"
 #!   IDENTIFIER="6"
 #!   FEAT_GEOMTYPE="geodb_no_geom"
-#!   POSITION="2071.8647186471871 -955"
-#!   BOUNDING_RECT="2071.8647186471871 -955 802.00106825772946 71"
+#!   POSITION="2743.746437464376 -933.12478124781251"
+#!   BOUNDING_RECT="2743.746437464376 -933.12478124781251 802.00106825772946 71"
 #!   ORDER="500000000000000"
 #!   COLLAPSED="true"
 #!   KEYWORD="FILEGDB_1"
@@ -971,14 +971,14 @@
 #!   IDENTIFIER="16"
 #!   NAME="Writer Feature Types"
 #!   DESCRIPTION=""
-#!   TOP_LEFT="2006.8647186471871 -416"
+#!   TOP_LEFT="2678.746437464376 -394.12478124781251"
 #!   ORDER="500000000000000"
 #!   PALETTE_COLOR="Color4"
-#!   BOTTOM_RIGHT="2934.8657869049166 -1098"
-#!   BOUNDING_RECT="2006.8647186471871 -416 928.00106825772946 682"
+#!   BOTTOM_RIGHT="3606.7475057221054 -1076.1247812478125"
+#!   BOUNDING_RECT="2678.746437464376 -394.12478124781251 928.00106825772946 682"
 #!   STICKY="true"
 #!   COLOUR="0.85098039215686272,0.92941176470588238,0.60392156862745094,1"
-#!   CONTENTS="6 5 "
+#!   CONTENTS="5 6 "
 #! >
 #! </BOOKMARK>
 #! </BOOKMARKS>
@@ -1071,6 +1071,31 @@
 #!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
 #!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeManager"/>
 #! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="19"
+#!   TYPE="Sorter"
+#!   VERSION="3"
+#!   POSITION="2111.2491307383548 -507.5"
+#!   BOUNDING_RECT="2111.2491307383548 -507.5 454 71"
+#!   ORDER="500000000000004"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="21306"
+#! >
+#!     <OUTPUT_FEAT NAME="SORTED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="last_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="first_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="company" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="license_number" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="SORT_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SORT_PARM" PARM_VALUE="last_name ALPHA ASCENDING"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Sorter"/>
+#! </TRANSFORMER>
 #! </TRANSFORMERS>
 #! <FEAT_LINKS>
 #! <FEAT_LINK
@@ -1089,11 +1114,11 @@
 #!   EXTRA_POINTS=""
 #! />
 #! <FEAT_LINK
-#!   IDENTIFIER="11"
+#!   IDENTIFIER="20"
 #!   SOURCE_NODE="7"
-#!   TARGET_NODE="5"
+#!   TARGET_NODE="19"
 #!   SOURCE_PORT_DESC="fo 0 POINT"
-#!   TARGET_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
 #!   ENABLED="true"
 #!   EXECUTION_IDX="0"
 #!   HIDDEN="false"
@@ -1109,6 +1134,21 @@
 #!   TARGET_NODE="7"
 #!   SOURCE_PORT_DESC="fo 0 OUTPUT"
 #!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="21"
+#!   SOURCE_NODE="19"
+#!   TARGET_NODE="5"
+#!   SOURCE_PORT_DESC="fo 0 SORTED"
+#!   TARGET_PORT_DESC="-1"
 #!   ENABLED="true"
 #!   EXECUTION_IDX="0"
 #!   HIDDEN="false"
@@ -1361,7 +1401,7 @@ FILEGDB_1_DATASET "$(DestDataset_FILEGDB_1)"
 #! END_WB_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)author-and-debug.log"
+LOG_FILENAME "$(FME_MF_DIR)find-the-right-transformer-complete.log"
 LOG_APPEND NO
 LOG_TIMINGS YES
 LOG_FILTER_MASK -1
@@ -1384,7 +1424,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME author-and-debug
+MACRO WORKSPACE_NAME find-the-right-transformer-complete
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 
@@ -1418,16 +1458,18 @@ FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_InputPassThrough }  
 FACTORY_DEF {$(INSTANCE_FILTERING)} TestFactory    FACTORY_NAME { GeometryFilter_InstanceTest }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    TEST @Geometry(IS_GEOMETRY_INSTANCE) == 1    OUTPUT { PASSED FEATURE_TYPE $(OUTPUT_INSTANCE_FTYPE) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter___Input___ }
 FACTORY_DEF {$(COLLECTION_HANDLING)} TestFactory    FACTORY_NAME { GeometryFilter_CollectionTest }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    TEST &fme_type == "fme_collection"    OUTPUT { FAILED FEATURE_TYPE GeometryFilter___Not_Collection___ }    OUTPUT { PASSED FEATURE_TYPE GeometryFilter___Collection___ }
 FACTORY_DEF {$(COLLECTION_HANDLING)} DeaggregateFactory    FACTORY_NAME { GeometryFilter_Deagg }    INPUT { FEATURE_TYPE GeometryFilter___Collection___ }    HOMOGENIZE_COLLECTIONS YES    RECURSIVE YES    SET_FME_TYPE YES    INSTANTIATE_GEOMETRY_INSTANCES_NEW { Yes }    OUTPUT { POINT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { LINE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { POLYGON FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { DONUT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { AGGREGATE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }
-FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_RouterPrepper }    INPUT { FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    INPUT { FEATURE_TYPE GeometryFilter___Not_Collection___ }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    OUTPUT { FEATURE_TYPE GeometryFilter___Prepped___        @SupplyAttributes("GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType", @Lookup(GeometryFilter_RouterTable,&fme_type)) }
-FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryFilter_Router }    INPUT { FEATURE_TYPE GeometryFilter___Prepped___ }    TEST { @Value(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType) != "not_selected" }    OUTPUT { PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType)         }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_RouterPrepper }    INPUT { FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    INPUT { FEATURE_TYPE GeometryFilter___Not_Collection___ }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    OUTPUT { FEATURE_TYPE GeometryFilter___Prepped___        @SupplyAttributes("GeometryFilter_73e8b33b_2989_49ab_96bf_6bb2f138654e0_targetFeatureType", @Lookup(GeometryFilter_RouterTable,&fme_type)) }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryFilter_Router }    INPUT { FEATURE_TYPE GeometryFilter___Prepped___ }    TEST { @Value(GeometryFilter_73e8b33b_2989_49ab_96bf_6bb2f138654e0_targetFeatureType) != "not_selected" }    OUTPUT { PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_73e8b33b_2989_49ab_96bf_6bb2f138654e0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_73e8b33b_2989_49ab_96bf_6bb2f138654e0_targetFeatureType) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_73e8b33b_2989_49ab_96bf_6bb2f138654e0_targetFeatureType)         }
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter LINE Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_LINE
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter AREA Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_AREA
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter SURFACE Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_SURFACE
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter COLLECTION Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_COLLECTION
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter <UNFILTERED> Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_<UNFILTERED>
 # -------------------------------------------------------------------------
+FACTORY_DEF {*} SortFactory    FACTORY_NAME { Sorter }    INPUT  FEATURE_TYPE GeometryFilter_POINT    SORT_ALPHA_AS_UTF8 { YES }    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    SORT_BY { last_name ALPHA ASCENDING }    OUTPUT { SORTED FEATURE_TYPE Sorter_SORTED          }
+# -------------------------------------------------------------------------
 
-FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC GeometryFilter_POINT TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>BusinessOwners<closeparen> GEOMETRY    ROUTE FME_GENERIC GeometryFilter_NULL TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>public_BusinessOwners_incomplete<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC Sorter_SORTED TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>BusinessOwners<closeparen> GEOMETRY    ROUTE FME_GENERIC GeometryFilter_NULL TO FILEGDB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>public_BusinessOwners_incomplete<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__

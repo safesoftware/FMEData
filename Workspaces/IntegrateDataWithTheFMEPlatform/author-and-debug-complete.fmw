@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        "C:\Program Files\FME 2021.0\fme.exe" C:\FMEData2021\Workspaces\IntegrateDataWithTheFMEPlatform\author-and-debug.fmw
+#        "C:\Program Files\FME 2021.0\fme.exe" C:\FMEData2021\Workspaces\IntegrateDataWithTheFMEPlatform\author-and-debug-complete.fmw
 #              --SourceDataset_POSTGIS "FME<space>Training<space>PostGIS<space>Database"
 #              --DestDataset_FILEGDB "C:\FMEData2021\Output\Training\BusinessOwners.gdb"
 #    
@@ -19,7 +19,7 @@
 #!   END_TCL=""
 #!   EXPLICIT_BOOKMARK_ORDER="false"
 #!   FME_BUILD_NUM="21306"
-#!   FME_DOCUMENT_GUID="ba440f4c-51e9-4812-875b-69994874ae62"
+#!   FME_DOCUMENT_GUID="7c49f2ea-5576-4eb7-a631-e2b6d0670252"
 #!   FME_DOCUMENT_PRIORGUID="aa9ad750-88b2-4cd4-a731-6f1e3ac84fb9,ebe6d94f-12fd-41ca-8161-348c50f26618"
 #!   FME_GEOMETRY_HANDLING="Enhanced"
 #!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
@@ -30,7 +30,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2021.0.0.1 (20210315 - Build 21306 - WIN64)"
-#!   LAST_SAVE_DATE="2021-06-15T09:35:43"
+#!   LAST_SAVE_DATE="2021-06-15T09:35:37"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -1361,7 +1361,7 @@ FILEGDB_1_DATASET "$(DestDataset_FILEGDB_1)"
 #! END_WB_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)author-and-debug.log"
+LOG_FILENAME "$(FME_MF_DIR)author-and-debug-complete.log"
 LOG_APPEND NO
 LOG_TIMINGS YES
 LOG_FILTER_MASK -1
@@ -1384,7 +1384,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME author-and-debug
+MACRO WORKSPACE_NAME author-and-debug-complete
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 
@@ -1418,8 +1418,8 @@ FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_InputPassThrough }  
 FACTORY_DEF {$(INSTANCE_FILTERING)} TestFactory    FACTORY_NAME { GeometryFilter_InstanceTest }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    TEST @Geometry(IS_GEOMETRY_INSTANCE) == 1    OUTPUT { PASSED FEATURE_TYPE $(OUTPUT_INSTANCE_FTYPE) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter___Input___ }
 FACTORY_DEF {$(COLLECTION_HANDLING)} TestFactory    FACTORY_NAME { GeometryFilter_CollectionTest }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    TEST &fme_type == "fme_collection"    OUTPUT { FAILED FEATURE_TYPE GeometryFilter___Not_Collection___ }    OUTPUT { PASSED FEATURE_TYPE GeometryFilter___Collection___ }
 FACTORY_DEF {$(COLLECTION_HANDLING)} DeaggregateFactory    FACTORY_NAME { GeometryFilter_Deagg }    INPUT { FEATURE_TYPE GeometryFilter___Collection___ }    HOMOGENIZE_COLLECTIONS YES    RECURSIVE YES    SET_FME_TYPE YES    INSTANTIATE_GEOMETRY_INSTANCES_NEW { Yes }    OUTPUT { POINT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { LINE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { POLYGON FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { DONUT FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    OUTPUT { AGGREGATE FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }
-FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_RouterPrepper }    INPUT { FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    INPUT { FEATURE_TYPE GeometryFilter___Not_Collection___ }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    OUTPUT { FEATURE_TYPE GeometryFilter___Prepped___        @SupplyAttributes("GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType", @Lookup(GeometryFilter_RouterTable,&fme_type)) }
-FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryFilter_Router }    INPUT { FEATURE_TYPE GeometryFilter___Prepped___ }    TEST { @Value(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType) != "not_selected" }    OUTPUT { PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_6da00a2f_b642_4ebf_89a9_67b6c3c4020d0_targetFeatureType)         }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryFilter_RouterPrepper }    INPUT { FEATURE_TYPE GeometryFilter___HomogeneousAggregate___ }    INPUT { FEATURE_TYPE GeometryFilter___Not_Collection___ }    INPUT { FEATURE_TYPE GeometryFilter___Input___ }    OUTPUT { FEATURE_TYPE GeometryFilter___Prepped___        @SupplyAttributes("GeometryFilter_447c447e_e85f_47cf_b405_539276cdd29b0_targetFeatureType", @Lookup(GeometryFilter_RouterTable,&fme_type)) }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryFilter_Router }    INPUT { FEATURE_TYPE GeometryFilter___Prepped___ }    TEST { @Value(GeometryFilter_447c447e_e85f_47cf_b405_539276cdd29b0_targetFeatureType) != "not_selected" }    OUTPUT { PASSED FEATURE_TYPE * @FeatureType(@Value(GeometryFilter_447c447e_e85f_47cf_b405_539276cdd29b0_targetFeatureType))                                 @RemoveAttributes(GeometryFilter_447c447e_e85f_47cf_b405_539276cdd29b0_targetFeatureType) }    OUTPUT { FAILED FEATURE_TYPE GeometryFilter_<UNFILTERED>        @RemoveAttributes(GeometryFilter_447c447e_e85f_47cf_b405_539276cdd29b0_targetFeatureType)         }
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter LINE Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_LINE
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter AREA Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_AREA
 FACTORY_DEF * TeeFactory   FACTORY_NAME "GeometryFilter SURFACE Transformer Output Nuker"   INPUT FEATURE_TYPE GeometryFilter_SURFACE
