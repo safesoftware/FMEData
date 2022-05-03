@@ -8,7 +8,7 @@ Safe Software training material assumes the files and folders within the zip fil
 
 ## Exercises
 
-The data and workspaces herein relate to FME 2021 training, tutorials and demonstrations. If you would like further details on our training sessions, please visit http://www.safe.com/training.
+The data and workspaces herein relate to FME 2022 training, tutorials and demonstrations. If you would like further details on our training sessions, please visit http://www.safe.com/training.
 
 ## Versions
 
