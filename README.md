@@ -4,7 +4,7 @@ This repository contains FME Training datasets.
 
 ## Installation
 
-Safe Software training material assumes the files and folders within the zip file are extracted to C:\FMEData2020.
+Safe Software training material assumes the files and folders within the zip file are extracted to C:\FMEData2022.
 
 ## Exercises
 
@@ -51,7 +51,7 @@ Contains information licensed under the Open Government Licence – British Colu
 
 ## Copyright
 
-2005-2021 Safe Software Inc. All rights are reserved.
+2005-2022 Safe Software Inc. All rights are reserved.
 
 ## Revisions
 
