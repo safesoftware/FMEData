@@ -1,0 +1,1242 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME22\fme.exe" "C:\FMEData2022\Resources\Geodatabase Transformations\9_ExtractingDifferencesFromAnArcSDE\ExtractingDifferences_Complete.fmw"
+#          --TransactionalVersion "DBO.DEFAULT"
+#          --BaselineTransactionalVersion ""
+#          --CHILD_VERSION_NAME_GEODATABASE_SDE ""
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1084 1013.88"
+#!   DOC_TOP_LEFT="-748.758 -745.127"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22346"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="c7500ed2-29d1-472a-aa61-a2a90ac97034"
+#!   FME_DOCUMENT_PRIORGUID="01f22742-a135-40da-b4f2-531ae584c7ff,dabcf0f1-039a-4f96-9077-ffdc91710c3c,9c63d218-5f7c-4e82-81cb-6a387aa9bc3b,18a331cc-1873-4ba9-806c-53a75da44e76,c6696a17-016c-4417-8671-f54c5fc051b4,dfe49ecb-48a6-40f0-af99-354a61b85a31,2236e848-2738-4c1e-bece-0edad886144a"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+#!   LAST_SAVE_DATE="2022-06-08T15:14:03"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="39"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE="GEODATABASE_SDE to NONE"
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1387.51 393.754"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="GEODATABASE_SDE"
+#!   DATASET=""
+#!   KEYWORD="GEODATABASE_SDE_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="geodb_type {FME_GEN_GEOMETRY} geodb_where_wwjd &quot;&quot;"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string char(50) fme_type char(50) geodb_ancillary_role char(7) geodb_anno_class_id integer geodb_color char(50) geodb_dim_begin_dimension_x double geodb_dim_begin_dimension_y double geodb_dim_begin_dimension_z double geodb_dim_custom_length double geodb_dim_end_dimension_x double geodb_dim_end_dimension_y double geodb_dim_end_dimension_z double geodb_dim_extn_line_angle double geodb_dim_extn_line_display smallint geodb_dim_length double geodb_dim_line_display smallint geodb_dim_line_x double geodb_dim_line_y double geodb_dim_line_z double geodb_dim_marker_display smallint geodb_dim_style_id integer geodb_dim_text_angle double geodb_dim_text_x double geodb_dim_text_y double geodb_dim_text_z double geodb_dim_type smallint geodb_dim_using_custom_length boolean geodb_edge_element_count integer geodb_edge_feature_count integer geodb_element_id integer geodb_element_index integer geodb_feature_class_alias char(254) geodb_feature_dataset char(254) geodb_feature_has_relationships boolean geodb_feature_is_simple boolean geodb_font_bold boolean geodb_font_charset smallint geodb_font_italic boolean geodb_font_name char(254) geodb_font_point_size double geodb_font_strikethrough boolean geodb_font_underline boolean geodb_font_weight smallint geodb_from_junction_element_id integer geodb_h_align char(50) geodb_junction_element_count integer geodb_junction_feature_count integer geodb_linked_feature_id integer geodb_measures char(254) geodb_metadata_string char(254) geodb_oid integer geodb_primary_axis double geodb_raster_compression_quality integer geodb_raster_compression_type char(100) geodb_raster_pyramid_level integer geodb_raster_pyramid_resample_type char(100) geodb_rel_destination_oid integer geodb_rel_origin_oid integer geodb_right_to_left boolean geodb_rotation double geodb_secondary_axis double geodb_start_angle double geodb_subtype_name char(254) geodb_sweep_angle double geodb_symbol_id integer geodb_text_angle double geodb_text_break_char integer geodb_text_char_spacing double geodb_text_character_width double geodb_text_clip boolean geodb_text_color char(254) geodb_text_lc_accent_bar_color char(50) geodb_text_lc_accent_bar_width double geodb_text_lc_gap double geodb_text_lc_margin_bottom double geodb_text_lc_margin_left double geodb_text_lc_margin_right double geodb_text_lc_margin_top double geodb_text_lc_style char(20) geodb_text_lc_textbox_x1 double geodb_text_lc_textbox_x2 double geodb_text_lc_textbox_x3 double geodb_text_lc_textbox_x4 double geodb_text_lc_textbox_y1 double geodb_text_lc_textbox_y2 double geodb_text_lc_textbox_y3 double geodb_text_lc_textbox_y4 double geodb_text_leader_line char(254) geodb_text_leader_line_anchor_point char(254) geodb_text_leader_line_color char(50) geodb_text_leader_line_tolerance double geodb_text_leader_line_width double geodb_text_line_spacing double geodb_text_part_count integer geodb_text_point_scale_factor double geodb_text_ref_scale double geodb_text_scale boolean geodb_text_size double geodb_text_string char(254) geodb_text_string_with_format_tags char(254) geodb_text_word_spacing double geodb_text_x_offset double geodb_text_y_offset double geodb_to_junction_element_id integer geodb_topological_configuration char(6) geodb_type char(25) geodb_v_align char(50) multi_reader_full_id integer multi_reader_id integer multi_reader_keyword char(50) multi_reader_type char(50)"
+#!   DEFLINE_PARMS="&quot;GUI OPTIONAL NAMEDGROUP geodb_table_settings_group geodb_where_wwjd Table Settings&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT_EDIT_SQL_CFG geodb_where_wwjd MODE,WHERE WHERE Clause&quot; &quot;&quot; "
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="NONE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="20252"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="GEODATABASE_SDE_IN_WHERE GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY GEODATABASE_SDE_IN_RESOLVE_DOMAINS GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES GEODATABASE_SDE_IN_SEARCH_METHOD GEODATABASE_SDE_IN_SEARCH_ORDER GEODATABASE_SDE_IN_SEARCH_FEATURE GEODATABASE_SDE_IN_CHILD_VERSION_NAME GEODATABASE_SDE_IN_ARCHIVE_WHERE GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS GEODATABASE_SDE_IN_PERSISTENT_CONNECTION GEODATABASE_SDE_IN_BEGIN_SQL{0} GEODATABASE_SDE_IN_END_SQL{0} _GEODB_IN_ALIAS_MODE GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER GEODATABASE_SDE_IN_USERID GEODATABASE_SDE_IN_PASSWORD GEODATABASE_SDE_IN_VERSION GEODATABASE_SDE_IN_HISTORICAL_VERSION_NAME GEODATABASE_SDE_IN_HISTORICAL_VERSION_TIMESTAMP GEODATABASE_SDE_IN_READ_VERSION_DIFFERENCES GEODATABASE_SDE_IN_COMPARE_TRANSACTIONAL_VERSION GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_NAME GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_TIMESTAMP NULL_OUT_SIMPLIFY_GEOM NULL_OUT_ORIGIN_X NULL_OUT_ORIGIN_Y NULL_OUT_XY_SCALE NULL_OUT_HAS_Z_VALUES NULL_OUT_Z_ORIGIN NULL_OUT_Z_SCALE NULL_OUT_GRID_1 NULL_OUT_DEFAULT_Z_VALUE NULL_OUT_TRANSACTION NULL_OUT_TRANSACTION_INTERVAL NULL_OUT_IGNORE_FAILED_FEATURE_ENTRY NULL_OUT_MAX_NUMBER_FAILED_FEATURES NULL_OUT_DUMP_FAILED_FEATURES NULL_OUT_FFS_DUMP_FILE NULL_OUT_ANNOTATION_UNITS NULL_OUT_RECONCILE_AND_POST NULL_OUT_DELETE_CHILD_AFTER_RECONCILE_AND_POST NULL_OUT_VALIDATE_FEATURES NULL_OUT_SIMPLIFY_NETWORK_FEATURES NULL_OUT_PERSISTENT_CONNECTION NULL_OUT_COMMIT_TRANSACTIONS_AFTER_WRITE NULL_OUT_BEGIN_SQL{0} NULL_OUT_END_SQL{0} NULL_OUT_HAS_MEASURES NULL_OUT_MEASURES_ORIGIN NULL_OUT_MEASURES_SCALE NULL_OUT_USERID NULL_OUT_PASSWORD NULL_OUT_VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING_HISTORIC"
+#!   VALUE="ALL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="Database"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="FeatureClass1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Feature Class or Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="PARAMS_TO_NOT_PROPAGATE_ON_INSPECT"
+#!   VALUE="BEGIN_SQL{0} END_SQL{0} CHILD_VERSION_NAME"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Specify the Esri ArcSDE Geodatabase Dataset"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="SUPPORTS_SCHEMA_IN_FEATURE_TYPE_NAME"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Esri ArcSDE Geodatabase Dataset"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(2048)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(2048)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(2048)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="globalid"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="guid"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(20)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(20)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="subtype(stringset)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="subtype_codes(stringmap)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="range_domain(range_domain)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="coded_domain(coded_domain)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polyline"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipoint"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_table"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_table"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_annotation"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_dimension"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_simple_junction"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_simple_edge"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_complex_junction"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_complex_edge"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_attributed_relationship"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_relationship"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_undefined"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_metadata"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipatch"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipatch"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_table"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_pro_annotation"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_metadata"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEODATABASE_SDE"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="wMain"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="geodb_polyline"
+#!   POSITION="-748.7576875768757 -388.12653126531268"
+#!   BOUNDING_RECT="-748.7576875768757 -388.12653126531268 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEODATABASE_SDE_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="false"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OBJECTID" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="id" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="enabled" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="installdate" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lifecyclestatus" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="material" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="diameter" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lining" ATTR_TYPE="char(50)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="type" ATTR_TYPE="char(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SHAPE.STLength()" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_table_settings_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_where_wwjd" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="wHydrant"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   FEAT_GEOMTYPE="geodb_point"
+#!   POSITION="-748.7576875768757 -531.12653126531268"
+#!   BOUNDING_RECT="-748.7576875768757 -531.12653126531268 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEODATABASE_SDE_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="false"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OBJECTID" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="id" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ancillaryrole" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="enabled" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="facilityid" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="installdate" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="locationdescription" ATTR_TYPE="char(200)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="rotation" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lifecyclestatus" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="manufacturer" ATTR_TYPE="char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_pointProperty" ATTR_TYPE="char(2048)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_multiPointProperty" ATTR_TYPE="char(2048)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_table_settings_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_where_wwjd" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="wControlValve"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="4"
+#!   FEAT_GEOMTYPE="geodb_point"
+#!   POSITION="-748.7576875768757 -674.12653126531268"
+#!   BOUNDING_RECT="-748.7576875768757 -674.12653126531268 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEODATABASE_SDE_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OBJECTID" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="id" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ancillaryrole" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="enabled" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="facilityid" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="installdate" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="locationdescription" ATTR_TYPE="char(200)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="rotation" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lifecyclestatus" ATTR_TYPE="char(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="diameter" ATTR_TYPE="double" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="subtype" ATTR_TYPE="integer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_pointProperty" ATTR_TYPE="char(2048)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_multiPointProperty" ATTR_TYPE="char(2048)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_table_settings_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="geodb_where_wwjd" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL CHOICE TransactionalVersion DBO.DEFAULT%DBO.WaterUpdates1%DBO.WaterUpdates2%DBO.WaterUpdates3 Transactional Version:"
+#!   DEFAULT_VALUE="DBO.DEFAULT"
+#!   IS_STAND_ALONE="true"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL CHOICE BaselineTransactionalVersion &quot; &quot;%DBO.DEFAULT%DBO.WaterUpdates1%DBO.WaterUpdates2%DBO.WaterUpdates3 Baseline Transactional Version:"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="true"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI LITERAL OPTIONAL TEXT CHILD_VERSION_NAME_GEODATABASE_SDE Child Version Name:"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJjaG9pY2VTZXR0aW5ncyI6eyJjaG9pY2VTZXQiOiJ1c2VyRGVmaW5lZCIsImNob2ljZXMiOlt7ImRpc3BsYXkiOiJEQk8uREVGQVVMVCIsInZhbHVlIjoiREJPLkRFRkFVTFQifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMSIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczEifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMiIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczIifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMyIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczMifV0sInNvcnQiOiJub1NvcnQifSwiZGVmYXVsdFZhbHVlIjoiREJPLkRFRkFVTFQiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJuYW1lIjoiVHJhbnNhY3Rpb25hbFZlcnNpb24iLCJwcm9tcHQiOiJUcmFuc2FjdGlvbmFsIFZlcnNpb246IiwicmVxdWlyZWQiOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZHJvcGRvd24iLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifSx7ImNob2ljZVNldHRpbmdzIjp7ImNob2ljZVNldCI6InVzZXJEZWZpbmVkIiwiY2hvaWNlcyI6W3siZGlzcGxheSI6IiAiLCJ2YWx1ZSI6IiAifSx7ImRpc3BsYXkiOiJEQk8uREVGQVVMVCIsInZhbHVlIjoiREJPLkRFRkFVTFQifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMSIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczEifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMiIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczIifSx7ImRpc3BsYXkiOiJEQk8uV2F0ZXJVcGRhdGVzMyIsInZhbHVlIjoiREJPLldhdGVyVXBkYXRlczMifV0sInNvcnQiOiJub1NvcnQifSwiZGVmYXVsdFZhbHVlIjoiIiwiZGVwcmVjYXRlZEZsYWdzIjpbIm5vbmUiXSwibmFtZSI6IkJhc2VsaW5lVHJhbnNhY3Rpb25hbFZlcnNpb24iLCJwcm9tcHQiOiJCYXNlbGluZSBUcmFuc2FjdGlvbmFsIFZlcnNpb246IiwicmVxdWlyZWQiOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZHJvcGRvd24iLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifSx7ImRlZmF1bHRWYWx1ZSI6IiIsImRlcHJlY2F0ZWRGbGFncyI6WyJub25lIl0sImVkaXRvciI6InBsYWludGV4dCIsIm5hbWUiOiJDSElMRF9WRVJTSU9OX05BTUVfR0VPREFUQUJBU0VfU0RFIiwicHJvbXB0IjoiQ2hpbGQgVmVyc2lvbiBOYW1lOiIsInJlcXVpcmVkIjpmYWxzZSwic2hvd0VkaXRCdXR0b24iOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbIm5vbmUiXSwidHlwZSI6InRleHQiLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="TransactionalVersion" 
+#!   DEFAULT_VALUE="DBO.DEFAULT"
+#!   SCOPE="STAND_ALONE"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL CHOICE TransactionalVersion DBO.DEFAULT%DBO.WaterUpdates1%DBO.WaterUpdates2%DBO.WaterUpdates3 Transactional Version:"
+#! />
+#!     <INFO NAME="BaselineTransactionalVersion" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="STAND_ALONE"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL CHOICE BaselineTransactionalVersion &quot; &quot;%DBO.DEFAULT%DBO.WaterUpdates1%DBO.WaterUpdates2%DBO.WaterUpdates3 Baseline Transactional Version:"
+#! />
+#!     <INFO NAME="CHILD_VERSION_NAME_GEODATABASE_SDE" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI LITERAL OPTIONAL TEXT CHILD_VERSION_NAME_GEODATABASE_SDE Child Version Name:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="10"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Run:&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Initial Read:&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Transactional Version: DBO.DEFAULT&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Second Read:&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Transactional Version: DBOi.WaterUpdates3&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Baseline Transaction Version: DBO.DEFAULT&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fina Read:&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Transactional Version: DBO.WaterUpdates2&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Baseline Transaction Version: DBO.WaterUpdates1&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-748.7576875768757 268.75265620656194"
+#!   TOP_LEFT="-748.7576875768757 268.75265620656194"
+#!   BOTTOM_RIGHT="241.87731242312429 -92.500343793438049"
+#!   BOUNDING_RECT="-748.7576875768757 268.75265620656194 990.63499999999999 361.25299999999999"
+#!   ORDER="500000000000000"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="5"
+#!   TYPE="Inspector"
+#!   VERSION="5"
+#!   POSITION="-118.7576875768757 -388.12653126531268"
+#!   BOUNDING_RECT="-118.7576875768757 -388.12653126531268 454 71"
+#!   ORDER="500000000000005"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="20252"
+#! >
+#!     <XFORM_PARM PARM_NAME="AREA_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PEN_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="POINTCLOUD_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_COLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_ROWS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_COL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_ROW" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION" PARM_VALUE="No Reduction"/>
+#!     <XFORM_PARM PARM_NAME="TACKATTRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_INTERVAL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_MAX_NUM_POINTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE_DISPLAY" PARM_VALUE="No Thinning"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="wMain"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="Inspector"
+#!   VERSION="5"
+#!   POSITION="-118.7576875768757 -531.12653126531268"
+#!   BOUNDING_RECT="-118.7576875768757 -531.12653126531268 454 71"
+#!   ORDER="500000000000006"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="20252"
+#! >
+#!     <XFORM_PARM PARM_NAME="AREA_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PEN_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="POINTCLOUD_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_COLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_ROWS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_COL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_ROW" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION" PARM_VALUE="No Reduction"/>
+#!     <XFORM_PARM PARM_NAME="TACKATTRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_INTERVAL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_MAX_NUM_POINTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE_DISPLAY" PARM_VALUE="No Thinning"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="wHydrant"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="9"
+#!   TYPE="Inspector"
+#!   VERSION="5"
+#!   POSITION="-118.7576875768757 -674.12653126531268"
+#!   BOUNDING_RECT="-118.7576875768757 -674.12653126531268 454 71"
+#!   ORDER="500000000000007"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="20252"
+#! >
+#!     <XFORM_PARM PARM_NAME="AREA_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PEN_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="POINTCLOUD_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_COLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_ROWS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_COL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_ROW" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION" PARM_VALUE="No Reduction"/>
+#!     <XFORM_PARM PARM_NAME="TACKATTRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_INTERVAL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_MAX_NUM_POINTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE_DISPLAY" PARM_VALUE="No Thinning"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="wControlValve"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="6"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="5"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="8"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="4"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 39
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE GEODATABASE_SDE_IN_FME_CONNECTION_GROUP_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_CONNECTION_FILE_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_FME_GROUP_NAMED1_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_WHERE_WWJD_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_RESOLVE_DOMAINS_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_USE_SEARCH_ENVELOPE_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_GEODB_SDE_RDR_ADV_PARM_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_CHILD_VERSION_NAME_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_ARCHIVE_WHERE_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_STRIP_GUID_GLOBALID_BRACES_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_PERSISTENT_CONNECTION_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_BEGIN_SQL{0}_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_END_SQL{0}_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_USERID_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_PASSWORD_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_VERSION_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_READ_VERSION_DIFFERENCES_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_COMPARE_TRANSACTIONAL_VERSION_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1,GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1,_GEODB_IN_ALIAS_MODE_GEODATABASE_SDE_1
+# ============================================================================
+DEFAULT_MACRO TransactionalVersion DBO.DEFAULT
+
+DEFAULT_MACRO BaselineTransactionalVersion 
+
+DEFAULT_MACRO CHILD_VERSION_NAME_GEODATABASE_SDE 
+
+# ============================================================================
+#! START_HEADER
+#! encoding="utf-8"
+#! WORKSPACE_VERSION 1
+# ============================================================================ 
+# 
+# This mapping file was generated by FME Workbench
+# on 02/19/16 11:35:48 for translation between GEODATABASE_SDE and GEOPACKAGE
+# 
+# This workspace was generated with FME build 16451
+#
+# You may edit this mapping file to customize its operation.  Comments are 
+# placed throughout to assist you. 
+# 
+# Modification History:
+# 
+#     Name              Date     Description
+#     ================= ======== =============================================
+# 
+# 
+# ============================================================================ 
+# ============================================================================ 
+# The following line defines the title presented to the user when this
+# mapping file is run through the FME GUI.  You may modify this
+# if a more meaningful title would be appropriate.
+GUI TITLE GEODATABASE_SDE to GEOPACKAGE Translation 
+# ============================================================================ 
+# The following line names the log file to which useful statistics about
+# the translation will be written.  This line can be uncommented and
+# updated if you do wish to keep these statistics.
+# LOG_FILENAME translation.log
+# LOG_APPEND NO
+# ============================================================================ 
+# The following line instructs the FME to log any features that do not
+# match any of the source feature patterns listed further down in
+# this file.  If you are modifying this mapping file, this will be
+# useful to describe to you exactly which features you are losing
+# during translation, if the statistics indicate that features are
+# not being correlated or grouped.  Uncorrelated features do not
+# match any source specification, ungrouped features do not have
+# any corresponding _DEF line. 
+# FME_DEBUG UNGROUPED UNCORRELATED
+# ============================================================================ 
+# The following two lines define the type of reader and writer to be
+# used for this translation.  If you want to translate your data
+# back into its original format, you may make a copy of this file
+# and switch the reader and writer types.  If you rerun the FME, you
+# will get your original data back again (together with any modifications
+# you made in the meantime).  Note that several formats are NOT
+# bi-directional (for example, GIF can only be used as a WRITER)
+# so a reverse translation may not always be possible.
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} GEODATABASE_SDE
+MULTI_READER_KEYWORD{0} GEODATABASE_SDE_1
+MULTI_READER_GEN_DIRECTIVES{0} USERID,,EXPOSE_ATTRS_GROUP,,CREDENTIALS_OVERRIDE,NO,SEARCH_ENVELOPE_MINY,0,SPLIT_MULTI_PART_ANNOS,no,HISTORICAL_VERSION_NAME,,ALIAS_MODE,NONE,VERSION_OVERRIDE,FME_DISCLOSURE_OPEN,CACHE_MULTIPATCH_TEXTURES,yes,BEGIN_SQL<opencurly>0<closecurly>,,COMPARE_VERSION_TYPE,Transactional<space>Version<space><openparen>Common<space>Ancestor<closeparen>,TABLELIST,wMain<space>wHydrant<space>wControlValve,COMPARE_HISTORICAL_VERSION_NAME,,USE_SEARCH_ENVELOPE,NO,MERGE_FEAT_LINKED_ANNOS,no,SPLIT_COMPLEX_EDGES,no,CHILD_VERSION_NAME,,RESOLVE_DOMAINS,no,SEARCH_ENVELOPE_MAXX,0,RESOLVE_SUBTYPE_NAMES,yes,IGNORE_NETWORK_INFO,yes,SPLIT_COMPLEX_ANNOS,no,HISTORICAL_VERSION_TIMESTAMP,,END_SQL<opencurly>0<closecurly>,,CREATE_FEATURE_TABLES_FROM_DATA,Yes,CHECK_SIMPLE_GEOM,no,VERSION_TYPE,Transactional<space>Version,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,SEARCH_METHOD,,SEARCH_FEATURE,,SEARCH_ENVELOPE_MAXY,0,COMPARE_HISTORICAL_VERSION_TIMESTAMP,,IGNORE_RELATIONSHIP_INFO,yes,GEODATABASE_SDE_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_MINX,0,FEATURE_READ_MODE,Features,TRANSLATE_SPATIAL_DATA_ONLY,no,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,GEODB_SDE_RDR_ADV_PARM,FME_DISCLOSURE_CLOSED,_MERGE_SCHEMAS,YES,WHERE_WWJD,,STRIP_GUID_GLOBALID_BRACES,no,PERSISTENT_CONNECTION,no,CONNECTION_FILE,C:<backslash>Users<backslash>Administrator<backslash>Desktop<backslash>FMETRAINING.sde,ARCHIVE_WHERE,,CLIP_TO_ENVELOPE,NO,VERSION,DBO.WaterUpdates2,SEARCH_ORDER,,COMPARE_TRANSACTIONAL_VERSION,DBO.DEFAULT,REMOVE_TABLE_QUALIFIER,YES,READ_VERSION_DIFFERENCES,YES
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GEODATABASE_SDE_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEODATABASE_SDE GEODATABASE_SDE_1
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_GEODATABASE_SDE_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEODATABASE_SDE GEODATABASE_SDE_1
+DEFAULT_MACRO SourceDataset_GEODATABASE_SDE_1 NULL
+DEFAULT_MACRO GEODATABASE_SDE_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_GEODATABASE_SDE_1 Yes
+GEODATABASE_SDE_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(GEODATABASE_SDE_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_FME_CONNECTION_GROUP_GEODATABASE_SDE_1 FME_DISCLOSURE_CLOSED
+GUI OPTIONAL DISCLOSUREGROUP GEODATABASE_SDE_IN_FME_CONNECTION_GROUP_GEODATABASE_SDE_1 GEODATABASE_SDE_IN_CONNECTION_FILE_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_CREDENTIALS_OVERRIDE%GEODATABASE_SDE_IN_VERSION_OVERRIDE Database Connection
+# ============================================================================
+DEFAULT_MACRO GEODATABASE_SDE_IN_CONNECTION_FILE_GEODATABASE_SDE_1 $(FME_MF_DIR)ExtractingDifferences_Complete/1/Desktop/FMETRAINING.sde
+GEODATABASE_SDE_1_CONNECTION_FILE "$(GEODATABASE_SDE_IN_CONNECTION_FILE_GEODATABASE_SDE_1)"
+GUI FILENAME_MUSTEXIST GEODATABASE_SDE_IN_CONNECTION_FILE_GEODATABASE_SDE_1 Esri_Connection_File(*.sde)|*.sde Connection File:
+# ============================================================================
+# ============================================================================
+# ============================================================================
+# The following GUI line prompts for the version.
+# ========================================================================
+# The following GUI line prompts for the historical version name.
+# ========================================================================
+# The following GUI line prompts for the historical version timestamp.
+# ========================================================================
+DEFAULT_MACRO GEODATABASE_SDE_IN_FME_GROUP_NAMED1_GEODATABASE_SDE_1 
+GUI OPTIONAL DISCLOSUREGROUP GEODATABASE_SDE_IN_FME_GROUP_NAMED1_GEODATABASE_SDE_1 GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_TABLELIST%GEODATABASE_SDE_IN_WHERE_WWJD_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_RESOLVE_DOMAINS_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_FEATURE_READ_MODE Constraints
+# ========================================================================
+DEFAULT_MACRO GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER_GEODATABASE_SDE_1 YES
+GEODATABASE_SDE_1_REMOVE_TABLE_QUALIFIER "$(GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_REMOVE_TABLE_QUALIFIER_GEODATABASE_SDE_1 YES%NO Remove Table Qualifier
+# ========================================================================
+DEFAULT_MACRO GEODATABASE_SDE_IN_WHERE_WWJD_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_WHERE_WWJD "$(GEODATABASE_SDE_IN_WHERE_WWJD_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG GEODATABASE_SDE_IN_WHERE_WWJD_GEODATABASE_SDE_1 Mode,WHERE WHERE Clause:
+# ========================================================================
+# Determines whether non-spatial data, such as tables, subtypes, domains,
+# and relationship classes, get translated
+DEFAULT_MACRO GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_TRANSLATE_SPATIAL_DATA_ONLY "$(GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_TRANSLATE_SPATIAL_DATA_ONLY_GEODATABASE_SDE_1 yes%no Spatial Data Only
+# ========================================================================
+# Determines whether to resolve domains
+DEFAULT_MACRO GEODATABASE_SDE_IN_RESOLVE_DOMAINS_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_RESOLVE_DOMAINS "$(GEODATABASE_SDE_IN_RESOLVE_DOMAINS_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_RESOLVE_DOMAINS_GEODATABASE_SDE_1 yes%no Resolve Domains
+# ========================================================================
+# Determines whether to resolve the subtype associated with a feature to the
+# text description linked to the subtype value. The text description will
+# be added as an attribute on the feature.
+DEFAULT_MACRO GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES_GEODATABASE_SDE_1 yes
+GEODATABASE_SDE_1_RESOLVE_SUBTYPE_NAMES "$(GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_RESOLVE_SUBTYPE_NAMES_GEODATABASE_SDE_1 yes%no Resolve Subtypes
+# ========================================================================
+# Determines whether to ignore the network info associated with a feature
+# coming from a network feature class. When set to 'yes', junctions will be
+# treated as point features, and edges will be treated as polyline features,
+# with the geodb_type being set to geodb_point and geodb_polyline, respectively.
+# Caution should be taken when changing the value for this keyword to a different
+# value than was specified when creating the mapping file/workspace.
+DEFAULT_MACRO GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO_GEODATABASE_SDE_1 yes
+GEODATABASE_SDE_1_IGNORE_NETWORK_INFO "$(GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_IGNORE_NETWORK_INFO_GEODATABASE_SDE_1 yes%no Ignore Network Info
+# ========================================================================
+# Determines whether to ignore the relationship info associated with a feature
+# coming from a feature class containing relationships. When set to 'yes', simple
+# relationships will not be read, and attributed relationships will be read as
+# tables. Caution should be taken when changing the value for this keyword to a
+# different value than was specified when creating the mapping file/workspace.
+DEFAULT_MACRO GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO_GEODATABASE_SDE_1 yes
+GEODATABASE_SDE_1_IGNORE_RELATIONSHIP_INFO "$(GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_IGNORE_RELATIONSHIP_INFO_GEODATABASE_SDE_1 yes%no Ignore Relationship Info
+# ========================================================================
+# Determines whether complex edge features should be split up and each edge
+# element read as a separate feature. The default behaviour is to treat an
+# entire edge *feature* as an FME feature, rather than an edge *element* as an
+# FME feature. Returning edge elements ensures that all network connectivity
+# information on complex edges is read.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_SPLIT_COMPLEX_EDGES "$(GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_SPLIT_COMPLEX_EDGES_GEODATABASE_SDE_1 yes%no Split Complex Edges
+#==============================================================================
+# Determines whether annotation features should be split up and each part
+# element read as a separate feature. The default behaviour is to treat an
+# entire annotation *feature* as an FME feature, rather than an annotation
+# *element* as an FME feature. Returning edge elements ensures that all
+# rotation and positional information for each element is preserved.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_SPLIT_MULTI_PART_ANNOS "$(GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_SPLIT_MULTI_PART_ANNOS_GEODATABASE_SDE_1 yes%no Split Multi-Part Annotations
+# ========================================================================
+# The following determines whether to read features from the geodatabase
+# tables/feature classes or to read metadata from those tables/feature
+# classes.
+DEFAULT_MACRO GEODATABASE_SDE_IN_FEATURE_READ_MODE_GEODATABASE_SDE_1 Features
+GEODATABASE_SDE_1_FEATURE_READ_MODE "$(GEODATABASE_SDE_IN_FEATURE_READ_MODE_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_EXPOSE_ATTRS_GROUP_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_EXPOSE_ATTRS_GROUP "$(GEODATABASE_SDE_IN_EXPOSE_ATTRS_GROUP_GEODATABASE_SDE_1)"
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO GEODATABASE_SDE_IN_USE_SEARCH_ENVELOPE_GEODATABASE_SDE_1 NO
+GEODATABASE_SDE_1_USE_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_USE_SEARCH_ENVELOPE_GEODATABASE_SDE_1)"
+GUI ACTIVEDISCLOSUREGROUP GEODATABASE_SDE_IN_USE_SEARCH_ENVELOPE_GEODATABASE_SDE_1 GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_METHOD_FILTER%GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1 <Unused>,0 
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1 0
+GEODATABASE_SDE_1_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1)"
+GUI OPTIONAL FLOAT GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINX_GEODATABASE_SDE_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1 <Unused>,0 
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1 0
+GEODATABASE_SDE_1_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1)"
+GUI OPTIONAL FLOAT GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MINY_GEODATABASE_SDE_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1 <Unused>,0 
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1 0
+GEODATABASE_SDE_1_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1)"
+GUI OPTIONAL FLOAT GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXX_GEODATABASE_SDE_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1 <Unused>,0 
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1 0
+GEODATABASE_SDE_1_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1)"
+GUI OPTIONAL FLOAT GEODATABASE_SDE_IN_SEARCH_ENVELOPE_MAXY_GEODATABASE_SDE_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1 <Unused>, 
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_SEARCH_ENVELOPE "$(GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1)"
+GUI OPTIONAL COORDSYS GEODATABASE_SDE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEODATABASE_SDE_1 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1 <Unused>,NO 
+DEFAULT_MACRO GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1 NO
+GEODATABASE_SDE_1_CLIP_TO_ENVELOPE "$(GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1)"
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_CLIP_TO_ENVELOPE_GEODATABASE_SDE_1 YES%NO Clip to Search Envelope
+DEFAULT_MACRO GEODATABASE_SDE_IN_GEODB_SDE_RDR_ADV_PARM_GEODATABASE_SDE_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP GEODATABASE_SDE_IN_GEODB_SDE_RDR_ADV_PARM_GEODATABASE_SDE_1 GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_CHILD_VERSION_NAME_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_ARCHIVE_WHERE_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_STRIP_GUID_GLOBALID_BRACES_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_PERSISTENT_CONNECTION_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_BEGIN_SQL{0}_GEODATABASE_SDE_1%GEODATABASE_SDE_IN_END_SQL{0}_GEODATABASE_SDE_1 Advanced
+#==============================================================================
+# The following specifies that complex representations for annotation should
+# be split into simpler representations.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_SPLIT_COMPLEX_ANNOS "$(GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_SPLIT_COMPLEX_ANNOS_GEODATABASE_SDE_1 yes%no Split Complex Annotations:
+#==============================================================================
+# The following specifies whether to keep (YES) or clean up (NO) Esri's
+# multipatch texture caches.
+DEFAULT_MACRO GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES_GEODATABASE_SDE_1 yes
+GEODATABASE_SDE_1_CACHE_MULTIPATCH_TEXTURES "$(GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_CACHE_MULTIPATCH_TEXTURES_GEODATABASE_SDE_1 yes%no Cache Multipatch Textures:
+# ========================================================================
+# Determines which type of search method to use. This keyword is only applicable
+# when either the keyword SEARCH_ENVELOPE or the keyword SEARCH_FEATURE is specified.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_SEARCH_METHOD "$(GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1)"
+GUI OPTIONAL LOOKUP_CHOICE GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1 "\"Geodb Intersects\",GEODB_INTERSECTS"%"\"Geodb Envelope Intersects\",GEODB_ENVELOPE_INTERSECTS"%"\"Geodb Touches\",GEODB_TOUCHES"%"\"Geodb Overlaps\",GEODB_OVERLAPS"%"\"Geodb Crosses\",GEODB_CROSSES"%"\"Geodb Within\",GEODB_WITHIN"%"\"Geodb Contains\",GEODB_CONTAINS" Search Method:
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_METHOD_GEODATABASE_SDE_1 <Unused>, 
+# ========================================================================
+# Determines whether the spatial component or the attribute component of a
+# query is performed first. This is only applicable when both spatial and
+# non-spatial searches are being performed.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_SEARCH_ORDER "$(GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1)"
+GUI OPTIONAL LOOKUP_CHOICE GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1 "\"Spatial First\",SPATIAL_FIRST"%"\"Attribute First\",ATTRIBUTE_FIRST" Search Order:
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_ORDER_GEODATABASE_SDE_1 <Unused>, 
+# ========================================================================
+# The following defines the search feature for the query. It defines an
+# arbitrarily complex search feature as a spatial contraint. It is in the
+# form <keyword>_SEARCH_FEATURE [<xCoord> <yCoord>]+.
+DEFAULT_MACRO GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_SEARCH_FEATURE "$(GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1 Search Feature:
+GUI LOOKUP GEODATABASE_SDE_IN_SEARCH_FEATURE_GEODATABASE_SDE_1 <Unused>, 
+# ========================================================================
+# The following specifies the name of a child version to be created. After
+# the version has been created, tables will be read using this version
+# rather than the version specified by the VERSION keyword.
+DEFAULT_MACRO GEODATABASE_SDE_IN_CHILD_VERSION_NAME_GEODATABASE_SDE_1 $(CHILD_VERSION_NAME_GEODATABASE_SDE)
+GEODATABASE_SDE_1_CHILD_VERSION_NAME "$(GEODATABASE_SDE_IN_CHILD_VERSION_NAME_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT GEODATABASE_SDE_IN_CHILD_VERSION_NAME_GEODATABASE_SDE_1 Child Version Name:
+# ========================================================================
+# The following specifies the archive where clause to be used when retrieving
+# features from an archived table in geodb.
+DEFAULT_MACRO GEODATABASE_SDE_IN_ARCHIVE_WHERE_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_ARCHIVE_WHERE "$(GEODATABASE_SDE_IN_ARCHIVE_WHERE_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT GEODATABASE_SDE_IN_ARCHIVE_WHERE_GEODATABASE_SDE_1 Archive WHERE Clause:
+# ========================================================================
+# The following specifies that simple geometry should be checked for
+# when reading features.
+DEFAULT_MACRO GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_CHECK_SIMPLE_GEOM "$(GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_CHECK_SIMPLE_GEOM_GEODATABASE_SDE_1 yes%no Check for Simple Geometry:
+# ========================================================================
+# The following specifies whether feature-linked annotations should
+# be merged onto the main feature as a text list attribute when reading.
+DEFAULT_MACRO GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_MERGE_FEAT_LINKED_ANNOS "$(GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_MERGE_FEAT_LINKED_ANNOS_GEODATABASE_SDE_1 yes%no Merge Feature Linked Annotations:
+#=============================================================================
+# Strip braces off GlobalIDs and GUIDs
+DEFAULT_MACRO GEODATABASE_SDE_IN_STRIP_GUID_GLOBALID_BRACES_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_STRIP_GUID_GLOBALID_BRACES "$(GEODATABASE_SDE_IN_STRIP_GUID_GLOBALID_BRACES_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_STRIP_GUID_GLOBALID_BRACES_GEODATABASE_SDE_1 yes%no Strip braces off GlobalID and GUID:
+#==============================================================================
+# Determines whether the connection should persist after the reader/writer
+# has been shut down. The default is 'no'.
+DEFAULT_MACRO GEODATABASE_SDE_IN_PERSISTENT_CONNECTION_GEODATABASE_SDE_1 no
+GEODATABASE_SDE_1_PERSISTENT_CONNECTION "$(GEODATABASE_SDE_IN_PERSISTENT_CONNECTION_GEODATABASE_SDE_1)"
+GUI CHOICE GEODATABASE_SDE_IN_PERSISTENT_CONNECTION_GEODATABASE_SDE_1 yes%no Persistent Connection
+# ==============================================================================
+# The following specifies an SQL command to execute before opening the first
+# Geodatabase table.
+DEFAULT_MACRO GEODATABASE_SDE_IN_BEGIN_SQL{0}_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_BEGIN_SQL{0} "$(GEODATABASE_SDE_IN_BEGIN_SQL{0}_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG GEODATABASE_SDE_IN_BEGIN_SQL{0}_GEODATABASE_SDE_1 MODE,SQL;FORMAT,GEODATABASE_SDE SQL To Run Before Read
+# ==============================================================================
+# The following specifies an SQL command to execute after closing all the
+# Geodatabase tables.
+DEFAULT_MACRO GEODATABASE_SDE_IN_END_SQL{0}_GEODATABASE_SDE_1 
+GEODATABASE_SDE_1_END_SQL{0} "$(GEODATABASE_SDE_IN_END_SQL{0}_GEODATABASE_SDE_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG GEODATABASE_SDE_IN_END_SQL{0}_GEODATABASE_SDE_1 MODE,SQL;FORMAT,GEODATABASE_SDE SQL To Run After Read
+DEFAULT_MACRO GEODATABASE_SDE_IN_CREATE_FEATURE_TABLES_FROM_DATA_GEODATABASE_SDE_1 Yes
+GEODATABASE_SDE_1_CREATE_FEATURE_TABLES_FROM_DATA "$(GEODATABASE_SDE_IN_CREATE_FEATURE_TABLES_FROM_DATA_GEODATABASE_SDE_1)"
+# ============================================================================ 
+DEFAULT_MACRO GEODATABASE_SDE_IN_ATTRIBUTE_READING_GEODATABASE_SDE_1 DEFLINE
+GEODATABASE_SDE_1_ATTRIBUTE_READING "$(GEODATABASE_SDE_IN_ATTRIBUTE_READING_GEODATABASE_SDE_1)"
+# ============================================================================ 
+GEODATABASE_SDE_1_GENERATE_FME_BUILD_NUM 20252
+# ============================================================================
+# The following settings already exist in the source settings, but are
+# duplicated here to allow a more context friendly label in the Nav Window.
+DEFAULT_MACRO GEODATABASE_SDE_IN_USERID_GEODATABASE_SDE_1 
+GUI OPTIONAL TEXT GEODATABASE_SDE_IN_USERID_GEODATABASE_SDE_1 Override Username:
+GEODATABASE_SDE_1_USERID "$(GEODATABASE_SDE_IN_USERID_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_PASSWORD_GEODATABASE_SDE_1 
+GUI OPTIONAL PASSWORD_ENCODED GEODATABASE_SDE_IN_PASSWORD_GEODATABASE_SDE_1 Override Password:
+GEODATABASE_SDE_1_PASSWORD "$(GEODATABASE_SDE_IN_PASSWORD_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_VERSION_GEODATABASE_SDE_1 $(TransactionalVersion)
+GUI OPTIONAL STRING_ENCODED GEODATABASE_SDE_IN_VERSION_GEODATABASE_SDE_1 Transactional Version:
+GEODATABASE_SDE_1_VERSION "$(GEODATABASE_SDE_IN_VERSION_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1 
+GUI OPTIONAL STRING_ENCODED GEODATABASE_SDE_IN_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1 Version from Historical Marker:
+GEODATABASE_SDE_1_HISTORICAL_VERSION_NAME "$(GEODATABASE_SDE_IN_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1 
+GUI OPTIONAL DATE_TIME GEODATABASE_SDE_IN_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1 Version from Historical Date and Time:
+GEODATABASE_SDE_1_HISTORICAL_VERSION_TIMESTAMP "$(GEODATABASE_SDE_IN_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_READ_VERSION_DIFFERENCES_GEODATABASE_SDE_1 YES
+GUI OPTIONAL CHECKBOX GEODATABASE_SDE_IN_READ_VERSION_DIFFERENCES_GEODATABASE_SDE_1 YES%NO Read Version Differences:
+GEODATABASE_SDE_1_READ_VERSION_DIFFERENCES "$(GEODATABASE_SDE_IN_READ_VERSION_DIFFERENCES_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_COMPARE_TRANSACTIONAL_VERSION_GEODATABASE_SDE_1 $(BaselineTransactionalVersion)
+GUI OPTIONAL STRING_ENCODED GEODATABASE_SDE_IN_COMPARE_TRANSACTIONAL_VERSION_GEODATABASE_SDE_1 Baseline Transactional Version:
+GEODATABASE_SDE_1_COMPARE_TRANSACTIONAL_VERSION "$(GEODATABASE_SDE_IN_COMPARE_TRANSACTIONAL_VERSION_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1 
+GUI OPTIONAL STRING_ENCODED GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1 Baseline Historical Marker:
+GEODATABASE_SDE_1_COMPARE_HISTORICAL_VERSION_NAME "$(GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_NAME_GEODATABASE_SDE_1)"
+DEFAULT_MACRO GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1 
+GUI OPTIONAL DATE_TIME GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1 Baseline Historical Date and Time:
+GEODATABASE_SDE_1_COMPARE_HISTORICAL_VERSION_TIMESTAMP "$(GEODATABASE_SDE_IN_COMPARE_HISTORICAL_VERSION_TIMESTAMP_GEODATABASE_SDE_1)"
+DEFAULT_MACRO _GEODB_IN_ALIAS_MODE_GEODATABASE_SDE_1 NONE
+GUI LOOKUP_CHOICE _GEODB_IN_ALIAS_MODE_GEODATABASE_SDE_1 None,NONE%Expose<space>Aliases<space>as<space>Metadata<space>Attributes<space><openparen><lt>name<gt>_alias<closeparen>,ON_DATA_FEATURES Alias Mode:
+GEODATABASE_SDE_1_ALIAS_MODE "$(_GEODB_IN_ALIAS_MODE_GEODATABASE_SDE_1)"
+GEODATABASE_SDE_1_DATASET "$(SourceDataset_GEODATABASE_SDE_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)ExtractingDifferences_Complete.log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+MAPPING_FILE_ID GEODATABASE_SDE<space>to<space>NONE
+DEFAULT_MACRO DATASET_KEYWORD_GEODATABASE_SDE_1 GEODATABASE_SDE_1
+# -------------------------------------------------------------------------
+
+GEODATABASE_SDE_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME ExtractingDifferences_Complete
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+
+INCLUDE [ if {[info exists env(FME_TEMP)] && [file isdirectory $env(FME_TEMP)]} {set gVisualizerTemp $env(FME_TEMP)}  elseif {[info exists env(TEMP)] && [file isdirectory $env(TEMP)]}  {set gVisualizerTemp $env(TEMP)}  elseif { $tcl_platform(platform) == "unix" } {set gVisualizerTemp "/tmp"} else {set gVisualizerTemp c:};  regsub -all {[ ,&]} {$(WORKSPACE_NAME)} {_} wsname; set gVisualizerTemp $gVisualizerTemp/${wsname}_[clock format [clock seconds] -format %H%M%S];  puts "MACRO WORKSPACE_TEMP_DIR $gVisualizerTemp"; 
+MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/inspector.ffs
+MACRO VISUALIZER_SCHEMA_FILE $(WORKSPACE_TEMP_DIR)/inspector.fsc
+MACRO VISUALIZER_CREATE_SPATIAL_INDEX YES
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_GEODATABASE_SDE_1)   INPUT FEATURE_TYPE *    ROUTE GEODATABASE_SDE GEODATABASE_SDE_1::wHydrant multi_reader_keyword,$(DATASET_KEYWORD_GEODATABASE_SDE_1) TO FME_GENERIC ::wHydrant ALIAS_GEOMETRY    ROUTE GEODATABASE_SDE GEODATABASE_SDE_1::wControlValve multi_reader_keyword,$(DATASET_KEYWORD_GEODATABASE_SDE_1) TO FME_GENERIC ::wControlValve ALIAS_GEOMETRY    ROUTE GEODATABASE_SDE GEODATABASE_SDE_1::wMain multi_reader_keyword,$(DATASET_KEYWORD_GEODATABASE_SDE_1) TO FME_GENERIC ::wMain ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+GEODATABASE_SDE_1_MERGE_DEF GEODATABASE_SDE_1::wHydrant EXACT wHydrant DEFLINE geodb_type,geodb_point,geodb_where_wwjd,,fme_attribute_reading,defined,OBJECTID,integer,id,integer,ancillaryrole,smallint,enabled,smallint,facilityid,char<openparen>20<closeparen>,installdate,char<openparen>20<closeparen>,locationdescription,char<openparen>200<closeparen>,rotation,double,lifecyclestatus,char<openparen>20<closeparen>,manufacturer,char<openparen>30<closeparen>,gml_pointProperty,char<openparen>2048<closeparen>,gml_multiPointProperty,char<openparen>2048<closeparen>
+GEODATABASE_SDE_1_MERGE_DEF GEODATABASE_SDE_1::wControlValve EXACT wControlValve DEFLINE geodb_type,geodb_point,geodb_where_wwjd,,fme_attribute_reading,defined,OBJECTID,integer,id,integer,ancillaryrole,smallint,enabled,smallint,facilityid,char<openparen>20<closeparen>,installdate,char<openparen>20<closeparen>,locationdescription,char<openparen>200<closeparen>,rotation,double,lifecyclestatus,char<openparen>20<closeparen>,diameter,double,subtype,integer,gml_pointProperty,char<openparen>2048<closeparen>,gml_multiPointProperty,char<openparen>2048<closeparen>
+GEODATABASE_SDE_1_MERGE_DEF GEODATABASE_SDE_1::wMain EXACT wMain DEFLINE geodb_type,geodb_polyline,geodb_where_wwjd,,fme_attribute_reading,defined,OBJECTID,integer,id,integer,enabled,smallint,installdate,char<openparen>20<closeparen>,lifecyclestatus,char<openparen>20<closeparen>,material,char<openparen>20<closeparen>,diameter,double,lining,char<openparen>50<closeparen>,type,char<openparen>10<closeparen>,SHAPE.STLength<openparen><closeparen>,double
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "wMain_GEODATABASE_SDE_1 Splitter"    INPUT FEATURE_TYPE wMain    OUTPUT FEATURE_TYPE wMain_GEODATABASE_SDE_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "wHydrant_GEODATABASE_SDE_1 Splitter"    INPUT FEATURE_TYPE wHydrant    OUTPUT FEATURE_TYPE wHydrant_GEODATABASE_SDE_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "wControlValve_GEODATABASE_SDE_1 Splitter"    INPUT FEATURE_TYPE wControlValve    OUTPUT FEATURE_TYPE wControlValve_GEODATABASE_SDE_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+# Assumption is that the workspace temp dir has been already set and created.  See controldefs.cpp - ControlDefs::writeVisualizerTempDir
+DEFAULT_MACRO WORKSPACE_TEMP_DIR
+INCLUDE [    set safeName "[regsub -all {[^a-zA-Z0-9]} {wControlValve} _]_[expr round(rand() * 1000000)]_[clock clicks  -milliseconds]";    puts "MACRO SAFE_FFS_NAME $safeName"; ]
+FACTORY_DEF {*} InspectorFactory    FACTORY_NAME { wControlValve_Prepper }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE wControlValve_GEODATABASE_SDE_1    GROUP_ATTRIBUTE __inspector_feature_type_attr__    GROUP_ATTRIBUTE_PREFIX { wControlValve }    RASTER_REDUCTION { NoReduction }    POINT_CLOUD_REDUCTION { NO_THINNING }    OUTPUT { RESULT FEATURE_TYPE __viewme__    }
+# Now route all the features into the recorder, changing their
+# feature type to the transformer name so that they view nicely
+DEFAULT_MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/$(SAFE_FFS_NAME).ffs
+DEFAULT_MACRO VISUALIZER_CREATE_SPATIAL_INDEX NO
+# [PR#45549] The Data Inspector will limit the maximum number of features
+# it reads on WIN32, so we will correspondingly limit the number of
+# features we record here using the MAX_FEATURES_TO_RECORD directive.
+FACTORY_DEF {*} RecorderFactory    FACTORY_NAME { wControlValve_Recorder }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT FEATURE_TYPE __viewme__       _wb_termination_feature Yes       @FeatureType(TERMINATOR_@Value(_wb_termination_xformer))    INPUT FEATURE_TYPE __viewme__       @FeatureType(@Value(__inspector_feature_type_attr__))       @RemoveAttributes(__inspector_feature_type_attr__)    FEATURE_FILE { "$(VISUALIZER_FEATURE_FILE)" }    STORE_SCANNED_SCHEMA YES    NORMALIZE_LIST_ATTRIBUTES_ON_SCHEMA YES    CREATE_SPATIAL_INDEX { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    INSPECTOR { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    FSC_SCHEMA { OBJECTID,int32,id,int32,ancillaryrole,int16,enabled,int16,facilityid,varchar<openparen>20<closeparen>,installdate,varchar<openparen>20<closeparen>,locationdescription,varchar<openparen>200<closeparen>,rotation,real64,lifecyclestatus,varchar<openparen>20<closeparen>,diameter,real64,subtype,int32,gml_pointProperty,varchar<openparen>2048<closeparen>,gml_multiPointProperty,varchar<openparen>2048<closeparen> }    MODE RECORD    STORE_SCANNED_METADATA    RECORD_DIRECTLY_TO_DISK YES    MAX_FEATURES_TO_RECORD WIN32 2000000
+# -------------------------------------------------------------------------
+# Assumption is that the workspace temp dir has been already set and created.  See controldefs.cpp - ControlDefs::writeVisualizerTempDir
+DEFAULT_MACRO WORKSPACE_TEMP_DIR
+INCLUDE [    set safeName "[regsub -all {[^a-zA-Z0-9]} {wHydrant} _]_[expr round(rand() * 1000000)]_[clock clicks  -milliseconds]";    puts "MACRO SAFE_FFS_NAME $safeName"; ]
+FACTORY_DEF {*} InspectorFactory    FACTORY_NAME { wHydrant_Prepper }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE wHydrant_GEODATABASE_SDE_1    GROUP_ATTRIBUTE __inspector_feature_type_attr__    GROUP_ATTRIBUTE_PREFIX { wHydrant }    RASTER_REDUCTION { NoReduction }    POINT_CLOUD_REDUCTION { NO_THINNING }    OUTPUT { RESULT FEATURE_TYPE __viewme__    }
+# Now route all the features into the recorder, changing their
+# feature type to the transformer name so that they view nicely
+DEFAULT_MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/$(SAFE_FFS_NAME).ffs
+DEFAULT_MACRO VISUALIZER_CREATE_SPATIAL_INDEX NO
+# [PR#45549] The Data Inspector will limit the maximum number of features
+# it reads on WIN32, so we will correspondingly limit the number of
+# features we record here using the MAX_FEATURES_TO_RECORD directive.
+FACTORY_DEF {*} RecorderFactory    FACTORY_NAME { wHydrant_Recorder }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT FEATURE_TYPE __viewme__       _wb_termination_feature Yes       @FeatureType(TERMINATOR_@Value(_wb_termination_xformer))    INPUT FEATURE_TYPE __viewme__       @FeatureType(@Value(__inspector_feature_type_attr__))       @RemoveAttributes(__inspector_feature_type_attr__)    FEATURE_FILE { "$(VISUALIZER_FEATURE_FILE)" }    STORE_SCANNED_SCHEMA YES    NORMALIZE_LIST_ATTRIBUTES_ON_SCHEMA YES    CREATE_SPATIAL_INDEX { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    INSPECTOR { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    FSC_SCHEMA { OBJECTID,int32,id,int32,ancillaryrole,int16,enabled,int16,facilityid,varchar<openparen>20<closeparen>,installdate,varchar<openparen>20<closeparen>,locationdescription,varchar<openparen>200<closeparen>,rotation,real64,lifecyclestatus,varchar<openparen>20<closeparen>,manufacturer,varchar<openparen>30<closeparen>,gml_pointProperty,varchar<openparen>2048<closeparen>,gml_multiPointProperty,varchar<openparen>2048<closeparen> }    MODE RECORD    STORE_SCANNED_METADATA    RECORD_DIRECTLY_TO_DISK YES    MAX_FEATURES_TO_RECORD WIN32 2000000
+# -------------------------------------------------------------------------
+# Assumption is that the workspace temp dir has been already set and created.  See controldefs.cpp - ControlDefs::writeVisualizerTempDir
+DEFAULT_MACRO WORKSPACE_TEMP_DIR
+INCLUDE [    set safeName "[regsub -all {[^a-zA-Z0-9]} {wMain} _]_[expr round(rand() * 1000000)]_[clock clicks  -milliseconds]";    puts "MACRO SAFE_FFS_NAME $safeName"; ]
+FACTORY_DEF {*} InspectorFactory    FACTORY_NAME { wMain_Prepper }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE wMain_GEODATABASE_SDE_1    GROUP_ATTRIBUTE __inspector_feature_type_attr__    GROUP_ATTRIBUTE_PREFIX { wMain }    RASTER_REDUCTION { NoReduction }    POINT_CLOUD_REDUCTION { NO_THINNING }    OUTPUT { RESULT FEATURE_TYPE __viewme__    }
+# Now route all the features into the recorder, changing their
+# feature type to the transformer name so that they view nicely
+DEFAULT_MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/$(SAFE_FFS_NAME).ffs
+DEFAULT_MACRO VISUALIZER_CREATE_SPATIAL_INDEX NO
+# [PR#45549] The Data Inspector will limit the maximum number of features
+# it reads on WIN32, so we will correspondingly limit the number of
+# features we record here using the MAX_FEATURES_TO_RECORD directive.
+FACTORY_DEF {*} RecorderFactory    FACTORY_NAME { wMain_Recorder }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT FEATURE_TYPE __viewme__       _wb_termination_feature Yes       @FeatureType(TERMINATOR_@Value(_wb_termination_xformer))    INPUT FEATURE_TYPE __viewme__       @FeatureType(@Value(__inspector_feature_type_attr__))       @RemoveAttributes(__inspector_feature_type_attr__)    FEATURE_FILE { "$(VISUALIZER_FEATURE_FILE)" }    STORE_SCANNED_SCHEMA YES    NORMALIZE_LIST_ATTRIBUTES_ON_SCHEMA YES    CREATE_SPATIAL_INDEX { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    INSPECTOR { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    FSC_SCHEMA { OBJECTID,int32,id,int32,enabled,int16,installdate,varchar<openparen>20<closeparen>,lifecyclestatus,varchar<openparen>20<closeparen>,material,varchar<openparen>20<closeparen>,diameter,real64,lining,varchar<openparen>50<closeparen>,type,varchar<openparen>10<closeparen>,SHAPE.STLength<openparen><closeparen>,real64 }    MODE RECORD    STORE_SCANNED_METADATA    RECORD_DIRECTLY_TO_DISK YES    MAX_FEATURES_TO_RECORD WIN32 2000000
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+
+DEFAULT_MACRO FME_LAUNCH_VIEWER_APP NO
+FACTORY_DEF * CreationFactory    FACTORY_NAME VisualizerProcessor   CREATE_AT_END   OUTPUT FEATURE_TYPE __NUKEME__   @TCL("if {{$(FME_LAUNCH_VIEWER_APP)} == {YES}} {  if [file exists {$(WORKSPACE_TEMP_DIR)}] {set files [glob -nocomplain -directory  {$(WORKSPACE_TEMP_DIR)} -tails *.ffs];   if {[llength $files] == 1} {    set theFile {$(WORKSPACE_TEMP_DIR)/};   append theFile [lindex $files 0];   eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -f FFS \042$theFile\042 & \175;  } elseif { [llength $files] == 0 } {  catch { file delete -force {$(WORKSPACE_TEMP_DIR)} };  } else {  set filesNoExt {}; set lastfile {}; foreach {fileName} [lsort $files] { set fileNoExt [string trimright $fileName {.ffs}]; if [regexp {(.*)_[0-9]*$} $fileNoExt wholething fileNoExtBase] {  if { $fileNoExtBase == $lastfile } { continue } }; set lastfile $fileNoExt; lappend filesNoExt $fileNoExt };  eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -d {$(WORKSPACE_TEMP_DIR)} -a ffs -f FFS $filesNoExt & \175; }; }; }; ")
+FACTORY_DEF * TeeFactory    FACTORY_NAME VisualizerCleaner   INPUT FEATURE_TYPE __NUKEME__
