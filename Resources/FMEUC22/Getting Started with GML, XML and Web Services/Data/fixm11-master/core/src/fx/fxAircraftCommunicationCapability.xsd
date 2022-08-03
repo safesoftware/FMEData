@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="fxAircraftCommunicationCapability:1.1-SNAPSHOT">
+<!-- $Revision: 566 $ -->
+
+    <xsd:annotation>
+        <xsd:documentation>
+            The fxAircraftComCapability schema provides elements for describing the communication
+            capabilities of an aircraft. The codes in this schema are further defined in ICAO 4444.
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd"/>
+
+    <xsd:complexType name="CommunicationCapabilitiesType">
+        <xsd:annotation>
+            <xsd:appinfo source="fx:implements">Communications Capabilities</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Selective Calling Code</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Data Link Communication Capabilities</xsd:appinfo>
+        <xsd:documentation>
+            Aircraft communication capabilities."Capability" refers not only to the equipment
+            needed for the function, but to the ability of the crew to employ that equipment.
+        </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="communicationCodes" type="fx:CommunicationCodeListType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="dataLinkCodes" type="fx:DataLinkCodeListType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="selectiveCallingCodes" type="fx:SelectiveCallingCodeType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="otherCommunicationCapabilities" type="base:FreeTextType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="otherDataLinkCapabilities" type="base:FreeTextType" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+   <xsd:simpleType name="CommunicationCodeListType">
+        <xsd:annotation>
+        <xsd:documentation>
+            Flat list of communication capabilities.
+        </xsd:documentation>
+        </xsd:annotation>
+      <xsd:list itemType="fx:CommunicationCodeType"/>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="DataLinkCodeListType">
+        <xsd:annotation>
+        <xsd:documentation>
+            Flat list of data link capabilities.
+        </xsd:documentation>
+        </xsd:annotation>
+      <xsd:list itemType="fx:DataLinkCodeType"/>
+   </xsd:simpleType>
+
+    <xsd:simpleType name="DataLinkCodeType">
+        <xsd:annotation>
+        <xsd:documentation>
+            Data link capabilities.
+        </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+ 			 <xsd:enumeration value="J1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC ATN VD
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J2">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A HFDL
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A VDL Mode A
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J4">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A VDL Mode 2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J5">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A SATCOM (INMARSAT)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J6">
+              	<xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A SATCOM (MTSAT)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+                   <xsd:enumeration value="J7">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        CPDLC FANS 1/A SATCOM (Iridium)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="SelectiveCallingCodeType">
+        <xsd:restriction base="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>
+                    Selective-calling radio system
+                </xsd:documentation>
+            </xsd:annotation>
+            <xsd:pattern value="[A-HJ-MP-S]{4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="CommunicationCodeType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Overall communication capabilities
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="E1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        FMC WPR ACARS - Flight Management Computer Waypoint Reporting ACARS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E2">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        D-FIS ACARS - Data Link Flight Information Services ACARS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        PDC ACARS - Pre-Departure Clearance ACARS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="H">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        HF RTF - High Frequency RadioTelephone
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="M1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ATC RTF SATCOM (INMARSAT)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="M2">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ATC RTF (MTSAT)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="M3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ATC RTF (Iridium)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P2">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P4">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P5">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P6">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P7">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P8">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P9">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Reserved for RCP - Required Communication Performance
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="U">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        UHF RTF
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="V">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        VHF RTF
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Y">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        VHF with 8.33 kHz channel spacing capability
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

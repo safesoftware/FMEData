@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="fxFlightRoute:1.1-SNAPSHOT">
+<!-- $Revision: 511 $ -->
+
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd"/>
+    <xsd:include schemaLocation="./fxFlightPlan.xsd"/>
+
+    <xsd:complexType name="FlightRouteType">
+        <xsd:annotation>
+            <xsd:appinfo source="fx:implements">Route</xsd:appinfo>
+            <xsd:documentation>
+                The Route object represents a route to be flown by the airplane as part of the flight.
+                routes can be represented as encoded text strings, but they are composed of a sequence of
+                RouteSegments, each of which is an airway of some sort with a terminus.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="text" type="fx:RouteTextType" minOccurs="1" maxOccurs="1" nillable="true"/>
+                    <xsd:element name="segment" type="fx:AbstractRouteSegmentType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="AbstractRouteSegmentType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>
+                Represents one segment of the flight plan, including an airway and a "significant point".
+                The airway can be an air route designator (jetway, victor, star, etc), or a direct marker
+                if the airway between two points is implicit. The significant point may be a fix, a fixed
+                radial distance notation, or some other indication of a physical location that terminates
+                the route segment. Aerodromes are not used for significant points, and are represented by
+                "nil" significant point elements. Segments may be decorated with cruise or climb information,
+                indicating airspeed, altitude, flight rules, or changes in any of these. Route segments
+                occur in the same order that they are present in the route text.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="airway" type="fx:SegmentAirwayType" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xsd:element name="point" type="base:SignificantPointType" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xsd:element name="flightRules" type="fx:FlightRulesType" minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="SegmentAirwayType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Airway description: either name or DCT annotation
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:union memberTypes="fx:AirwayType fx:DirectType"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="AirwayType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Name of an airway as it appears in the route string
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Airway</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[A-Z][A-Z0-9]{1,6}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="DirectType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Used instead of an AirwayType when the airway between two significant points is implicit.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+        <xsd:pattern value="DCT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+   <xsd:complexType name="CruiseSegmentType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Change Speed and Altitude</xsd:appinfo>
+         <xsd:documentation>
+            Specifies the altitude, air speed, and flight rules in force during a segment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="fx:AbstractRouteSegmentType">
+            <xsd:sequence>
+               <xsd:element name="altitude" type="base:AltitudeType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="airspeed" type="base:AirspeedType" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="BasicSegmentType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies a route segment containing only airway, point, flight rules
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="fx:AbstractRouteSegmentType">
+            <xsd:sequence>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ClimbSegmentType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Change Cruise Climb</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Change Flight Rules</xsd:appinfo>
+         <xsd:documentation>
+            Specifies the air speed, and flight rules in force during a segment, together with
+            altitude change between entry to the segment and exit from the segment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="fx:AbstractRouteSegmentType">
+            <xsd:sequence>
+               <xsd:element name="airspeed" type="base:AirspeedType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="initialAltitude" type="base:AltitudeType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="finalAltitude" type="fx:PlusAltitudeType" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType> 
+
+    <xsd:simpleType name="RouteTextType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The raw text of the route, as it was entered in the filed flight plan.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z0-9/ ]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+   <xsd:complexType name="PlusAltitudeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            An altitude that can represent a definite value or indefinite "PLUS" altitude
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="altitude" type="base:AltitudeType" minOccurs="1" maxOccurs="1"></xsd:element>
+         <xsd:element name="plus" type="xsd:string" fixed="PLUS" minOccurs="1" maxOccurs="1"></xsd:element>
+      </xsd:choice>
+   </xsd:complexType>
+
+</xsd:schema>

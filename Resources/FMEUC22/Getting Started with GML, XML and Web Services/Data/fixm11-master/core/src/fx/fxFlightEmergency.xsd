@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="fxFlightEmergency:1.1-SNAPSHOT">
+<!-- $Revision: 566 $ -->
+
+   <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd"/>
+   <xsd:include schemaLocation="fxFlight.xsd"/>
+   <xsd:include schemaLocation="fxAircraft.xsd"/>
+
+    <xsd:annotation>
+        <xsd:documentation>
+            The FlightEmergency schema contains a complete description of a flight emergency, including
+            a record of contacts, the actions being taken, the emergency equipment in use, etc.
+        </xsd:documentation>
+    </xsd:annotation>
+
+   <xsd:complexType name="FlightEmergencyType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Emergency Description</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Emergency Phase</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Emergency Message Originator</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Emergency Radio Transmitter Type</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Other Search and Rescue Information</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Radio Failure Remarks</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Action Taken By Reporting Unit</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Remaining Communication Capabilities</xsd:appinfo>
+         <xsd:documentation>
+            Description of a single emergency event.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="phase" type="fx:EmergencyPhaseType" default="INCERFA" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="originator" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="contact" type="fx:EmergencyContactType" minOccurs="1" maxOccurs="unbounded" />
+         <xsd:element name="emergencyDescription" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="actionTaken" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="otherSearchAndRescueInformation" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="remainingComCapability" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="radioFailureRemarks" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+    <xsd:simpleType name="EmergencyPhaseType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Phase of the emergency.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INCERFA">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Inception phase
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALERFA">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alert phase.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DETRESFA">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Determination and rescue phase
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UNKNOWN">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Other emergency phase
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="EmergencyContactType">
+        <xsd:annotation>
+            <xsd:appinfo source="fx:implements">Last Contact Radio Frequency</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Last Contact Time</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Last Contact Unit</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Last Known Position Report</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Last Known Position Report - Determination Method</xsd:appinfo>
+            <xsd:documentation>
+                Record of one contact during emergency.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="lastContactTime" type="base:TimeType" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="unit" type="base:FreeTextType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="contactFrequency" type="base:RadioFrequencyType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="position" type="fx:LastPositionReportType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="positionMethod" type="base:FreeTextType" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+	
+	<xsd:complexType name="LastPositionReportType">
+	  <xsd:annotation>
+            <xsd:documentation>
+                The position of the aircraft last known to ATS
+            </xsd:documentation>
+        </xsd:annotation>
+       <xsd:sequence>
+           <xsd:element name="position" type="base:SignificantPointType" minOccurs="0" maxOccurs="1"/>
+           <xsd:element name="timeAtPosition" type="base:TimeType" minOccurs="1" maxOccurs="1"/>
+       </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="fxFlight:1.1-SNAPSHOT">
+<!-- $Revision: 515 $ -->
+
+
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd"/>
+    <xsd:include schemaLocation="fxAircraft.xsd"/>
+    <xsd:include schemaLocation="fxFlightPlan.xsd"/>
+    <xsd:include schemaLocation="fxArrival.xsd"/>
+    <xsd:include schemaLocation="fxDeparture.xsd"/>
+    <xsd:include schemaLocation="fxDangerousGoods.xsd"/>
+    <xsd:include schemaLocation="fxFlightEmergency.xsd"/>
+
+    <xsd:complexType name="FlightType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The Flight element is the root of all the core information about a flight. The flight is
+                uniquely identified by the required GUFI element, and all other elements are optional. Extension
+                elements beyond the scope of the Flight element are appended to the "extensions" sequence,
+                and must be interpreted individually.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="gufi" type="fx:GlobalUniqueFlightIdentifierType" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="filedFlightPlan" type="fx:FlightPlanType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="activeFlightPlan" type="fx:FlightPlanType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="actualDeparture" type="fx:FlightDepartureType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="actualArrival" type="fx:FlightArrivalType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="emergency" type="fx:FlightEmergencyType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="dangerousGoods" type="fx:DangerousGoodsType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="extension" type="base:AbstractExtensionType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="GlobalUniqueFlightIdentifierType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Global Unique Flight Identifier: alphanumeric string that uniquely denotes
+                a flight. Format:
+
+                   region.organization.creation.qualifier
+
+                Field           Description                                     Example
+                -----           -----------                                     -------
+                region          Geographic region where flight was created      "us", "eur"
+                organization    Organization that created the flight            "zfw" (center), ual(airline),
+                                                                                "cfmu" (FIR), "n1945bl" (tail number)
+                creation        Date/time (to sec) of flight creation           "20120512T174322Z"
+                qualifier       Any data required to ensure uniqueness          "837"
+                                Typically and auto-incremented integer
+
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Globally Unique Flight Identifier</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-z]+\.[a-z0-9]+\.[0-9]{4}[0-9]{2}[0-9]{2}T[0-9]{2}[0-9]{2}[0-9]{2}\.[A-Za-z0-9]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
