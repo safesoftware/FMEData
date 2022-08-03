@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   xmlns:nas="http://www.fixm.aero/ext/nas/1.0"
+   targetNamespace="http://www.fixm.aero/ext/nas/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="nasAircraft:1.1-SNAPSHOT">
+<!-- $Revision: 190 $ -->
+
+    <xsd:import namespace="http://www.fixm.aero/fx/1.0" schemaLocation="../../../core/src/fx/fx.xsd"/>
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../../../core/src/base/base.xsd"/>
+
+    <xsd:complexType name="NasAircraftDescriptionType">
+        <xsd:annotation>
+            <xsd:documentation>
+                NAS specific extensions to aircraft information
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="fx:AircraftDescriptionType">
+                <xsd:sequence>
+                    <xsd:element name="qualifier" type="nas:NasAirborneEquipmentQualifierType" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="accuracy" type="nas:NasPerformanceBasedAccuracyType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+    <xsd:simpleType name="NasAirborneEquipmentQualifierType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Nas specific extensions to airborne equipment
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Airborne Equipment Qualifier</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="X">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        NO DME: No transponder
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="T">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        NO DME: Transponder with no mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="U">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        NO DME: Transponder with mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        DME: No transponder
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="B">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        DME: Transponder with no mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        DME: Transponder with mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="M">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        TACAN ONLY: No transponder
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="N">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        TACAN ONLY: Transponder with no mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        TACAN ONLY: Transponder with mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Y">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        LORAN,VORDME,INS,RNAV: No transponder
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        LORAN,VORDME,INS,RNAV: Transponder with no mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="I">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        LORAN,VORDME,INSRNAV: Transponder with mode C
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ADVANCED RNAV, TRANSPONDER, MODE C:  Flight Management System (FMS) with DMEDME and IRU position updating
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="F">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ADVANCED RNAV, TRANSPONDER, MODE C: FMS with DMEDME position updating
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="G">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ADVANCED RNAV, TRANSPONDER, MODE C: Global Navigation Satellite System (GNSS), including GPS or Wide Area Augmentation System (WAAS), with en route and terminal capability.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="R">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ADVANCED RNAV, TRANSPONDER, MODE C: Required Navigational Performance (RNP). The aircraft meets the RNP type prescribed for the route segments, routes and/or area concerned
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="J">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        REDUCED VERTICAL SEPARATION MINIMUM (RVSM): E with RVSM
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="K">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        REDUCED VERTICAL SEPARATION MINIMUM (RVSM): F with RVSM
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="L">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        REDUCED VERTICAL SEPARATION MINIMUM (RVSM): G with RVSM
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Q">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        REDUCED VERTICAL SEPARATION MINIMUM (RVSM): R with RVSM
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="W">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        REDUCED VERTICAL SEPARATION MINIMUM (RVSM): RVSM
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="NasPerformanceBasedAccuracyType">
+        <xsd:annotation>
+            <xsd:documentation>
+                NAS extension for Performance-Based Navigation Accuracy.
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Performance-Based Navigation Accuracy</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Performance-Based Navigation Category</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Performance-Based Navigation Phase</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="cmsFieldType" type="nas:CmsAccuracyType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CmsAccuracyType">
+        <xsd:annotation>
+            <xsd:documentation>
+                This is the flight's navigation accuracy value for the phase
+                of flight specified in the Performance-Based Navigation Phase.
+                On the flight plan form, this is written as tenths of a nautical
+                mile, but it may be stored as any valid distance value and converted
+                as needed.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:DistanceType">
+            <xsd:attribute name="type" type="nas:CmsAccuracyTypeType" use="required"/>
+            <xsd:attribute name="phase" type="nas:NasPerformanceBasedNavigationPhaseType"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="CmsAccuracyTypeType">
+        <xsd:annotation>
+            <xsd:documentation>
+                This is an enumeration indicating whether the accuracy measure in Performance-Based
+                Navigation Accuracy is measuring RNV or RNP. If the accuracy measurement includes
+                on-board navigation performance monitoring and alerting, the measurement is called RNP,
+                if not the measurement is called RNV.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="RNV"/>
+            <xsd:enumeration value="RNP"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+        <xsd:simpleType name="NasPerformanceBasedNavigationPhaseType">
+        <xsd:annotation>
+            <xsd:documentation>
+                NAS extension for Performance-Based Navigation Phase of Flight.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DEPARTURE"/>
+            <xsd:enumeration value="ARRIVAL"/>
+            <xsd:enumeration value="ENROUTE"/>
+            <xsd:enumeration value="OCEANIC"/>
+            <xsd:enumeration value="SPARE_1"/>
+            <xsd:enumeration value="SPARE_2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

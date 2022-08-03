@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fx="http://www.fixm.aero/fx/1.0" xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0" elementFormDefault="qualified" attributeFormDefault="qualified" version="fxFlightPlan:1.1-SNAPSHOT"
+>
+
+   <!-- $Revision: 511 $ -->
+
+   <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd" />
+   <xsd:include schemaLocation="fxAircraft.xsd" />
+   <xsd:include schemaLocation="fxFlightRoute.xsd" />
+   <xsd:include schemaLocation="fxAerodrome.xsd" />
+   <xsd:include schemaLocation="fxDeparture.xsd" />
+
+   <xsd:complexType name="FlightPlanType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Aircraft Quantity</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Flight Plan Originator</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Flight Type</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Special Handling Reason</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Inter-Facility Remarks</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Aircraft Operator Identity</xsd:appinfo>
+
+         <xsd:documentation>
+            Since a given flight may contain several proposed flight plans, flight plans may be distinguished
+            by their "identifier" attribute. The precise content of this identifier is undefined, but it must
+            uniquely name a flight plan within the context of its flight. The identifier is often assigned by
+            the ATSU in which the flight was filed.            
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="base:AbstractFeatureType">
+            <xsd:sequence>
+               <xsd:element name="aircraftIdentity" type="fx:AircraftIdentificationType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="aircraftDescription" type="fx:AircraftDescriptionType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="formationAircraftCount" type="base:CountType" minOccurs="1" maxOccurs="1" default="1" />
+               <xsd:element name="operator" type="fx:OperatorType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="originator" type="fx:OriginatorType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="filing" type="fx:FlightPlanFilingType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="specialHandlingCodes" type="fx:SpecialHandlingCodeListType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="departure" type="fx:FlightPlanDepartureType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="arrival" type="fx:FlightPlanArrivalType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="enRoute" type="fx:FlightPlanEnRouteType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="request" type="fx:FlightPlanRequestType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="route" type="fx:FlightRouteType" minOccurs="1" maxOccurs="1" />
+               <xsd:element name="boundaryCrossing" type="fx:BoundaryCrossingType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="interFacilityRemarks" type="base:FreeTextType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="flightType" type="fx:FlightTypeType" minOccurs="0" maxOccurs="1" />
+               <xsd:element name="supplementalData" type="fx:SupplementalDataType" minOccurs="0" maxOccurs="1" />
+            </xsd:sequence>
+            <xsd:attribute name="flightPlanIdentifier" type="fx:FlightPlanIdentifierType" use="optional" />
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="FlightPlanDepartureType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Information about planned departure aerodrome and time
+         </xsd:documentation>
+         <xsd:appinfo source="fx:implements">Departure Time - Estimated</xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="estimatedDepartureTime" type="base:TimeType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="departureAerodrome" type="fx:AerodromeReferenceType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="alternateDepartureAerodrome" type="fx:AerodromeReferenceType" minOccurs="0" maxOccurs="unbounded" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <xsd:complexType name="FlightPlanArrivalType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Information about planned arrival aerodrome and time
+         </xsd:documentation>
+         <xsd:appinfo source="fx:implements">Arrival Time - Estimated</xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="estimatedArrivalTime" type="base:TimeType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="arrivalAerodrome" type="fx:AerodromeReferenceType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="alternateArrivalAerodrome" type="fx:AerodromeReferenceType" minOccurs="0" maxOccurs="unbounded" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SupplementalDataType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Supplemental information filed by the originator prior to departure
+         </xsd:documentation>
+         <xsd:appinfo source="fx:implements">Fuel Endurance </xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Number of Persons on Board</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Pilot in Command</xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="fuelEndurance" type="fx:FuelEnduranceType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="pilotInCommand" type="fx:FlightPilotType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="personsOnBoard" type="base:CountType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="FuelEnduranceType">
+      <xsd:annotation>
+         <xsd:documentation>
+            How long can the aircraft be expected to remain in the air with its current fuel load?
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="base:DurationType" />
+   </xsd:simpleType>
+
+   <xsd:simpleType name="FlightPlanIdentifierType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The flight plan identifier is a string used to uniquely name a flight plan within the
+            scope of its flight.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[A-Z0-9]+" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="EnRouteMarkerType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The en route marker is a named spot that marks transition between flight info regions or zones.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[A-Z0-9]+" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="FlightInfoRegionType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A flight Information Region (FIR) is the area of authority of an ATC center.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[A-Z]{4}" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="FlightPlanEnRouteType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">En Route Alternate Aerodrome</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">En Route Delay - Filed</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Time En Route - Estimated</xsd:appinfo>
+         <xsd:documentation>
+            Record of flight plan data generate while flight is en route from origin to destination.
+         </xsd:documentation>
+         <xsd:appinfo source="fx:implements">Estimated Elapsed Time</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Route - Revised Destination</xsd:appinfo>
+
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="alternateAerodrome" type="fx:AerodromeReferenceType" minOccurs="0" maxOccurs="unbounded" />
+         <xsd:element name="alternateAerodromeRoute" type="fx:FlightRouteType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="estimatedCrossingTime" type="fx:EnRouteEstimatedCrossingTimeType" minOccurs="0" maxOccurs="unbounded" />
+         <xsd:element name="filedDelay" type="fx:EnRouteFiledDelayType" minOccurs="0" maxOccurs="unbounded" />
+         <xsd:element name="enRouteTime" type="base:DurationType" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="EnRouteFiledDelayType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Record of anticipated delays at upcoming significant points.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="point" type="base:SignificantPointType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="plannedDelay" type="base:DurationType" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="EnRouteEstimatedCrossingTimeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Record of anticipated elapsed time when flight will transition into a new Flight Info Region.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="point" type="base:SignificantPointType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="region" type="fx:FlightInfoRegionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="marker" type="fx:EnRouteMarkerType" minOccurs="1" maxOccurs="1" />
+         </xsd:choice>
+         <xsd:element name="elapsedTime" type="base:DurationType" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="FlightPlanRequestType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Flight Rules</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Cruising Altitude - Requested</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Cruising Speed</xsd:appinfo>
+         <xsd:documentation>
+            Requested flight parameters: altitude, air speed, flight rules.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="altitude" type="fx:RequestAltitudeType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="airspeed" type="base:AirspeedType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="flightRules" type="fx:FlightRulesType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RequestAltitudeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The requested altitude, including "VFR" value
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleContent>
+         <xsd:extension base="base:AltitudeType">
+            <xsd:attribute name="vfr" use="optional" fixed="VFR"></xsd:attribute>
+         </xsd:extension>
+      </xsd:simpleContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="BoundaryCrossingType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Boundary Crossing Point</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Boundary Crossing Time</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Boundary Crossing Condition</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Boundary Crossing Level - Cleared</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Boundary Crossing Level - Transition</xsd:appinfo>
+         <xsd:documentation>
+            Coordination information recording when/where it is anticipated the flight will be handed over to a downroute ATS Unit.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="point" type="base:SignificantPointType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="crossingTime" type="base:TimeType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="clearedAltitude" type="base:AltitudeType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="transitionAltitude" type="base:AltitudeType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="crossingCondition" type="fx:BoundaryCrossingConditionType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="BoundaryCrossingConditionType">
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="A" />
+         <xsd:enumeration value="B" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="FlightTypeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            List of possible flight types.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="MILITARY" />
+         <xsd:enumeration value="GENERAL" />
+         <xsd:enumeration value="NON_SCHEDULED" />
+         <xsd:enumeration value="SCHEDULED" />
+         <xsd:enumeration value="OTHER" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="OriginatorType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The organization that originated the flight, with AFTN address.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="base:AbstractAgentType">
+            <xsd:sequence>
+            </xsd:sequence>
+            <xsd:attribute name="code" type="fx:AftnAddressType" />
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:simpleType name="AftnAddressType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The AFTN address of flight originator.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[A-Z]{8}" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="SpecialHandlingCodeListType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Reasons for special handling for flight.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:list itemType="fx:SpecialHandlingCodeType" />
+   </xsd:simpleType>
+
+   <xsd:simpleType name="SpecialHandlingCodeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Reason codes for special handling for flight.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="ALTRV" />
+         <xsd:enumeration value="ATFMS" />
+         <xsd:enumeration value="FFR" />
+         <xsd:enumeration value="FLTCK" />
+         <xsd:enumeration value="HAZMAT" />
+         <xsd:enumeration value="HEAD" />
+         <xsd:enumeration value="HOSP" />
+         <xsd:enumeration value="HUM" />
+         <xsd:enumeration value="MARSA" />
+         <xsd:enumeration value="MEDEVAC" />
+         <xsd:enumeration value="NONRVSM" />
+         <xsd:enumeration value="SAR" />
+         <xsd:enumeration value="STATE" />
+         <xsd:enumeration value="OTHER" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="FlightPlanFilingType">
+      <xsd:annotation>
+         <xsd:appinfo source="fx:implements">Flight Plan Accepted</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Flight Plan Filer</xsd:appinfo>
+         <xsd:documentation>
+            Indicates whether this flight plan is/not accepted for flight, and accepting agency
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="accepted" type="fx:FlightPlanAcceptedType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="filedBy" type="base:AbstractAgentType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="filingTime" type="base:TimeType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="FlightPlanAcceptedType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Indicates whether this flight plan is/not accepted for flight.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="ACCEPTED" />
+         <xsd:enumeration value="NOT_ACCEPTED" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="FlightRulesType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Indicates flight rules assigned for the flight.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="IFR" />
+         <xsd:enumeration value="VFR" />
+         <xsd:enumeration value="IFR_VFR" />
+         <xsd:enumeration value="VFR_IFR" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="FlightCrewType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A single flight crew member.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="base:PersonType" />
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="FlightPilotType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A single flight pilot/copilot
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="fx:FlightCrewType" />
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="AircraftIdentificationType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Contains all the ways in which an aircraft can be identified. Not all of these
+            will apply to every flight, and not all of them stay
+            constant during the flight.
+         </xsd:documentation>
+         <xsd:appinfo source="fx:implements">Aircraft Identification</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Aircraft Address</xsd:appinfo>
+         <xsd:appinfo source="fx:implements">Beacon Code</xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="acid" type="fx:AcidType" minOccurs="1" maxOccurs="1" />
+         <xsd:element name="beaconCode" type="fx:BeaconCodeType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="aircraftAddress" type="fx:AircraftAddressType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="AcidType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The flight name - sometimes called "ACID"
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[A-Z][A-Z0-9]{0,6}" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="AircraftAddressType">
+      <xsd:annotation>
+         <xsd:documentation>
+            24-bit hexadecimal identity of the aircraft ModeS transponder.
+            The Mode S transponder is part the airframe's equipment and will be
+            constant throughout the flight, unless there is an exchange of aircraft.
+            Sometimes called "CPDLC" address.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="6" />
+         <xsd:pattern value="F[0-9A-F]{5}" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="BeaconCodeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Flight beacon code, expressed in octal.
+            The beacon code is a representation of the Mode3a transponder code.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:maxLength value="4" />
+         <xsd:pattern value="[0-7]{4}" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="OperatorType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The organization, person, or corporation that operates the aircraft.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="base:AbstractAgentType" />
+      </xsd:complexContent>
+   </xsd:complexType>
+
+</xsd:schema>

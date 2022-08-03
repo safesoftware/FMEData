@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   targetNamespace="http://www.fixm.aero/fx/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="fxAircraft:1.1-SNAPSHOT">
+    <!-- $Revision: 566 $ -->
+
+    <xsd:annotation>
+        <xsd:documentation>
+            The fxAircraft schema provides elements relating to an aircraft, including its identification, physical
+            characteristics, owner, and all its capabilities.
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../base/base.xsd"/>
+    <xsd:include schemaLocation="./fxAircraftCommunicationCapability.xsd"/>
+    <xsd:include schemaLocation="./fxAircraftNavigationCapability.xsd"/>
+    <xsd:include schemaLocation="./fxAircraftSurvivalCapability.xsd"/>
+    <xsd:include schemaLocation="./fxAircraftSurveillanceCapability.xsd"/>
+
+   <xsd:complexType name="AircraftCapabilitiesType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Describes all the capabilities of the physical aircraft. "Capability" refers not only to the
+            equipment needed for the function, but to the ability of the crew to employ that equipment.
+            The "standard" attribute indicates that the aircraft carries the set of capabilities
+            considered normal by the appropriate authority.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="communication" type="fx:CommunicationCapabilitiesType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="surveillance" type="fx:SurveillanceCapabilitiesType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="survival" type="fx:SurvivalCapabilitiesType" minOccurs="0" maxOccurs="1" />
+         <xsd:element name="navigation" type="fx:NavigationCapabilitiesType" minOccurs="0" maxOccurs="1" />
+      </xsd:sequence>
+      <xsd:attribute name="standard" type="xsd:string" fixed="STANDARD" use="optional"></xsd:attribute>
+   </xsd:complexType>
+
+    <xsd:complexType name="AircraftDescriptionType">
+        <xsd:annotation>
+            <xsd:appinfo source="fx:implements">Aircraft Colour and Markings</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Aircraft Type</xsd:appinfo>
+        <xsd:documentation>
+            Defines all elements relating to an aircraft, including its identification, physical
+            characteristics, owner, markings, and all its capabilities.
+        </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="base:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="capabilities" type="fx:AircraftCapabilitiesType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="registration" type="fx:AircraftRegistrationMarkType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="aircraftCategory" type="fx:AircraftCategoryType" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="performance" type="fx:AircraftPerformanceCharacteristicsType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="colourAndMarkings" type="fx:AircraftColoursType" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="AircraftRegistrationMarkType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Specifies unique aircraft registration number ("tail number")
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Aircraft Registration Mark</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[A-Z0-9]{1,7}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="AircraftCategoryType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The AircraftType encapsulates information about aircraft manufacturer and model,
+                and the type of aircraft.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="model" type="fx:AircraftModelIcaoType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="otherModelData" type="base:FreeTextType" minOccurs="1" maxOccurs="1"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:simpleType name="AircraftModelIcaoType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z0-9]{2,4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="AircraftPerformanceCharacteristicsType">
+        <xsd:annotation>
+            <xsd:appinfo source="fx:implements">Aircraft Performance Category</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Wake Turbulence Category</xsd:appinfo>
+            <xsd:documentation>
+                Describes capabilities of the aircraft, including wake turbulence category,
+                fuel endurance, installed equipment, and other performance data.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="performance" type="fx:AircraftPerformanceCategoryType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="wakeTurbulence" type="fx:WakeTurbulenceCategoryType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="AircraftColoursType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Distinctive colors and markings of the aircraft.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="base:FreeTextType"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="AircraftPerformanceCategoryType">
+        <xsd:annotation>
+            <xsd:documentation>
+                ICAO Aircraft Performance Data code
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:documentation>less than 169 km/h (91 kt) indicated airspeed (IAS)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="B">
+                <xsd:annotation>
+                    <xsd:documentation>169 km/h (91 kt) or more but less than 224 km/h (121 kt) IAS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:documentation>224 km/h (121 kt) or more but less than 261 km/h (141 kt) IAS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:documentation>261 km/h (141 kt) or more but less than 307 km/h (166 kt) IAS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E">
+                <xsd:annotation>
+                    <xsd:documentation>307 km/h (166 kt) or more but less than 391 km/h (211 kt) IAS
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="H">
+                <xsd:annotation>
+                    <xsd:documentation>Helicopters</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>   
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WakeTurbulenceCategoryType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Characterizes the wake turbulence produced by an aircraft.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="L">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        LIGHT, MOTM of 7,000 kg or less
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="M">
+                <xsd:annotation>
+                    <xsd:documentation>
+                    	MEDIUM, MOTM of less than 136,000 kg but more than 7000
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="H">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        HEAVY, maximum take-off mass (MOTM) of 136,000 kg or more
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="S">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        SUPER (currently only employed for the A380-800)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

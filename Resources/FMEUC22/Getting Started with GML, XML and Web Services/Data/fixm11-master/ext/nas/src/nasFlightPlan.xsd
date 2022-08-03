@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2012, US FAA & SESAR Joint Undertaking
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the disclaimer in the documentation and/or
+    other materials provided with the distribution.
+  * Neither the names of the SESAR Joint Undertaking and the US FAA nor the names
+    of their contributors may be used to endorse or promote products derived from
+    this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided
+by the Open Source Initiative: http://www.opensource.org/licenses/bsd-license.php
+
+Details on the US FAA: http://www.faa.gov/
+Details on the SJU and its members: http://www.sesarju.eu/players/members
+-->
+
+
+<xsd:schema
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:fx="http://www.fixm.aero/fx/1.0"
+   xmlns:base="http://www.fixm.aero/base/1.0"
+   xmlns:nas="http://www.fixm.aero/ext/nas/1.0"
+   targetNamespace="http://www.fixm.aero/ext/nas/1.0"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified"
+   version="nasFlightPlan:1.1-SNAPSHOT">
+<!-- $Revision: 190 $ -->
+
+    <xsd:import namespace="http://www.fixm.aero/fx/1.0" schemaLocation="../../../core/src/fx/fx.xsd"/>
+    <xsd:import namespace="http://www.fixm.aero/base/1.0" schemaLocation="../../../core/src/base/base.xsd"/>
+    <xsd:include schemaLocation="./nasFlightRoute.xsd"/>
+    <xsd:include schemaLocation="./nasAircraft.xsd"/>
+
+    <xsd:complexType name="NasFlightPlanType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Describes the flight plan structure used by NAS. Based on core ICAO flight plan.
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Assigned Altitude</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Requested Altitude</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Special Aircraft Indicator</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="fx:FlightPlanType">
+                <xsd:sequence>
+                    <!-- FO-407: route and aircraftDescription removed -->
+                    <xsd:element name="specialAircraftIndicator" type="nas:NasSpecialAircraftIndicator" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="requestedAltitude" type="nas:NasAltitudeType"  minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="assignedAltitude" type="nas:NasAltitudeType"  minOccurs="0" maxOccurs="1"/>
+                    <!-- FO-311 -->
+                    <xsd:element name="requestedAirspeed" type="nas:NasRequestedSpeedType" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="boundaryCrossing" type="nas:NasBoundaryCrossingType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="computerId" type="nas:NasComputerIdentificationType" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="NasFlightPlanStateExtensionType">
+        <xsd:annotation>
+            <xsd:documentation>
+                NAS extension values for flight plan state, beyond ICAO values.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="NasRequestedSpeedType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Requested speed can be expressed either in air speed or ground speed..
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements"> Classified Speed Indicator </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="airspeed" type="nas:NasAirspeedType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="groundSpeed" type="base:GroundspeedType" minOccurs="1" maxOccurs="1"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+   <!-- FO-311 -->
+    <xsd:complexType name="NasAirspeedType">
+        <xsd:annotation>
+            <xsd:documentation>
+                A NAS version of the Airspeed type that represents airspeed
+                measurement in a unit of measure represented by uom field.
+                Also contains an element indicating whether airspeed is classified.
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements"> Classified Speed Indicator </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+ 		<xsd:extension base="xsd:float">
+ 			 <xsd:attribute name="uom" type="nas:NasAirspeedMeasureType" use="required"/>
+        	 <xsd:attribute name="classified" type="nas:NasAirspeedClassifiedType"/>
+ 		 </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+<!-- FO-341 -->
+    <xsd:simpleType name="NasAirspeedMeasureType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KNOTS"/>
+            <xsd:enumeration value="MACH"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NasAirspeedClassifiedType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Indicates when air speed is classified (military).
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CLASSIFIED"/>
+            <xsd:enumeration value="NOT_CLASSIFIED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="NasBoundaryCrossingType">
+        <xsd:annotation>
+            <xsd:documentation>
+                NAS extension to boundary crossing information: includes special handling for crossing time.
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Coordination Time Type</xsd:appinfo>
+            <xsd:appinfo source="fx:implements">Coordination Fix</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="fx:BoundaryCrossingType">
+                <xsd:sequence>
+                    <xsd:element name="coordinationTimeHandling" type="nas:NasBoundaryCrossingTimeHandlingType" minOccurs="1" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="NasSpecialAircraftIndicator">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="H"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NasBoundaryCrossingTimeHandlingType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="P">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Proposed flight plan preparing for departure
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Flight plan has departed from the departure airport
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Active flight plan, aircraft is flying.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NasComputerIdentificationType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The CID normally stays constant while a flight is within a given flight information region,
+                (FIR) but may change as the flight is handed off to adjacent regions.
+            </xsd:documentation>
+            <xsd:appinfo source="fx:implements">Computer ID</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z0-9]{1,3}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NasFacilityIdentifierType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Valid Format: LLL(L) "Name" of a NAS Facility.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="fx:FlightInfoRegionType">
+            <xsd:pattern value="[A-Z0-9]{3,4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+<!-- FO-375 -->
+    <xsd:simpleType name="NasAerodromeCodeType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Nas Airport Code: can be used to replace ICAO code as needed
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="fx:AerodromeCodeType">
+            <xsd:pattern value="[A-Z]{3,4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
