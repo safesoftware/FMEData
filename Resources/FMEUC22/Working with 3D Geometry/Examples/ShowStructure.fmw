@@ -1,0 +1,651 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME22\fme.exe" "C:\FMEData2022\Resources\FMEUC22\Working with 3D Geometry\Examples\ShowStructure.fmw"
+#          --SourceDataset_SKP "C:\FMEData2022\Resources\FMEUC22\Working with 3D Geometry\Data\ch1.skp"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAACFCAIAAAD6sTkHAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAHgklEQVR4nO3cS2wcdx3A8d/M7Nu78a5rb+zY8TqJnbRxtiSENJQ4jeUKRSgQoBKUQsOhgkMlpEagSiCE1CPXqqDyEAckCpRSQXIIIm1MoqZKnQdxHs7LdWLjbLK1Y3udtXe9j5nhYOIGSBHYa6xf8v0crJ3xan7/mcNX2pnVGq7rCgBoYC71AgDgv0WwAKhBsACoQbAAqEGwAKhBsACoQbAAqEGwAKhBsACoQbAAqEGwAKhBsACoQbAAqEGwAKhBsACoQbAAqEGwAKjhWeoFQLeR8czRU30Bv7djc3JZVXCpl4P7nKHrJ5LTqcFT7x10CpMiIt5ln9yxqy7etNSLekCNTky+8tqBGau6IbHWLhVvDPXXBYt79+wOBvxLvTTctzQF692/7Cvd6u3c2DC3562TKV9808YtXbbtWFYlP97ajmOZHx7Q67FCoaoKHn9Rffv7LzmOM7fp8Vjlsl3B43u93mLJznrjW7qeMgyjkM8NXDjpC4QSa5PDvYd/+J09pmFUcBwwR02w3r98duLy/lyhkBqdntuZWB5xRZrj4eaVCSllKjnPH5PCxN07fvvX0FeefraSIxbHjw+lLI9HRPp6DrVvfVLk0LH9bY/vbl74kV3HuXXzal1jayzkeefw2+s3d5iWxy6Xjx18Y+O2nfnp29cu9Sa3Plk9c+25pz698HHAv1Nz073v5J+3PBIfn8w7tlMolgvFsmM7E1OFjkcbT18ZdV337vL+6ch5ERE5//IvR+Y9cXK6ePl6tvvM2MWhybLtdCZGi8XCgs9jsbzX0/O7N988c+685fF0f6v++c4Xh45+7fnOF/t6rqYqECuZGL1Rygwvj0ZuDZ4tl0qWxzItj4iMpYdXtiXD1TV1K1pM0woEq1K3chWYB9yLmpvuVnlSpNrrsdYlIgOpjOO6bU2x4ZGsbbumaaTHsj1nBnZsaopFbr/89A/2nhaR7Qd+3nChJT7viX/74PZD8eY6e8xftWwiO/n2YL177Q8tK5saV6wQEdu2Y7GY1+t17+I4zn/YdF23WCzmcrl8Pp+7Y2ZmZi61rusa/+OHqf7+/mQyKSKpdHrX579488aN9NkzIiIb1lZ3vPZqh/RtXf2J3nlfgw+VpsbNmlimaNbV1o6kBry+f9xfr4rWDF+9kGjbYNvlQiFvmGYmV6zAPOBedASrXC6Zpi0ipmk8tCyYHs+5jvz64KXjF9OHTgzt3LpKRFzXuTA4ti3pFRFZs73/uxv7d8S/cGT+Qx3xZ6emA2bBcZ3MtFsVDidWtfaeOjmVzYbD4bGxsVwuFwgETNM0DGP279yLe+40DMPn8wWDwdra2uAds0eY9yKLxeJs77oPHzl3ptexy3XtnV0/SnfdeUO7SPRTnkyuPP8LISIiRiBcE42Wbo06ji+2fOXg8E0RyU9nD77+anPbhuPdfxSR5GNdIhLwWgucBXwUHcHyeLyuGRYRwzB8XstrGbYhsYi/JuJvqA1blhkO+pNr6lqbYiLywus/fUFERFpFZMf8h0ZDMlks1cZWDKXSH19ddeL9856WVc99fU8lTqhifD7f7IvOJ7b7/f7xzO3fn1uUz63V0fjA9Q/smdu5UPWa5SHbsWdyUwd+84pr249s2h6KVM+9MxoiWFgsOoIlIhJsyObyrusWS3bJdu2y++zO9Zseru9INp64mI5U+SNNscoOTNRHXNe9fP3m4w9Xi8hbR49/9Rvfq+yICgoGgyJSWxPNnPtF7NHP/st/F/7Uzh8KxUOrZl+bhtGQaE0PD9Q3rt7U8Zm7azXY17P3y08sdBjwEdQ8JXQc+1c/eWnb+sh4Nj+7ZMOQmmXBfe9cn/K1GGK4UskTMYx/ujJtifgzGh4R/j/t6+45dmmkpf2x2U3HsQfPvfu5beu3b25f2oXhPqYmWCJSKs7se+NnwXJ6XXO0bDtXrmfK/ubdX/qmx+Nd6qU9oFIjY/u7ezJTRcs0omHfM7s6I3zZHYtJU7Bm2eXylYunTY/Vtu5jpsntEuABoi9YAB5Yar44CgAEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGgQLgBoEC4AaBAuAGn8HxYVf4Mzg/p8AAAAASUVORK5CYII="
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1450.01 77"
+#!   DOC_TOP_LEFT="-2989.29 1106.51"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22346"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="d8427b5a-5d55-488d-b15e-540b21911e54"
+#!   FME_DOCUMENT_PRIORGUID="301bbf85-2176-4013-a350-cdb5e6f6a4e8,7b3d262d-ca62-41f2-8890-9523e90931e1,da00da57-00d7-47ba-bf41-5acd2f35429d"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+#!   LAST_SAVE_DATE="2022-08-08T11:38:50"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="39"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-4090.67 1840.64"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="SKP"
+#!   DATASET="$(SourceDataset_SKP)"
+#!   KEYWORD="SKP_2"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="false"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string string fme_type string multi_reader_full_id double multi_reader_id double multi_reader_keyword string multi_reader_type string skp_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22346"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="SKP_OUT_VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="File1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="SketchUp File"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the SketchUp file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the SketchUp file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bool"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="SKP"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_model"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="SKP"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="ch1"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="1"
+#!   FEAT_GEOMTYPE="skp_model skp_no_geom skp_surface skp_polygon skp_rectangle skp_rounded_rectangle skp_solid skp_ellipse skp_point skp_text skp_line skp_arc"
+#!   POSITION="-2989.2855626556266 1177.5141250912511"
+#!   BOUNDING_RECT="-2989.2855626556266 1177.5141250912511 431 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="SKP_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="SKP_2"
+#!   OVERRIDE="-SKP_2_DATASET"
+#!   DATASET="SKP_2/ch1.skp"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SKP SKP_Files(*.skp)|*.skp|All_Files(*)|* Source Trimble SketchUp File:"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Working with 3D Geometry\Data\ch1.skp"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImRlZmF1bHRWYWx1ZSI6IkM6XFxGTUVEYXRhMjAyMlxcUmVzb3VyY2VzXFxGTUVVQzIyXFxXb3JraW5nIHdpdGggM0QgR2VvbWV0cnlcXERhdGFcXGNoMS5za3AiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkFyY2hpdmUgRmlsZXMiLCJmaWx0ZXIiOlsiKi43eiIsIiouN3ppcCIsIioucmFyIiwiKi5ydnoiLCIqLnRhciIsIioudGFyLmJ6MiIsIioudGFyLmd6IiwiKi50Z3oiLCIqLnppcCIsIiouemlweCJdfSx7ImRlc2NyaXB0aW9uIjoiQ29tcHJlc3NlZCBGaWxlcyIsImZpbHRlciI6WyIqLmJ6MiIsIiouZ3oiXX0seyJkZXNjcmlwdGlvbiI6IlNLUCBGaWxlcyIsImZpbHRlciI6WyIqLnNrcCJdfSx7ImRlc2NyaXB0aW9uIjoiQWxsIEZpbGVzIiwiZmlsdGVyIjpbIioiXX1dLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZSwiaXRlbXNUb1NlbGVjdCI6ImZpbGVzIiwibmFtZSI6IlNvdXJjZURhdGFzZXRfU0tQIiwicHJvbXB0IjoiU291cmNlIFRyaW1ibGUgU2tldGNoVXAgRmlsZToiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOnRydWUsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJmaWxlIiwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_SKP" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Working with 3D Geometry\Data\ch1.skp"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SKP SKP_Files(*.skp)|*.skp|All_Files(*)|* Source Trimble SketchUp File:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="Inspector"
+#!   VERSION="5"
+#!   POSITION="-1970.2765626556265 1183.5141250912511"
+#!   BOUNDING_RECT="-1970.2765626556265 1183.5141250912511 431 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22346"
+#! >
+#!     <XFORM_PARM PARM_NAME="AREA_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="PEN_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="POINTCLOUD_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_COLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_ROWS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_COL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_ROW" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION" PARM_VALUE="No Reduction"/>
+#!     <XFORM_PARM PARM_NAME="TACKATTRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_INTERVAL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_MAX_NUM_POINTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE_DISPLAY" PARM_VALUE="No Thinning"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ch1"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="3"
+#!   SOURCE_NODE="1"
+#!   TARGET_NODE="2"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 39
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_SKP_2,SKP_IN_FME_GROUP_NAMED1_SKP_2,SKP_IN_READ_EDGES_SKP_2,SKP_IN_READ_HIDDEN_ELEMENTS_SKP_2,SKP_IN_COLOR_BY_LAYER_SKP_2,SKP_IN_READ_TEXTURES_SKP_2,SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2,SKP_IN_FME_GROUP_NAMED2_SKP_2,SKP_IN_COORDSYS_DATUM_SKP_2,SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_2,SKP_IN_USE_SEARCH_ENVELOPE_SKP_2,SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2,SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2,SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2,SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2,SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2,SKP_IN_CLIP_TO_ENVELOPE_SKP_2,SKP_IN_NETWORK_AUTHENTICATION_SKP_2
+# ============================================================================
+DEFAULT_MACRO SourceDataset_SKP C:\FMEData2022\Resources\FMEUC22\Working with 3D Geometry\Data\ch1.skp
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_SKP)} == {}} { puts_real {Parameter 'SourceDataset_SKP' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} SKP
+MULTI_READER_KEYWORD{0} SKP_2
+MULTI_READER_GEN_DIRECTIVES{0} UPDATE_FEATURE_TYPES,no,READ_EDGES,No,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,SEARCH_ENVELOPE_MINX,0,MOVE_TO_WORLD_COORDSYS,Yes,READ_HIDDEN_ELEMENTS,Auto,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MAXX,0,_MERGE_SCHEMAS,YES,KEEP_ORIGINAL_TEXTURES,Yes,SKP_EXPOSE_FORMAT_ATTRS,,READ_TEXTURES,Yes,COLOR_BY_LAYER,Auto,CLIP_TO_ENVELOPE,NO,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXY,0,EXPOSE_ATTRS_GROUP,,COORDSYS_DATUM,WGS84
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "SKP_2"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SKP SKP_2
+# The dataset this mapping file was generated from was:
+GUI FILENAME SourceDataset_SKP_2 SKP_Files(*.skp)|*.skp|All_Files(*)|* Source Trimble SketchUp File:
+DEFAULT_MACRO SKP_IN_FME_GROUP_NAMED1_SKP_2 
+GUI OPTIONAL DISCLOSUREGROUP SKP_IN_FME_GROUP_NAMED1_SKP_2 SKP_IN_READ_EDGES_SKP_2%SKP_IN_READ_HIDDEN_ELEMENTS_SKP_2%SKP_IN_COLOR_BY_LAYER_SKP_2%SKP_IN_READ_TEXTURES_SKP_2%SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2 Entity Handling
+DEFAULT_MACRO SKP_IN_READ_EDGES_SKP_2 No
+SKP_2_READ_EDGES "$(SKP_IN_READ_EDGES_SKP_2)"
+GUI LOOKUP_CHOICE SKP_IN_READ_EDGES_SKP_2 Auto,Auto%Yes,Yes%No,No%"Standalone<space>Only,Standalone Only" Read Edges:
+DEFAULT_MACRO SKP_IN_READ_HIDDEN_ELEMENTS_SKP_2 Auto
+SKP_2_READ_HIDDEN_ELEMENTS "$(SKP_IN_READ_HIDDEN_ELEMENTS_SKP_2)"
+GUI LOOKUP_CHOICE SKP_IN_READ_HIDDEN_ELEMENTS_SKP_2 Auto,Auto%Yes,Yes%No,No Read Invisible Geometry and Layers:
+DEFAULT_MACRO SKP_IN_COLOR_BY_LAYER_SKP_2 Auto
+SKP_2_COLOR_BY_LAYER "$(SKP_IN_COLOR_BY_LAYER_SKP_2)"
+GUI LOOKUP_CHOICE SKP_IN_COLOR_BY_LAYER_SKP_2 Auto,Auto%Yes,Yes%No,No Color by Layer:
+DEFAULT_MACRO SKP_IN_READ_TEXTURES_SKP_2 Yes
+SKP_2_READ_TEXTURES "$(SKP_IN_READ_TEXTURES_SKP_2)"
+GUI ACTIVECHOICE_LOOKUP SKP_IN_READ_TEXTURES_SKP_2 Yes,Yes%No,No,SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2 Read Textures:
+DEFAULT_MACRO SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2 Yes
+SKP_2_KEEP_ORIGINAL_TEXTURES "$(SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2)"
+GUI LOOKUP_CHOICE SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_2 Yes,Yes%No,No Keep Original Textures:
+DEFAULT_MACRO SKP_IN_FME_GROUP_NAMED2_SKP_2 
+GUI OPTIONAL DISCLOSUREGROUP SKP_IN_FME_GROUP_NAMED2_SKP_2 SKP_IN_COORDSYS_DATUM_SKP_2%SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_2 Coordinate System
+DEFAULT_MACRO SKP_IN_COORDSYS_DATUM_SKP_2 WGS84
+SKP_2_COORDSYS_DATUM "$(SKP_IN_COORDSYS_DATUM_SKP_2)"
+GUI STRING_OR_CHOICE SKP_IN_COORDSYS_DATUM_SKP_2 WGS84%WGS72%NHRWN-O Coordinate System Datum:
+DEFAULT_MACRO SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_2 Yes
+SKP_2_MOVE_TO_WORLD_COORDSYS "$(SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_2)"
+GUI LOOKUP_CHOICE SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_2 Yes,Yes%No,No Move to World Coordinate System:
+DEFAULT_MACRO SKP_IN_EXPOSE_ATTRS_GROUP_SKP_2 
+SKP_2_EXPOSE_ATTRS_GROUP "$(SKP_IN_EXPOSE_ATTRS_GROUP_SKP_2)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO SKP_IN_USE_SEARCH_ENVELOPE_SKP_2 NO
+SKP_2_USE_SEARCH_ENVELOPE "$(SKP_IN_USE_SEARCH_ENVELOPE_SKP_2)"
+GUI ACTIVEDISCLOSUREGROUP SKP_IN_USE_SEARCH_ENVELOPE_SKP_2 SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2%SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2%SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2%SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2%SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2%SKP_IN_CLIP_TO_ENVELOPE_SKP_2%SKP_IN_SEARCH_METHOD%SKP_IN_SEARCH_METHOD_FILTER%SKP_IN_SEARCH_ORDER%SKP_IN_SEARCH_FEATURE%SKP_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2 0
+SKP_2_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MINX_SKP_2 Minimum X:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2 0
+SKP_2_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MINY_SKP_2 Minimum Y:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2 0
+SKP_2_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_2 Maximum X:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2 0
+SKP_2_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_2 Maximum Y:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2 <Unused>, 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2 
+SKP_2_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2)"
+GUI OPTIONAL COORDSYS SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_2 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP SKP_IN_CLIP_TO_ENVELOPE_SKP_2 <Unused>,NO 
+DEFAULT_MACRO SKP_IN_CLIP_TO_ENVELOPE_SKP_2 NO
+SKP_2_CLIP_TO_ENVELOPE "$(SKP_IN_CLIP_TO_ENVELOPE_SKP_2)"
+GUI OPTIONAL CHECKBOX SKP_IN_CLIP_TO_ENVELOPE_SKP_2 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO SKP_IN_NETWORK_AUTHENTICATION_SKP_2 
+SKP_2_NETWORK_AUTHENTICATION "$(SKP_IN_NETWORK_AUTHENTICATION_SKP_2)"
+GUI OPTIONAL AUTHENTICATOR SKP_IN_NETWORK_AUTHENTICATION_SKP_2 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO SKP_IN_ATTRIBUTE_READING_SKP_2 ALL
+SKP_2_ATTRIBUTE_READING "$(SKP_IN_ATTRIBUTE_READING_SKP_2)"
+# ============================================================================
+SKP_2_GENERATE_FME_BUILD_NUM 22346
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_SKP_2 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SKP SKP_2
+DEFAULT_MACRO SourceDataset_SKP_2 $(SourceDataset_SKP)
+SKP_2_DATASET "$(SourceDataset_SKP_2)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)ShowStructure.log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_SKP_2 SKP_2
+# -------------------------------------------------------------------------
+
+SKP_2_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME ShowStructure
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+
+INCLUDE [ if {[info exists env(FME_TEMP)] && [file isdirectory $env(FME_TEMP)]} {set gVisualizerTemp $env(FME_TEMP)}  elseif {[info exists env(TEMP)] && [file isdirectory $env(TEMP)]}  {set gVisualizerTemp $env(TEMP)}  elseif { $tcl_platform(platform) == "unix" } {set gVisualizerTemp "/tmp"} else {set gVisualizerTemp c:};  regsub -all {[ ,&]} {$(WORKSPACE_NAME)} {_} wsname; set gVisualizerTemp $gVisualizerTemp/${wsname}_[clock format [clock seconds] -format %H%M%S];  puts "MACRO WORKSPACE_TEMP_DIR $gVisualizerTemp"; 
+MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/inspector.ffs
+MACRO VISUALIZER_SCHEMA_FILE $(WORKSPACE_TEMP_DIR)/inspector.fsc
+MACRO VISUALIZER_CREATE_SPATIAL_INDEX YES
+# -------------------------------------------------------------------------
+SKP_2_DEF ch1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_SKP_2)   INPUT FEATURE_TYPE *    ROUTE SKP SKP_2::ch1 multi_reader_keyword,$(DATASET_KEYWORD_SKP_2) TO FME_GENERIC ::ch1 ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+SKP_2_MERGE_DEF SKP_2::ch1 EXACT ch1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "ch1_SKP_2 Splitter"    INPUT FEATURE_TYPE ch1    OUTPUT FEATURE_TYPE ch1_SKP_2
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+# Assumption is that the workspace temp dir has been already set and created.  See controldefs.cpp - ControlDefs::writeVisualizerTempDir
+DEFAULT_MACRO WORKSPACE_TEMP_DIR
+INCLUDE [    set safeName "[regsub -all {[^a-zA-Z0-9]} {ch1} _]_[expr round(rand() * 1000000)]_[clock clicks  -milliseconds]";    puts "MACRO SAFE_FFS_NAME $safeName"; ]
+FACTORY_DEF {*} InspectorFactory    FACTORY_NAME { ch1_Prepper }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE ch1_SKP_2    GROUP_ATTRIBUTE __inspector_feature_type_attr__    GROUP_ATTRIBUTE_PREFIX { ch1 }    RASTER_REDUCTION { NoReduction }    POINT_CLOUD_REDUCTION { NO_THINNING }    OUTPUT { RESULT FEATURE_TYPE __viewme__    }
+# Now route all the features into the recorder, changing their
+# feature type to the transformer name so that they view nicely
+DEFAULT_MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/$(SAFE_FFS_NAME).ffs
+DEFAULT_MACRO VISUALIZER_CREATE_SPATIAL_INDEX NO
+# [PR#45549] The Data Inspector will limit the maximum number of features
+# it reads on WIN32, so we will correspondingly limit the number of
+# features we record here using the MAX_FEATURES_TO_RECORD directive.
+FACTORY_DEF {*} RecorderFactory    FACTORY_NAME { ch1_Recorder }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT FEATURE_TYPE __viewme__       _wb_termination_feature Yes       @FeatureType(TERMINATOR_@Value(_wb_termination_xformer))    INPUT FEATURE_TYPE __viewme__       @FeatureType(@Value(__inspector_feature_type_attr__))       @RemoveAttributes(__inspector_feature_type_attr__)    FEATURE_FILE { "$(VISUALIZER_FEATURE_FILE)" }    STORE_SCANNED_SCHEMA YES    NORMALIZE_LIST_ATTRIBUTES_ON_SCHEMA YES    CREATE_SPATIAL_INDEX { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    INSPECTOR { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    FSC_SCHEMA {  }    MODE RECORD    STORE_SCANNED_METADATA    RECORD_DIRECTLY_TO_DISK YES    MAX_FEATURES_TO_RECORD WIN32 2000000
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+
+DEFAULT_MACRO FME_LAUNCH_VIEWER_APP NO
+FACTORY_DEF * CreationFactory    FACTORY_NAME VisualizerProcessor   CREATE_AT_END   OUTPUT FEATURE_TYPE __NUKEME__   @TCL("if {{$(FME_LAUNCH_VIEWER_APP)} == {YES}} {  if [file exists {$(WORKSPACE_TEMP_DIR)}] {set files [glob -nocomplain -directory  {$(WORKSPACE_TEMP_DIR)} -tails *.ffs];   if {[llength $files] == 1} {    set theFile {$(WORKSPACE_TEMP_DIR)/};   append theFile [lindex $files 0];   eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -f FFS \042$theFile\042 & \175;  } elseif { [llength $files] == 0 } {  catch { file delete -force {$(WORKSPACE_TEMP_DIR)} };  } else {  set filesNoExt {}; set lastfile {}; foreach {fileName} [lsort $files] { set fileNoExt [string trimright $fileName {.ffs}]; if [regexp {(.*)_[0-9]*$} $fileNoExt wholething fileNoExtBase] {  if { $fileNoExtBase == $lastfile } { continue } }; set lastfile $fileNoExt; lappend filesNoExt $fileNoExt };  eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -d {$(WORKSPACE_TEMP_DIR)} -a ffs -f FFS $filesNoExt & \175; }; }; }; ")
+FACTORY_DEF * TeeFactory    FACTORY_NAME VisualizerCleaner   INPUT FEATURE_TYPE __NUKEME__
