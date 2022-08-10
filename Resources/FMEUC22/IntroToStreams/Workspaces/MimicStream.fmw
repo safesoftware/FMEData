@@ -1,0 +1,632 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME22\fme.exe" C:\FMEData2022\Resources\FMEUC22\IntroToStreams\Workspaces\MimicStream.fmw
+#          --SourceDataset_FFS "C:\FMEData2022\Resources\FMEUC22\IntroToStreams\Data\MediumStreamData.ffs"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1155.01 71"
+#!   DOC_TOP_LEFT="425.004 -675.004"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22346"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="549f0199-d5a7-4b71-9e95-4dd5cea0a24d"
+#!   FME_DOCUMENT_PRIORGUID="6788154a-8bc7-4c6d-b0b0-862f42dc8ed8,14a5789b-429c-4a85-96c2-cd79e9ecaebf"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+#!   LAST_SAVE_DATE="2022-08-10T09:28:07"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="39"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE="FFS to NONE"
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-171.877 0"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="FFS"
+#!   DATASET="$(SourceDataset_FFS)"
+#!   KEYWORD="FFS_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis real64 fme_rotation real64 fme_secondary_axis real64 fme_start_angle real64 fme_sweep_angle real64 fme_text_size real64 fme_text_string char(50) fme_type char(50) multi_reader_full_id int32 multi_reader_id int32 multi_reader_keyword char(50) multi_reader_type char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22343"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES="500"
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the FFS file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the FFS file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="binary(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varbinary(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="binarybuffer"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int8"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint8"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="FFS"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_point_cloud"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_feature_table"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_voxel_grid"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_geom"
+#!   FME_TYPE="SOURCE_GEOMTYPE"
+#!   FORMAT="FFS"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Creator"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="fme_no_geom"
+#!   POSITION="425.00405004050037 -604.00369003690025"
+#!   BOUNDING_RECT="425.00405004050037 -604.00369003690025 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="FFS_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="_value" ATTR_TYPE="char(185)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="FFS_1"
+#!   OVERRIDE="-FFS_1_DATASET"
+#!   DATASET="FFS_1/MediumStreamData.ffs"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_FFS INCLUDE_WEB_BROWSER%Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|FME_Feature_Store_Files(*.ffs)|*.ffs|All_Files(*)|* Source FME Feature Store (FFS) File(s):"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\IntroToStreams\Data\MediumStreamData.ffs"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImRlZmF1bHRWYWx1ZSI6IkM6XFxGTUVEYXRhMjAyMlxcUmVzb3VyY2VzXFxGTUVVQzIyXFxJbnRyb1RvU3RyZWFtc1xcRGF0YVxcTWVkaXVtU3RyZWFtRGF0YS5mZnMiLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkFyY2hpdmUgRmlsZXMiLCJmaWx0ZXIiOlsiKi43eiIsIiouN3ppcCIsIioucmFyIiwiKi5ydnoiLCIqLnRhciIsIioudGFyLmJ6MiIsIioudGFyLmd6IiwiKi50Z3oiLCIqLnppcCIsIiouemlweCJdfSx7ImRlc2NyaXB0aW9uIjoiQ29tcHJlc3NlZCBGaWxlcyIsImZpbHRlciI6WyIqLmJ6MiIsIiouZ3oiXX0seyJkZXNjcmlwdGlvbiI6IkZNRSBGZWF0dXJlIFN0b3JlIEZpbGVzIiwiZmlsdGVyIjpbIiouZmZzIl19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiU291cmNlRGF0YXNldF9GRlMiLCJwcm9tcHQiOiJTb3VyY2UgRk1FIEZlYXR1cmUgU3RvcmUgKEZGUykgRmlsZShzKToiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOnRydWUsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJmaWxlIiwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_FFS" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\IntroToStreams\Data\MediumStreamData.ffs"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_FFS INCLUDE_WEB_BROWSER%Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|FME_Feature_Store_Files(*.ffs)|*.ffs|All_Files(*)|* Source FME Feature Store (FFS) File(s):"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="3"
+#!   TYPE="Decelerator"
+#!   VERSION="0"
+#!   POSITION="1126.0112601126013 -604.00369003690025"
+#!   BOUNDING_RECT="1126.0112601126013 -604.00369003690025 454 71"
+#!   ORDER="500000000000194.13"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22343"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_value" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="DECEL_TYPE" PARM_VALUE="Limit Features Per Second"/>
+#!     <XFORM_PARM PARM_NAME="DELAY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FEATURES_PER_SECOND" PARM_VALUE="100"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Decelerator"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="4"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="3"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 39
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_FFS_1,FFS_IN_FME_GROUP_NAMED1_FFS_1,FFS_IN_PASSPHRASE_FFS_1,FFS_IN_CONSTRAINT_GROUP_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1,FFS_IN_USE_SEARCH_ENVELOPE_FFS_1,FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1,FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1,FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1,FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1,FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1,FFS_IN_CLIP_TO_ENVELOPE_FFS_1,FFS_IN_NETWORK_AUTHENTICATION_FFS_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_FFS C:\FMEData2022\Resources\FMEUC22\IntroToStreams\Data\MediumStreamData.ffs
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_FFS)} == {}} { puts_real {Parameter 'SourceDataset_FFS' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} FFS
+MULTI_READER_KEYWORD{0} FFS_1
+MULTI_READER_GEN_DIRECTIVES{0} EXPOSE_ATTRS_GROUP,,USE_SEARCH_ENVELOPE,NO,SEARCH_CLOSEST_POINT_MAX_DIST,,SEARCH_CLOSEST_POINT_Y,,_MERGE_SCHEMAS,YES,TABLELIST,,SEARCH_CLOSEST_POINT_GROUP,,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,CLIP_TO_ENVELOPE,NO,PASSPHRASE,,SEARCH_CLOSEST_POINT_X,,CONSTRAINT_GROUP,,FFS_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "FFS_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER FFS FFS_1
+# ============================================================================
+# The following GUI line prompts for the Feature Store file to be read
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_FFS_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER FFS FFS_1
+DEFAULT_MACRO SourceDataset_FFS_1 $(SourceDataset_FFS)
+GUI MULTIFILE SourceDataset_FFS_1 FME_Feature_Store_Files(*.ffs)|*.ffs|All_Files|* Source FME Feature Store (FFS) File(s):
+DEFAULT_MACRO FFS_IN_FME_GROUP_NAMED1_FFS_1 FME_DISCLOSURE_CLOSED
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_FME_GROUP_NAMED1_FFS_1 FFS_IN_PASSPHRASE_FFS_1 File Parameters
+# ============================================================================
+# Set the passphrase (which is optional)
+DEFAULT_MACRO FFS_IN_PASSPHRASE_FFS_1 
+FFS_1_PASSPHRASE "$(FFS_IN_PASSPHRASE_FFS_1)"
+GUI OPTIONAL PASSWORD_ENCODED FFS_IN_PASSPHRASE_FFS_1 Password:
+DEFAULT_MACRO FFS_IN_CONSTRAINT_GROUP_FFS_1 
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_CONSTRAINT_GROUP_FFS_1 FFS_IN_TABLELIST%FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1%FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 Constraints - Spatial Index (.fsi) Required
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1 
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1 FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1%FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1%FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 Search Closest Point
+# If desired, the below string can specify a point, and the closest feature
+# in the FFS file will be read and returned.
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_X "$(FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1 Search Closest Point X
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_Y "$(FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1 Search Closest Point Y
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_MAX_DIST "$(FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 Search Closest Max Distance
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 NO
+FFS_1_USE_SEARCH_ENVELOPE "$(FFS_IN_USE_SEARCH_ENVELOPE_FFS_1)"
+GUI ACTIVEDISCLOSUREGROUP FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1%FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1%FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1%FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1%FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1%FFS_IN_CLIP_TO_ENVELOPE_FFS_1%FFS_IN_SEARCH_METHOD%FFS_IN_SEARCH_METHOD_FILTER%FFS_IN_SEARCH_ORDER%FFS_IN_SEARCH_FEATURE%FFS_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 <Unused>, 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1)"
+GUI OPTIONAL COORDSYS FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP FFS_IN_CLIP_TO_ENVELOPE_FFS_1 <Unused>,NO 
+DEFAULT_MACRO FFS_IN_CLIP_TO_ENVELOPE_FFS_1 NO
+FFS_1_CLIP_TO_ENVELOPE "$(FFS_IN_CLIP_TO_ENVELOPE_FFS_1)"
+GUI OPTIONAL CHECKBOX FFS_IN_CLIP_TO_ENVELOPE_FFS_1 YES%NO Clip to Search Envelope
+DEFAULT_MACRO FFS_IN_EXPOSE_ATTRS_GROUP_FFS_1 
+FFS_1_EXPOSE_ATTRS_GROUP "$(FFS_IN_EXPOSE_ATTRS_GROUP_FFS_1)"
+# By default, strip FME meta-attributes (likemulti_reader_keyword) from
+# the features the FFS reader creates.
+FFS_1_STRIP_META_ATTRS YES
+# By default, ignore spillover files (*_1.ffs,*_2.ffs,etc).
+# When enabled, these files will be ignored by the reader, and only read when
+# *.ffs itself is read.
+FFS_1_ENFORCE_SECONDARY_FILE_NAMES YES
+# ===========================================================================
+DEFAULT_MACRO FFS_IN_NETWORK_AUTHENTICATION_FFS_1 
+FFS_1_NETWORK_AUTHENTICATION "$(FFS_IN_NETWORK_AUTHENTICATION_FFS_1)"
+GUI OPTIONAL AUTHENTICATOR FFS_IN_NETWORK_AUTHENTICATION_FFS_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO FFS_IN_ATTRIBUTE_READING_FFS_1 ALL
+FFS_1_ATTRIBUTE_READING "$(FFS_IN_ATTRIBUTE_READING_FFS_1)"
+# ============================================================================
+FFS_1_GENERATE_FME_BUILD_NUM 22343
+FFS_1_DATASET "$(SourceDataset_FFS_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)MimicStream.log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+MAPPING_FILE_ID FFS<space>to<space>NONE
+DEFAULT_MACRO DATASET_KEYWORD_FFS_1 FFS_1
+# -------------------------------------------------------------------------
+
+FFS_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+FFS_1_MAX_FEATURES 500
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME MimicStream
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+FFS_1_DEF Creator   _value                       char(185)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_FFS_1)   INPUT FEATURE_TYPE *    ROUTE FFS FFS_1::Creator multi_reader_keyword,$(DATASET_KEYWORD_FFS_1) TO FME_GENERIC ::Creator ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+FFS_1_MERGE_DEF FFS_1::Creator EXACT Creator
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Creator_FFS_1 Splitter"    INPUT FEATURE_TYPE Creator    OUTPUT FEATURE_TYPE Creator_FFS_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+# This is just a simple delay, which is given a # of seconds to stall
+Tcl2 proc Decelerator_delay {seconds unused} {     after [expr round($seconds * 1000)]; }
+Tcl2 set Decelerator_clockMillisecondsWhenLastFeatureWentBy [clock clicks -milliseconds];
+# This proc ensures that no more than some maximum number of features get through each second
+Tcl2 proc Decelerator_maxpersecond {unused maxFeaturesPerSecond} {     global Decelerator_clockMillisecondsWhenLastFeatureWentBy;     set minimumDelayInMilliseconds [expr 1000.0 / $maxFeaturesPerSecond];     set clockMillisecondsNow [clock clicks -milliseconds];     set milliSecondsSinceLastFeature [expr $clockMillisecondsNow -                    [set Decelerator_clockMillisecondsWhenLastFeatureWentBy]];     if {$milliSecondsSinceLastFeature < $minimumDelayInMilliseconds} {         after [expr round($minimumDelayInMilliseconds - $milliSecondsSinceLastFeature)];     };     set Decelerator_clockMillisecondsWhenLastFeatureWentBy [clock clicks -milliseconds]; }
+# Now set up which of the above two delay procedures we'll actually
+# use by renaming the one we want to "Decelerator_Waiter"
+# Then that is what we'll actually call when a feature goes by.
+Tcl2 if { {Limit Features Per Second} == {Per Feature Delay} } {         rename Decelerator_delay Decelerator_Waiter;      } else {         rename Decelerator_maxpersecond Decelerator_Waiter;      };
+# If we're in Per Feature Delay mode, AND the Per Feature Delay is 0, let's very efficiently split
+# any feature table into individual features. If an individual feature would go in, this is a no op
+INCLUDE [    if { ( {Limit Features Per Second} == {Per Feature Delay} ) && ( {<Unused>} == {0} ) } {       puts "MACRO SPLIT_FEATURE_TABLE {*}";       puts "MACRO NORMAL_DECELERATION _NO_";    } else {       puts "MACRO SPLIT_FEATURE_TABLE _NO_";       puts "MACRO NORMAL_DECELERATION {*}";    } ]
+FACTORY_DEF $(SPLIT_FEATURE_TABLE) FeatureTableSplitterFactory    FACTORY_NAME Decelerator    INPUT  FEATURE_TYPE Creator_FFS_1    OUTPUT { FEATURES FEATURE_TYPE Decelerator_OUTPUT          }
+# Above for feature table splitting case (when per feature delay is 0, below for everything else
+FACTORY_DEF $(NORMAL_DECELERATION) TestFactory    FACTORY_NAME { Decelerator_DelayRejector }    INPUT  FEATURE_TYPE Creator_FFS_1    TEST { "<Unused>" TYPE NUM ENCODED }    TEST { FEATPERSEC != PERFEATDELAY }    BOOLEAN_OPERATOR OR    OUTPUT { FAILED FEATURE_TYPE Decelerator_<REJECTED>       fme_rejection_code "INVALID_PARAMETER_DELAY_PER_FEATURE"        }    OUTPUT { PASSED FEATURE_TYPE Decelerator__toMaximumRejector__ }
+FACTORY_DEF $(NORMAL_DECELERATION) TestFactory    FACTORY_NAME { Decelerator_MaximumRejector }    INPUT { FEATURE_TYPE Decelerator__toMaximumRejector__ }    TEST { "100" TYPE NUM ENCODED }    TEST { FEATPERSEC != FEATPERSEC }    BOOLEAN_OPERATOR OR    OUTPUT { FAILED FEATURE_TYPE Decelerator_<REJECTED>       fme_rejection_code "INVALID_PARAMETER_MAXIMUM_FEATURES_PER_SECOND"        }    OUTPUT { PASSED FEATURE_TYPE Decelerator__toOutput__ }
+FACTORY_DEF $(NORMAL_DECELERATION) TeeFactory    FACTORY_NAME { Decelerator_Decelerator }    INPUT { FEATURE_TYPE Decelerator__toOutput__ }    OUTPUT { FEATURE_TYPE Decelerator_OUTPUT         @Tcl2("Decelerator_Waiter {<Unused>} {100}")          }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Decelerator OUTPUT Transformer Output Nuker"   INPUT FEATURE_TYPE Decelerator_OUTPUT
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
