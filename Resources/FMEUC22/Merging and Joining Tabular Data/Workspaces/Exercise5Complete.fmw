@@ -1,0 +1,2888 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME22\fme.exe" "C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Workspaces\Exercise5Complete.fmw"
+#          --SourceDataset_JSON "C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\WaterMeters-SURREY.json"
+#          --SourceDataset_POSTGRES "Training"
+#          --SourceDataset_CSV2 "C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\Addresses-SURREY.csv"
+#          --SourceDataset_XLSXR "C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\ZoneCode.xlsx"
+#          --DestDataset_XLSXW "C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Output\Water Meters - Field Inspection INLINEQUERIER.xlsx"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="2342.05 635.769"
+#!   DOC_TOP_LEFT="1127.76 -846.015"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22346"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="57d19950-7855-4a3e-b1e5-bb9301dbb179"
+#!   FME_DOCUMENT_PRIORGUID="8b823596-1334-4c5a-a0fb-d6dea10032d1"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+#!   LAST_SAVE_DATE="2022-08-07T16:57:51"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="39"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="0 196.877"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="JSON"
+#!   DATASET="$(SourceDataset_JSON)"
+#!   KEYWORD="JSON_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string string fme_type string multi_reader_full_id int multi_reader_id int multi_reader_keyword string multi_reader_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22337"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/json ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the JSON file(s) or Specify the JSON URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the JSON file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="POSTGRES"
+#!   DATASET="$(SourceDataset_POSTGRES)"
+#!   KEYWORD="POSTGRES_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="postgres_type {FME_GEN_GEOMETRY} postgres_sql_where_clause &quot;&quot; postgres_sql_statement &quot;&quot;"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis float8 fme_rotation float8 fme_secondary_axis float8 fme_start_angle float8 fme_sweep_angle float8 fme_text_size float8 fme_text_string char(50) fme_type char(50) multi_reader_full_id int4 multi_reader_id int4 multi_reader_keyword char(50) multi_reader_type char(50) postgres_oid int4 postgres_type char(50)"
+#!   DEFLINE_PARMS="&quot;GUI OPTIONAL NAMEDGROUP postgres_query_settings_group postgres_sql_where_clause%postgres_sql_statement Table&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT_EDIT_SQL_CFG postgres_sql_where_clause MODE,WHERE;FORMAT,POSTGRES WHERE Clause&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT_EDIT_SQL_CFG postgres_sql_statement MODE,SQL;FORMAT,POSTGRES SELECT Statement&quot; &quot;&quot; "
+#!   ATTR_INDEX_TYPES="BTree RTree Hash PrimaryKey Unique"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="DATABASE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22337"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="POSTGRES_IN_FEATURES_PER_FETCH POSTGRES_IN_BEGIN_SQL POSTGRES_IN_END_SQL POSTGRES_OUT_BULK_COPY POSTGRES_OUT_MISSING_ATTRIBUTE_BEHAVIOUR POSTGRES_OUT_TRANSACTION_INTERVAL POSTGRES_OUT_BEGIN_SQL POSTGRES_OUT_END_SQL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE_ATTRS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING_HISTORIC"
+#!   VALUE="ALL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Table1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="PARAMS_TO_NOT_PROPAGATE_ON_INSPECT"
+#!   VALUE="BEGIN_SQL END_SQL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="SUPPORTS_SCHEMA_IN_FEATURE_TYPE_NAME"
+#!   VALUE="YES"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="CSV2"
+#!   DATASET="$(SourceDataset_CSV2)"
+#!   KEYWORD="CSV2_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="csv_line_number uint64 csv_number_of_fields uint32 csv_skipped_line string csv_total_number_of_columns uint32 csv_type string fme_basename varchar(50) fme_color varchar(50) fme_dataset varchar(50) fme_feature_type varchar(50) fme_fill_color varchar(50) fme_geometry varchar(50) fme_primary_axis string fme_rotation string fme_secondary_axis string fme_start_angle string fme_sweep_angle string fme_text_size string fme_text_string varchar(50) fme_type varchar(50) multi_reader_full_id string multi_reader_id string multi_reader_keyword varchar(50) multi_reader_type varchar(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22346"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEFAULT_ATTR_TYPE"
+#!   VALUE="string"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="File1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="CSV File"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the CSV file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the CSV file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="XLSXR"
+#!   DATASET="$(SourceDataset_XLSXR)"
+#!   KEYWORD="XLSXR_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="xlsx_start_row &quot;&quot; xlsx_end_row &quot;&quot; xlsx_apply_filters &quot;No&quot;"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis number(31,15) fme_rotation number(31,15) fme_secondary_axis number(31,15) fme_start_angle number(31,15) fme_sweep_angle number(31,15) fme_text_size number(31,15) fme_text_string char(50) fme_type char(50) multi_reader_full_id number(11,0) multi_reader_id number(11,0) multi_reader_keyword char(50) multi_reader_type char(50) xlsx_col_id number(11,0) xlsx_raster_format char(20) xlsx_raster_height number(11,0) xlsx_raster_location char(256) xlsx_raster_width number(11,0) xlsx_row_id number(11,0) xlsx_type char(20)"
+#!   DEFLINE_PARMS="&quot;GUI OPTIONAL NAMEDGROUP xlsx_table_settings_group xlsx_start_row%xlsx_end_row%xlsx_apply_filters Table&quot; &quot;&quot; &quot;GUI FORCE_DEFS OPTIONAL INTEGER xlsx_start_row Start Row:&quot; &quot;&quot; &quot;GUI FORCE_DEFS OPTIONAL INTEGER xlsx_end_row End Row:&quot; &quot;&quot; &quot;GUI OPTIONAL CHECKBOX xlsx_apply_filters Yes%No Apply Filter(s):&quot; No "
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22618"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="XLSXR_IN_READ_BLANK_AS XLSXR_IN_APPLY_FILTERS XLSXR_IN_EXPAND_MERGED_CELLS XLSXR_IN_SCAN_SCHEMA_IF_DYNAMIC"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ALLOW_DATASET_CONFLICT"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Sheet"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the Excel file(s)"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="false"
+#!   ROLE="WRITER"
+#!   FORMAT="XLSXW"
+#!   DATASET="$(DestDataset_XLSXW)"
+#!   KEYWORD="XLSXW_1"
+#!   MULTI_GEOM_ALLOWED="true"
+#!   ATTR_MAX_LENGTH="255"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="xlsx_drop_sheet No xlsx_trunc_sheet No xlsx_sheet_order &quot;&quot; xlsx_freeze_end_row &quot;&quot; xlsx_names_are_positions No xlsx_field_names_out Yes xlsx_field_names_formatting Yes xlsx_start_col &quot;&quot; xlsx_start_row &quot;&quot; xlsx_offset_col &quot;&quot; xlsx_offset_row &quot;&quot; xlsx_raster_type PNG xlsx_table_writer_mode Insert xlsx_row_id_column &quot;&quot; xlsx_protect_sheet &quot;NO&quot; xlsx_protect_sheet_level &quot;&lt;Unused&gt;&quot; xlsx_protect_sheet_password &quot;&lt;Unused&gt;&quot; xlsx_protect_sheet_permissions &quot;&lt;Unused&gt;&quot; xlsx_template_sheet &quot;&quot; xlsx_remove_unchanged_template_sheet &quot;No&quot;"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string(50,xlsx_col_props) fme_color string(50,xlsx_col_props) fme_dataset string(50,xlsx_col_props) fme_db_operation string(width,xlsx_col_props) fme_feature_type string(50,xlsx_col_props) fme_fill_color string(50,xlsx_col_props) fme_geometry string(50,xlsx_col_props) fme_primary_axis number(width,xlsx_col_props) fme_rotation number(width,xlsx_col_props) fme_secondary_axis number(width,xlsx_col_props) fme_start_angle number(width,xlsx_col_props) fme_sweep_angle number(width,xlsx_col_props) fme_text_size number(width,xlsx_col_props) fme_text_string string(50,xlsx_col_props) fme_type string(50,xlsx_col_props) xlsx_col_id number(width,xlsx_col_props) xlsx_raster_height number(width,xlsx_col_props) xlsx_raster_scale_factor number(width,xlsx_col_props) xlsx_raster_width number(width,xlsx_col_props) xlsx_row_formatting string(width,xlsx_col_props) xlsx_row_id number(width,xlsx_col_props) xlsx_type string(width,xlsx_col_props)"
+#!   DEFLINE_PARMS="&quot;GUI OPTIONAL NAMEDGROUP xlsx_layer_group xlsx_table_writer_mode%xlsx_field_names_out%xlsx_field_names_formatting%xlsx_names_are_positions%xlsx_row_id_column%xlsx_truncate_group%xlsx_table_group%xlsx_rowcolumn_group%xlsx_template_group%xlsx_protect_sheet%xlsx_advanced_group Sheet Settings&quot; &quot;&quot; &quot;GUI OPTIONAL DISCLOSUREGROUP xlsx_truncate_group xlsx_row_id%xlsx_drop_sheet%xlsx_trunc_sheet Drop/Truncate&quot; &quot;&quot; &quot;GUI OPTIONAL DISCLOSUREGROUP xlsx_rowcolumn_group xlsx_start_col%xlsx_start_row%xlsx_offset_col%xlsx_offset_row Start Position&quot; &quot;&quot; &quot;GUI ACTIVEDISCLOSUREGROUP xlsx_protect_sheet xlsx_protect_sheet_password%xlsx_protect_sheet_level%xlsx_protect_sheet_permissions Protect Sheet&quot; NO &quot;GUI OPTIONAL DISCLOSUREGROUP xlsx_template_group xlsx_template_sheet%xlsx_remove_unchanged_template_sheet Template Options&quot; &quot;&quot; &quot;GUI OPTIONAL DISCLOSUREGROUP xlsx_advanced_group xlsx_sheet_order%xlsx_freeze_end_row%xlsx_raster_type Advanced&quot; &quot;&quot; &quot;GUI CHOICE xlsx_drop_sheet Yes%No Drop Existing Sheet/Named Range:&quot; No &quot;GUI CHOICE xlsx_trunc_sheet Yes%No Truncate Existing Sheet/Named Range:&quot; No &quot;GUI OPTIONAL RANGE_SLIDER xlsx_sheet_order 1%MAX Sheet Order (1 - n):&quot; &quot;&quot; &quot;GUI OPTIONAL RANGE_SLIDER xlsx_freeze_end_row 1%MAX Freeze First Row(s) (1 - n):&quot; &quot;&quot; &quot;GUI ACTIVECHOICE xlsx_field_names_out Yes%No,xlsx_field_names_formatting,++xlsx_field_names_formatting+No Output Field Names:&quot; Yes &quot;GUI CHOICE xlsx_field_names_formatting Yes%No Format Field Names Row:&quot; Yes &quot;GUI CHOICE xlsx_names_are_positions Yes%No Use Attribute Names As Column Positions:&quot; No &quot;GUI OPTIONAL TEXT xlsx_start_col Named Range Start Column:&quot; &quot;&quot; &quot;GUI OPTIONAL INTEGER xlsx_start_row Named Range Start Row:&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT xlsx_offset_col Start Column:&quot; &quot;&quot; &quot;GUI OPTIONAL INTEGER xlsx_offset_row Start Row:&quot; &quot;&quot; &quot;GUI CHOICE xlsx_raster_type BMP%JPEG%PNG Raster Format:&quot; PNG &quot;GUI OPTIONAL PASSWORD_ENCODED xlsx_protect_sheet_password Password:&quot; &lt;Unused&gt; &quot;GUI ACTIVECHOICE_LOOKUP xlsx_protect_sheet_level Select&lt;space&gt;Only&lt;space&gt;Permissions,PROT_DEFAULT,xlsx_protect_sheet_permissions%View&lt;space&gt;Only&lt;space&gt;Permissions,PROT_ALL,xlsx_protect_sheet_permissions%Specific&lt;space&gt;Permissions Protection Level:&quot; &lt;Unused&gt; &quot;GUI OPTIONAL LOOKUP_LISTBOX xlsx_protect_sheet_permissions Select&lt;space&gt;locked&lt;space&gt;cells,PROT_SEL_LOCKED_CELLS%Select&lt;space&gt;unlocked&lt;space&gt;cells,PROT_SEL_UNLOCKED_CELLS%Format&lt;space&gt;cells,PROT_FORMAT_CELLS%Format&lt;space&gt;columns,PROT_FORMAT_COLUMNS%Format&lt;space&gt;rows,PROT_FORMAT_ROWS%Insert&lt;space&gt;columns,PROT_INSERT_COLUMNS%Insert&lt;space&gt;rows,PROT_INSERT_ROWS%Add&lt;space&gt;hyperlinks&lt;space&gt;to&lt;space&gt;unlocked&lt;space&gt;cells,PROT_INSERT_HYPERLINKS%Delete&lt;space&gt;unlocked&lt;space&gt;columns,PROT_DELETE_COLUMNS%Delete&lt;space&gt;unlocked&lt;space&gt;rows,PROT_DELETE_ROWS%Sort&lt;space&gt;unlocked&lt;space&gt;cells/rows/columns,PROT_SORT%Use&lt;space&gt;Autofilter&lt;space&gt;on&lt;space&gt;unlocked&lt;space&gt;cells,PROT_AUTOFILTER%Use&lt;space&gt;PivotTable&lt;space&gt;&amp;&lt;space&gt;PivotChart&lt;space&gt;on&lt;space&gt;unlocked&lt;space&gt;cells,PROT_PIVOTTABLES%Edit&lt;space&gt;unlocked&lt;space&gt;objects,PROT_OBJECTS%Edit&lt;space&gt;unprotected&lt;space&gt;scenarios,PROT_SCENARIOS Specific Permissions:&quot; &lt;Unused&gt; &quot;GUI ACTIVECHOICE xlsx_table_writer_mode Insert,+xlsx_row_id_column+%Update,+xlsx_row_id_column+xlsx_row_id%Delete,+xlsx_row_id_column+xlsx_row_id Writer Mode:&quot; Insert &quot;GUI OPTIONAL ATTR xlsx_row_id_column ALLOW_NEW Row Number Attribute:&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT_EDIT xlsx_template_sheet \&quot; \&quot; Template Sheet:&quot; &quot;&quot; &quot;GUI CHOICE xlsx_remove_unchanged_template_sheet Yes%No Remove Template Sheet if Unchanged:&quot; No "
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE=""
+#!   GENERATE_FME_BUILD_NUM="22612"
+#!   COORDSYS=""
+#!   FANOUT_EXPRESSION="&lt;Unused&gt;"
+#!   FANOUT_GROUP="NO"
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ALLOW_DATASET_CONFLICT"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEFAULT_ATTR_TYPE"
+#!   VALUE="auto"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEFAULT_READER"
+#!   VALUE="XLSXR"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Sheet1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Sheet"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="USER_ATTRIBUTES_COLUMNS"
+#!   VALUE="Width,Cell Width%Precision,Formatting"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the Microsoft Excel file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="x_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="y_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="z_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int8"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint8"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="CSV2"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bool"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="jsonb"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bytea"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bytea"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bytea"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int2"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int2"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int2"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int4"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int4"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int8"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int8"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="numeric(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="numeric(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="oid"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="serial"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float4"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="money"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float8"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="timetz"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="timestamp"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="timestamptz"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uuid"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bit(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varbit"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varbit(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="POSTGRES"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="raster_blob"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(31,15)"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="x_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="y_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="z_coordinate"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(15,7)"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="XLSXR"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="string(width,xlsx_col_props)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="auto(width,xlsx_col_props)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="datetime(width,xlsx_col_props)"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="time(width,xlsx_col_props)"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="date(width,xlsx_col_props)"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,xlsx_col_props)"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="XLSXW"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="boolean(width,xlsx_col_props)"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="XLSXW"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_feature_table"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_map"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_map"
+#!   FME_TYPE="fme_no_map"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="csv_none"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="CSV2"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="postgres_none"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="POSTGRES"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="XLSXR"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="XLSXW"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xlsx_none"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="XLSXW"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="water_meters"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="json_no_geom"
+#!   POSITION="1292.7640845788992 -210.2453585448859"
+#!   BOUNDING_RECT="1292.7640845788992 -210.2453585448859 467.00106825772946 71"
+#!   ORDER="500000000000253.13"
+#!   COLLAPSED="true"
+#!   KEYWORD="JSON_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FACILITYID" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ACCOUNT_NO" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FOLIO" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="STATUS" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GPS" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="IMAGE" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LOTLINK" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="METER_CODE" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_ogc_wkt_crs" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_geometry.type" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_geometry.coordinates{}" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="CoS-lot"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER="public"
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   FEAT_GEOMTYPE="postgres_none"
+#!   POSITION="1287.7640845788992 -351.43771966041618"
+#!   BOUNDING_RECT="1287.7640845788992 -351.43771966041618 472.00106825772946 71"
+#!   ORDER="500000000000239.13"
+#!   COLLAPSED="true"
+#!   KEYWORD="POSTGRES_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="varchar(15)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PIN" ATTR_TYPE="varchar(15)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="JUROL" ATTR_TYPE="varchar(15)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_LOT" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_BLOCK" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_PARCEL" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_PLAN" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LEGAL_FREEFORM" ATTR_TYPE="varchar(50)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PARCEL_DESCRIPTION" ATTR_TYPE="varchar(255)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OWNER_CLASS" ATTR_TYPE="varchar(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="METHOD" ATTR_TYPE="varchar(15)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ACCURACY" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SHAPE_Length" ATTR_TYPE="float8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SHAPE_Area" ATTR_TYPE="float8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_CODE" ATTR_TYPE="varchar(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="geom" ATTR_TYPE="geometry,GIST" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_query_settings_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_sql_statement" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_sql_where_clause" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Addresses-SURREY"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="4"
+#!   FEAT_GEOMTYPE="csv_none csv_point"
+#!   POSITION="1166.7640845788992 -633.82244189147673"
+#!   BOUNDING_RECT="1166.7640845788992 -633.82244189147673 593.00106825772946 71"
+#!   ORDER="500000000000261.13"
+#!   COLLAPSED="true"
+#!   KEYWORD="CSV2_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="HOUSE" ATTR_TYPE="uint32" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="STREET" ATTR_TYPE="varchar(17)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="POSTAL_CODE" ATTR_TYPE="varchar(8)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="uint32" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_CODE" ATTR_TYPE="varchar(7)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LONGITUDE" ATTR_TYPE="x_coordinate" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LATITUDE" ATTR_TYPE="y_coordinate" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="CoS-property-detail"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER="public"
+#!   IS_EDITABLE="true"
+#!   IDENTIFIER="5"
+#!   FEAT_GEOMTYPE="postgres_none"
+#!   POSITION="1127.7640845788992 -492.63008077594645"
+#!   BOUNDING_RECT="1127.7640845788992 -492.63008077594645 632.00106825772946 71"
+#!   ORDER="500000000000259.13"
+#!   COLLAPSED="true"
+#!   KEYWORD="POSTGRES_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="varchar(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FOLIO" ATTR_TYPE="varchar(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="MSLINK" ATTR_TYPE="int8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PLAN_NUMBER" ATTR_TYPE="varchar(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PLAN_TYPE" ATTR_TYPE="varchar(20)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PLAN_YEAR" ATTR_TYPE="int4" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LEGAL_DESCRIPTION" ATTR_TYPE="text" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_CODE" ATTR_TYPE="varchar(10)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GROSS_LAND" ATTR_TYPE="int8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GROSS_IMPROVEMENTS" ATTR_TYPE="int8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GROSS_ASSESSMENT" ATTR_TYPE="int8" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_query_settings_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_sql_statement" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="postgres_sql_where_clause" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Zone Code Description"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="6"
+#!   FEAT_GEOMTYPE="xlsx_none"
+#!   POSITION="1172.6078345788992 -775.014803007007"
+#!   BOUNDING_RECT="1172.6078345788992 -775.014803007007 587.15731825772946 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="XLSXR_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   READ_SELECT_ATTRS="true"
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_CODE" ATTR_TYPE="char(8)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_DESCRIPTION" ATTR_TYPE="char(47)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_BYLAWS" ATTR_TYPE="char(9)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LUC_TEXT" ATTR_TYPE="char(11)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <NON_GUI_DEFLINE_PARM VALUE="xlsx_header_row,0;xlsx_schema_end_col,0;xlsx_schema_end_row,0;xlsx_schema_start_col,0;xlsx_schema_start_row,1"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_apply_filters" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_end_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_start_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_table_settings_group" PARM_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="Water Meters"
+#!   FEATURE_TYPE_NAME="@Substring(@Value(POSTAL_CODE),0,3).Water Meters"
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="7"
+#!   FEAT_GEOMTYPE="All"
+#!   POSITION="2773.9906770406883 -351.43771966041618"
+#!   BOUNDING_RECT="2773.9906770406883 -351.43771966041618 695.82831220462549 71"
+#!   ORDER="500000000000264.13"
+#!   COLLAPSED="true"
+#!   KEYWORD="XLSXW_1"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   SCHEMA_ATTRIBUTE_SOURCE="0"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FACILITYID" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ACCOUNT_NO" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FOLIO" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="STATUS" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GPS" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="IMAGE" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LOTLINK" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="METER_CODE" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_ogc_wkt_crs" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_geometry.type" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PIN" ATTR_TYPE="string(15,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="JUROL" ATTR_TYPE="string(15,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_LOT" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_BLOCK" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_PARCEL" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LTSA_PLAN" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LEGAL_FREEFORM" ATTR_TYPE="string(50,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PARCEL_DESCRIPTION" ATTR_TYPE="string(255,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OWNER_CLASS" ATTR_TYPE="string(30,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="METHOD" ATTR_TYPE="string(15,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ACCURACY" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SHAPE_Length" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SHAPE_Area" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_CODE" ATTR_TYPE="string(10,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="geom" ATTR_TYPE="auto" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_DESCRIPTION" ATTR_TYPE="string(47,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ZONE_BYLAWS" ATTR_TYPE="string(9,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LUC_TEXT" ATTR_TYPE="string(11,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="HOUSE" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="STREET" ATTR_TYPE="string(17,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="POSTAL_CODE" ATTR_TYPE="string(8,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LONGITUDE" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LATITUDE" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="json_geometry.coordinates{}" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_advanced_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_drop_sheet" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_field_names_formatting" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_field_names_out" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_freeze_end_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_layer_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_names_are_positions" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_offset_col" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_offset_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet" PARM_VALUE="NO"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_level" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_password" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_permissions" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_raster_type" PARM_VALUE="PNG"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_remove_unchanged_template_sheet" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_row_id_column" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_rowcolumn_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_sheet_order" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_start_col" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_start_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_table_writer_mode" PARM_VALUE="Insert"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_template_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_template_sheet" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_trunc_sheet" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_truncate_group" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="Missing Addresses"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="true"
+#!   IDENTIFIER="8"
+#!   FEAT_GEOMTYPE="All"
+#!   POSITION="2827.1162082959995 -690.46232511414564"
+#!   BOUNDING_RECT="2827.1162082959995 -690.46232511414564 504.00106825772946 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="XLSXW_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   SCHEMA_ATTRIBUTE_SOURCE="1"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FACILITYID" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ACCOUNT_NO" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="FOLIO" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="STATUS" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="GPS" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="IMAGE" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LOTLINK" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="METER_CODE" ATTR_TYPE="number(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PID" ATTR_TYPE="string(20,version;1;cell_border_formatting;NO;text_alignment;NO;cell_protection;NO)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_advanced_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_drop_sheet" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_field_names_formatting" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_field_names_out" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_freeze_end_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_layer_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_names_are_positions" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_offset_col" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_offset_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet" PARM_VALUE="NO"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_level" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_password" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_protect_sheet_permissions" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_raster_type" PARM_VALUE="PNG"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_remove_unchanged_template_sheet" PARM_VALUE="No"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_row_id_column" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_rowcolumn_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_sheet_order" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_start_col" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_start_row" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_table_writer_mode" PARM_VALUE="Insert"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_template_group" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_template_sheet" PARM_VALUE=""/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_trunc_sheet" PARM_VALUE="Yes"/>
+#!     <DEFLINE_PARM PARM_NAME="xlsx_truncate_group" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="CSV2_1"
+#!   OVERRIDE="-CSV2_1_DATASET"
+#!   DATASET="CSV2_1/Addresses-SURREY.csv"
+#! />
+#! <DATASET
+#!   NAME="JSON_1"
+#!   OVERRIDE="-JSON_1_DATASET"
+#!   DATASET="JSON_1/WaterMeters-SURREY.json"
+#! />
+#! <DATASET
+#!   NAME="XLSXR_1"
+#!   OVERRIDE="-XLSXR_1_DATASET"
+#!   DATASET="XLSXR_1/ZoneCode.xlsx"
+#! />
+#! </READER_DATASETS>
+#! <WRITER_DATASETS>
+#! <DATASET
+#!   NAME="XLSXW_1"
+#!   OVERRIDE="-XLSXW_1_DATASET"
+#!   DATASET="XLSXW_1/Water Meters - Field Inspection INLINEQUERIER.xlsx"
+#! />
+#! </WRITER_DATASETS>
+#! <CONNECTIONS>
+#! <CONNECTION
+#!   NAME="Training"
+#!   TYPE="DATABASE"
+#!   FAMILY="PostgreSQL"
+#!   USAGE="PUBLISHED"
+#! />
+#! </CONNECTIONS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON INCLUDE_WEB_BROWSER%Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|JSON_Documents(*.json)|*.json|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\WaterMeters-SURREY.json"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI NAMED_DB_CONNECTION_ENCODED SourceDataset_POSTGRES FMT:POSTGRES%FAMILY:PostgreSQL Connection:"
+#!   DEFAULT_VALUE="Training"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_CSV2 INCLUDE_WEB_BROWSER%CSV/Compressed_CSV/TEXT_Files(*.csv;*.gz;*.txt)|*.csv;*.gz;*.txt|CSV_Files(*.csv)|*.csv|Compressed_CSV_Files(*.gz)|*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Text_Files(*.txt)|*.txt|All_Files(*)|* Source CSV (Comma Separated Value) File(s):"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\Addresses-SURREY.csv"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_XLSXR INCLUDE_WEB_BROWSER%Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|Excel_Workbook_2007(*.xlsx)|*.xlsx|Excel_Macro_Workbook(*.xlsm)|*.xlsm|Excel_Binary_Workbook_-_Windows_Only(*.xlsb)|*.xlsb|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Excel_Workbook_Pre_2007(*.xls)|*.xls|All_files(*)|* Source Microsoft Excel File(s):"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\ZoneCode.xlsx"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILENAME DestDataset_XLSXW Excel_Workbook_2007(*.xlsx)|*.xlsx|Excel_Macro_Workbook(*.xlsm)|*.xlsm|Excel_Workbook_Pre_2007(*.xls)|*.xls|Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|All_files(*)|* Destination Microsoft Excel File:"
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Output\Water Meters - Field Inspection INLINEQUERIER.xlsx"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImFsbG93VVJMIjp0cnVlLCJkZWZhdWx0VmFsdWUiOiJDOlxcRk1FRGF0YTIwMjJcXFJlc291cmNlc1xcRk1FVUMyMlxcTWVyZ2luZyBhbmQgSm9pbmluZyBUYWJ1bGFyIERhdGFcXERhdGFcXFdhdGVyTWV0ZXJzLVNVUlJFWS5qc29uIiwiZmlsdGVycyI6W3siZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJKU09OIERvY3VtZW50cyIsImZpbHRlciI6WyIqLmpzb24iXX0seyJkZXNjcmlwdGlvbiI6IkFsbCBGaWxlcyIsImZpbHRlciI6WyIqIl19XSwiaW5jbHVkZVdlYkJyb3dzZXIiOnRydWUsIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsIm5hbWUiOiJTb3VyY2VEYXRhc2V0X0pTT04iLCJwcm9tcHQiOiJTb3VyY2UgSlNPTiAoSmF2YVNjcmlwdCBPYmplY3QgTm90YXRpb24pIEZpbGUgb3IgVVJMOiIsInJlcXVpcmVkIjp0cnVlLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6ImZpbGUiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsInZhbHVlVHlwZSI6InN0cmluZyJ9LHsiY2hvaWNlU2V0dGluZ3MiOnsiY2hvaWNlU2V0IjoiZGJDb25uZWN0aW9ucyIsImZhbWlseSI6IlBvc3RncmVTUUwiLCJmb3JtYXQiOiJQT1NUR1JFUyJ9LCJkZWZhdWx0VmFsdWUiOiJUcmFpbmluZyIsIm5hbWUiOiJTb3VyY2VEYXRhc2V0X1BPU1RHUkVTIiwicHJvbXB0IjoiQ29ubmVjdGlvbjoiLCJyZXF1aXJlZCI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6ImRyb3Bkb3duIiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZCJ9LHsiYWNjZXNzTW9kZSI6InJlYWQiLCJkZWZhdWx0VmFsdWUiOiJDOlxcRk1FRGF0YTIwMjJcXFJlc291cmNlc1xcRk1FVUMyMlxcTWVyZ2luZyBhbmQgSm9pbmluZyBUYWJ1bGFyIERhdGFcXERhdGFcXEFkZHJlc3Nlcy1TVVJSRVkuY3N2IiwiZmlsdGVycyI6W3siZGVzY3JpcHRpb24iOiJDU1YvQ29tcHJlc3NlZCBDU1YvVEVYVCBGaWxlcyIsImZpbHRlciI6WyIqLmNzdiIsIiouZ3oiLCIqLnR4dCJdfSx7ImRlc2NyaXB0aW9uIjoiQ1NWIEZpbGVzIiwiZmlsdGVyIjpbIiouY3N2Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIENTViBGaWxlcyIsImZpbHRlciI6WyIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJUZXh0IEZpbGVzIiwiZmlsdGVyIjpbIioudHh0Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiU291cmNlRGF0YXNldF9DU1YyIiwicHJvbXB0IjoiU291cmNlIENTViAoQ29tbWEgU2VwYXJhdGVkIFZhbHVlKSBGaWxlKHMpOiIsInJlcXVpcmVkIjp0cnVlLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6ImZpbGUiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsInZhbHVlVHlwZSI6InN0cmluZyJ9LHsiYWNjZXNzTW9kZSI6InJlYWQiLCJkZWZhdWx0VmFsdWUiOiJDOlxcRk1FRGF0YTIwMjJcXFJlc291cmNlc1xcRk1FVUMyMlxcTWVyZ2luZyBhbmQgSm9pbmluZyBUYWJ1bGFyIERhdGFcXERhdGFcXFpvbmVDb2RlLnhsc3giLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkV4Y2VsIEZpbGVzIiwiZmlsdGVyIjpbIioueGxzeCIsIioueGxzbSIsIioueGxzIl19LHsiZGVzY3JpcHRpb24iOiJFeGNlbCBXb3JrYm9vayAyMDA3IiwiZmlsdGVyIjpbIioueGxzeCJdfSx7ImRlc2NyaXB0aW9uIjoiRXhjZWwgTWFjcm8gV29ya2Jvb2siLCJmaWx0ZXIiOlsiKi54bHNtIl19LHsiZGVzY3JpcHRpb24iOiJFeGNlbCBCaW5hcnkgV29ya2Jvb2sgLSBXaW5kb3dzIE9ubHkiLCJmaWx0ZXIiOlsiKi54bHNiIl19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJFeGNlbCBXb3JrYm9vayBQcmUgMjAwNyIsImZpbHRlciI6WyIqLnhscyJdfSx7ImRlc2NyaXB0aW9uIjoiQWxsIGZpbGVzIiwiZmlsdGVyIjpbIioiXX1dLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZSwiaXRlbXNUb1NlbGVjdCI6ImZpbGVzIiwibmFtZSI6IlNvdXJjZURhdGFzZXRfWExTWFIiLCJwcm9tcHQiOiJTb3VyY2UgTWljcm9zb2Z0IEV4Y2VsIEZpbGUocyk6IiwicmVxdWlyZWQiOnRydWUsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZmlsZSIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJhY2Nlc3NNb2RlIjoid3JpdGUiLCJkZWZhdWx0VmFsdWUiOiJDOlxcRk1FRGF0YTIwMjJcXFJlc291cmNlc1xcRk1FVUMyMlxcTWVyZ2luZyBhbmQgSm9pbmluZyBUYWJ1bGFyIERhdGFcXE91dHB1dFxcV2F0ZXIgTWV0ZXJzIC0gRmllbGQgSW5zcGVjdGlvbiBJTkxJTkVRVUVSSUVSLnhsc3giLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkV4Y2VsIFdvcmtib29rIDIwMDciLCJmaWx0ZXIiOlsiKi54bHN4Il19LHsiZGVzY3JpcHRpb24iOiJFeGNlbCBNYWNybyBXb3JrYm9vayIsImZpbHRlciI6WyIqLnhsc20iXX0seyJkZXNjcmlwdGlvbiI6IkV4Y2VsIFdvcmtib29rIFByZSAyMDA3IiwiZmlsdGVyIjpbIioueGxzIl19LHsiZGVzY3JpcHRpb24iOiJFeGNlbCBGaWxlcyIsImZpbHRlciI6WyIqLnhsc3giLCIqLnhsc20iLCIqLnhscyJdfSx7ImRlc2NyaXB0aW9uIjoiQWxsIGZpbGVzIiwiZmlsdGVyIjpbIioiXX1dLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiRGVzdERhdGFzZXRfWExTWFciLCJwcm9tcHQiOiJEZXN0aW5hdGlvbiBNaWNyb3NvZnQgRXhjZWwgRmlsZToiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZmlsZSIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwidmFsdWVUeXBlIjoic3RyaW5nIn1dfQ=="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_JSON" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\WaterMeters-SURREY.json"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON INCLUDE_WEB_BROWSER%Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|JSON_Documents(*.json)|*.json|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#! />
+#!     <INFO NAME="SourceDataset_POSTGRES" 
+#!   DEFAULT_VALUE="Training"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI NAMED_DB_CONNECTION_ENCODED SourceDataset_POSTGRES FMT:POSTGRES%FAMILY:PostgreSQL Connection:"
+#! />
+#!     <INFO NAME="SourceDataset_CSV2" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\Addresses-SURREY.csv"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_CSV2 INCLUDE_WEB_BROWSER%CSV/Compressed_CSV/TEXT_Files(*.csv;*.gz;*.txt)|*.csv;*.gz;*.txt|CSV_Files(*.csv)|*.csv|Compressed_CSV_Files(*.gz)|*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Text_Files(*.txt)|*.txt|All_Files(*)|* Source CSV (Comma Separated Value) File(s):"
+#! />
+#!     <INFO NAME="SourceDataset_XLSXR" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\ZoneCode.xlsx"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_XLSXR INCLUDE_WEB_BROWSER%Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|Excel_Workbook_2007(*.xlsx)|*.xlsx|Excel_Macro_Workbook(*.xlsm)|*.xlsm|Excel_Binary_Workbook_-_Windows_Only(*.xlsb)|*.xlsb|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Excel_Workbook_Pre_2007(*.xls)|*.xls|All_files(*)|* Source Microsoft Excel File(s):"
+#! />
+#!     <INFO NAME="DestDataset_XLSXW" 
+#!   DEFAULT_VALUE="C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Output\Water Meters - Field Inspection INLINEQUERIER.xlsx"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILENAME DestDataset_XLSXW Excel_Workbook_2007(*.xlsx)|*.xlsx|Excel_Macro_Workbook(*.xlsm)|*.xlsm|Excel_Workbook_Pre_2007(*.xls)|*.xls|Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|All_files(*)|* Destination Microsoft Excel File:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="9"
+#!   TYPE="InlineQuerier"
+#!   VERSION="1"
+#!   POSITION="1981.2698126981268 -273.82244189147673"
+#!   BOUNDING_RECT="1981.2698126981268 -273.82244189147673 681.25681256812595 71"
+#!   ORDER="500000000000265.13"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22346"
+#! >
+#!     <OUTPUT_FEAT NAME="water_meters+lots+addresses"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="FACILITYID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ACCOUNT_NO" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="FOLIO" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="STATUS" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="GPS" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="IMAGE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LOTLINK" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="METER_CODE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_ogc_wkt_crs" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_geometry.type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PIN" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="JUROL" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LTSA_LOT" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LTSA_BLOCK" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LTSA_PARCEL" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LTSA_PLAN" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LEGAL_FREEFORM" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PARCEL_DESCRIPTION" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="OWNER_CLASS" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="METHOD" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ACCURACY" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="SHAPE_Length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="SHAPE_Area" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ZONE_CODE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="geom" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ZONE_DESCRIPTION" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ZONE_BYLAWS" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LUC_TEXT" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="HOUSE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="STREET" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="POSTAL_CODE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LONGITUDE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="LATITUDE" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_geometry.coordinates{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="missing_addresses"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="FACILITYID" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ACCOUNT_NO" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="FOLIO" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="STATUS" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="GPS" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="IMAGE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="LOTLINK" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="METER_CODE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="PID" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="json_ogc_wkt_crs" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="json_geometry.type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="HOUSE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="STREET" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="POSTAL_CODE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ZONE_CODE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="LONGITUDE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="LATITUDE" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="json_geometry.coordinates{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="QUERY_DEF" PARM_VALUE="water_meters+lots+addresses,SELECT&lt;space&gt;*&lt;lf&gt;FROM&lt;space&gt;&lt;quote&gt;water_meters&lt;quote&gt;&lt;space&gt;m&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;LEFT&lt;space&gt;JOIN&lt;space&gt;&lt;quote&gt;public.CoS-lot&lt;quote&gt;&lt;space&gt;l&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;ON&lt;space&gt;m.PID=l.PID&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;LEFT&lt;space&gt;JOIN&lt;space&gt;&lt;quote&gt;Zone&lt;space&gt;Code&lt;space&gt;Description&lt;quote&gt;&lt;space&gt;z&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;ON&lt;space&gt;l.ZONE_CODE=z.ZONE_CODE&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;INNER&lt;space&gt;JOIN&lt;space&gt;&lt;quote&gt;Addresses-SURREY&lt;quote&gt;&lt;space&gt;a&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;ON&lt;space&gt;m.PID=a.PID&lt;semicolon&gt;&lt;lf&gt;,FIRST,missing_addresses,SELECT&lt;space&gt;*&lt;lf&gt;FROM&lt;space&gt;&lt;quote&gt;water_meters&lt;quote&gt;&lt;space&gt;m&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;LEFT&lt;space&gt;JOIN&lt;space&gt;&lt;quote&gt;Addresses-SURREY&lt;quote&gt;&lt;space&gt;a&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;ON&lt;space&gt;m.PID=a.PID&lt;lf&gt;WHERE&lt;space&gt;a.&lt;quote&gt;POSTAL_CODE&lt;quote&gt;&lt;space&gt;IS&lt;space&gt;NULL&lt;semicolon&gt;&lt;lf&gt;,FIRST"/>
+#!     <XFORM_PARM PARM_NAME="QUERY_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="QUERY_SCHEMA" PARM_VALUE="water_meters+lots+addresses,FACILITYID&lt;comma&gt;text&lt;comma&gt;ACCOUNT_NO&lt;comma&gt;integer&lt;comma&gt;FOLIO&lt;comma&gt;text&lt;comma&gt;STATUS&lt;comma&gt;text&lt;comma&gt;GPS&lt;comma&gt;text&lt;comma&gt;IMAGE&lt;comma&gt;text&lt;comma&gt;LOTLINK&lt;comma&gt;integer&lt;comma&gt;METER_CODE&lt;comma&gt;integer&lt;comma&gt;PID&lt;comma&gt;text&lt;comma&gt;json_ogc_wkt_crs&lt;comma&gt;text&lt;comma&gt;json_geometry.type&lt;comma&gt;text&lt;comma&gt;water_meters.fme_feature_content&lt;comma&gt;fme_feature_content&lt;comma&gt;PIN&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;JUROL&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;LTSA_LOT&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_BLOCK&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_PARCEL&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_PLAN&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LEGAL_FREEFORM&lt;comma&gt;varchar&lt;openparen&gt;50&lt;closeparen&gt;&lt;comma&gt;PARCEL_DESCRIPTION&lt;comma&gt;varchar&lt;openparen&gt;255&lt;closeparen&gt;&lt;comma&gt;OWNER_CLASS&lt;comma&gt;varchar&lt;openparen&gt;30&lt;closeparen&gt;&lt;comma&gt;METHOD&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;ACCURACY&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;SHAPE_Length&lt;comma&gt;double&lt;comma&gt;SHAPE_Area&lt;comma&gt;double&lt;comma&gt;ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;geom&lt;comma&gt;varchar&lt;openparen&gt;200&lt;closeparen&gt;&lt;comma&gt;public.CoS-lot.fme_feature_content&lt;comma&gt;fme_feature_content&lt;comma&gt;ZONE_DESCRIPTION&lt;comma&gt;varchar&lt;openparen&gt;47&lt;closeparen&gt;&lt;comma&gt;ZONE_BYLAWS&lt;comma&gt;varchar&lt;openparen&gt;9&lt;closeparen&gt;&lt;comma&gt;LUC_TEXT&lt;comma&gt;varchar&lt;openparen&gt;11&lt;closeparen&gt;&lt;comma&gt;&lt;quote&gt;Zone&lt;space&gt;Code&lt;space&gt;Description.fme_feature_content&lt;quote&gt;&lt;comma&gt;fme_feature_content&lt;comma&gt;HOUSE&lt;comma&gt;integer&lt;comma&gt;STREET&lt;comma&gt;varchar&lt;openparen&gt;17&lt;closeparen&gt;&lt;comma&gt;POSTAL_CODE&lt;comma&gt;varchar&lt;openparen&gt;8&lt;closeparen&gt;&lt;comma&gt;LONGITUDE&lt;comma&gt;double&lt;comma&gt;LATITUDE&lt;comma&gt;double&lt;comma&gt;Addresses-SURREY.fme_feature_content&lt;comma&gt;fme_feature_content,missing_addresses,FACILITYID&lt;comma&gt;text&lt;comma&gt;ACCOUNT_NO&lt;comma&gt;integer&lt;comma&gt;FOLIO&lt;comma&gt;text&lt;comma&gt;STATUS&lt;comma&gt;text&lt;comma&gt;GPS&lt;comma&gt;text&lt;comma&gt;IMAGE&lt;comma&gt;text&lt;comma&gt;LOTLINK&lt;comma&gt;integer&lt;comma&gt;METER_CODE&lt;comma&gt;integer&lt;comma&gt;PID&lt;comma&gt;text&lt;comma&gt;json_ogc_wkt_crs&lt;comma&gt;text&lt;comma&gt;json_geometry.type&lt;comma&gt;text&lt;comma&gt;water_meters.fme_feature_content&lt;comma&gt;fme_feature_content&lt;comma&gt;HOUSE&lt;comma&gt;integer&lt;comma&gt;STREET&lt;comma&gt;varchar&lt;openparen&gt;17&lt;closeparen&gt;&lt;comma&gt;POSTAL_CODE&lt;comma&gt;varchar&lt;openparen&gt;8&lt;closeparen&gt;&lt;comma&gt;ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;7&lt;closeparen&gt;&lt;comma&gt;LONGITUDE&lt;comma&gt;double&lt;comma&gt;LATITUDE&lt;comma&gt;double&lt;comma&gt;Addresses-SURREY.fme_feature_content&lt;comma&gt;fme_feature_content"/>
+#!     <XFORM_PARM PARM_NAME="TABLE_DEF" PARM_VALUE="water_meters,FACILITYID&lt;comma&gt;text&lt;comma&gt;ACCOUNT_NO&lt;comma&gt;integer&lt;comma&gt;FOLIO&lt;comma&gt;text&lt;comma&gt;STATUS&lt;comma&gt;text&lt;comma&gt;GPS&lt;comma&gt;text&lt;comma&gt;IMAGE&lt;comma&gt;text&lt;comma&gt;LOTLINK&lt;comma&gt;integer&lt;comma&gt;METER_CODE&lt;comma&gt;integer&lt;comma&gt;PID&lt;comma&gt;text&lt;comma&gt;json_ogc_wkt_crs&lt;comma&gt;text&lt;comma&gt;json_geometry.type&lt;comma&gt;text,public.CoS-lot,PID&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;PIN&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;JUROL&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;LTSA_LOT&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_BLOCK&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_PARCEL&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LTSA_PLAN&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;LEGAL_FREEFORM&lt;comma&gt;varchar&lt;openparen&gt;50&lt;closeparen&gt;&lt;comma&gt;PARCEL_DESCRIPTION&lt;comma&gt;varchar&lt;openparen&gt;255&lt;closeparen&gt;&lt;comma&gt;OWNER_CLASS&lt;comma&gt;varchar&lt;openparen&gt;30&lt;closeparen&gt;&lt;comma&gt;METHOD&lt;comma&gt;varchar&lt;openparen&gt;15&lt;closeparen&gt;&lt;comma&gt;ACCURACY&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;SHAPE_Length&lt;comma&gt;double&lt;comma&gt;SHAPE_Area&lt;comma&gt;double&lt;comma&gt;ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;geom&lt;comma&gt;varchar&lt;openparen&gt;200&lt;closeparen&gt;,public.CoS-property-detail,PID&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;FOLIO&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;MSLINK&lt;comma&gt;integer&lt;comma&gt;PLAN_NUMBER&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;PLAN_TYPE&lt;comma&gt;varchar&lt;openparen&gt;20&lt;closeparen&gt;&lt;comma&gt;PLAN_YEAR&lt;comma&gt;integer&lt;comma&gt;LEGAL_DESCRIPTION&lt;comma&gt;text&lt;comma&gt;ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;10&lt;closeparen&gt;&lt;comma&gt;GROSS_LAND&lt;comma&gt;integer&lt;comma&gt;GROSS_IMPROVEMENTS&lt;comma&gt;integer&lt;comma&gt;GROSS_ASSESSMENT&lt;comma&gt;integer,Addresses-SURREY,HOUSE&lt;comma&gt;integer&lt;comma&gt;STREET&lt;comma&gt;varchar&lt;openparen&gt;17&lt;closeparen&gt;&lt;comma&gt;POSTAL_CODE&lt;comma&gt;varchar&lt;openparen&gt;8&lt;closeparen&gt;&lt;comma&gt;PID&lt;comma&gt;integer&lt;comma&gt;ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;7&lt;closeparen&gt;&lt;comma&gt;LONGITUDE&lt;comma&gt;double&lt;comma&gt;LATITUDE&lt;comma&gt;double,Zone&lt;space&gt;Code&lt;space&gt;Description,ZONE_CODE&lt;comma&gt;varchar&lt;openparen&gt;8&lt;closeparen&gt;&lt;comma&gt;ZONE_DESCRIPTION&lt;comma&gt;varchar&lt;openparen&gt;47&lt;closeparen&gt;&lt;comma&gt;ZONE_BYLAWS&lt;comma&gt;varchar&lt;openparen&gt;9&lt;closeparen&gt;&lt;comma&gt;LUC_TEXT&lt;comma&gt;varchar&lt;openparen&gt;11&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TABLE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="InlineQuerier"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="10"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 water_meters"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 1 public.CoS-lot"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="13"
+#!   SOURCE_NODE="4"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 3 Addresses-SURREY"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="12"
+#!   SOURCE_NODE="5"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 2 public.CoS-property-detail"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="14"
+#!   SOURCE_NODE="6"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 4 Zone&lt;lt&gt;space&lt;gt&gt;Code&lt;lt&gt;space&lt;gt&gt;Description"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="9"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="fo 0 water_meters+lots+addresses"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="16"
+#!   SOURCE_NODE="9"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="fo 1 missing_addresses"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 39
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_JSON_1,JSON_IN_FME_GROUP_NAMED1_JSON_1,JSON_IN_SCAN_MODE_JSON_1,JSON_IN_QUERY_TABLE_JSON_1,JSON_IN_FME_GROUP_NAMED2_JSON_1,JSON_IN_FEATURE_TYPE_KEY_JSON_1,JSON_IN_GEOMETRY_FORMAT_JSON_1,JSON_IN_GEOMETRY_KEY_JSON_1,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1,JSON_IN_SAVE_FRAGMENTS_JSON_1,JSON_IN_USE_SEARCH_ENVELOPE_JSON_1,JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1,JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1,JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1,JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1,JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1,JSON_IN_CLIP_TO_ENVELOPE_JSON_1,JSON_IN_NETWORK_AUTHENTICATION_JSON_1,SourceDataset_POSTGRES_1,POSTGRES_IN_FME_CONNECTION_GROUP_POSTGRES_1,POSTGRES_IN_FME_GROUP_NAMED1_POSTGRES_1,POSTGRES_IN_WHERE_CLAUSE_POSTGRES_1,POSTGRES_IN_ADVANCED_POSTGRES_1,POSTGRES_IN_FEATURES_PER_FETCH_POSTGRES_1,POSTGRES_IN_BEGIN_SQL_POSTGRES_1,POSTGRES_IN_END_SQL_POSTGRES_1,POSTGRES_IN_SCHEMAS_FOR_TABLE_LISTING_POSTGRES_1,SourceDataset_CSV2_1,CSV2_IN_FIELDS_GROUP_CSV2_1,CSV2_IN_DELIMITER_CSV2_1,CSV2_IN_FIELD_NAMES_LINE_CSV2_1,CSV2_IN_DATA_START_LINE_CSV2_1,CSV2_IN_ADVANCED_GROUP_CSV2_1,CSV2_IN_FIELD_SEPARATION_GROUP_CSV2_1,CSV2_IN_SKIP_DUPLICATE_DELIMITERS_CSV2_1,CSV2_IN_FIELD_QUALIFIER_CHARACTER_CSV2_1,CSV2_IN_FIELD_QUALIFIER_ESCAPE_CHARACTER_CSV2_1,CSV2_IN_FIELD_NAMES_GROUP_CSV2_1,CSV2_IN_CASE_SENSITIVE_FIELD_NAMES_CSV2_1,CSV2_IN_ENFORCE_STRICT_SCHEMA_CSV2_1,CSV2_IN_TRIM_FIELD_NAME_WHITESPACE_CSV2_1,CSV2_IN_FIELD_VALUES_GROUP_CSV2_1,CSV2_IN_READ_EMPTY_VALUES_AS_CSV2_1,CSV2_IN_TRIM_FIELD_VALUE_QUALIFIERS_CSV2_1,CSV2_IN_ENCODING_GROUP_CSV2_1,CSV2_IN_ENCODING_CSV2_1,CSV2_IN_PRESERVE_SOURCE_ENCODING_CSV2_1,CSV2_IN_SKIPPED_LINES_GROUP_CSV2_1,CSV2_IN_READ_SKIPPED_LINES_CSV2_1,CSV2_IN_NETWORK_AUTHENTICATION_CSV2_1,SourceDataset_XLSXR_1,XLSXR_IN_ADVANCED_XLSXR_1,XLSXR_IN_SCAN_MAX_FEATURES_XLSXR_1,XLSXR_IN_READ_BLANK_AS_XLSXR_1,XLSXR_IN_EXPAND_MERGED_CELLS_XLSXR_1,XLSXR_IN_READ_RASTER_MODE_XLSXR_1,XLSXR_IN_READ_FORM_CONTROLS_XLSXR_1,XLSXR_IN_NETWORK_AUTHENTICATION_XLSXR_1,DestDataset_XLSXW_1,XLSXW_OUT_FME_GROUP_NAMED1_XLSXW_1,XLSXW_OUT_OVERWRITE_FILE_XLSXW_1,XLSXW_OUT_TEMPLATEFILE_XLSXW_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_JSON C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\WaterMeters-SURREY.json
+
+DEFAULT_MACRO SourceDataset_POSTGRES Training
+
+DEFAULT_MACRO SourceDataset_CSV2 C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\Addresses-SURREY.csv
+
+DEFAULT_MACRO SourceDataset_XLSXR C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Data\ZoneCode.xlsx
+
+DEFAULT_MACRO DestDataset_XLSXW C:\FMEData2022\Resources\FMEUC22\Merging and Joining Tabular Data\Output\Water Meters - Field Inspection INLINEQUERIER.xlsx
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_JSON)} == {}} { puts_real {Parameter 'SourceDataset_JSON' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_POSTGRES)} == {}} { puts_real {Parameter 'SourceDataset_POSTGRES' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_CSV2)} == {}} { puts_real {Parameter 'SourceDataset_CSV2' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_XLSXR)} == {}} { puts_real {Parameter 'SourceDataset_XLSXR' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(DestDataset_XLSXW)} == {}} { puts_real {Parameter 'DestDataset_XLSXW' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} JSON
+MULTI_READER_KEYWORD{0} JSON_1
+MULTI_READER_GEN_DIRECTIVES{0} USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MAXX,0,JSON_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,SAVE_FRAGMENTS,NO,DECODE_TEXT_STRINGS,Yes,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,No,EXPOSE_ATTRS_GROUP,,COORDINATE_SYSTEM_KEY,json_ogc_wkt_crs,GEOMETRY_KEY,json_geometry,SEARCH_ENVELOPE_MAXY,0,CLIP_TO_ENVELOPE,NO,FEATURE_TYPE_KEY,json_featuretype,SEARCH_ENVELOPE_MINY,0,_MERGE_SCHEMAS,YES,SCAN_MODE,AUTO,FLATTEN_MODE,ALL_LEVELS,GEOMETRY_FORMAT,GeoJSON,UPDATE_FEATURE_TYPES,yes,QUERY_TABLE,<lt>Unused<gt>,SEARCH_ENVELOPE_MINX,0
+MULTI_READER_TYPE{1} POSTGRES
+MULTI_READER_KEYWORD{1} POSTGRES_1
+MULTI_READER_GEN_DIRECTIVES{1} QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,READ_TIME_WITH_TIMEZONE,Yes,END_SQL,,SCHEMAS_FOR_TABLE_LISTING,,ADVANCED,,EXPOSE_ATTRS_GROUP,,_MERGE_SCHEMAS,YES,NAMED_CONNECTION,PostGIS<lt>space<gt>Training,FEATURES_PER_FETCH,10000,BEGIN_SQL,,CREATE_FEATURE_TABLES_FROM_DATA,Yes,POSTGRES_EXPOSE_FORMAT_ATTRS,,TABLELIST,public.CoS-property-detail,WHERE_CLAUSE,
+MULTI_READER_TYPE{2} CSV2
+MULTI_READER_KEYWORD{2} CSV2_1
+MULTI_READER_GEN_DIRECTIVES{2} FIELD_QUALIFIER_ESCAPE_CHARACTER,<lt>quote<gt>,SKIPPED_LINES_GROUP,,SCAN_TYPES,Yes,FIELD_NAMES_LINE,1,FIELD_SEPARATION_GROUP,,CSV2_EXPOSE_FORMAT_ATTRS,,SKIP_DUPLICATE_DELIMITERS,No,DATA_START_LINE,2,SCHEMA,,_MERGE_SCHEMAS,YES,DATASET_GROUP,,ENFORCE_STRICT_SCHEMA,No,CASE_SENSITIVE_FIELD_NAMES,Yes,USE_CUSTOM_SCHEMA,NO,ENCODING_GROUP,,SCAN_ADDITIONAL_FIELDS,No,DELIMITER,auto,FEATURE_TYPE_NAME,FORMAT_NAME,ENCODING,windows-1252,FIELD_NAMES_GROUP,,PRESERVE_SOURCE_ENCODING,No,READ_SKIPPED_LINES,No,CHUNK_SIZE,100000,TRIM_FIELD_VALUE_QUALIFIERS,Yes,SCAN_MAX_ROWS,10000,FIELD_VALUES_GROUP,,ADVANCED_GROUP,,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,FIELD_QUALIFIER_CHARACTER,<lt>quote<gt>,PREVIEW_PLACEHOLDER,,EXPOSE_ATTRS_GROUP,,TRIM_FIELD_NAME_QUALIFIERS,Yes,FIELDS_GROUP,,SCHEMA_GENERATION_GROUP,
+MULTI_READER_TYPE{3} XLSXR
+MULTI_READER_KEYWORD{3} XLSXR_1
+MULTI_READER_GEN_DIRECTIVES{3} CONFIGURATION_DATASET,G:<backslash>My<space>Drive<backslash>Shows<backslash>FMEUC22<backslash>data<backslash>ZoneCode.xlsx,EXPAND_MERGED_CELLS,Yes,READ_RASTER_MODE,None,EXPOSE_ATTRS_GROUP,,APPLY_FILTERS,No,SCHEMA_HANDLING_REVISION,2,_MERGE_SCHEMAS,YES,USE_CUSTOM_SCHEMA,NO,TRIM_ATTR_NAME_WHITESPACE,Yes,ADVANCED,,READ_BLANK_AS,Missing,SKIP_EMPTY_ROWS,YES,READ_FORM_CONTROLS,NONE,FORCE_DATETIME,NO,TRIM_ATTR_NAME_CHARACTERS,,SCAN_MAX_FEATURES,1000,EXCEL_COL_NAMES,YES,CASE_SENSITIVE_FEATURE_TYPES,YES,REPLACE_ONLY_NEWLINES_CARRIAGE_RETURNS,YES,XLSXR_EXPOSE_FORMAT_ATTRS,,SCHEMA,Zone<lt>space<gt>Code<lt>space<gt>Description<comma>0<lt>comma<gt>ZONE_CODE<lt>comma<gt>char<lt>comma<gt>8<lt>comma<gt><lt>comma<gt><lt>comma<gt>1<lt>comma<gt>ZONE_DESCRIPTION<lt>comma<gt>char<lt>comma<gt>47<lt>comma<gt><lt>comma<gt><lt>comma<gt>2<lt>comma<gt>ZONE_BYLAWS<lt>comma<gt>char<lt>comma<gt>9<lt>comma<gt><lt>comma<gt><lt>comma<gt>3<lt>comma<gt>LUC_TEXT<lt>comma<gt>char<lt>comma<gt>11<lt>comma<gt><lt>comma<gt><comma>1<lt>comma<gt><lt>comma<gt><lt>comma<gt><comma>NO<lt>comma<gt>NO<lt>comma<gt>1<lt>comma<gt>G:<lt>lt<gt>backslash<lt>gt<gt>My<lt>lt<gt>space<lt>gt<gt>Drive<lt>lt<gt>backslash<lt>gt<gt>Shows<lt>lt<gt>backslash<lt>gt<gt>FMEUC22<lt>lt<gt>backslash<lt>gt<gt>data<lt>lt<gt>backslash<lt>gt<gt>ZoneCode.xlsx<lt>comma<gt><lt>quote<gt>0<lt>comma<gt>0<lt>comma<gt>3<lt>comma<gt>67<lt>quote<gt><lt>comma<gt><lt>comma<gt>NO<lt>comma<gt>NO,ALLOW_DOLLAR_SIGNS,YES,STRIP_SHEETNAME_SPACES,YES,TABLELIST,<quote>Zone<space>Code<space>Description<quote>,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,CREATE_FEATURE_TABLES_FROM_DATA,Yes
+WRITER_TYPE MULTI_WRITER
+MULTI_WRITER_DATASET_ORDER BY_ID
+MULTI_WRITER_FIRST_WRITER_ID 0
+MULTI_WRITER_TYPE{0} XLSXW
+MULTI_WRITER_KEYWORD{0} XLSXW_1
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "JSON_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_JSON_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_1
+DEFAULT_MACRO SourceDataset_JSON_1 $(SourceDataset_JSON)
+GUI FILE_OR_URL SourceDataset_JSON_1 JSON_Documents(*.json)|*.json|All_Files|* Source JSON (JavaScript Object Notation) File or URL:
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED1_JSON_1 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED1_JSON_1 JSON_IN_SCAN_MODE_JSON_1%JSON_IN_QUERY_TABLE_JSON_1%JSON_IN_FLATTEN_MODE Schema Scan
+DEFAULT_MACRO JSON_IN_SCAN_MODE_JSON_1 AUTO
+JSON_1_SCAN_MODE "$(JSON_IN_SCAN_MODE_JSON_1)"
+GUI ACTIVECHOICE_LOOKUP JSON_IN_SCAN_MODE_JSON_1 Auto,AUTO,JSON_IN_QUERY_TABLE_JSON_1%JSON<space>Query,QUERY Schema Scan Mode
+DEFAULT_MACRO JSON_IN_QUERY_TABLE_JSON_1 <Unused>
+JSON_1_QUERY_TABLE "$(JSON_IN_QUERY_TABLE_JSON_1)"
+GUI GUI_LINE_TABLE JSON_IN_QUERY_TABLE_JSON_1 NO_LABEL%NOT_OK_IF_INVALID%START_NUM_ROWS:1%"Feature Type"%"STRING_ENCODED FTYPE"%Query%"DYNAMIC_SINGLE_SELECT_ENCODED QUERY $[SourceDataset_JSON_1],_FORMAT_OVERRIDE_,JSON,_GET_ATTRIBUTE_VALUES_,,JSON_SCAN_FOR_QUERIES,YES,FME_DELIM,<u001F>,FME_PARENT_SELECTION,root_node,FME_READ_SCHEMA,NO,FME_DN_ATTR,display_value,FME_PATH_ATTR,query_string,FME_EXPAND,json" JSON Queries for Feature Objects:
+DEFAULT_MACRO JSON_IN_FLATTEN_MODE_JSON_1 ALL_LEVELS
+JSON_1_FLATTEN_MODE "$(JSON_IN_FLATTEN_MODE_JSON_1)"
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED2_JSON_1 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED2_JSON_1 JSON_IN_FEATURE_TYPE_KEY_JSON_1%JSON_IN_GEOMETRY_FORMAT_JSON_1%JSON_IN_GEOMETRY_KEY_JSON_1%JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1%JSON_IN_SAVE_FRAGMENTS_JSON_1 Feature Parameters
+DEFAULT_MACRO JSON_IN_FEATURE_TYPE_KEY_JSON_1 json_featuretype
+JSON_1_FEATURE_TYPE_KEY "$(JSON_IN_FEATURE_TYPE_KEY_JSON_1)"
+GUI OPTIONAL TEXT JSON_IN_FEATURE_TYPE_KEY_JSON_1 Feature Type Key Name:
+DEFAULT_MACRO JSON_IN_GEOMETRY_FORMAT_JSON_1 None
+JSON_1_GEOMETRY_FORMAT "$(JSON_IN_GEOMETRY_FORMAT_JSON_1)"
+GUI ACTIVECHOICE JSON_IN_GEOMETRY_FORMAT_JSON_1 GeoJSON%OGC-WKT%None,JSON_IN_GEOMETRY_KEY_JSON_1,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 Geometry Format:
+DEFAULT_MACRO JSON_IN_GEOMETRY_KEY_JSON_1 
+JSON_1_GEOMETRY_KEY "$(JSON_IN_GEOMETRY_KEY_JSON_1)"
+GUI OPTIONAL TEXT JSON_IN_GEOMETRY_KEY_JSON_1 Geometry Key Name:
+DEFAULT_MACRO JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 <Unused>
+JSON_1_COORDINATE_SYSTEM_KEY "$(JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1)"
+GUI TEXT JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 Coordinate System Key Name:
+DEFAULT_MACRO JSON_IN_SAVE_FRAGMENTS_JSON_1 NO
+JSON_1_SAVE_FRAGMENTS "$(JSON_IN_SAVE_FRAGMENTS_JSON_1)"
+GUI LOOKUP_CHOICE JSON_IN_SAVE_FRAGMENTS_JSON_1 Yes,YES%No,NO Read Entire Feature as JSON Fragment:
+DEFAULT_MACRO JSON_IN_DECODE_TEXT_STRINGS_JSON_1 Yes
+JSON_1_DECODE_TEXT_STRINGS "$(JSON_IN_DECODE_TEXT_STRINGS_JSON_1)"
+DEFAULT_MACRO JSON_IN_EXPOSE_ATTRS_GROUP_JSON_1 
+JSON_1_EXPOSE_ATTRS_GROUP "$(JSON_IN_EXPOSE_ATTRS_GROUP_JSON_1)"
+DEFAULT_MACRO JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_1 No
+JSON_1_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE "$(JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO JSON_IN_USE_SEARCH_ENVELOPE_JSON_1 NO
+JSON_1_USE_SEARCH_ENVELOPE "$(JSON_IN_USE_SEARCH_ENVELOPE_JSON_1)"
+GUI ACTIVEDISCLOSUREGROUP JSON_IN_USE_SEARCH_ENVELOPE_JSON_1 JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1%JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1%JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1%JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1%JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1%JSON_IN_CLIP_TO_ENVELOPE_JSON_1%JSON_IN_SEARCH_METHOD%JSON_IN_SEARCH_METHOD_FILTER%JSON_IN_SEARCH_ORDER%JSON_IN_SEARCH_FEATURE%JSON_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 <Unused>, 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1)"
+GUI OPTIONAL COORDSYS JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP JSON_IN_CLIP_TO_ENVELOPE_JSON_1 <Unused>,NO 
+DEFAULT_MACRO JSON_IN_CLIP_TO_ENVELOPE_JSON_1 NO
+JSON_1_CLIP_TO_ENVELOPE "$(JSON_IN_CLIP_TO_ENVELOPE_JSON_1)"
+GUI OPTIONAL CHECKBOX JSON_IN_CLIP_TO_ENVELOPE_JSON_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO JSON_IN_NETWORK_AUTHENTICATION_JSON_1 
+JSON_1_NETWORK_AUTHENTICATION "$(JSON_IN_NETWORK_AUTHENTICATION_JSON_1)"
+GUI OPTIONAL AUTHENTICATOR JSON_IN_NETWORK_AUTHENTICATION_JSON_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO JSON_IN_ATTRIBUTE_READING_JSON_1 ALL
+JSON_1_ATTRIBUTE_READING "$(JSON_IN_ATTRIBUTE_READING_JSON_1)"
+# ============================================================================
+JSON_1_GENERATE_FME_BUILD_NUM 22337
+JSON_1_DATASET "$(SourceDataset_JSON_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "POSTGRES_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER POSTGRES POSTGRES_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_POSTGRES_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER POSTGRES POSTGRES_1
+DEFAULT_MACRO SourceDataset_POSTGRES_1 $(SourceDataset_POSTGRES)
+GUI NAMED_DB_CONNECTION_ENCODED SourceDataset_POSTGRES_1 FMT:POSTGRES Connection:
+DEFAULT_MACRO POSTGRES_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_POSTGRES_1 Yes
+POSTGRES_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(POSTGRES_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_POSTGRES_1)"
+DEFAULT_MACRO POSTGRES_IN_READ_TIME_WITH_TIMEZONE_POSTGRES_1 Yes
+POSTGRES_1_READ_TIME_WITH_TIMEZONE "$(POSTGRES_IN_READ_TIME_WITH_TIMEZONE_POSTGRES_1)"
+DEFAULT_MACRO POSTGRES_IN_FME_CONNECTION_GROUP_POSTGRES_1 
+GUI OPTIONAL DISCLOSUREGROUP POSTGRES_IN_FME_CONNECTION_GROUP_POSTGRES_1 POSTGRES_IN_NAMED_CONNECTION%POSTGRES_IN_SCHEMAS_FOR_TABLE_LISTING_POSTGRES_1 Database Connection
+DEFAULT_MACRO POSTGRES_IN_FME_GROUP_NAMED1_POSTGRES_1 
+GUI OPTIONAL DISCLOSUREGROUP POSTGRES_IN_FME_GROUP_NAMED1_POSTGRES_1 POSTGRES_IN_TABLELIST%POSTGRES_IN_WHERE_CLAUSE_POSTGRES_1 Constraints
+DEFAULT_MACRO POSTGRES_IN_WHERE_CLAUSE_POSTGRES_1 
+POSTGRES_1_WHERE_CLAUSE "$(POSTGRES_IN_WHERE_CLAUSE_POSTGRES_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG POSTGRES_IN_WHERE_CLAUSE_POSTGRES_1 MODE,WHERE;FORMAT,POSTGRES WHERE Clause:
+DEFAULT_MACRO POSTGRES_IN_EXPOSE_ATTRS_GROUP_POSTGRES_1 
+POSTGRES_1_EXPOSE_ATTRS_GROUP "$(POSTGRES_IN_EXPOSE_ATTRS_GROUP_POSTGRES_1)"
+DEFAULT_MACRO POSTGRES_IN_ADVANCED_POSTGRES_1 
+GUI OPTIONAL DISCLOSUREGROUP POSTGRES_IN_ADVANCED_POSTGRES_1 POSTGRES_IN_FEATURES_PER_FETCH_POSTGRES_1%POSTGRES_IN_BEGIN_SQL_POSTGRES_1%POSTGRES_IN_END_SQL_POSTGRES_1 Advanced
+DEFAULT_MACRO POSTGRES_IN_FEATURES_PER_FETCH_POSTGRES_1 10000
+POSTGRES_1_FEATURES_PER_FETCH "$(POSTGRES_IN_FEATURES_PER_FETCH_POSTGRES_1)"
+GUI FLOAT POSTGRES_IN_FEATURES_PER_FETCH_POSTGRES_1 Number Of Records To Fetch At A Time
+DEFAULT_MACRO POSTGRES_IN_BEGIN_SQL_POSTGRES_1 
+POSTGRES_1_BEGIN_SQL "$(POSTGRES_IN_BEGIN_SQL_POSTGRES_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG POSTGRES_IN_BEGIN_SQL_POSTGRES_1 MODE,SQL;FORMAT,POSTGRES SQL To Run Before Read
+DEFAULT_MACRO POSTGRES_IN_END_SQL_POSTGRES_1 
+POSTGRES_1_END_SQL "$(POSTGRES_IN_END_SQL_POSTGRES_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG POSTGRES_IN_END_SQL_POSTGRES_1 MODE,SQL;FORMAT,POSTGRES SQL To Run After Read
+DEFAULT_MACRO POSTGRES_IN_CREATE_FEATURE_TABLES_FROM_DATA_POSTGRES_1 Yes
+POSTGRES_1_CREATE_FEATURE_TABLES_FROM_DATA "$(POSTGRES_IN_CREATE_FEATURE_TABLES_FROM_DATA_POSTGRES_1)"
+# ============================================================================
+DEFAULT_MACRO POSTGRES_IN_ATTRIBUTE_READING_POSTGRES_1 DEFLINE_ATTRS
+POSTGRES_1_ATTRIBUTE_READING "$(POSTGRES_IN_ATTRIBUTE_READING_POSTGRES_1)"
+# ============================================================================
+POSTGRES_1_GENERATE_FME_BUILD_NUM 22337
+DEFAULT_MACRO POSTGRES_IN_SCHEMAS_FOR_TABLE_LISTING_POSTGRES_1 
+GUI OPTIONAL TEXT POSTGRES_IN_SCHEMAS_FOR_TABLE_LISTING_POSTGRES_1 Schemas for Tables:
+POSTGRES_1_SCHEMAS_FOR_TABLE_LISTING $(POSTGRES_IN_SCHEMAS_FOR_TABLE_LISTING_POSTGRES_1)
+POSTGRES_1_DATASET "$(SourceDataset_POSTGRES_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "CSV2_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER CSV2 CSV2_1
+# =====================================================================
+# The following GUI line prompts for a file to be used as the source CSV file.
+# The user input is stored in a macro, which is then used to define
+# the dataset to be read.
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_CSV2_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER CSV2 CSV2_1
+DEFAULT_MACRO SourceDataset_CSV2_1 $(SourceDataset_CSV2)
+GUI MULTIFILE SourceDataset_CSV2_1 CSV/Compressed_CSV/TEXT_Files(*.csv;*.gz;*.txt)|*.csv;*.gz;*.txt|CSV_Files(*.csv)|*.csv|Compressed_CSV_Files(*.gz)|*.gz|Text_Files(*.txt)|*.txt|All_Files|* Source CSV (Comma Separated Value) File(s):
+DEFAULT_MACRO CSV2_IN_TRIM_FEATURE_TYPE_NAME_CSV2_1 Yes
+CSV2_1_TRIM_FEATURE_TYPE_NAME "$(CSV2_IN_TRIM_FEATURE_TYPE_NAME_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_REPLACE_ATTR_NAME_INVALID_CHARS_CSV2_1 Yes
+CSV2_1_REPLACE_ATTR_NAME_INVALID_CHARS "$(CSV2_IN_REPLACE_ATTR_NAME_INVALID_CHARS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_SUPPORTED_READER_ARCHIVE_EXTENSIONS_CSV2_1 csv.gz,txt.gz
+CSV2_1_SUPPORTED_READER_ARCHIVE_EXTENSIONS "$(CSV2_IN_SUPPORTED_READER_ARCHIVE_EXTENSIONS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_FEATURE_TYPE_NAME_CSV2_1 FILE_NAME
+CSV2_1_FEATURE_TYPE_NAME "$(CSV2_IN_FEATURE_TYPE_NAME_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_FIELDS_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_FIELDS_GROUP_CSV2_1 CSV2_IN_DELIMITER_CSV2_1%CSV2_IN_FIELD_NAMES_LINE_CSV2_1%CSV2_IN_DATA_START_LINE_CSV2_1 Fields
+DEFAULT_MACRO CSV2_IN_DELIMITER_CSV2_1 auto
+CSV2_1_DELIMITER "$(CSV2_IN_DELIMITER_CSV2_1)"
+GUI STRING_OR_CHOICE_ENCODED CSV2_IN_DELIMITER_CSV2_1 auto%,%;%|%space%tab Delimiter Character:
+DEFAULT_MACRO CSV2_IN_FIELD_NAMES_LINE_CSV2_1 1
+CSV2_1_FIELD_NAMES_LINE "$(CSV2_IN_FIELD_NAMES_LINE_CSV2_1)"
+GUI OPTIONAL INT_OR_CHOICE CSV2_IN_FIELD_NAMES_LINE_CSV2_1 None%1%2%3%4%5 Field Names Line:
+GUI LOOKUP CSV2_IN_FIELD_NAMES_LINE_CSV2_1 None, 
+DEFAULT_MACRO CSV2_IN_DATA_START_LINE_CSV2_1 2
+CSV2_1_DATA_START_LINE "$(CSV2_IN_DATA_START_LINE_CSV2_1)"
+GUI RANGE_SLIDER CSV2_IN_DATA_START_LINE_CSV2_1 1%MAX%0 Data Start Line:
+DEFAULT_MACRO CSV2_IN_ADVANCED_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_ADVANCED_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_FIELD_SEPARATION_GROUP_CSV2_1%CSV2_IN_FIELD_NAMES_GROUP_CSV2_1%CSV2_IN_FIELD_VALUES_GROUP_CSV2_1%CSV2_IN_ENCODING_GROUP_CSV2_1%CSV2_IN_SKIPPED_LINES_GROUP_CSV2_1%CSV2_IN_SCHEMA_GENERATION_GROUP Advanced
+DEFAULT_MACRO CSV2_IN_FIELD_SEPARATION_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_FIELD_SEPARATION_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_SKIP_DUPLICATE_DELIMITERS_CSV2_1%CSV2_IN_FIELD_QUALIFIER_CHARACTER_CSV2_1%CSV2_IN_FIELD_QUALIFIER_ESCAPE_CHARACTER_CSV2_1 Field Separation
+DEFAULT_MACRO CSV2_IN_SKIP_DUPLICATE_DELIMITERS_CSV2_1 No
+CSV2_1_SKIP_DUPLICATE_DELIMITERS "$(CSV2_IN_SKIP_DUPLICATE_DELIMITERS_CSV2_1)"
+GUI CHOICE CSV2_IN_SKIP_DUPLICATE_DELIMITERS_CSV2_1 Yes%No Skip Duplicate Delimiters:
+DEFAULT_MACRO CSV2_IN_FIELD_QUALIFIER_CHARACTER_CSV2_1 <quote>
+CSV2_1_FIELD_QUALIFIER_CHARACTER "$(CSV2_IN_FIELD_QUALIFIER_CHARACTER_CSV2_1)"
+GUI OPTIONAL STRING_ENCODED CSV2_IN_FIELD_QUALIFIER_CHARACTER_CSV2_1 Field Qualifier Character:
+DEFAULT_MACRO CSV2_IN_FIELD_QUALIFIER_ESCAPE_CHARACTER_CSV2_1 <quote>
+CSV2_1_FIELD_QUALIFIER_ESCAPE_CHARACTER "$(CSV2_IN_FIELD_QUALIFIER_ESCAPE_CHARACTER_CSV2_1)"
+GUI OPTIONAL STRING_ENCODED CSV2_IN_FIELD_QUALIFIER_ESCAPE_CHARACTER_CSV2_1 Field Qualifier Escape Character:
+DEFAULT_MACRO CSV2_IN_FIELD_NAMES_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_FIELD_NAMES_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_CASE_SENSITIVE_FIELD_NAMES_CSV2_1%CSV2_IN_ENFORCE_STRICT_SCHEMA_CSV2_1%CSV2_IN_TRIM_FIELD_NAME_WHITESPACE_CSV2_1 Field Names
+DEFAULT_MACRO CSV2_IN_TRIM_FIELD_NAME_QUALIFIERS_CSV2_1 Yes
+CSV2_1_TRIM_FIELD_NAME_QUALIFIERS "$(CSV2_IN_TRIM_FIELD_NAME_QUALIFIERS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_CASE_SENSITIVE_FIELD_NAMES_CSV2_1 Yes
+CSV2_1_CASE_SENSITIVE_FIELD_NAMES "$(CSV2_IN_CASE_SENSITIVE_FIELD_NAMES_CSV2_1)"
+GUI CHOICE CSV2_IN_CASE_SENSITIVE_FIELD_NAMES_CSV2_1 Yes%No Case Sensitive Field Names:
+DEFAULT_MACRO CSV2_IN_ENFORCE_STRICT_SCHEMA_CSV2_1 No
+CSV2_1_ENFORCE_STRICT_SCHEMA "$(CSV2_IN_ENFORCE_STRICT_SCHEMA_CSV2_1)"
+GUI CHOICE CSV2_IN_ENFORCE_STRICT_SCHEMA_CSV2_1 Yes%No Enforce Strict Schema:
+DEFAULT_MACRO CSV2_IN_TRIM_FIELD_NAME_WHITESPACE_CSV2_1 Yes
+CSV2_1_TRIM_FIELD_NAME_WHITESPACE "$(CSV2_IN_TRIM_FIELD_NAME_WHITESPACE_CSV2_1)"
+GUI CHOICE CSV2_IN_TRIM_FIELD_NAME_WHITESPACE_CSV2_1 Yes%No Trim Whitespaces From Field Names:
+DEFAULT_MACRO CSV2_IN_FIELD_VALUES_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_FIELD_VALUES_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_TRIM_FIELD_VALUE_QUALIFIERS_CSV2_1%CSV2_IN_READ_EMPTY_VALUES_AS_CSV2_1 Field Values
+DEFAULT_MACRO CSV2_IN_READ_EMPTY_VALUES_AS_CSV2_1 Null
+CSV2_1_READ_EMPTY_VALUES_AS "$(CSV2_IN_READ_EMPTY_VALUES_AS_CSV2_1)"
+GUI CHOICE CSV2_IN_READ_EMPTY_VALUES_AS_CSV2_1 Missing%Null Read Empty Values As:
+DEFAULT_MACRO CSV2_IN_TRIM_FIELD_VALUE_QUALIFIERS_CSV2_1 Yes
+CSV2_1_TRIM_FIELD_VALUE_QUALIFIERS "$(CSV2_IN_TRIM_FIELD_VALUE_QUALIFIERS_CSV2_1)"
+GUI CHOICE CSV2_IN_TRIM_FIELD_VALUE_QUALIFIERS_CSV2_1 Yes%No Trim Field Qualifier Characters:
+DEFAULT_MACRO CSV2_IN_ENCODING_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_ENCODING_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_ENCODING_CSV2_1%CSV2_IN_PRESERVE_SOURCE_ENCODING_CSV2_1 Encoding
+DEFAULT_MACRO CSV2_IN_ENCODING_CSV2_1 windows-1252
+CSV2_1_ENCODING "$(CSV2_IN_ENCODING_CSV2_1)"
+GUI STRING_OR_ENCODING CSV2_IN_ENCODING_CSV2_1 fme-system%* Character Encoding:
+DEFAULT_MACRO CSV2_IN_PRESERVE_SOURCE_ENCODING_CSV2_1 No
+CSV2_1_PRESERVE_SOURCE_ENCODING "$(CSV2_IN_PRESERVE_SOURCE_ENCODING_CSV2_1)"
+GUI CHOICE CSV2_IN_PRESERVE_SOURCE_ENCODING_CSV2_1 Yes%No Preserve Source Encoding:
+DEFAULT_MACRO CSV2_IN_SKIPPED_LINES_GROUP_CSV2_1 
+GUI OPTIONAL DISCLOSUREGROUP CSV2_IN_SKIPPED_LINES_GROUP_CSV2_1 FME_DISCLOSURE_CLOSED%CSV2_IN_READ_SKIPPED_LINES_CSV2_1 Skipped Lines
+DEFAULT_MACRO CSV2_IN_READ_SKIPPED_LINES_CSV2_1 No
+CSV2_1_READ_SKIPPED_LINES "$(CSV2_IN_READ_SKIPPED_LINES_CSV2_1)"
+GUI CHOICE CSV2_IN_READ_SKIPPED_LINES_CSV2_1 Yes%No Read Skipped Lines:
+DEFAULT_MACRO CSV2_IN_SCAN_MAX_ROWS_CSV2_1 10000
+CSV2_1_SCAN_MAX_ROWS "$(CSV2_IN_SCAN_MAX_ROWS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_SCAN_TYPES_CSV2_1 Yes
+CSV2_1_SCAN_TYPES "$(CSV2_IN_SCAN_TYPES_CSV2_1)"
+# ============================================================================
+# Determines whether numeric attributes should be interpreted as bounded or unbounded
+DEFAULT_MACRO CSV2_IN_TYPE_ATTRIBUTE_HANDLING_CSV2_1 STANDARD_TYPES
+CSV2_1_TYPE_ATTRIBUTE_HANDLING "$(CSV2_IN_TYPE_ATTRIBUTE_HANDLING_CSV2_1)"
+# ============================================================================
+# Determines whether string attributes should be interpreted as bounded or unbounded
+DEFAULT_MACRO CSV2_IN_STRING_TYPE_ATTRIBUTE_HANDLING_CSV2_1 EXPLICIT_WIDTH
+CSV2_1_STRING_TYPE_ATTRIBUTE_HANDLING "$(CSV2_IN_STRING_TYPE_ATTRIBUTE_HANDLING_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_DATE_INPUT_FORMAT_CSV2_1 ISO
+CSV2_1_DATE_INPUT_FORMAT "$(CSV2_IN_DATE_INPUT_FORMAT_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_SCAN_ADDITIONAL_FIELDS_CSV2_1 No
+CSV2_1_SCAN_ADDITIONAL_FIELDS "$(CSV2_IN_SCAN_ADDITIONAL_FIELDS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_EXPOSE_ATTRS_GROUP_CSV2_1 
+CSV2_1_EXPOSE_ATTRS_GROUP "$(CSV2_IN_EXPOSE_ATTRS_GROUP_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_CSV2_1 Yes
+CSV2_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(CSV2_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_CSV2_1)"
+DEFAULT_MACRO CSV2_IN_CHUNK_SIZE_CSV2_1 100000
+CSV2_1_CHUNK_SIZE "$(CSV2_IN_CHUNK_SIZE_CSV2_1)"
+# ===========================================================================
+DEFAULT_MACRO CSV2_IN_NETWORK_AUTHENTICATION_CSV2_1 
+CSV2_1_NETWORK_AUTHENTICATION "$(CSV2_IN_NETWORK_AUTHENTICATION_CSV2_1)"
+GUI OPTIONAL AUTHENTICATOR CSV2_IN_NETWORK_AUTHENTICATION_CSV2_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO CSV2_IN_ATTRIBUTE_READING_CSV2_1 DEFLINE
+CSV2_1_ATTRIBUTE_READING "$(CSV2_IN_ATTRIBUTE_READING_CSV2_1)"
+# ============================================================================
+CSV2_1_GENERATE_FME_BUILD_NUM 22346
+CSV2_1_DATASET "$(SourceDataset_CSV2_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "XLSXR_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER XLSXR XLSXR_1
+# ============================================================================
+# First get the dataset for the database. For Excel, it's the file name.
+# For now we'll use whatever they had when they generated this mapping file,
+# and not reprompt
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_XLSXR_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER XLSXR XLSXR_1
+DEFAULT_MACRO SourceDataset_XLSXR_1 $(SourceDataset_XLSXR)
+GUI MULTIFILE SourceDataset_XLSXR_1 Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|Excel_Workbook_2007(*.xlsx)|*.xlsx|Excel_Macro_Workbook(*.xlsm)|*.xlsm|Excel_Binary_Workbook_-_Windows_Only(*.xlsb)|*.xlsb|Excel_Workbook_Pre_2007(*.xls)|*.xls|All_files(*)|* Source Microsoft Excel File(s):
+#GUI GROUP TABLELIST Constraints
+# TABLELIST is not shown in GUI, but is required for infrastructure
+# to not show the Table List popup
+DEFAULT_MACRO XLSXR_IN_CONFIGURATION_DATASET_XLSXR_1 $(FME_MF_DIR)data\ZoneCode.xlsx
+XLSXR_1_CONFIGURATION_DATASET "$(XLSXR_IN_CONFIGURATION_DATASET_XLSXR_1)"
+# Flag to switch from old naming scheme of col_1, col_2 etc. to a, b, etc.
+# To better match up with Excel files
+DEFAULT_MACRO XLSXR_IN_EXCEL_COL_NAMES_XLSXR_1 YES
+XLSXR_1_EXCEL_COL_NAMES "$(XLSXR_IN_EXCEL_COL_NAMES_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_FORCE_DATETIME_XLSXR_1 NO
+XLSXR_1_FORCE_DATETIME "$(XLSXR_IN_FORCE_DATETIME_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_ADVANCED_XLSXR_1 
+GUI OPTIONAL DISCLOSUREGROUP XLSXR_IN_ADVANCED_XLSXR_1 XLSXR_IN_APPLY_FILTERS%XLSXR_IN_SCAN_MAX_FEATURES_XLSXR_1%XLSXR_IN_TRIM_ATTR_NAME_WHITESPACE%XLSXR_IN_TRIM_ATTR_NAME_CHARACTERS%XLSXR_IN_READ_BLANK_AS_XLSXR_1%XLSXR_IN_EXPAND_MERGED_CELLS_XLSXR_1%XLSXR_IN_READ_RASTER_MODE_XLSXR_1%XLSXR_IN_READ_FORM_CONTROLS_XLSXR_1 Advanced
+DEFAULT_MACRO XLSXR_IN_SCAN_MAX_FEATURES_XLSXR_1 1000
+XLSXR_1_SCAN_MAX_FEATURES "$(XLSXR_IN_SCAN_MAX_FEATURES_XLSXR_1)"
+GUI RANGE_SLIDER XLSXR_IN_SCAN_MAX_FEATURES_XLSXR_1 0%MAX%0 Maximum Rows to Scan:
+DEFAULT_MACRO XLSXR_IN_READ_BLANK_AS_XLSXR_1 Missing
+XLSXR_1_READ_BLANK_AS "$(XLSXR_IN_READ_BLANK_AS_XLSXR_1)"
+GUI CHOICE XLSXR_IN_READ_BLANK_AS_XLSXR_1 Missing%Null Read Blank Cells As:
+DEFAULT_MACRO XLSXR_IN_TRIM_ATTR_NAME_WHITESPACE_XLSXR_1 Yes
+XLSXR_1_TRIM_ATTR_NAME_WHITESPACE "$(XLSXR_IN_TRIM_ATTR_NAME_WHITESPACE_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_EXPAND_MERGED_CELLS_XLSXR_1 Yes
+XLSXR_1_EXPAND_MERGED_CELLS "$(XLSXR_IN_EXPAND_MERGED_CELLS_XLSXR_1)"
+GUI OPTIONAL CHECKBOX XLSXR_IN_EXPAND_MERGED_CELLS_XLSXR_1 Yes%No Expand Merged Cells:
+DEFAULT_MACRO XLSXR_IN_READ_RASTER_MODE_XLSXR_1 None
+XLSXR_1_READ_RASTER_MODE "$(XLSXR_IN_READ_RASTER_MODE_XLSXR_1)"
+GUI LOOKUP_CHOICE XLSXR_IN_READ_RASTER_MODE_XLSXR_1 None%Attribute%Geometry Read Embedded Images As:
+DEFAULT_MACRO XLSXR_IN_READ_FORM_CONTROLS_XLSXR_1 NONE
+XLSXR_1_READ_FORM_CONTROLS "$(XLSXR_IN_READ_FORM_CONTROLS_XLSXR_1)"
+GUI OPTIONAL CHECKBOX XLSXR_IN_READ_FORM_CONTROLS_XLSXR_1 CELL_VALUE%NONE Read Form Control as Cell Values:
+DEFAULT_MACRO XLSXR_IN_TRIM_ATTR_NAME_CHARACTERS_XLSXR_1 
+XLSXR_1_TRIM_ATTR_NAME_CHARACTERS "$(XLSXR_IN_TRIM_ATTR_NAME_CHARACTERS_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_EXPOSE_ATTRS_GROUP_XLSXR_1 
+XLSXR_1_EXPOSE_ATTRS_GROUP "$(XLSXR_IN_EXPOSE_ATTRS_GROUP_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_APPLY_FILTERS_XLSXR_1 No
+XLSXR_1_APPLY_FILTERS "$(XLSXR_IN_APPLY_FILTERS_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_XLSXR_1 Yes
+XLSXR_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(XLSXR_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_CASE_SENSITIVE_FEATURE_TYPES_XLSXR_1 YES
+XLSXR_1_CASE_SENSITIVE_FEATURE_TYPES "$(XLSXR_IN_CASE_SENSITIVE_FEATURE_TYPES_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_ALLOW_DOLLAR_SIGNS_XLSXR_1 YES
+XLSXR_1_ALLOW_DOLLAR_SIGNS "$(XLSXR_IN_ALLOW_DOLLAR_SIGNS_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_CREATE_FEATURE_TABLES_FROM_DATA_XLSXR_1 Yes
+XLSXR_1_CREATE_FEATURE_TABLES_FROM_DATA "$(XLSXR_IN_CREATE_FEATURE_TABLES_FROM_DATA_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_STRIP_SHEETNAME_SPACES_XLSXR_1 YES
+XLSXR_1_STRIP_SHEETNAME_SPACES "$(XLSXR_IN_STRIP_SHEETNAME_SPACES_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_SCHEMA_HANDLING_REVISION_XLSXR_1 2
+XLSXR_1_SCHEMA_HANDLING_REVISION "$(XLSXR_IN_SCHEMA_HANDLING_REVISION_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_SKIP_EMPTY_ROWS_XLSXR_1 YES
+XLSXR_1_SKIP_EMPTY_ROWS "$(XLSXR_IN_SKIP_EMPTY_ROWS_XLSXR_1)"
+DEFAULT_MACRO XLSXR_IN_REPLACE_ONLY_NEWLINES_CARRIAGE_RETURNS_XLSXR_1 YES
+XLSXR_1_REPLACE_ONLY_NEWLINES_CARRIAGE_RETURNS "$(XLSXR_IN_REPLACE_ONLY_NEWLINES_CARRIAGE_RETURNS_XLSXR_1)"
+# ===========================================================================
+DEFAULT_MACRO XLSXR_IN_NETWORK_AUTHENTICATION_XLSXR_1 
+XLSXR_1_NETWORK_AUTHENTICATION "$(XLSXR_IN_NETWORK_AUTHENTICATION_XLSXR_1)"
+GUI OPTIONAL AUTHENTICATOR XLSXR_IN_NETWORK_AUTHENTICATION_XLSXR_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO XLSXR_IN_ATTRIBUTE_READING_XLSXR_1 DEFLINE
+XLSXR_1_ATTRIBUTE_READING "$(XLSXR_IN_ATTRIBUTE_READING_XLSXR_1)"
+# ============================================================================
+XLSXR_1_GENERATE_FME_BUILD_NUM 22618
+XLSXR_1_DATASET "$(SourceDataset_XLSXR_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "XLSXW_1"
+#! END_WB_HEADER
+#! START_DEST_HEADER XLSXW XLSXW_1
+# ============================================================================
+# First get the dataset for the database. For Excel, it's the file name.
+# For now we'll use whatever they had when they generated this mapping file,
+# and not reprompt
+#! END_DEST_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO DestDataset
+INCLUDE [ if {"$(DestDataset)" != ""} {                          \
+ puts {DEFAULT_MACRO DestDataset_XLSXW_1 $(DestDataset)}         \
+ } ]
+#! END_WB_HEADER
+#! START_DEST_HEADER XLSXW XLSXW_1
+DEFAULT_MACRO DestDataset_XLSXW_1 $(DestDataset_XLSXW)
+GUI FILENAME DestDataset_XLSXW_1 Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|Microsoft_Excel_2007+_Workbook(*.xlsx)|*.xlsx|Microsoft_Excel_2007+_Macro_Workbook(*.xlsm)|*.xlsm|Microsoft_Excel_Pre-2007_Workbook(*.xls)|*.xls|All_Files(*)|* Destination Microsoft Excel File:
+CHECK_RASTER_ATTRIBUTES YES
+# ============================================================================
+DEFAULT_MACRO XLSXW_OUT_FME_GROUP_NAMED1_XLSXW_1 
+GUI OPTIONAL DISCLOSUREGROUP XLSXW_OUT_FME_GROUP_NAMED1_XLSXW_1 XLSXW_OUT_OVERWRITE_FILE_XLSXW_1%XLSXW_OUT_TEMPLATEFILE_XLSXW_1%XLSXW_OUT_TEMPLATE_SHEET%XLSXW_OUT_REMOVE_UNCHANGED_TEMPLATE_SHEET Writer Parameters
+# Whether or not to overwrite the file
+DEFAULT_MACRO XLSXW_OUT_OVERWRITE_FILE_XLSXW_1 Yes
+XLSXW_1_OVERWRITE_FILE "$(XLSXW_OUT_OVERWRITE_FILE_XLSXW_1)"
+GUI ACTIVECHOICE XLSXW_OUT_OVERWRITE_FILE_XLSXW_1 Yes%No,XLSXW_OUT_TEMPLATEFILE_XLSXW_1,XLSXW_OUT_TEMPLATE_SHEET,XLSXW_OUT_REMOVE_UNCHANGED_TEMPLATE_SHEET Overwrite Existing File:
+# Template file option
+DEFAULT_MACRO XLSXW_OUT_TEMPLATEFILE_XLSXW_1 
+XLSXW_1_TEMPLATEFILE "$(XLSXW_OUT_TEMPLATEFILE_XLSXW_1)"
+GUI OPTIONAL FILENAME_MUSTEXIST XLSXW_OUT_TEMPLATEFILE_XLSXW_1 Excel_Files(*.xlsx;*.xlsm;*.xls)|*.xlsx;*.xlsm;*.xls|Microsoft_Excel_2007+_Workbook(*.xlsx)|*.xlsx|Microsoft_Excel_2007+_Macro_Workbook(*.xlsm)|*.xlsm|Microsoft_Excel_Pre-2007_Workbook(*.xls)|*.xls|All_Files(*)|* Template File:
+GUI LOOKUP XLSXW_OUT_TEMPLATEFILE_XLSXW_1 <Unused>, 
+DEFAULT_MACRO XLSXW_OUT_TEMPLATE_SHEET_XLSXW_1 
+XLSXW_1_TEMPLATE_SHEET "$(XLSXW_OUT_TEMPLATE_SHEET_XLSXW_1)"
+DEFAULT_MACRO XLSXW_OUT_REMOVE_UNCHANGED_TEMPLATE_SHEET_XLSXW_1 No
+XLSXW_1_REMOVE_UNCHANGED_TEMPLATE_SHEET "$(XLSXW_OUT_REMOVE_UNCHANGED_TEMPLATE_SHEET_XLSXW_1)"
+# Compatibility case to support reading old workspaces which have one template sheet per writer
+DEFAULT_MACRO XLSXW_OUT_MULTIPLE_TEMPLATE_SHEETS_XLSXW_1 Yes
+XLSXW_1_MULTIPLE_TEMPLATE_SHEETS "$(XLSXW_OUT_MULTIPLE_TEMPLATE_SHEETS_XLSXW_1)"
+# Compatibility case to support old case where insert would allow fme_db_operation
+DEFAULT_MACRO XLSXW_OUT_INSERT_IGNORE_DB_OP_XLSXW_1 Yes
+XLSXW_1_INSERT_IGNORE_DB_OP "$(XLSXW_OUT_INSERT_IGNORE_DB_OP_XLSXW_1)"
+# ============================================================================
+# Parameters whose values will be percolated to the feature types, but will not
+# remain as writer level settings
+# Default to not drop feature type first
+DEFAULT_MACRO XLSXW_OUT_DROP_TABLE_XLSXW_1 No
+XLSXW_1_DROP_TABLE "$(XLSXW_OUT_DROP_TABLE_XLSXW_1)"
+# Default to not truncate feature type first (removeallcelldata,retainformatting/headers,etc.)
+DEFAULT_MACRO XLSXW_OUT_TRUNCATE_TABLE_XLSXW_1 No
+XLSXW_1_TRUNCATE_TABLE "$(XLSXW_OUT_TRUNCATE_TABLE_XLSXW_1)"
+# Maintain compatibility with lenient attrName.* matching
+DEFAULT_MACRO XLSXW_OUT_STRICT_SCHEMA_ADDITIONAL_ATTRIBUTE_MATCHING_XLSXW_1 yes
+XLSXW_1_STRICT_SCHEMA_ADDITIONAL_ATTRIBUTE_MATCHING "$(XLSXW_OUT_STRICT_SCHEMA_ADDITIONAL_ATTRIBUTE_MATCHING_XLSXW_1)"
+# Default to write out the field names
+DEFAULT_MACRO XLSXW_OUT_FIELD_NAMES_OUT_XLSXW_1 Yes
+XLSXW_1_FIELD_NAMES_OUT "$(XLSXW_OUT_FIELD_NAMES_OUT_XLSXW_1)"
+# Allow header row to be unformatted
+DEFAULT_MACRO XLSXW_OUT_FIELD_NAMES_FORMATTING_XLSXW_1 Yes
+XLSXW_1_FIELD_NAMES_FORMATTING "$(XLSXW_OUT_FIELD_NAMES_FORMATTING_XLSXW_1)"
+# Default writer mode
+DEFAULT_MACRO XLSXW_OUT_WRITER_MODE_XLSXW_1 Insert
+XLSXW_1_WRITER_MODE "$(XLSXW_OUT_WRITER_MODE_XLSXW_1)"
+# Default raster writing type
+DEFAULT_MACRO XLSXW_OUT_RASTER_FORMAT_XLSXW_1 PNG
+XLSXW_1_RASTER_FORMAT "$(XLSXW_OUT_RASTER_FORMAT_XLSXW_1)"
+# ============================================================================
+# Choose excel file protection mode
+DEFAULT_MACRO XLSXW_OUT_PROTECT_SHEET_XLSXW_1 NO
+XLSXW_1_PROTECT_SHEET "$(XLSXW_OUT_PROTECT_SHEET_XLSXW_1)"
+# Whether or not to enable sheet password protection
+DEFAULT_MACRO XLSXW_OUT_PROTECT_SHEET_PASSWORD_XLSXW_1 <Unused>
+XLSXW_1_PROTECT_SHEET_PASSWORD "$(XLSXW_OUT_PROTECT_SHEET_PASSWORD_XLSXW_1)"
+# Which kind of protection level
+DEFAULT_MACRO XLSXW_OUT_PROTECT_SHEET_LEVEL_XLSXW_1 <Unused>
+XLSXW_1_PROTECT_SHEET_LEVEL "$(XLSXW_OUT_PROTECT_SHEET_LEVEL_XLSXW_1)"
+# Which kind of specific permissions will be enabled
+DEFAULT_MACRO XLSXW_OUT_PROTECT_SHEET_PERMISSIONS_XLSXW_1 <Unused>
+XLSXW_1_PROTECT_SHEET_PERMISSIONS "$(XLSXW_OUT_PROTECT_SHEET_PERMISSIONS_XLSXW_1)"
+# ============================================================================
+# Opt in for destination dataset type vs format type validation
+DEFAULT_MACRO XLSXW_OUT_DESTINATION_DATASETTYPE_VALIDATION_XLSXW_1 Yes
+XLSXW_1_DESTINATION_DATASETTYPE_VALIDATION "$(XLSXW_OUT_DESTINATION_DATASETTYPE_VALIDATION_XLSXW_1)"
+DEFAULT_MACRO XLSXW_OUT_COORDINATE_SYSTEM_GRANULARITY_XLSXW_1 FEATURE
+XLSXW_1_COORDINATE_SYSTEM_GRANULARITY "$(XLSXW_OUT_COORDINATE_SYSTEM_GRANULARITY_XLSXW_1)"
+# ============================================================================
+XLSXW_1_GENERATE_FME_BUILD_NUM 22612
+XLSXW_1_DATASET "$(DestDataset_XLSXW_1)"
+#! END_DEST_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)Exercise5Complete.log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2022.0.1.0 (20220602 - Build 22346 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_JSON_1 JSON_1
+DEFAULT_MACRO DATASET_KEYWORD_POSTGRES_1 POSTGRES_1
+DEFAULT_MACRO DATASET_KEYWORD_CSV2_1 CSV2_1
+DEFAULT_MACRO DATASET_KEYWORD_XLSXR_1 XLSXR_1
+DEFAULT_MACRO DATASET_KEYWORD_XLSXW_1 XLSXW_1
+# -------------------------------------------------------------------------
+
+JSON_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+POSTGRES_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+CSV2_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+XLSXR_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME Exercise5Complete
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+JSON_1_DEF water_meters   FACILITYID                   string   ACCOUNT_NO                   int   FOLIO                        string   STATUS                       string   GPS                          string   IMAGE                        string   LOTLINK                      int   METER_CODE                   int   PID                          string   json_ogc_wkt_crs             string   json_geometry.type           string   json_geometry.coordinates{}  float
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE JSON JSON_1::water_meters multi_reader_keyword,$(DATASET_KEYWORD_JSON_1) TO FME_GENERIC ::water_meters ALIAS_GEOMETRY    ROUTE POSTGRES POSTGRES_1::public.CoS-property-detail multi_reader_keyword,$(DATASET_KEYWORD_POSTGRES_1) TO FME_GENERIC ::public.CoS-property-detail ALIAS_GEOMETRY    ROUTE POSTGRES POSTGRES_1::public.CoS-lot multi_reader_keyword,$(DATASET_KEYWORD_POSTGRES_1) TO FME_GENERIC ::public.CoS-lot ALIAS_GEOMETRY    ROUTE CSV2 CSV2_1::Addresses-SURREY multi_reader_keyword,$(DATASET_KEYWORD_CSV2_1) TO FME_GENERIC ::Addresses-SURREY ALIAS_GEOMETRY    ROUTE XLSXR "XLSXR_1::Zone Code Description" multi_reader_keyword,$(DATASET_KEYWORD_XLSXR_1) TO FME_GENERIC "::Zone Code Description" ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+JSON_1_MERGE_DEF JSON_1::water_meters EXACT water_meters
+POSTGRES_1_MERGE_DEF POSTGRES_1::public.CoS-property-detail EXACT public.CoS-property-detail DEFLINE postgres_type,postgres_none,postgres_sql_where_clause,,postgres_sql_statement,,PID,varchar<openparen>20<closeparen>,FOLIO,varchar<openparen>20<closeparen>,MSLINK,int8,PLAN_NUMBER,varchar<openparen>20<closeparen>,PLAN_TYPE,varchar<openparen>20<closeparen>,PLAN_YEAR,int4,LEGAL_DESCRIPTION,text,ZONE_CODE,varchar<openparen>10<closeparen>,GROSS_LAND,int8,GROSS_IMPROVEMENTS,int8,GROSS_ASSESSMENT,int8
+POSTGRES_1_MERGE_DEF POSTGRES_1::public.CoS-lot EXACT public.CoS-lot DEFLINE postgres_type,postgres_none,postgres_sql_where_clause,,postgres_sql_statement,,PID,varchar<openparen>15<closeparen>,PIN,varchar<openparen>15<closeparen>,JUROL,varchar<openparen>15<closeparen>,LTSA_LOT,varchar<openparen>10<closeparen>,LTSA_BLOCK,varchar<openparen>10<closeparen>,LTSA_PARCEL,varchar<openparen>10<closeparen>,LTSA_PLAN,varchar<openparen>10<closeparen>,LEGAL_FREEFORM,varchar<openparen>50<closeparen>,PARCEL_DESCRIPTION,varchar<openparen>255<closeparen>,OWNER_CLASS,varchar<openparen>30<closeparen>,METHOD,varchar<openparen>15<closeparen>,ACCURACY,varchar<openparen>10<closeparen>,SHAPE_Length,float8,SHAPE_Area,float8,ZONE_CODE,varchar<openparen>20<closeparen>,geom,varchar<openparen>200<closeparen>
+CSV2_1_MERGE_DEF CSV2_1::Addresses-SURREY EXACT Addresses-SURREY DEFLINE fme_attribute_reading,defined,HOUSE,uint32,STREET,varchar<openparen>17<closeparen>,POSTAL_CODE,varchar<openparen>8<closeparen>,PID,uint32,ZONE_CODE,varchar<openparen>7<closeparen>,LONGITUDE,x_coordinate,LATITUDE,y_coordinate
+XLSXR_1_MERGE_DEF "XLSXR_1::Zone Code Description" EXACT Zone<space>Code<space>Description DEFLINE xlsx_start_row,,xlsx_end_row,,xlsx_apply_filters,No,xlsx_schema_end_row,0,xlsx_schema_start_col,0,xlsx_header_row,0,xlsx_schema_start_row,1,xlsx_schema_end_col,0,fme_attribute_reading,defined,ZONE_CODE,char<openparen>8<closeparen>,ZONE_DESCRIPTION,char<openparen>47<closeparen>,ZONE_BYLAWS,char<openparen>9<closeparen>,LUC_TEXT,char<openparen>11<closeparen>
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Zone Code Description_XLSXR_1 Splitter"    INPUT FEATURE_TYPE "Zone Code Description"    OUTPUT FEATURE_TYPE "Zone Code Description_XLSXR_1"
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Addresses-SURREY_CSV2_1 Splitter"    INPUT FEATURE_TYPE Addresses-SURREY    OUTPUT FEATURE_TYPE Addresses-SURREY_CSV2_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "water_meters_JSON_1 Splitter"    INPUT FEATURE_TYPE water_meters    OUTPUT FEATURE_TYPE water_meters_JSON_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "public.CoS-lot_POSTGRES_1 Splitter"    INPUT FEATURE_TYPE public.CoS-lot    OUTPUT FEATURE_TYPE public.CoS-lot_POSTGRES_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "public.CoS-property-detail_POSTGRES_1 Splitter"    INPUT FEATURE_TYPE public.CoS-property-detail    OUTPUT FEATURE_TYPE public.CoS-property-detail_POSTGRES_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} InlineQueryFactory FACTORY_NAME { InlineQuerier } TABLE_DEF water_meters FACILITYID<comma>text<comma>ACCOUNT_NO<comma>integer<comma>FOLIO<comma>text<comma>STATUS<comma>text<comma>GPS<comma>text<comma>IMAGE<comma>text<comma>LOTLINK<comma>integer<comma>METER_CODE<comma>integer<comma>PID<comma>text<comma>json_ogc_wkt_crs<comma>text<comma>json_geometry.type<comma>text TABLE_DEF public.CoS-lot PID<comma>varchar<openparen>15<closeparen><comma>PIN<comma>varchar<openparen>15<closeparen><comma>JUROL<comma>varchar<openparen>15<closeparen><comma>LTSA_LOT<comma>varchar<openparen>10<closeparen><comma>LTSA_BLOCK<comma>varchar<openparen>10<closeparen><comma>LTSA_PARCEL<comma>varchar<openparen>10<closeparen><comma>LTSA_PLAN<comma>varchar<openparen>10<closeparen><comma>LEGAL_FREEFORM<comma>varchar<openparen>50<closeparen><comma>PARCEL_DESCRIPTION<comma>varchar<openparen>255<closeparen><comma>OWNER_CLASS<comma>varchar<openparen>30<closeparen><comma>METHOD<comma>varchar<openparen>15<closeparen><comma>ACCURACY<comma>varchar<openparen>10<closeparen><comma>SHAPE_Length<comma>double<comma>SHAPE_Area<comma>double<comma>ZONE_CODE<comma>varchar<openparen>20<closeparen><comma>geom<comma>varchar<openparen>200<closeparen> TABLE_DEF public.CoS-property-detail PID<comma>varchar<openparen>20<closeparen><comma>FOLIO<comma>varchar<openparen>20<closeparen><comma>MSLINK<comma>integer<comma>PLAN_NUMBER<comma>varchar<openparen>20<closeparen><comma>PLAN_TYPE<comma>varchar<openparen>20<closeparen><comma>PLAN_YEAR<comma>integer<comma>LEGAL_DESCRIPTION<comma>text<comma>ZONE_CODE<comma>varchar<openparen>10<closeparen><comma>GROSS_LAND<comma>integer<comma>GROSS_IMPROVEMENTS<comma>integer<comma>GROSS_ASSESSMENT<comma>integer TABLE_DEF Addresses-SURREY HOUSE<comma>integer<comma>STREET<comma>varchar<openparen>17<closeparen><comma>POSTAL_CODE<comma>varchar<openparen>8<closeparen><comma>PID<comma>integer<comma>ZONE_CODE<comma>varchar<openparen>7<closeparen><comma>LONGITUDE<comma>double<comma>LATITUDE<comma>double TABLE_DEF Zone<space>Code<space>Description ZONE_CODE<comma>varchar<openparen>8<closeparen><comma>ZONE_DESCRIPTION<comma>varchar<openparen>47<closeparen><comma>ZONE_BYLAWS<comma>varchar<openparen>9<closeparen><comma>LUC_TEXT<comma>varchar<openparen>11<closeparen> QUERY_DEF water_meters+lots+addresses SQL_ENCODED SELECT<space>*<lf>FROM<space><quote>water_meters<quote><space>m<lf><space><space><space><space>LEFT<space>JOIN<space><quote>public.CoS-lot<quote><space>l<lf><space><space><space><space><space><space><space><space>ON<space>m.PID=l.PID<lf><space><space><space><space>LEFT<space>JOIN<space><quote>Zone<space>Code<space>Description<quote><space>z<lf><space><space><space><space><space><space><space><space>ON<space>l.ZONE_CODE=z.ZONE_CODE<lf><space><space><space><space>INNER<space>JOIN<space><quote>Addresses-SURREY<quote><space>a<lf><space><space><space><space><space><space><space><space>ON<space>m.PID=a.PID<semicolon><lf> GEOMETRY_SELECTION FIRST QUERY_DEF missing_addresses SQL_ENCODED SELECT<space>*<lf>FROM<space><quote>water_meters<quote><space>m<lf><space><space><space><space>LEFT<space>JOIN<space><quote>Addresses-SURREY<quote><space>a<lf><space><space><space><space><space><space><space><space>ON<space>m.PID=a.PID<lf>WHERE<space>a.<quote>POSTAL_CODE<quote><space>IS<space>NULL<semicolon><lf> GEOMETRY_SELECTION FIRST INPUT water_meters FEATURE_TYPE water_meters_JSON_1 INPUT public.CoS-property-detail FEATURE_TYPE public.CoS-property-detail_POSTGRES_1 INPUT Addresses-SURREY FEATURE_TYPE Addresses-SURREY_CSV2_1 INPUT public.CoS-lot FEATURE_TYPE public.CoS-lot_POSTGRES_1 INPUT Zone<space>Code<space>Description FEATURE_TYPE "Zone Code Description_XLSXR_1" OUTPUT missing_addresses FEATURE_TYPE InlineQuerier_missing_addresses OUTPUT water_meters+lots+addresses FEATURE_TYPE InlineQuerier_water_meters+lots+addresses
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC InlineQuerier_water_meters+lots+addresses TO XLSXW __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>Water<lt>space<gt>Meters<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Substring<lt>openparen<gt><lt>at<gt>Value<lt>openparen<gt>POSTAL_CODE<lt>closeparen<gt><lt>comma<gt>0<lt>comma<gt>3<lt>closeparen<gt>.Water<lt>space<gt>Meters<comma>Water<lt>space<gt>Meters<closeparen> GEOMETRY    ROUTE FME_GENERIC InlineQuerier_missing_addresses TO XLSXW __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>Missing<lt>space<gt>Addresses<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+XLSXW_1_DEF "Missing Addresses"   xlsx_drop_sheet              No   xlsx_trunc_sheet             Yes   xlsx_sheet_order             ""   xlsx_freeze_end_row          ""   xlsx_names_are_positions     No   xlsx_field_names_out         Yes   xlsx_field_names_formatting  Yes   xlsx_start_col               ""   xlsx_start_row               ""   xlsx_offset_col              ""   xlsx_offset_row              ""   xlsx_raster_type             PNG   xlsx_table_writer_mode       Insert   xlsx_row_id_column           ""   xlsx_protect_sheet           NO   xlsx_protect_sheet_level     <Unused>   xlsx_protect_sheet_password  <Unused>   xlsx_protect_sheet_permissions <Unused>   xlsx_template_sheet          ""   xlsx_remove_unchanged_template_sheet No   FACILITYID                   string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ACCOUNT_NO                   number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   FOLIO                        string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   STATUS                       string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   GPS                          string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   IMAGE                        string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LOTLINK                      number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   METER_CODE                   number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   PID                          string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)
+# -------------------------------------------------------------------------
+XLSXW_1_DEF "Water Meters"   xlsx_drop_sheet              No   xlsx_trunc_sheet             Yes   xlsx_sheet_order             ""   xlsx_freeze_end_row          ""   xlsx_names_are_positions     No   xlsx_field_names_out         Yes   xlsx_field_names_formatting  Yes   xlsx_start_col               ""   xlsx_start_row               ""   xlsx_offset_col              ""   xlsx_offset_row              ""   xlsx_raster_type             PNG   xlsx_table_writer_mode       Insert   xlsx_row_id_column           ""   xlsx_protect_sheet           NO   xlsx_protect_sheet_level     <Unused>   xlsx_protect_sheet_password  <Unused>   xlsx_protect_sheet_permissions <Unused>   xlsx_template_sheet          ""   xlsx_remove_unchanged_template_sheet No   FACILITYID                   string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ACCOUNT_NO                   number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   FOLIO                        string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   STATUS                       string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   GPS                          string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   IMAGE                        string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LOTLINK                      number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   METER_CODE                   number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   PID                          string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   json_ogc_wkt_crs             string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   json_geometry.type           string(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   PIN                          string(15,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   JUROL                        string(15,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LTSA_LOT                     string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LTSA_BLOCK                   string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LTSA_PARCEL                  string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LTSA_PLAN                    string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LEGAL_FREEFORM               string(50,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   PARCEL_DESCRIPTION           string(255,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   OWNER_CLASS                  string(30,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   METHOD                       string(15,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ACCURACY                     string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   SHAPE_Length                 number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   SHAPE_Area                   number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ZONE_CODE                    string(10,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   geom                         auto(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ZONE_DESCRIPTION             string(47,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   ZONE_BYLAWS                  string(9,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LUC_TEXT                     string(11,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   HOUSE                        number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   STREET                       string(17,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   POSTAL_CODE                  string(8,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LONGITUDE                    number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   LATITUDE                     number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)   json_geometry.coordinates{}  number(20,version<semicolon>1<semicolon>cell_border_formatting<semicolon>NO<semicolon>text_alignment<semicolon>NO<semicolon>cell_protection<semicolon>NO)
