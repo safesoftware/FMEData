@@ -1,0 +1,443 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        /Library/FME/2022.0/fme "/Users/mark.warren/Desktop/UC 2022/Streams Training/Workspaces/Step 1/Start Workspace - Part 1.fmw"
+#          --kafka_broker_name ""
+#          --kafka_username ""
+#          --kafka_pw "********"
+#          --kafka_topic "cov-fleet-location"
+#          --kafka_consumer_group_id "enter-your-name"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1313.43 414.5"
+#!   DOC_TOP_LEFT="-876.718 -664.315"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22343"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="4f56009c-e9a0-4433-b800-d712b897b9b3"
+#!   FME_DOCUMENT_PRIORGUID="31ae69fe-47b9-4354-87bd-dc75b92b5960,851f972f-5bcc-461d-8277-7bd48ea7e4d2,3b8ba24a-af33-49c5-867d-2dc10a470868,9abbc16b-fe1b-4988-94c6-c1e29e312a4c,97974877-ed83-41b6-b8ae-cddff4ea7d2e,0a7b94df-e028-469c-93ea-4929d86ead09,1202e9fd-43e5-4469-a24f-d98a9c955c01,6c85d3c1-e484-47b2-b210-e42339843ac0,8eaccfb7-b2c3-40f9-ac48-4503c6cfe50c,bbf7c548-46ae-473f-9c02-1465be9f227c,3415ac6c-e51b-4b0f-998b-221ac190d759,537b3d5f-1ded-47b1-a89a-84ac6f247c93,eea2251f-d8bb-4f84-8dab-eaeec16bbdae,6e37952b-9a87-4ee7-bf22-c78933c01c34,38339464-89b9-4352-ae40-85abeff81e16,617e3761-4bd6-410a-9104-8ad5fb426b2a,422bfc01-c410-4be2-b727-3cbd95ddb841,64af44db-e31f-49d9-ab1a-707ed8f9ea13,62b8e933-6e78-48fd-be07-c0ea3a0beae9,8a17574a-e79e-4a0a-a271-ac49d71abfcf,b8e4ab5f-9d55-49a4-ae77-f034c9a95499,3c33d46b-64a6-4428-af8a-2a9144699a91,bfbe1fdf-a5b9-4bab-8596-22d53b2f131e,c6b36970-97a5-435e-8691-ed53e94d2c80,bade223d-fcfa-4b07-8b37-8e45c39cd6b9,80326fe6-ba2d-4bea-af79-c348b61e0282,63a6f6ac-8a07-4f2b-b3fa-c729525be43a,92ffb2a7-34bc-4275-8f38-3ab13c7831ae,2c4fe554-0601-416a-b424-d620fa1854d3,8e93a61e-6f6a-4286-8f76-fa1ebbfce341,359eff1a-3350-4b9f-9854-87e16db37a3a,da58b693-3f5c-40e3-9876-bba328fe6980,1b4b93f6-ac5d-409e-8fd2-fd3073157a3c,6be048e9-2ff9-4e86-a71d-4ab34a30fd11,d08d4cc6-95a0-45a6-90e9-bbe3f8cc8d93,60d58b73-59fa-474c-ac9d-8d35cd58acda,1ef43a6f-d43f-4205-afe4-886d1c696e4d,83841954-a8e0-417b-9629-73020cd6717a,8abcf10b-dc11-4ec9-b349-a216e58cee89,fb3e8eef-aa74-4259-a116-3d97c451cffd,cbf2371e-252f-4712-92e6-90c4260e8c53,ea11b7b1-5c72-43f7-a4a4-e0799439f37c,f7c15d0c-9439-4350-a6d4-4b7c0af200c4,cc355a3c-40b3-46e5-a66c-c8aad049b383,13c6e8a5-7432-455b-aa20-e437f7cb98ef,51f41e02-2fca-4c0c-8cf8-7bd4c3f3b1ca,d40ba440-c1a6-4482-8177-692f740b99ad,52dfebdd-2ae1-4792-81df-fcd0b56780ff,b0a4e6ca-2be7-4e28-a052-29f7c678c68b,5e3c7856-0599-4a65-833d-c05b9fafef82,e9f63247-d107-46d2-8a60-7a789b9f0b21,c5d33bee-f0c5-4867-99fc-2b3a8b925e3a,da0258df-6d95-421d-8d93-c166d590f02a,a8831e35-0ce9-4bd5-af50-15e34a2f98d4,c7aa55ef-b8cf-4d15-b22a-f2f10e117412,bed01947-a132-4993-9b98-b1cad4b71125,8fa254bb-60eb-4173-b675-f6e59239b48e,eea98ab2-7289-4eb5-89cd-77ba002ff8e6,6f6c3fe8-fe76-4dcf-99b4-1f760be1b776,97f14f48-d2f0-4e1a-86a8-17bdc65f276c,7afbc451-5df8-4141-891f-48854ebebee2,f85ccc24-73d3-44c5-aa77-2fa489ce70a4,48b6a07c-b665-440b-857d-d478fad18d51,7c4b0a2b-7779-4b95-aee7-308fdd96afd8,91639191-4ace-486b-90a6-ddd445e6b16d"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.0.2 (20220518 - Build 22343 - macosx)"
+#!   LAST_SAVE_DATE="2022-08-17T10:07:17"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE="KAFKA to POSTGIS"
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1133.34 0"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="81"
+#! >
+#! <DATASETS>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <SERVICES>
+#! <SERVICE
+#!   NAME="fmejobsubmitter"
+#! >
+#! <PROPERTIES>
+#! <PROPERTY
+#!   CATEGORY="FMEUSERPROPDATA"
+#!   NAME="ADVANCED"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   CATEGORY="FMEUSERPROPDATA"
+#!   NAME="FAILURE_TOPICS"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   CATEGORY="FMEUSERPROPDATA"
+#!   NAME="HTTP_DATASET"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   CATEGORY="FMEUSERPROPDATA"
+#!   NAME="NOTIFICATION_WRITER"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   CATEGORY="FMEUSERPROPDATA"
+#!   NAME="SUCCESS_TOPICS"
+#!   VALUE=""
+#! />
+#! </PROPERTIES>
+#! </SERVICE>
+#! </SERVICES>
+#! <REPOSITORY
+#!   NAME="MarkWarren"
+#! />
+#! <ITEM
+#!   NAME="Discard based upon attributes.fmw"
+#! />
+#! <MODIFICATIONS>
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SERVER_DEST_DIR"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_BACKUP"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_DASHBOARD"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_DATA"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_ENGINE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_LOG"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_SYSTEM"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_TEMP"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_TOPIC_MESSAGE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:DESTINATION_ROUTING_FILE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:LOG_FILE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:SOURCE_ROUTING_FILE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBParameterNode_14:FILEPATH_OR_URL"
+#!   VALUE="&lt;Unused&gt;"
+#! />
+#! <MODIFICATION
+#!   UID=":WBParameterNode_29:__kafka_ssl_ca_location"
+#!   VALUE=""
+#! />
+#! </MODIFICATIONS>
+#! <DEPENDENCIES>
+#! <PACKAGES>
+#! <PACKAGE
+#!   NAME="safe.kafka"
+#!   VERSION="2.0.0"
+#! />
+#! </PACKAGES>
+#! </DEPENDENCIES>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR kafka_broker_name FME_SYNTAX%FME%FME_INCLUDEBROWSE%NO Kafka Host Name"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI STRING_OR_ATTR kafka_username Kafka User Name"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI PASSWORD_OR_ATTR kafka_pw Kafka Password:"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI WEB_SELECT_ENCODED kafka_topic SERVICE:safe.kafka.Apache&lt;space&gt;Kafka%MODULE:fmepy_kafka.topic_selector%DEPENDENT_PARAMETERS:__kafka_credential_source:__kafka_connection:__kafka_embed_connection_group:__kafka_username:__kafka_password:__kafka_security_group:__kafka_security_protocol:__kafka_sasl_mechanisms:__kafka_ssl_ca_location:__kafka_brokers_group:__kafka_brokers_list%NO_SEARCH%SHOWID%PROMPTFORTITLE%SINGLEDEPTH%ALLOW_MULTISELECT%ITEM_ICON::/images/feat_type.png Kafka Topic:"
+#!   DEFAULT_VALUE="cov-fleet-location"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI TEXT_EDIT kafka_consumer_group_id FME_SYNTAX%FME%FME_INCLUDEBROWSE%NO Consumer Group ID"
+#!   DEFAULT_VALUE="enter-your-name"
+#!   IS_STAND_ALONE="true"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJkZWZhdWx0VmFsdWUiOiIiLCJlZGl0b3IiOiJwbGFpbnRleHQiLCJoaWRkZW4iOmZhbHNlLCJuYW1lIjoia2Fma2FfYnJva2VyX25hbWUiLCJwcm9tcHQiOiJLYWZrYSBIb3N0IE5hbWUiLCJyZXF1aXJlZCI6dHJ1ZSwic2hvd0VkaXRCdXR0b24iOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImV4cHJlc3Npb24iLCJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6InRleHQiLCJ2YWx1ZVR5cGUiOiJzdHJpbmdFbmNvZGVkIn0seyJkZWZhdWx0VmFsdWUiOiIiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJlZGl0b3IiOiJwbGFpbnRleHQiLCJoaWRkZW4iOmZhbHNlLCJuYW1lIjoia2Fma2FfdXNlcm5hbWUiLCJwcm9tcHQiOiJLYWZrYSBVc2VyIE5hbWUiLCJyZXF1aXJlZCI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJleHByZXNzaW9uIiwiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJ0ZXh0IiwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJkZWZhdWx0VmFsdWUiOiIiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJuYW1lIjoia2Fma2FfcHciLCJwcm9tcHQiOiJLYWZrYSBQYXNzd29yZDoiLCJyZXF1aXJlZCI6dHJ1ZSwic2hvd0NvbmZpcm0iOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImV4cHJlc3Npb24iLCJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6InBhc3N3b3JkIiwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJjaG9pY2VTZXR0aW5ncyI6eyJjaG9pY2VTZXQiOiJkeW5hbWljU2VydmljZVZhbHVlcyIsImNvbmZpZ3VyYXRpb24iOlt7Im5hbWUiOiJfX2thZmthX2NyZWRlbnRpYWxfc291cmNlIiwidmFsdWUiOnsicGFyYW1ldGVyIjoiX19rYWZrYV9jcmVkZW50aWFsX3NvdXJjZSJ9fSx7Im5hbWUiOiJfX2thZmthX2Nvbm5lY3Rpb24iLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX2Nvbm5lY3Rpb24ifX0seyJuYW1lIjoiX19rYWZrYV9lbWJlZF9jb25uZWN0aW9uX2dyb3VwIiwidmFsdWUiOnsicGFyYW1ldGVyIjoiX19rYWZrYV9lbWJlZF9jb25uZWN0aW9uX2dyb3VwIn19LHsibmFtZSI6Il9fa2Fma2FfdXNlcm5hbWUiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX3VzZXJuYW1lIn19LHsibmFtZSI6Il9fa2Fma2FfcGFzc3dvcmQiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX3Bhc3N3b3JkIn19LHsibmFtZSI6Il9fa2Fma2Ffc2VjdXJpdHlfZ3JvdXAiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX3NlY3VyaXR5X2dyb3VwIn19LHsibmFtZSI6Il9fa2Fma2Ffc2VjdXJpdHlfcHJvdG9jb2wiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX3NlY3VyaXR5X3Byb3RvY29sIn19LHsibmFtZSI6Il9fa2Fma2Ffc2FzbF9tZWNoYW5pc21zIiwidmFsdWUiOnsicGFyYW1ldGVyIjoiX19rYWZrYV9zYXNsX21lY2hhbmlzbXMifX0seyJuYW1lIjoiX19rYWZrYV9zc2xfY2FfbG9jYXRpb24iLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX3NzbF9jYV9sb2NhdGlvbiJ9fSx7Im5hbWUiOiJfX2thZmthX2Jyb2tlcnNfZ3JvdXAiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX2Jyb2tlcnNfZ3JvdXAifX0seyJuYW1lIjoiX19rYWZrYV9icm9rZXJzX2xpc3QiLCJ2YWx1ZSI6eyJwYXJhbWV0ZXIiOiJfX2thZmthX2Jyb2tlcnNfbGlzdCJ9fV0sIml0ZW1JY29uIjoiOi9pbWFnZXMvZmVhdF90eXBlLnBuZyIsIm1vZHVsZSI6ImZtZXB5X2thZmthLnRvcGljX3NlbGVjdG9yIiwic2VsZWN0aW9uIjpbIm9iamVjdHMiXSwic2VydmljZU5hbWUiOiJzYWZlLmthZmthLkFwYWNoZSBLYWZrYSIsInNob3dTZWFyY2giOmZhbHNlLCJ1c2VQcm9tcHRBc1RpdGxlIjp0cnVlfSwiZGVmYXVsdFZhbHVlIjoiY292LWZsZWV0LWxvY2F0aW9uIiwiZGVwcmVjYXRlZEZsYWdzIjpbIm5vbmUiXSwibmFtZSI6ImthZmthX3RvcGljIiwicHJvbXB0IjoiS2Fma2EgVG9waWM6IiwicmVxdWlyZWQiOnRydWUsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJsaXN0Ym94IiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZCJ9LHsiZGVmYXVsdFZhbHVlIjoiZW50ZXIteW91ci1uYW1lIiwiZWRpdG9yIjoicGxhaW50ZXh0IiwiaGlkZGVuIjpmYWxzZSwibmFtZSI6ImthZmthX2NvbnN1bWVyX2dyb3VwX2lkIiwicHJvbXB0IjoiQ29uc3VtZXIgR3JvdXAgSUQiLCJyZXF1aXJlZCI6dHJ1ZSwic2hvd0VkaXRCdXR0b24iOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoidGV4dCIsInZhbHVlVHlwZSI6InN0cmluZ0VuY29kZWQifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="kafka_broker_name" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR kafka_broker_name FME_SYNTAX%FME%FME_INCLUDEBROWSE%NO Kafka Host Name"
+#! />
+#!     <INFO NAME="kafka_username" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI STRING_OR_ATTR kafka_username Kafka User Name"
+#! />
+#!     <INFO NAME="kafka_pw" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI PASSWORD_OR_ATTR kafka_pw Kafka Password:"
+#! />
+#!     <INFO NAME="kafka_topic" 
+#!   DEFAULT_VALUE="cov-fleet-location"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI WEB_SELECT_ENCODED kafka_topic SERVICE:safe.kafka.Apache&lt;space&gt;Kafka%MODULE:fmepy_kafka.topic_selector%DEPENDENT_PARAMETERS:__kafka_credential_source:__kafka_connection:__kafka_embed_connection_group:__kafka_username:__kafka_password:__kafka_security_group:__kafka_security_protocol:__kafka_sasl_mechanisms:__kafka_ssl_ca_location:__kafka_brokers_group:__kafka_brokers_list%NO_SEARCH%SHOWID%PROMPTFORTITLE%SINGLEDEPTH%ALLOW_MULTISELECT%ITEM_ICON::/images/feat_type.png Kafka Topic:"
+#! />
+#!     <INFO NAME="kafka_consumer_group_id" 
+#!   DEFAULT_VALUE="enter-your-name"
+#!   SCOPE="STAND_ALONE"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI TEXT_EDIT kafka_consumer_group_id FME_SYNTAX%FME%FME_INCLUDEBROWSE%NO Consumer Group ID"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="24"
+#!   NAME="Connect to fleet tracking Kafka queue"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-876.71826071208716 -249.81547175152633"
+#!   ORDER="500000000000280"
+#!   PALETTE_COLOR="Color8"
+#!   BOTTOM_RIGHT="436.71322789177248 -664.31547175152627"
+#!   BOUNDING_RECT="-876.71826071208716 -249.81547175152633 1313.4314886038596 414.49999999999994"
+#!   STICKY="true"
+#!   COLOUR="0.62352941176470589,0.5725490196078431,0.8784313725490196,1"
+#!   CONTENTS="29 12 2 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="Creator"
+#!   VERSION="5"
+#!   POSITION="-784.71826071208716 -378.31547175152633"
+#!   BOUNDING_RECT="-784.71826071208716 -378.31547175152633 430 71"
+#!   ORDER="500000000000001"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="20185"
+#! >
+#!     <OUTPUT_FEAT NAME="CREATED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATEND" PARM_VALUE="yes"/>
+#!     <XFORM_PARM PARM_NAME="COORDS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CRE_ATTR" PARM_VALUE="_creation_instance"/>
+#!     <XFORM_PARM PARM_NAME="GEOM" PARM_VALUE="&lt;lt&gt;?xml&lt;space&gt;version=&lt;quote&gt;1.0&lt;quote&gt;&lt;space&gt;encoding=&lt;quote&gt;US_ASCII&lt;quote&gt;&lt;space&gt;standalone=&lt;quote&gt;no&lt;quote&gt;&lt;space&gt;?&lt;gt&gt;&lt;lt&gt;geometry&lt;space&gt;dimension=&lt;quote&gt;2&lt;quote&gt;&lt;gt&gt;&lt;lt&gt;null&lt;solidus&gt;&lt;gt&gt;&lt;lt&gt;&lt;solidus&gt;geometry&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOMTYPE" PARM_VALUE="Geometry Object"/>
+#!     <XFORM_PARM PARM_NAME="NUM" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Creator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="29"
+#!   TYPE="safe.kafka.KafkaConnector"
+#!   VERSION="2"
+#!   POSITION="-118.99909484935233 -378.31547175152633"
+#!   BOUNDING_RECT="-118.99909484935233 -378.31547175152633 508.69371344502281 71"
+#!   ORDER="500000000000016"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22343"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_value" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_timestamp" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_topic" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_connector_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="INITIATOR"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="KafkaConnector"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_action_multiparam" PARM_VALUE="__kafka_topics_list]$(kafka_topic)]__kafka_receive_mode]batch]__kafka_max_messages]&lt;Unused&gt;]__kafka_batch_size]1000]__kafka_consumer_group_id]$(kafka_consumer_group_id)]__kafka_starting_offset]earliest]__kafka_partition]&lt;Unused&gt;]__kafka_custom_offset]&lt;Unused&gt;]__kafka_auto_commit]YES]__kafka_advanced_options_group]FME_DISCLOSURE_CLOSED]__kafka_advanced_options]]__kafka_message_options_group]FME_DISCLOSURE_OPEN]__kafka_message_schema]simple]__kafka_value_encoding]utf-8]__kafka_schema_registry]&lt;Unused&gt;]__kafka_attributes_to_add]&quot;_value _timestamp _topic&quot;]FME_CONTROLLER_QUERY_FILE]kafka_deps&lt;solidus&gt;Receive.fme]FME_CONTROLLER_CHOICE]Receive"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_brokers_group" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="__kafka_brokers_list" PARM_VALUE="$(kafka_broker_name):9092"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_connection" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_credential_group" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="__kafka_credential_source" PARM_VALUE="embedded"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_embed_connection_group" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_operation_type" PARM_VALUE="Receive"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_password" PARM_VALUE="$(kafka_pw)"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_request_group" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="__kafka_sasl_mechanisms" PARM_VALUE="PLAIN"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_security_group" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_security_protocol" PARM_VALUE="SASL_SSL"/>
+#!     <XFORM_PARM PARM_NAME="__kafka_ssl_ca_location" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="__kafka_username" PARM_VALUE="$(kafka_username)"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="12"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="29"
+#!   SOURCE_PORT_DESC="fo 0 CREATED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+# ============================================================================
+DEFAULT_MACRO kafka_broker_name 
+
+DEFAULT_MACRO kafka_username 
+
+DEFAULT_MACRO kafka_pw 
+
+DEFAULT_MACRO kafka_topic cov-fleet-location
+
+DEFAULT_MACRO kafka_consumer_group_id enter-your-name
+
+# ============================================================================
+INCLUDE [ if {{$(kafka_broker_name)} == {}} { puts_real {Parameter 'kafka_broker_name' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(kafka_username)} == {}} { puts_real {Parameter 'kafka_username' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(kafka_pw)} == {}} { puts_real {Parameter 'kafka_pw' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(kafka_topic)} == {}} { puts_real {Parameter 'kafka_topic' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(kafka_consumer_group_id)} == {}} { puts_real {Parameter 'kafka_consumer_group_id' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)Start Workspace - Part 1.log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2022.0.0.2 (20220518 - Build 22343 - macosx)"
+MAPPING_FILE_ID KAFKA<space>to<space>POSTGIS
+FME_PASSWORD_PARAMETER_LIST kafka_pw
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME Start Workspace - Part 1
+MACRO FME_VIEWER_APP fmedatainspector
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+Tcl2 proc Creator_CoordSysRemover {} {   global FME_CoordSys;   set FME_CoordSys {}; }
+MACRO Creator_XML     NOT_ACTIVATED
+MACRO Creator_CLASSIC NOT_ACTIVATED
+MACRO Creator_2D3D    2D_GEOMETRY
+MACRO Creator_COORDS  <Unused>
+INCLUDE [ if { {Geometry Object} == {Geometry Object} } {            puts {MACRO Creator_XML *} } ]
+INCLUDE [ if { {Geometry Object} == {2D Coordinate List} } {            puts {MACRO Creator_2D3D 2D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+INCLUDE [ if { {Geometry Object} == {3D Coordinate List} } {            puts {MACRO Creator_2D3D 3D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+INCLUDE [ if { {Geometry Object} == {2D Min/Max Box} } {            set comment {                We need to turn the COORDS which are                    minX minY maxX maxY                into a full polygon list of coordinates            };            set splitCoords [split [string trim {<Unused>}]];            if { [llength $splitCoords] > 4} {               set trimmedCoords {};               foreach item $splitCoords { if { $item != {} } {lappend trimmedCoords $item} };               set splitCoords $trimmedCoords;            };            if { [llength $splitCoords] != 4 } {                error {Creator: Coordinate list is expected to be a space delimited list of four numbers as 'minx miny maxx maxy' - `<Unused>' is invalid};            };            set minX [lindex $splitCoords 0];            set minY [lindex $splitCoords 1];            set maxX [lindex $splitCoords 2];            set maxY [lindex $splitCoords 3];            puts "MACRO Creator_COORDS $minX $minY $minX $maxY $maxX $maxY $maxX $minY $minX $minY";            puts {MACRO Creator_2D3D 2D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+FACTORY_DEF {$(Creator_XML)} CreationFactory    FACTORY_NAME { Creator_XML_Creator }    CREATE_AT_END { yes }    OUTPUT { FEATURE_TYPE _____CREATED______        @Geometry(FROM_ENCODED_STRING,<lt>?xml<space>version=<quote>1.0<quote><space>encoding=<quote>US_ASCII<quote><space>standalone=<quote>no<quote><space>?<gt><lt>geometry<space>dimension=<quote>2<quote><gt><lt>null<solidus><gt><lt><solidus>geometry<gt>) }
+FACTORY_DEF {$(Creator_CLASSIC)} CreationFactory    FACTORY_NAME { Creator_CLASSIC_Creator }    $(Creator_2D3D) { $(Creator_COORDS) }    CREATE_AT_END { yes }    OUTPUT { FEATURE_TYPE _____CREATED______ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Creator_Cloner }    INPUT FEATURE_TYPE _____CREATED______        @Tcl2(Creator_CoordSysRemover)        @CoordSys()    NUMBER_OF_COPIES { 1 }    COPY_NUMBER_ATTRIBUTE { "_creation_instance" }    OUTPUT { FEATURE_TYPE Creator_CREATED        fme_feature_type Creator         }
+FACTORY_DEF * BranchingFactory   FACTORY_NAME "Creator_CREATED Brancher -1 12"   INPUT FEATURE_TYPE Creator_CREATED   TARGET_FACTORY "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   MAXIMUM_COUNT None   OUTPUT PASSED FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   INPUT FEATURE_TYPE *  OUTPUT FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { KafkaConnector_CATCHER }    INPUT  FEATURE_TYPE Creator_CREATED    OUTPUT { FEATURE_TYPE KafkaConnector_INITIATOR }    OUTPUT { FEATURE_TYPE KafkaConnector       @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code)           __kafka_credential_source embedded     __kafka_connection <Unused>     __kafka_username "@EvaluateExpression(FDIV,STRING,$(kafka_username$encode),KafkaConnector)"     __kafka_password "@EvaluateExpression(FDIV,STRING,$(kafka_pw$encode),KafkaConnector)"     __kafka_security_protocol SASL_SSL     __kafka_sasl_mechanisms PLAIN     __kafka_ssl_ca_location ""     __kafka_brokers_list "@EvaluateExpression(FDIV,STRING_ENCODED,$(kafka_broker_name),KafkaConnector):9092"     __kafka_operation_type Receive     __kafka_topics_list "@EvaluateExpression(FDIV,STRING_ENCODED,$(kafka_topic),KafkaConnector)"     __kafka_receive_mode batch     __kafka_max_messages <Unused>     __kafka_batch_size 1000     __kafka_consumer_group_id "@EvaluateExpression(FDIV,STRING_ENCODED,$(kafka_consumer_group_id),KafkaConnector)"     __kafka_starting_offset earliest     __kafka_partition <Unused>     __kafka_custom_offset <Unused>     __kafka_auto_commit YES     __kafka_advanced_options ""     __kafka_message_schema simple     __kafka_value_encoding utf-8     __kafka_schema_registry <Unused>     __kafka_attributes_to_add "_value _timestamp _topic"  }
+FACTORY_DEF {*} PythonFactory     INPUT { FEATURE_TYPE KafkaConnector }     PYTHON_NAMESPACE FMEOBJECTS     SYMBOL_NAME fmepy_kafka.KafkaConnector     OUTPUT { PYOUTPUT FEATURE_TYPE KafkaConnector_PROCESSED }
+FACTORY_DEF {*} TestFactory     FACTORY_NAME { KafkaConnector_ROUTER }     INPUT { FEATURE_TYPE KafkaConnector_PROCESSED }     TEST &fme_rejection_code == ""     OUTPUT { PASSED FEATURE_TYPE KafkaConnector_OUTPUT         @RenameAttributes(FME_STRICT,fme_rejection_code,___fme_rejection_code___)          }     OUTPUT { FAILED FEATURE_TYPE KafkaConnector_<REJECTED>         @RemoveAttributes(___fme_rejection_code___)          }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "KafkaConnector OUTPUT Transformer Output Nuker"   INPUT FEATURE_TYPE KafkaConnector_OUTPUT
+FACTORY_DEF * TeeFactory   FACTORY_NAME "KafkaConnector INITIATOR Transformer Output Nuker"   INPUT FEATURE_TYPE KafkaConnector_INITIATOR
+FACTORY_DEF * TeeFactory   FACTORY_NAME "KafkaConnector <REJECTED> Transformer Output Nuker"   INPUT FEATURE_TYPE KafkaConnector_<REJECTED>
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
