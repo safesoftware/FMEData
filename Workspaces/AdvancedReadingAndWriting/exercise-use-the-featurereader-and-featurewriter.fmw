@@ -1,0 +1,1103 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME 2022.1 b22618\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\AdvancedReadingAndWriting\exercise-use-the-featurereader-and-featurewriter.fmw
+#          --SourceDataset_OGCKML "https://s3.amazonaws.com/FMEData/FMEData2022/Data/Boundaries/VancouverNeighborhoods.kml"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="4308.99 1450.15"
+#!   DOC_TOP_LEFT="-1293.76 -2252.53"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22618"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="db257ad5-1773-495f-ae77-257f496415be"
+#!   FME_DOCUMENT_PRIORGUID="30324b99-1674-45df-b319-834d3265c051,e2938b89-1a7f-4bc2-bbae-dfbe287d1d5a,a36d956e-2c62-4c81-8084-0a54dffbdead"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.1.0.0 (20220704 - Build 22618 - WIN64)"
+#!   LAST_SAVE_DATE="2022-10-31T13:11:45"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1950.02 -784.383"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="OGCKML"
+#!   DATASET="$(SourceDataset_OGCKML)"
+#!   KEYWORD="OGCKML_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename kml_char(50) fme_color kml_char(50) fme_dataset kml_char(50) fme_feature_type kml_char(50) fme_fill_color kml_char(50) fme_fill_opacity kml_real64 fme_geometry kml_char(50) fme_opacity kml_real64 fme_pen_opacity kml_real64 fme_primary_axis kml_real64 fme_rotation kml_real64 fme_secondary_axis kml_real64 fme_start_angle kml_real64 fme_sweep_angle kml_real64 fme_text_size kml_real64 fme_text_string kml_char(50) fme_type kml_char(50) kml_address kml_buffer kml_altitude kml_real64 kml_altitude_mode kml_char(50) kml_animated_update kml_buffer kml_atom_author_email kml_buffer kml_atom_author_name kml_buffer kml_atom_link_href kml_buffer kml_atom_link_rel kml_buffer kml_attribute_table_title kml_buffer kml_balloon_color kml_char(10) kml_balloon_opacity kml_real64 kml_balloon_text_color kml_char(10) kml_balloon_text_opacity kml_real64 kml_balloonstyle_bgcolor kml_char(10) kml_balloonstyle_raw_text kml_buffer kml_balloonstyle_text kml_buffer kml_balloonstyle_text_color kml_char(10) kml_camera_altitude kml_real64 kml_camera_altitude_mode kml_char(50) kml_camera_gx_timespan_begin kml_datetime kml_camera_gx_timespan_end kml_datetime kml_camera_gx_timestamp_when kml_datetime kml_camera_heading kml_real64 kml_camera_latitude kml_real64 kml_camera_longitude kml_real64 kml_camera_roll kml_real64 kml_camera_tilt kml_real64 kml_color kml_char(8) kml_common_style kml_buffer kml_cookie kml_buffer kml_create_info_point kml_char(3) kml_data{}.display_name kml_buffer kml_data{}.display_name_raw_text kml_buffer kml_data{}.name kml_buffer kml_data{}.value kml_buffer kml_description kml_buffer kml_description_raw_text kml_buffer kml_description_text kml_buffer kml_document kml_buffer kml_document_href kml_buffer kml_document_path kml_buffer kml_draw_order kml_int16 kml_expires kml_datetime kml_extended_data_xml kml_buffer kml_extended_data_xmlns_prefix kml_buffer kml_extended_data_xmlns_url kml_buffer kml_extrude kml_int16 kml_fly_to_view kml_int16 kml_gx_altitude_mode kml_char(50) kml_gx_balloon_visibility kml_int16 kml_gx_camera_altitude_mode kml_char(50) kml_gx_duration kml_int16 kml_gx_flyto_mode kml_char(10) kml_gx_latlonaltbox_altitude_mode kml_char(50) kml_gx_lookat_altitude_mode kml_char(50) kml_gx_play_mode kml_char(20) kml_gx_timespan_begin kml_datetime kml_gx_timespan_end kml_datetime kml_gx_timestamp_when kml_datetime kml_hotspot_x kml_int16 kml_hotspot_xunits kml_char(20) kml_hotspot_y kml_int16 kml_hotspot_yunits kml_char(20) kml_href kml_buffer kml_icon kml_buffer kml_icon_color kml_char(50) kml_icon_href kml_buffer kml_icon_http_query kml_buffer kml_icon_opacity kml_real64 kml_icon_refresh_interval kml_int16 kml_icon_refresh_mode kml_char(50) kml_icon_temp_file_location kml_buffer kml_icon_view_bound_scale kml_real64 kml_icon_view_format kml_buffer kml_icon_view_refresh_mode kml_char(50) kml_icon_view_refresh_time kml_int16 kml_iconstyle_color kml_char(10) kml_iconstyle_color_mode kml_char(20) kml_iconstyle_heading kml_real64 kml_iconstyle_scale kml_real64 kml_id kml_buffer kml_imagepyramid_gridorigin kml_buffer kml_imagepyramid_maxheight kml_int16 kml_imagepyramid_maxwidth kml_int16 kml_imagepyramid_tilesize kml_real64 kml_label_color kml_char(50) kml_label_opacity kml_real64 kml_labelstyle_color kml_char(10) kml_labelstyle_color_mode kml_char(20) kml_labelstyle_scale kml_real64 kml_latlonaltbox_altitude_mode kml_char(50) kml_latlonaltbox_east kml_char(255) kml_latlonaltbox_max_altitude kml_real64 kml_latlonaltbox_min_altitude kml_real64 kml_latlonaltbox_north kml_real64 kml_latlonaltbox_south kml_real64 kml_latlonaltbox_west kml_real64 kml_latlonbox_east kml_real64 kml_latlonbox_north kml_real64 kml_latlonbox_rotation kml_real64 kml_latlonbox_south kml_real64 kml_latlonbox_west kml_real64 kml_linestyle_color kml_char(10) kml_linestyle_color_mode kml_char(20) kml_linestyle_label_visibility kml_boolean kml_linestyle_physical_width kml_real64 kml_linestyle_width kml_real64 kml_link_description kml_buffer kml_link_href kml_buffer kml_link_http_query kml_buffer kml_link_name kml_buffer kml_link_refresh_interval kml_real64 kml_link_refresh_mode kml_char(50) kml_link_snippet kml_buffer kml_link_snippet_max_lines kml_int16 kml_link_view_bound_scale kml_real64 kml_link_view_format kml_buffer kml_link_view_refresh_mode kml_char(50) kml_link_view_refresh_time kml_int16 kml_liststyle_bgcolor kml_char(50) kml_liststyle_item_icon kml_buffer kml_liststyle_item_icon{}.href kml_buffer kml_liststyle_item_icon{}.state kml_char(50) kml_liststyle_list_item_type kml_char(50) kml_location_altitude kml_real64 kml_location_latitude kml_real64 kml_location_longitude kml_real64 kml_lod_max_fade_extent kml_real64 kml_lod_max_lod_pixels kml_real64 kml_lod_min_fade_extent kml_real64 kml_lod_min_lod_pixels kml_real64 kml_lookat_altitude kml_real64 kml_lookat_altitude_mode kml_char(20) kml_lookat_gx_timespan_begin kml_datetime kml_lookat_gx_timespan_end kml_datetime kml_lookat_gx_timestamp_when kml_datetime kml_lookat_heading kml_real64 kml_lookat_latitude kml_real64 kml_lookat_longitude kml_real64 kml_lookat_range kml_real64 kml_lookat_tilt kml_real64 kml_max_session_length kml_real64 kml_message kml_buffer kml_min_refresh_period kml_real64 kml_name kml_buffer kml_open kml_int16 kml_orientation_heading kml_real64 kml_orientation_roll kml_real64 kml_orientation_tilt kml_real64 kml_overlayxy_x kml_real64 kml_overlayxy_xunits kml_char(20) kml_overlayxy_y kml_real64 kml_overlayxy_yunits kml_char(20) kml_parent kml_buffer kml_phone_number kml_buffer kml_polystyle_color kml_char(10) kml_polystyle_color_mode kml_char(20) kml_polystyle_fill kml_real64 kml_polystyle_outline kml_int16 kml_raw_text kml_buffer kml_refresh_visibility kml_int16 kml_roll kml_real64 kml_rotation kml_real64 kml_rotationxy_x kml_real64 kml_rotationxy_xunits kml_char(20) kml_rotationxy_y kml_real64 kml_rotationxy_yunits kml_char(20) kml_scale_x kml_real64 kml_scale_y kml_real64 kml_scale_z kml_real64 kml_schema_data{}.name kml_buffer kml_schema_data{}.value kml_buffer kml_schema_url kml_buffer kml_screenxy_x kml_real64 kml_screenxy_xunits kml_char(20) kml_screenxy_y kml_real64 kml_screenxy_yunits kml_char(20) kml_shape kml_buffer kml_size_x kml_real64 kml_size_xunits kml_char(20) kml_size_y kml_real64 kml_size_yunits kml_char(20) kml_snippet kml_buffer kml_snippet_raw_text kml_buffer kml_sort_value kml_buffer kml_style_id kml_buffer kml_style_url kml_buffer kml_style_url_highlight kml_buffer kml_style_url_normal kml_buffer kml_target_href kml_buffer kml_target_style kml_buffer kml_target_style_highlight kml_buffer kml_target_style_normal kml_buffer kml_tessellate kml_int16 kml_timespan_begin kml_datetime kml_timespan_end kml_datetime kml_timestamp_when kml_datetime kml_tour kml_buffer kml_tour_stop_delay_duration kml_int16 kml_tour_stop_delay_type kml_char(10) kml_tour_stop_display_balloon kml_char(3) kml_tour_stop_flyto_duration kml_int16 kml_tour_stop_flyto_mode kml_char(20) kml_tour_stop_tour_duration kml_int16 kml_tour_stop_tour_name kml_buffer kml_tour_stop_view_heading kml_char(25) kml_tour_stop_view_perspective kml_char(15) kml_tour_stop_view_range kml_char(25) kml_tour_stop_view_tilt kml_char(25) kml_update_mode kml_char(10) kml_viewvolume_bottomfov kml_int16 kml_viewvolume_leftfov kml_int16 kml_viewvolume_near kml_int16 kml_viewvolume_rightfov kml_int16 kml_viewvolume_topfov kml_int16 kml_visibility kml_int16 multi_reader_full_id kml_int32 multi_reader_id kml_int32 multi_reader_keyword kml_char(50) multi_reader_type kml_char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE_OR_URL"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="19238"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="KML21_RASTER_COMPRESSION_LEVEL OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="kml file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE=".kml application/vnd.google-earth.kml+xml .kmz application/vnd.google-earth.kmz ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="ALWAYS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the Google Earth KML file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="SUPPORTS_ESTABLISHED_CACHE"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the Google Earth KML File"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int32"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(20)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(20)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="OGCKML"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_aggregate"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_point"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_line"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="OGCKML"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Neighborhoods"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   FEAT_GEOMTYPE="kml_no_geom kml_point kml_line kml_area kml_aggregate kml_surface kml_solid"
+#!   POSITION="-1182.5194954022459 -2014.9999951671903"
+#!   BOUNDING_RECT="-1182.5194954022459 -2014.9999951671903 445.015625 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="OGCKML_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="false"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodId" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodName" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodURL" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TotalPopulation2001" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TotalPopulation2011" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="OGCKML_1"
+#!   OVERRIDE="-OGCKML_1_DATASET"
+#!   DATASET="OGCKML_1/VancouverNeighborhoods.kml"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_OGCKML KML_Files(*.kml;*.kmz)|*.kml;*.kmz|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source Google KML File or URL:"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData2022/Data/Boundaries/VancouverNeighborhoods.kml"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImFsbG93VVJMIjp0cnVlLCJkZWZhdWx0VmFsdWUiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vRk1FRGF0YS9GTUVEYXRhMjAyMi9EYXRhL0JvdW5kYXJpZXMvVmFuY291dmVyTmVpZ2hib3Job29kcy5rbWwiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IktNTCBGaWxlcyIsImZpbHRlciI6WyIqLmttbCIsIioua216Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiU291cmNlRGF0YXNldF9PR0NLTUwiLCJwcm9tcHQiOiJTb3VyY2UgR29vZ2xlIEtNTCBGaWxlIG9yIFVSTDoiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOnRydWUsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJmaWxlIiwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_OGCKML" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData2022/Data/Boundaries/VancouverNeighborhoods.kml"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_OGCKML KML_Files(*.kml;*.kmz)|*.kml;*.kmz|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source Google KML File or URL:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="56"
+#!   NAME="Read in data"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-1293.7618704041201 -802.37288859375076"
+#!   ORDER="499999999999999"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="-646.88040158943204 -2252.5256204234429"
+#!   BOUNDING_RECT="-1293.7618704041201 -802.37288859375076 646.88146881468811 1450.1527318296924"
+#!   STICKY="true"
+#!   COLOUR="0.80000000000000004,0.53333333333333333,0.39215686274509803,0.39215686274509803"
+#!   CONTENTS="66 22 3 65 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="60"
+#!   NAME="Combine orthophotos"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-581.25524533786961 -886.88696403687686"
+#!   ORDER="500000000000043"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="21.887786092444685 -1302.5161203284397"
+#!   BOUNDING_RECT="-581.25524533786961 -886.88696403687686 603.14303143031429 415.62915629156282"
+#!   STICKY="true"
+#!   COLOUR="0.52549019607843139,0.77647058823529413,0.5490196078431373,0.39215686274509803"
+#!   CONTENTS="12 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="61"
+#!   NAME="Clip raster to neighborhoods"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="73.715912481816531 -886.88696403687686"
+#!   ORDER="500000000000044"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="711.24128773557072 -1443.1425265925022"
+#!   BOUNDING_RECT="73.715912481816531 -886.88696403687686 637.52537525375419 556.25556255562537"
+#!   STICKY="true"
+#!   COLOUR="0.76078431372549016,0.25098039215686274,0.066666666666666666,0.39215686274509803"
+#!   CONTENTS="14 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="62"
+#!   NAME="Raster processing"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="744.66106787931722 -886.88696403687686"
+#!   ORDER="500000000000045"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="1438.444505713695 -1440.0174953421897"
+#!   BOUNDING_RECT="744.66106787931722 -886.88696403687686 693.78343783437776 553.13053130531284"
+#!   STICKY="true"
+#!   COLOUR="0.47058823529411764,0.77647058823529413,0.52156862745098043,0.39215686274509803"
+#!   CONTENTS="44 15 16 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="65"
+#!   NAME="Neighborhoods"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-1253.1364641500579 -1880.6331514987535"
+#!   ORDER="500000000000039.13"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="-693.76287041412058 -2165.0247454146902"
+#!   BOUNDING_RECT="-1253.1364641500579 -1880.6331514987535 559.37359373593733 284.39159391593694"
+#!   STICKY="true"
+#!   COLOUR="0.53333333333333333,0.2627450980392157,0,0.39215686274509803"
+#!   CONTENTS="3 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="66"
+#!   NAME="Orthophotos"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-1237.5113078984955 -886.88696403687686"
+#!   ORDER="500000000000039.13"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="-690.63783916380828 -1840.0214953821906"
+#!   BOUNDING_RECT="-1237.5113078984955 -886.88696403687686 546.87346873468721 953.13453134531358"
+#!   STICKY="true"
+#!   COLOUR="0.53333333333333333,0.2627450980392157,0,0.39215686274509803"
+#!   CONTENTS="22 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="67"
+#!   NAME="Write out Data"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="1462.2132874555673 -886.88696403687686"
+#!   ORDER="500000000000101"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="3015.2328550312527 -1490.7243667031264"
+#!   BOUNDING_RECT="1462.2132874555673 -886.88696403687686 1553.0195675756854 603.83740266624955"
+#!   STICKY="true"
+#!   COLOUR="0.30196078431372547,0.31372549019607843,0.17254901960784313,0.39215686274509803"
+#!   CONTENTS="36 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="72"
+#!   NAME="Remove attributes and reproject"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-581.25524533786961 -1900.3568414062518"
+#!   ORDER="499999999999999"
+#!   PALETTE_COLOR=""
+#!   BOTTOM_RIGHT="705.2435389218756 -2252.5256204234429"
+#!   BOUNDING_RECT="-581.25524533786961 -1900.3568414062518 1286.4987842597452 352.16877901719135"
+#!   STICKY="true"
+#!   COLOUR="0.80000000000000004,0.53333333333333333,0.39215686274509803,0.39215686274509803"
+#!   CONTENTS="50 26 13 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="36"
+#!   NAME="Write to GeoTIFF locally and to FME Server"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="1505.6797732015057 -1015.0132452996895"
+#!   ORDER="500000000000137"
+#!   PALETTE_COLOR="Color3"
+#!   BOTTOM_RIGHT="2944.1919890858576 -1429.5132452996895"
+#!   BOUNDING_RECT="1505.6797732015057 -1015.0132452996895 1438.5122158843519 414.5"
+#!   STICKY="true"
+#!   COLOUR="1,0.85490196078431369,0.59999999999999998,1"
+#!   CONTENTS=""
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="12"
+#!   TYPE="RasterMosaicker"
+#!   VERSION="7"
+#!   POSITION="-496.86040138943008 -1021.2633078003146"
+#!   BOUNDING_RECT="-496.86040138943008 -1021.2633078003146 431 71"
+#!   ORDER="500000000000103"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ACCUM_ATTRS_NAME" PARM_VALUE="Use Attributes From One Feature"/>
+#!     <XFORM_PARM PARM_NAME="ALIGNMENT_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="COUNT_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DATA_VALUES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="INTERPOLATION_TYPE_NAME" PARM_VALUE="Nearest Neighbor"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MERGE_PALETTES_NAME" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="NODATA_OVERWRITE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OVERLAPPING_VALUES" PARM_VALUE="last"/>
+#!     <XFORM_PARM PARM_NAME="PALETTES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SNAPPING_TYPE_NAME" PARM_VALUE="Resample"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="RasterMosaicker"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="13"
+#!   TYPE="Reprojector"
+#!   VERSION="5"
+#!   POSITION="202.00331724775651 -2006.8749639168777"
+#!   BOUNDING_RECT="202.00331724775651 -2006.8749639168777 431 71"
+#!   ORDER="500000000000104"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="REPROJECTED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="DEST" PARM_VALUE="UTM83-10"/>
+#!     <XFORM_PARM PARM_NAME="INTERPOLATION_TYPE_NAME" PARM_VALUE="Nearest Neighbor"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_CELL_SIZE" PARM_VALUE="Preserve Cells"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_TOLERANCE" PARM_VALUE="0.0"/>
+#!     <XFORM_PARM PARM_NAME="SOURCE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Reprojector_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="Clipper"
+#!   VERSION="14"
+#!   POSITION="159.05141178275636 -1015.0132452996895"
+#!   BOUNDING_RECT="159.05141178275636 -1015.0132452996895 431 71"
+#!   ORDER="500000000000105"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#!   INPUT_FT_ORDER="CLIPPEE%CLIPPER"
+#! >
+#!     <OUTPUT_FEAT NAME="INSIDE"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="OUTSIDE"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="REMNANTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="MERGE"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="CANDIDATE"/>
+#!     <XFORM_PARM PARM_NAME="BOUNDARY_CASES" PARM_VALUE="INSIDE"/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE" PARM_VALUE="Automatic"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPED_ATTR" PARM_VALUE="_clipped"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPERS_FIRST" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPER_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="CONNECT_Z_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="INVALID_PARTS_HANDLING" PARM_VALUE="REJECT_PARTS"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MEASURES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="MISSING_M_MODE" PARM_VALUE="Linear Interpolation"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_Z_MODE" PARM_VALUE="Linear Interpolation"/>
+#!     <XFORM_PARM PARM_NAME="MULTIPLE_CLIPPERS" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="M_VAL_SOURCE" PARM_VALUE="CANDIDATE"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OVERLAPPING_CLIPPERS" PARM_VALUE="CLIP_OUTSIDE"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_RASTER_EXTENTS" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_CELL_MODE" PARM_VALUE="CENTER"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Clipper"/>
+#!     <XFORM_PARM PARM_NAME="Z_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="Z_VAL_SOURCE" PARM_VALUE="CANDIDATE"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="15"
+#!   TYPE="RasterSelector"
+#!   VERSION="1"
+#!   POSITION="847.8135994046329 -996.2630577978141"
+#!   BOUNDING_RECT="847.8135994046329 -996.2630577978141 431 71"
+#!   ORDER="500000000000106"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18284"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="BAND_LIST" PARM_VALUE="ALL ALL"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SELECTION_MODE" PARM_VALUE="Band and Palette List"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="RasterSelector"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="16"
+#!   TYPE="RasterBandNodataSetter"
+#!   VERSION="1"
+#!   POSITION="832.18844315307024 -1215.0152453196902"
+#!   BOUNDING_RECT="832.18844315307024 -1215.0152453196902 522.015625 71"
+#!   ORDER="500000000000108"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18284"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="NODATA_VALUE" PARM_VALUE="0"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REPLACE_CELL_VALUES" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="RasterBandNodataSetter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="22"
+#!   TYPE="Dissolver"
+#!   VERSION="17"
+#!   POSITION="-1208.0116829022459 -1521.2683078503151"
+#!   BOUNDING_RECT="-1208.0116829022459 -1521.2683078503151 454 71"
+#!   ORDER="500000000000126"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="AREA"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="REMNANTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_remnant_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="ACCUM_INPUT_ATTRS" PARM_VALUE="Use Attributes From One Feature"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="AV" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE" PARM_VALUE="Automatic"/>
+#!     <XFORM_PARM PARM_NAME="CONNECT_Z_MODE" PARM_VALUE="First Wins"/>
+#!     <XFORM_PARM PARM_NAME="DEAGGREGATE_INPUT" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="DIS_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SUM" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WEIGHT" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Dissolver"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="26"
+#!   TYPE="AttributeManager"
+#!   VERSION="4"
+#!   POSITION="-475.62933907880711 -2014.9999951671903"
+#!   BOUNDING_RECT="-475.62933907880711 -2014.9999951671903 454 71"
+#!   ORDER="500000000000129"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="NeighborhoodId NeighborhoodId  REMOVE NeighborhoodName NeighborhoodName  NO_OP NeighborhoodURL NeighborhoodURL  REMOVE TotalPopulation2001 TotalPopulation2001  REMOVE TotalPopulation2011 TotalPopulation2011  REMOVE"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_EXPOSED_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeManager_5"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="28"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="26"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="24"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 CANDIDATE"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="31"
+#!   SOURCE_NODE="13"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 REPROJECTED"
+#!   TARGET_PORT_DESC="fi 1 CLIPPER"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="32"
+#!   SOURCE_NODE="13"
+#!   TARGET_NODE="22"
+#!   SOURCE_PORT_DESC="fo 0 REPROJECTED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="1"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="39"
+#!   SOURCE_NODE="14"
+#!   TARGET_NODE="15"
+#!   SOURCE_PORT_DESC="fo 0 INSIDE"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="44"
+#!   SOURCE_NODE="15"
+#!   TARGET_NODE="16"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="50"
+#!   SOURCE_NODE="26"
+#!   TARGET_NODE="13"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_OGCKML_1,OGCKML_IN_FME_GROUP_NAMED1_OGCKML_1,OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_1,OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_1,OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_1,OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_1,OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_1,OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_1,OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_1,OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_1,OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_1,OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_1,OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_1,OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1,OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1,OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1,OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1,OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1,OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1,OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_OGCKML https://s3.amazonaws.com/FMEData/FMEData2022/Data/Boundaries/VancouverNeighborhoods.kml
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_OGCKML$encode)} == {}} { puts_real {Parameter 'SourceDataset_OGCKML' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} OGCKML
+MULTI_READER_KEYWORD{0} OGCKML_1
+MULTI_READER_GEN_DIRECTIVES{0} SEARCH_ENVELOPE_COORDINATE_SYSTEM,,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MINX,0,KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH,5,KML21_SCAN_SCHEMA,Yes,KML21_APPLY_MODEL_TRANSFORMS,No,UPDATE_FEATURE_TYPES,no,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MINY,0,KML21_LOG_VERBOSE,No,NETWORK_AUTHENTICATION,,KML21_RASTER_READ_MODE,GroundOverlay,SEARCH_ENVELOPE_MAXY,0,KML21_FAIL_ON_NETWORK_ERROR,No,USE_SEARCH_ENVELOPE,NO,KML21_DATASET_ENCODING,,_MERGE_SCHEMAS,YES,KML21_MOVE_TO_KML_WORLD_COORDSYS,Yes,KML21_DELETE_DOWNLOADED_FILES,Yes,OGCKML_EXPOSE_FORMAT_ATTRS,,KML21_TRAVERSE_NETWORKLINKS,All,CLIP_TO_ENVELOPE,NO
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "OGCKML_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OGCKML OGCKML_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_OGCKML_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OGCKML OGCKML_1
+DEFAULT_MACRO SourceDataset_OGCKML_1 $(SourceDataset_OGCKML)
+GUI FILE_OR_URL SourceDataset_OGCKML_1 KML_Files(*.kml;*.kmz)|*.kml;*.kmz|All_Files(*)|* Source Google KML File or URL:
+DEFAULT_MACRO OGCKML_IN_FME_GROUP_NAMED1_OGCKML_1 
+GUI OPTIONAL DISCLOSUREGROUP OGCKML_IN_FME_GROUP_NAMED1_OGCKML_1 OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_1%OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_1%OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_1%OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_1%OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_1%OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_1%OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_1%OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_1%OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_1%OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_1 General
+DEFAULT_MACRO OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_1 No
+OGCKML_1_KML21_LOG_VERBOSE "$(OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_1 Yes%No Verbose Logging:
+DEFAULT_MACRO OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_1 GroundOverlay
+OGCKML_1_KML21_RASTER_READ_MODE "$(OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_1)"
+GUI OPTIONAL LOOKUP_CHOICE OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_1 All%"\"Ground Overlay\",GroundOverlay"%None Read Overlays as Rasters:
+DEFAULT_MACRO OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_1 Yes
+OGCKML_1_KML21_SCAN_SCHEMA "$(OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_1 Yes%No Scan Schema:
+DEFAULT_MACRO OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_1 No
+OGCKML_1_KML21_FAIL_ON_NETWORK_ERROR "$(OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_1 Yes%No Fail on Network Errors:
+DEFAULT_MACRO OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_1 Yes
+OGCKML_1_KML21_DELETE_DOWNLOADED_FILES "$(OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_1 Yes%No Delete Downloaded Files:
+DEFAULT_MACRO OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_1 All
+OGCKML_1_KML21_TRAVERSE_NETWORKLINKS "$(OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_1)"
+GUI OPTIONAL CHOICE OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_1 No%Local%All Traverse NetworkLinks:
+DEFAULT_MACRO OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_1 5
+OGCKML_1_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH "$(OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_1)"
+GUI OPTIONAL INTEGER OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_1 Maximum NetworkLinks Traversal Depth:
+DEFAULT_MACRO OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_1 
+OGCKML_1_KML21_DATASET_ENCODING "$(OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_1)"
+GUI OPTIONAL ENCODING OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_1 * Force Dataset Encoding:
+DEFAULT_MACRO OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_1 Yes
+OGCKML_1_KML21_MOVE_TO_KML_WORLD_COORDSYS "$(OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_1 Yes%No Move To World Coordinate System:
+DEFAULT_MACRO OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_1 No
+OGCKML_1_KML21_APPLY_MODEL_TRANSFORMS "$(OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_1)"
+GUI CHOICE OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_1 Yes%No Apply Transformations To Models:
+DEFAULT_MACRO OGCKML_IN_EXPOSE_ATTRS_GROUP_OGCKML_1 
+OGCKML_1_EXPOSE_ATTRS_GROUP "$(OGCKML_IN_EXPOSE_ATTRS_GROUP_OGCKML_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_1 NO
+OGCKML_1_USE_SEARCH_ENVELOPE "$(OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_1)"
+GUI ACTIVEDISCLOSUREGROUP OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_1 OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1%OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1%OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1%OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1%OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1%OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1%OGCKML_IN_SEARCH_METHOD%OGCKML_IN_SEARCH_METHOD_FILTER%OGCKML_IN_SEARCH_ORDER%OGCKML_IN_SEARCH_FEATURE%OGCKML_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1 0
+OGCKML_1_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1 0
+OGCKML_1_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1 0
+OGCKML_1_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1 0
+OGCKML_1_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1 <Unused>, 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1 
+OGCKML_1_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1)"
+GUI OPTIONAL COORDSYS OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1 <Unused>,NO 
+DEFAULT_MACRO OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1 NO
+OGCKML_1_CLIP_TO_ENVELOPE "$(OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1)"
+GUI OPTIONAL CHECKBOX OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_1 
+OGCKML_1_NETWORK_AUTHENTICATION "$(OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_1)"
+GUI OPTIONAL AUTHENTICATOR OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================ 
+DEFAULT_MACRO OGCKML_IN_ATTRIBUTE_READING_OGCKML_1 ALL
+OGCKML_1_ATTRIBUTE_READING "$(OGCKML_IN_ATTRIBUTE_READING_OGCKML_1)"
+# ============================================================================ 
+OGCKML_1_GENERATE_FME_BUILD_NUM 19238
+OGCKML_1_DATASET "$(SourceDataset_OGCKML_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)exercise-use-the-featurereader-and-featurewriter.log"
+LOG_APPEND NO
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2022.1.0.0 (20220704 - Build 22618 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_OGCKML_1 OGCKML_1
+# -------------------------------------------------------------------------
+
+OGCKML_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME exercise-use-the-featurereader-and-featurewriter
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+OGCKML_1_DEF Neighborhoods   NeighborhoodId               kml_buffer   NeighborhoodName             kml_buffer   NeighborhoodURL              kml_buffer   TotalPopulation2001          kml_buffer   TotalPopulation2011          kml_buffer
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_OGCKML_1)   INPUT FEATURE_TYPE *    ROUTE OGCKML OGCKML_1::Neighborhoods multi_reader_keyword,$(DATASET_KEYWORD_OGCKML_1) TO FME_GENERIC ::Neighborhoods ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+OGCKML_1_MERGE_DEF OGCKML_1::Neighborhoods EXACT Neighborhoods
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Neighborhoods_OGCKML_1 Splitter"    INPUT FEATURE_TYPE Neighborhoods    OUTPUT FEATURE_TYPE Neighborhoods_OGCKML_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FACTORY_NAME { AttributeManager_5 }    INPUT  FEATURE_TYPE Neighborhoods_OGCKML_1    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ACTION_COLUMN 3    DEF_VAL_COLUMN 2    MISSING_INPUT_ATTR_HANDLING RENAME_SET_VALUE REMOVE    ATTR_ACTION { "NeighborhoodId" "NeighborhoodId" "" "REMOVE" }      ATTR_ACTION { "NeighborhoodURL" "NeighborhoodURL" "" "REMOVE" }      ATTR_ACTION { "TotalPopulation2001" "TotalPopulation2001" "" "REMOVE" }      ATTR_ACTION { "TotalPopulation2011" "TotalPopulation2011" "" "REMOVE" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeManager_5_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Reprojector_2 }    INPUT  FEATURE_TYPE AttributeManager_5_OUTPUT    OUTPUT { FEATURE_TYPE Reprojector_2_REPROJECTED         @Reproject("","UTM83-10",NearestNeighbor,PreserveCells,Reprojector_2,"COORD_SYS_WARNING",RASTER_TOLERANCE,0.0)          }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Reprojector_2 REPROJECTED Splitter"   INPUT FEATURE_TYPE Reprojector_2_REPROJECTED   OUTPUT FEATURE_TYPE Reprojector_2_REPROJECTED_0_dl2NLheVJKs=   OUTPUT FEATURE_TYPE Reprojector_2_REPROJECTED_1_4R5u0KwVNEk=
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ClipperFactory    FACTORY_NAME { Clipper }    INPUT CLIPPER FEATURE_TYPE Reprojector_2_REPROJECTED_0_dl2NLheVJKs=    INPUT CANDIDATE FEATURE_TYPE RasterMosaicker_OUTPUT    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    MULTIPLE_CLIPPERS { YES }    CLIPPERS_FIRST { YES }    OVERLAPPING_CLIPPERS { CLIP_OUTSIDE }    INVALID_PARTS_HANDLING { REJECT_PARTS }    Z_VAL_SOURCE { CANDIDATE }    MISSING_Z_MODE { LINEAR }    CONNECT_Z_MODE { <Unused> }    M_VAL_SOURCE { CANDIDATE }    MISSING_M_MODE { LINEAR }    CLEANING_TOLERANCE { AUTO }    CANDIDATE_ON_BOUNDARY { INSIDE }    PRESERVE_RASTER_EXTENTS { NO }    RASTER_CELL_MODE { CENTER }    CLIPPED_INDICATOR_ATTR { _clipped }    MERGE_CLIPPER_ATTRIBUTES { YES }    ATTR_ACCUM_MODE { "MERGE" }    ATTR_CONFLICT_RES { "CANDIDATE" }    CLIPPER_PREFIX { "<Unused>" }    LIST_NAME { "<Unused>" }    LIST_ATTRS_TO_INCLUDE { <Unused> }    LIST_ATTRS_TO_INCLUDE_MODE { <Unused> }    OUTPUT { INSIDE FEATURE_TYPE Clipper_INSIDE         }    OUTPUT { REJECTED FEATURE_TYPE Clipper_<REJECTED>         }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME Clipper_<Rejected> INPUT FEATURE_TYPE Clipper_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, Clipper<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+INCLUDE [ if { ({USER} == {USER}) } {    puts {MACRO SELECTION_ARGS "ALL ALL"}; } else {    puts {MACRO SELECTION_ARGS @Value("<Unused>")}; } ]
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { RasterSelector }    INPUT  FEATURE_TYPE Clipper_INSIDE    OUTPUT { FEATURE_TYPE ___TOREJECTOR___       @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code)       @SelectRaster(REJECTABLE, $(SELECTION_ARGS)) }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { RasterSelector_Rejector }    INPUT FEATURE_TYPE ___TOREJECTOR___    TEST @Value(fme_rejection_code) != ""    OUTPUT { PASSED FEATURE_TYPE RasterSelector_<REJECTED>       @RemoveAttributes(___fme_rejection_code___)        }    OUTPUT { FAILED FEATURE_TYPE RasterSelector_OUTPUT       @RenameAttributes(FME_STRICT,fme_rejection_code,___fme_rejection_code___)        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME RasterSelector_<Rejected> INPUT FEATURE_TYPE RasterSelector_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, RasterSelector<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { RasterBandNodataSetter_RasterBandNodataSetterInput }    INPUT  FEATURE_TYPE RasterSelector_OUTPUT    OUTPUT { FEATURE_TYPE ___TORASTERBANDNODATASETTER___ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { RasterBandNodataSetter_RasterBandNodataSetter }    INPUT FEATURE_TYPE ___TORASTERBANDNODATASETTER___      @RenameAttributes(FME_STRICT,___fme_rejection_code___,fme_rejection_code)    OUTPUT { FEATURE_TYPE ___TOREJECTOR___      @RasterNodata(REJECTABLE,BAND,"0",DoNotReplaceCellValues) }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { RasterBandNodataSetter_Rejector }    INPUT FEATURE_TYPE ___TOREJECTOR___    TEST @Value(fme_rejection_code) != ""    OUTPUT { PASSED FEATURE_TYPE RasterBandNodataSetter_<REJECTED>       @RemoveAttributes(___fme_rejection_code___)        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME RasterBandNodataSetter_<Rejected> INPUT FEATURE_TYPE RasterBandNodataSetter_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, RasterBandNodataSetter<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} PolygonDissolveFactory    FACTORY_NAME { Dissolver }    INPUT  FEATURE_TYPE Reprojector_2_REPROJECTED_1_4R5u0KwVNEk=    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    DEAGGREGATE_INPUT { Yes }    MODE COMPLETE    CONNECT_Z_MODE { FIRST_WINS }    CLEANING_TOLERANCE { AUTO }    ACCUM_INPUT_ATTRS { One }    LIST_ATTRS_TO_INCLUDE { <Unused> }    LIST_ATTRS_TO_INCLUDE_MODE { <Unused> }    OUTPUT_REMNANTS    OUTPUT { REJECTED FEATURE_TYPE Dissolver_<REJECTED>         }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME Dissolver_<Rejected> INPUT FEATURE_TYPE Dissolver_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, Dissolver<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
