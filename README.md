@@ -12,7 +12,7 @@ The data and workspaces herein relate to FME training, tutorials and demonstrati
 
 ## Versions
 
-FMEData v2021
+FMEData main
 
 See GitHub branches for specific revisions and other versions of this dataset
 
