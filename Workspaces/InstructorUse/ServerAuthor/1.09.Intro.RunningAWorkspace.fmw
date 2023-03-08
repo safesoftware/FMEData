@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command-line to run this workspace:
-#        "C:\Program Files\FME281\fme.exe" C:\FMEData2022\Resources\ServerAuthoring\InstructorWorkspaces\1.9.IntroductionToFMEServer.fmw
+#        "C:\Program Files\FME281\fme.exe" c:\FMEData\Resources\ServerAuthoring\InstructorWorkspaces\1.9.IntroductionToFMEServer.fmw
 #              --Username ""
 #              --DogParks "No"
 #              --LabelAttribute ""
@@ -57,7 +57,7 @@
 #!   IS_SOURCE="true"
 #!   ROLE="READER"
 #!   FORMAT="MITAB"
-#!   DATASET="C:\FMEData2022\Data\Parks\Parks.tab"
+#!   DATASET="c:\FMEData\Data\Parks\Parks.tab"
 #!   KEYWORD="MITAB_1"
 #!   MULTI_GEOM_ALLOWED="false"
 #!   ATTR_MAX_LENGTH="0"
@@ -111,7 +111,7 @@
 #!   IS_SOURCE="false"
 #!   ROLE="WRITER"
 #!   FORMAT="MITAB"
-#!   DATASET="C:\FMEData2022\Output\Training"
+#!   DATASET="c:\FMEData\Output\Training"
 #!   KEYWORD="MITAB_2"
 #!   MULTI_GEOM_ALLOWED="true"
 #!   ATTR_MAX_LENGTH="31"
@@ -1187,7 +1187,7 @@
 #! />
 #! <GLOBAL_PARAMETER
 #!   GUI_LINE="GUI IGNORE LITERAL OPTIONAL DIRNAME OutputFolder Enter folder:"
-#!   DEFAULT_VALUE="C:\FMEData2022\Output\Training"
+#!   DEFAULT_VALUE="c:\FMEData\Output\Training"
 #!   IS_STAND_ALONE="true"
 #! />
 #! </GLOBAL_PARAMETERS>
@@ -1661,7 +1661,7 @@ DEFAULT_MACRO DogParks No
 GUI CHOICE DogParks Yes%No Include dog parks?:
 DEFAULT_MACRO LabelAttribute 
 GUI OPTIONAL TEXT LabelAttribute " " Select the Label Attribute:
-DEFAULT_MACRO OutputFolder C:\FMEData2022\Output\Training
+DEFAULT_MACRO OutputFolder c:\FMEData\Output\Training
 GUI IGNORE OPTIONAL DIRNAME OutputFolder Enter folder:
 INCLUDE [ if {{$(Username)} == {}} { puts_real {Parameter 'Username' must be given a value.}; exit 1; }; ]
 INCLUDE [ if {{$(DogParks)} == {}} { puts_real {Parameter 'DogParks' must be given a value.}; exit 1; }; ]
@@ -1749,7 +1749,7 @@ INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
  } ]
 #! END_WB_HEADER
 #! START_SOURCE_HEADER MITAB MITAB_1
-DEFAULT_MACRO SourceDataset_MITAB_1 C:\FMEData2022\Data\Parks\Parks.tab
+DEFAULT_MACRO SourceDataset_MITAB_1 c:\FMEData\Data\Parks\Parks.tab
 GUI MULTIFILE SourceDataset_MITAB_1 TAB_Files(*.tab)|*.tab|All_Files(*)|* Source MapInfo TAB File(s):
 # ============================================================================
 # [REG 20070109] We want to allow the user to choose heterogeneous collections
@@ -1857,7 +1857,7 @@ INCLUDE [ if {"$(DestDataset)" != ""} {                          \
  } ]
 #! END_WB_HEADER
 #! START_DEST_HEADER MITAB MITAB_2
-DEFAULT_MACRO DestDataset_MITAB_2 C:\FMEData2022\Output\Training
+DEFAULT_MACRO DestDataset_MITAB_2 c:\FMEData\Output\Training
 GUI DIRNAME DestDataset_MITAB_2 Destination MapInfo Folder:
 # ============================================================================
 # By default, we'll NOT try to use any bounding box information that can be
