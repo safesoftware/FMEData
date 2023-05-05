@@ -1,0 +1,1283 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME 2022.0\fme.exe" C:\FMEData\Workspaces\AdvancedReadingAndWriting\exercise-detect-schema-drift-with-the-schemascanner-complete.fmw
+#          --SourceDataset_SHAPEFILE "C:\FMEData\Resources\DynamicWorkflows\Data\BikePaths_L.shp"
+#          --SourceDataset_SHAPEFILE_3 "C:\FMEData\Resources\DynamicWorkflows\Data\Updated_BikePaths_L.shp"
+#          --FEATURE_TYPES ""
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="2267.64 489.751"
+#!   DOC_TOP_LEFT="-22 -388.123"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22337"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="bb4d47af-906c-4f90-946e-80b69789257e"
+#!   FME_DOCUMENT_PRIORGUID="f2e45f32-8ce1-4745-bd57-d86f7d571068"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.0.0.0 (20220428 - Build 22337 - WIN64)"
+#!   LAST_SAVE_DATE="2023-05-05T14:23:11"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1165.64 434.379"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="SHAPEFILE"
+#!   DATASET="$(SourceDataset_SHAPEFILE)"
+#!   KEYWORD="SHAPEFILE_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="shapefile_type {FME_GEN_GEOMETRY}"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename varchar(50) fme_color varchar(50) fme_dataset varchar(50) fme_feature_type varchar(50) fme_fill_color varchar(50) fme_geometry varchar(50) fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string varchar(50) fme_type varchar(50) multi_reader_full_id long multi_reader_id long multi_reader_keyword varchar(50) multi_reader_type varchar(50) shape_geometry_error varchar(254) shapefile_type varchar(30)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22618"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES="1"
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="SHAPEFILE_IN_ENCODING"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEFAULT_GEOMETRY_TYPE"
+#!   VALUE="shapefile_first_feature"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Shapefile1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Shapefile"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the Esri Shapefile(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the Esri Shapefile"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="SHAPEFILE"
+#!   DATASET="$(SourceDataset_SHAPEFILE_3)"
+#!   KEYWORD="SHAPEFILE_2"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="shapefile_type {FME_GEN_GEOMETRY}"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename varchar(50) fme_color varchar(50) fme_dataset varchar(50) fme_feature_type varchar(50) fme_fill_color varchar(50) fme_geometry varchar(50) fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string varchar(50) fme_type varchar(50) multi_reader_full_id long multi_reader_id long multi_reader_keyword varchar(50) multi_reader_type varchar(50) shape_geometry_error varchar(254) shapefile_type varchar(30)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22618"
+#!   COORDSYS=""
+#!   FEATURE_TYPES="$(FEATURE_TYPES)"
+#!   MAX_FEATURES="1"
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="SHAPEFILE_IN_ENCODING"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEFAULT_GEOMETRY_TYPE"
+#!   VALUE="shapefile_first_feature"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Shapefile1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Shapefile"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the Esri Shapefile(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the Esri Shapefile"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(254)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(254)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(254)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(254)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(12)"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(31,15)"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(15,7)"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="short"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="short"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="short"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="long"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="long"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_multipoint"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_point"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_line"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_multipatch"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_multipatch"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_first_feature"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_null"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_feature_table"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="shapefile_first_feature"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="SHAPEFILE"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="BikePaths_L"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="shapefile_line"
+#!   POSITION="20 -50.623156231562319"
+#!   BOUNDING_RECT="20 -50.623156231562319 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="SHAPEFILE_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathId" ATTR_TYPE="long" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathName" ATTR_TYPE="varchar(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathLength" ATTR_TYPE="long" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathType" ATTR_TYPE="varchar(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Updated_BikePaths_L"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   FEAT_GEOMTYPE="shapefile_line"
+#!   POSITION="20 -317.12315623156235"
+#!   BOUNDING_RECT="20 -317.12315623156235 454 71"
+#!   ORDER="500000000000009"
+#!   COLLAPSED="true"
+#!   KEYWORD="SHAPEFILE_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="true"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathId" ATTR_TYPE="number(11,0)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PathName" ATTR_TYPE="varchar(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Distance" ATTR_TYPE="number(11,0)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="varchar(50)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="SHAPEFILE_1"
+#!   OVERRIDE="-SHAPEFILE_1_DATASET"
+#!   DATASET="SHAPEFILE_1/BikePaths_L.shp"
+#! />
+#! <DATASET
+#!   NAME="SHAPEFILE_2"
+#!   OVERRIDE="-SHAPEFILE_2_DATASET"
+#!   DATASET="SHAPEFILE_2/Updated_BikePaths_L.shp"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SHAPEFILE INCLUDE_WEB_BROWSER%Shapefiles(*.shp)|*.shp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):"
+#!   DEFAULT_VALUE="C:\FMEData\Resources\DynamicWorkflows\Data\BikePaths_L.shp"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SHAPEFILE_3 INCLUDE_WEB_BROWSER%Shapefiles(*.shp)|*.shp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):"
+#!   DEFAULT_VALUE="C:\FMEData\Resources\DynamicWorkflows\Data\Updated_BikePaths_L.shp"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES C:&lt;backslash&gt;FMEData&lt;backslash&gt;Resources&lt;backslash&gt;DynamicWorkflows&lt;backslash&gt;Data&lt;backslash&gt;Updated_BikePaths_L.shp,_FORMAT_OVERRIDE_,SHAPEFILE,_DATASET_OVERRIDE_,SourceDataset_SHAPEFILE_3,READER_PARAMETERS,,ENCODING,fme-source-encoding,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,ADVANCED,,TRIM_PRECEDING_SPACES,Yes,READ_NUMERIC_PADDING_AS,ZERO,READ_BLANK_AS,MISSING,USE_STRING_FOR_NUMERIC_STORAGE,No,DONUT_DETECTION,ORIENTATION,MEASURES_AS_Z,No,REPORT_BAD_GEOMETRY,No,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,1,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,NUMERIC_TYPE_ATTRIBUTE_HANDLING,STANDARD_TYPES,DYNAMIC_WORKFLOW,yes,_MERGE_SCHEMAS,YES,_MERGE_SCHEMAS,YES Feature Types to Read"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImRlZmF1bHRWYWx1ZSI6IkM6XFxGTUVEYXRhXFxSZXNvdXJjZXNcXER5bmFtaWNXb3JrZmxvd3NcXERhdGFcXEJpa2VQYXRoc19MLnNocCIsImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiU2hhcGVmaWxlcyIsImZpbHRlciI6WyIqLnNocCJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQ29tcHJlc3NlZCBTaGFwZWZpbGVzIiwiZmlsdGVyIjpbIiouc2h6Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiU291cmNlRGF0YXNldF9TSEFQRUZJTEUiLCJwcm9tcHQiOiJTb3VyY2UgRXNyaSBTaGFwZWZpbGUocyk6IiwicmVxdWlyZWQiOnRydWUsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZmlsZSIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJhY2Nlc3NNb2RlIjoicmVhZCIsImRlZmF1bHRWYWx1ZSI6IkM6XFxGTUVEYXRhXFxSZXNvdXJjZXNcXER5bmFtaWNXb3JrZmxvd3NcXERhdGFcXFVwZGF0ZWRfQmlrZVBhdGhzX0wuc2hwIiwiZmlsdGVycyI6W3siZGVzY3JpcHRpb24iOiJTaGFwZWZpbGVzIiwiZmlsdGVyIjpbIiouc2hwIl19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIFNoYXBlZmlsZXMiLCJmaWx0ZXIiOlsiKi5zaHoiXX0seyJkZXNjcmlwdGlvbiI6IkFsbCBGaWxlcyIsImZpbHRlciI6WyIqIl19XSwiaW5jbHVkZVdlYkJyb3dzZXIiOnRydWUsIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsIm5hbWUiOiJTb3VyY2VEYXRhc2V0X1NIQVBFRklMRV8zIiwicHJvbXB0IjoiU291cmNlIEVzcmkgU2hhcGVmaWxlKHMpOiIsInJlcXVpcmVkIjp0cnVlLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6ImZpbGUiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsInZhbHVlVHlwZSI6InN0cmluZyJ9LHsiY2hvaWNlU2V0dGluZ3MiOnsiY2hvaWNlU2V0IjoicmVhZGVyVmFsdWVzIiwiY29uZmlndXJhdGlvbiI6W3sibmFtZSI6Il9EQVRBU0VUX09WRVJSSURFXyIsInZhbHVlIjoiU291cmNlRGF0YXNldF9TSEFQRUZJTEVfMyJ9LHsibmFtZSI6IlJFQURFUl9QQVJBTUVURVJTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJFTkNPRElORyIsInZhbHVlIjoiZm1lLXNvdXJjZS1lbmNvZGluZyJ9LHsibmFtZSI6IlVTRV9TRUFSQ0hfRU5WRUxPUEUiLCJ2YWx1ZSI6Ik5PIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01JTlgiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUlOWSIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NQVhYIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01BWFkiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfQ09PUkRJTkFURV9TWVNURU0iLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IkNMSVBfVE9fRU5WRUxPUEUiLCJ2YWx1ZSI6Ik5PIn0seyJuYW1lIjoiQURWQU5DRUQiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IlRSSU1fUFJFQ0VESU5HX1NQQUNFUyIsInZhbHVlIjoiWWVzIn0seyJuYW1lIjoiUkVBRF9OVU1FUklDX1BBRERJTkdfQVMiLCJ2YWx1ZSI6IlpFUk8ifSx7Im5hbWUiOiJSRUFEX0JMQU5LX0FTIiwidmFsdWUiOiJNSVNTSU5HIn0seyJuYW1lIjoiVVNFX1NUUklOR19GT1JfTlVNRVJJQ19TVE9SQUdFIiwidmFsdWUiOiJObyJ9LHsibmFtZSI6IkRPTlVUX0RFVEVDVElPTiIsInZhbHVlIjoiT1JJRU5UQVRJT04ifSx7Im5hbWUiOiJNRUFTVVJFU19BU19aIiwidmFsdWUiOiJObyJ9LHsibmFtZSI6IlJFUE9SVF9CQURfR0VPTUVUUlkiLCJ2YWx1ZSI6Ik5vIn0seyJuYW1lIjoiTkVUV09SS19BVVRIRU5USUNBVElPTiIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ09PUkRTWVMiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IlNUQVJUX0ZFQVRVUkUiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6Ik1BWF9GRUFUVVJFUyIsInZhbHVlIjoiMSJ9LHsibmFtZSI6Ik1BWF9GRUFUVVJFU19QRVJfRkVBVFVSRV9UWVBFIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNSU5fRkVBVFVSRVMiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6Ik5VTUVSSUNfVFlQRV9BVFRSSUJVVEVfSEFORExJTkciLCJ2YWx1ZSI6IlNUQU5EQVJEX1RZUEVTIn0seyJuYW1lIjoiRFlOQU1JQ19XT1JLRkxPVyIsInZhbHVlIjoieWVzIn0seyJuYW1lIjoiX01FUkdFX1NDSEVNQVMiLCJ2YWx1ZSI6IllFUyJ9LHsibmFtZSI6Il9NRVJHRV9TQ0hFTUFTIiwidmFsdWUiOiJZRVMifSx7Im5hbWUiOiJSRVRSSUVWRV9BTExfVEFCTEVfTkFNRVMiLCJ2YWx1ZSI6IllFUyJ9XSwiZGF0YXNldCI6IkM6PGJhY2tzbGFzaD5GTUVEYXRhPGJhY2tzbGFzaD5SZXNvdXJjZXM8YmFja3NsYXNoPkR5bmFtaWNXb3JrZmxvd3M8YmFja3NsYXNoPkRhdGE8YmFja3NsYXNoPlVwZGF0ZWRfQmlrZVBhdGhzX0wuc2hwIiwiZm9ybWF0IjoiU0hBUEVGSUxFIiwidmFsdWVzVG9Vc2UiOiJmZWF0dXJlVHlwZXMifSwiZGVmYXVsdFZhbHVlIjoiIiwiaGlkZGVuIjpmYWxzZSwibmFtZSI6IkZFQVRVUkVfVFlQRVMiLCJwcm9tcHQiOiJGZWF0dXJlIFR5cGVzIHRvIFJlYWQiLCJyZXF1aXJlZCI6ZmFsc2UsInR5cGUiOiJsaXN0Ym94IiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZFBhcnRzIn1dfQ=="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_SHAPEFILE" 
+#!   DEFAULT_VALUE="C:\FMEData\Resources\DynamicWorkflows\Data\BikePaths_L.shp"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SHAPEFILE INCLUDE_WEB_BROWSER%Shapefiles(*.shp)|*.shp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):"
+#! />
+#!     <INFO NAME="SourceDataset_SHAPEFILE_3" 
+#!   DEFAULT_VALUE="C:\FMEData\Resources\DynamicWorkflows\Data\Updated_BikePaths_L.shp"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SHAPEFILE_3 INCLUDE_WEB_BROWSER%Shapefiles(*.shp)|*.shp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):"
+#! />
+#!     <INFO NAME="FEATURE_TYPES" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES C:&lt;backslash&gt;FMEData&lt;backslash&gt;Resources&lt;backslash&gt;DynamicWorkflows&lt;backslash&gt;Data&lt;backslash&gt;Updated_BikePaths_L.shp,_FORMAT_OVERRIDE_,SHAPEFILE,_DATASET_OVERRIDE_,SourceDataset_SHAPEFILE_3,READER_PARAMETERS,,ENCODING,fme-source-encoding,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,ADVANCED,,TRIM_PRECEDING_SPACES,Yes,READ_NUMERIC_PADDING_AS,ZERO,READ_BLANK_AS,MISSING,USE_STRING_FOR_NUMERIC_STORAGE,No,DONUT_DETECTION,ORIENTATION,MEASURES_AS_Z,No,REPORT_BAD_GEOMETRY,No,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,1,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,NUMERIC_TYPE_ATTRIBUTE_HANDLING,STANDARD_TYPES,DYNAMIC_WORKFLOW,yes,_MERGE_SCHEMAS,YES,_MERGE_SCHEMAS,YES Feature Types to Read"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="8"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Original dataset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-22 101.62753127531275"
+#!   TOP_LEFT="-22 101.62753127531275"
+#!   BOTTOM_RIGHT="315.40521780217802 102.62753127531275"
+#!   BOUNDING_RECT="-22 101.62753127531275 337.40521780217802 -1"
+#!   ORDER="500000000000006"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="2"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="9"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Updated dataset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-22.000000000000057 -164.87246872468728"
+#!   TOP_LEFT="-22.000000000000057 -164.87246872468728"
+#!   BOTTOM_RIGHT="328.05182864328634 -163.87246872468728"
+#!   BOUNDING_RECT="-22.000000000000057 -164.87246872468728 350.0518286432864 -1"
+#!   ORDER="500000000000008"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="3"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="4"
+#!   TYPE="SchemaScanner"
+#!   VERSION="1"
+#!   POSITION="646.87496874968747 -50.623156231562319"
+#!   BOUNDING_RECT="646.87496874968747 -50.623156231562319 454 71"
+#!   ORDER="500000000000003"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="PathId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PathName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PathLength" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PathType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;SCHEMA&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="PathId" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="PathName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="PathLength" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="PathType" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="CASE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="DATE_OPTIONS_GROUP" PARM_VALUE="NO_DATE"/>
+#!     <XFORM_PARM PARM_NAME="DATE_OPTIONS_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DATE_TIME_ATTRIBUTE_FORMAT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="EMPTY_ATTR_HANDLING" PARM_VALUE="IGNORE"/>
+#!     <XFORM_PARM PARM_NAME="FME_DATE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="HOLD" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="IGNORE_REGEXP" PARM_VALUE="^multi|^fme|^shape"/>
+#!     <XFORM_PARM PARM_NAME="MAX_FEATURES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NO_DATE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ATTR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SCHEMA_NAME_ATTR" PARM_VALUE="fme_feature_type_name"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TYPE_OPTIONS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="UNBOUNDED_NUMBERS" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="UNBOUNDED_STRINGS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="SchemaScanner"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="6"
+#!   TYPE="ListExploder"
+#!   VERSION="6"
+#!   POSITION="1238.8749687496875 -50.623156231562319"
+#!   BOUNDING_RECT="1238.8749687496875 -50.623156231562319 454 71"
+#!   ORDER="500000000000004"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="ELEMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="Merge List Attributes"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="Use List Attribute Values"/>
+#!     <XFORM_PARM PARM_NAME="INCOMING_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX_ATTR" PARM_VALUE="_element_index"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTR" PARM_VALUE="attribute{}"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListExploder"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="SchemaScanner"
+#!   VERSION="1"
+#!   POSITION="646.87496874968747 -317.12315623156235"
+#!   BOUNDING_RECT="646.87496874968747 -317.12315623156235 454 71"
+#!   ORDER="500000000000003"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="PathId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PathName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Distance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;SCHEMA&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="PathId" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="PathName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Distance" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="CASE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="DATE_OPTIONS_GROUP" PARM_VALUE="NO_DATE"/>
+#!     <XFORM_PARM PARM_NAME="DATE_OPTIONS_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DATE_TIME_ATTRIBUTE_FORMAT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="EMPTY_ATTR_HANDLING" PARM_VALUE="IGNORE"/>
+#!     <XFORM_PARM PARM_NAME="FME_DATE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="HOLD" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="IGNORE_REGEXP" PARM_VALUE="^multi|^fme|^shape"/>
+#!     <XFORM_PARM PARM_NAME="MAX_FEATURES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NO_DATE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ATTR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SCHEMA_NAME_ATTR" PARM_VALUE="fme_feature_type_name"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TYPE_OPTIONS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="UNBOUNDED_NUMBERS" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="UNBOUNDED_STRINGS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="SchemaScanner_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="11"
+#!   TYPE="ListExploder"
+#!   VERSION="6"
+#!   POSITION="1238.8749687496875 -317.12315623156235"
+#!   BOUNDING_RECT="1238.8749687496875 -317.12315623156235 454 71"
+#!   ORDER="500000000000004"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="ELEMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="Merge List Attributes"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="Use List Attribute Values"/>
+#!     <XFORM_PARM PARM_NAME="INCOMING_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX_ATTR" PARM_VALUE="_element_index"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTR" PARM_VALUE="attribute{}"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListExploder_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="ChangeDetector"
+#!   VERSION="3"
+#!   POSITION="1815.6431564315644 -50.623156231562319"
+#!   BOUNDING_RECT="1815.6431564315644 -50.623156231562319 430 71"
+#!   ORDER="500000000000010"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22618"
+#! >
+#!     <OUTPUT_FEAT NAME="UPDATED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_db_operation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="INSERTED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="DELETED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <OUTPUT_FEAT NAME="UNCHANGED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_element_index" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_OUTPUT_OPTIONS" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_COMPARISONS_GROUP" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_MATCH_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="BLANK_AND_MISSING_DIFFER" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="BLANK_AND_MISSING_NAMES_TRAITS_DIFFER" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="CHECK_COORDINATE_SYSTEMS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="CHECK_TYPES_AND_ENCODINGS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="CNT_ATTR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM_MATCH_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="LENIENT_MATCH" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="MATCH" PARM_VALUE="FULL"/>
+#!     <XFORM_PARM PARM_NAME="MATCHATTRS" PARM_VALUE="name"/>
+#!     <XFORM_PARM PARM_NAME="MATCH_STRATEGY" PARM_VALUE="Match Selected Attributes"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PREEMPTIVE_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="UNCHANGED_OUTPUT" PARM_VALUE="Output Original"/>
+#!     <XFORM_PARM PARM_NAME="UPDATED_LIST_NAME" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="UPDATED_MATCH_GROUP" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_TOLERANCE" PARM_VALUE="0"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ChangeDetector"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="5"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="4"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="20"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="6"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 ELEMENTS"
+#!   TARGET_PORT_DESC="fi 0 ORIGINAL"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="16"
+#!   SOURCE_NODE="11"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 ELEMENTS"
+#!   TARGET_PORT_DESC="fi 1 REVISED"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="7"
+#!   SOURCE_NODE="4"
+#!   TARGET_NODE="6"
+#!   SOURCE_PORT_DESC="fo 1 &lt;lt&gt;SCHEMA&lt;gt&gt;"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="12"
+#!   SOURCE_NODE="10"
+#!   TARGET_NODE="11"
+#!   SOURCE_PORT_DESC="fo 1 &lt;lt&gt;SCHEMA&lt;gt&gt;"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_SHAPEFILE_1,SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_1,SHAPEFILE_IN_ENCODING_SHAPEFILE_1,SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_1,SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1,SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1,SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1,SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1,SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1,SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1,SHAPEFILE_IN_ADVANCED_SHAPEFILE_1,SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_1,SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_1,SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_1,SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_1,SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_1,SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_1,SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_1,SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_1,SourceDataset_SHAPEFILE_2,SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_2,SHAPEFILE_IN_ENCODING_SHAPEFILE_2,SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_2,SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2,SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2,SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2,SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2,SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2,SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2,SHAPEFILE_IN_ADVANCED_SHAPEFILE_2,SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_2,SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_2,SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_2,SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_2,SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_2,SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_2,SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_2,SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_2
+# ============================================================================
+DEFAULT_MACRO SourceDataset_SHAPEFILE C:\FMEData\Resources\DynamicWorkflows\Data\BikePaths_L.shp
+
+DEFAULT_MACRO SourceDataset_SHAPEFILE_3 C:\FMEData\Resources\DynamicWorkflows\Data\Updated_BikePaths_L.shp
+
+DEFAULT_MACRO FEATURE_TYPES 
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_SHAPEFILE)} == {}} { puts_real {Parameter 'SourceDataset_SHAPEFILE' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_SHAPEFILE_3)} == {}} { puts_real {Parameter 'SourceDataset_SHAPEFILE_3' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} SHAPEFILE
+MULTI_READER_KEYWORD{0} SHAPEFILE_1
+MULTI_READER_GEN_DIRECTIVES{0} ENCODING,fme-source-encoding,REPORT_BAD_GEOMETRY,No,CLIP_TO_ENVELOPE,NO,MEASURES_AS_Z,No,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,READ_BLANK_AS,MISSING,DONUT_DETECTION,ORIENTATION,EXPOSE_ATTRS_GROUP,,NUMERIC_TYPE_ATTRIBUTE_HANDLING,STANDARD_TYPES,SEARCH_ENVELOPE_MINX,0,READ_NUMERIC_PADDING_AS,ZERO,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,USE_STRING_FOR_NUMERIC_STORAGE,No,USE_SEARCH_ENVELOPE,NO,SHAPEFILE_EXPOSE_FORMAT_ATTRS,,_MERGE_SCHEMAS,YES,TRIM_PRECEDING_SPACES,Yes,ADVANCED,
+MULTI_READER_TYPE{1} SHAPEFILE
+MULTI_READER_KEYWORD{1} SHAPEFILE_2
+MULTI_READER_GEN_DIRECTIVES{1} ENCODING,fme-source-encoding,REPORT_BAD_GEOMETRY,No,CLIP_TO_ENVELOPE,NO,MEASURES_AS_Z,No,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,READ_BLANK_AS,MISSING,DONUT_DETECTION,ORIENTATION,EXPOSE_ATTRS_GROUP,,NUMERIC_TYPE_ATTRIBUTE_HANDLING,STANDARD_TYPES,SEARCH_ENVELOPE_MINX,0,READ_NUMERIC_PADDING_AS,ZERO,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,USE_STRING_FOR_NUMERIC_STORAGE,No,USE_SEARCH_ENVELOPE,NO,DYNAMIC_WORKFLOW,yes,SHAPEFILE_EXPOSE_FORMAT_ATTRS,,_MERGE_SCHEMAS,YES,TRIM_PRECEDING_SPACES,Yes,ADVANCED,
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "SHAPEFILE_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SHAPEFILE SHAPEFILE_1
+# ============================================================================
+# The following GUI line prompts for the source shapefiles
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_SHAPEFILE_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SHAPEFILE SHAPEFILE_1
+DEFAULT_MACRO SourceDataset_SHAPEFILE_1 $(SourceDataset_SHAPEFILE)
+GUI MULTIFILE SourceDataset_SHAPEFILE_1 Shapefiles(*.shp)|*.shp|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):
+DEFAULT_MACRO SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_1 
+GUI OPTIONAL DISCLOSUREGROUP SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_1 SHAPEFILE_IN_ENCODING_SHAPEFILE_1%SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING Reader Parameters
+# ============================================================================
+# The following keyword allows the user to choose what encoding to
+# use for reading the shapefile, overrides dbf file LDID or .cpg
+# file if present.
+DEFAULT_MACRO SHAPEFILE_IN_ENCODING_SHAPEFILE_1 fme-source-encoding
+SHAPEFILE_1_ENCODING "$(SHAPEFILE_IN_ENCODING_SHAPEFILE_1)"
+GUI STRING_OR_ENCODING SHAPEFILE_IN_ENCODING_SHAPEFILE_1 fme-source-encoding%UTF-8%ISO*%Big5%ibm*%Shift_JIS%GB2312%GBK%win*%KSC_5601%macintosh%x-mac* Character Encoding
+# ============================================================================
+# Determines whether numeric attributes should be interpreted as binary or as
+# bound number fields (ActualDBFrepresentation)
+DEFAULT_MACRO SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING_SHAPEFILE_1 STANDARD_TYPES
+SHAPEFILE_1_NUMERIC_TYPE_ATTRIBUTE_HANDLING "$(SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING_SHAPEFILE_1)"
+#Note: Using the search envelope requires the shape index files (.sbnand.sbx)
+DEFAULT_MACRO SHAPEFILE_IN_EXPOSE_ATTRS_GROUP_SHAPEFILE_1 
+SHAPEFILE_1_EXPOSE_ATTRS_GROUP "$(SHAPEFILE_IN_EXPOSE_ATTRS_GROUP_SHAPEFILE_1)"
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_1 NO
+SHAPEFILE_1_USE_SEARCH_ENVELOPE "$(SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_1)"
+GUI ACTIVEDISCLOSUREGROUP SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_1 SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1%SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1%SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1%SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1%SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1%SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1%SHAPEFILE_IN_SEARCH_METHOD%SHAPEFILE_IN_SEARCH_METHOD_FILTER%SHAPEFILE_IN_SEARCH_ORDER%SHAPEFILE_IN_SEARCH_FEATURE%SHAPEFILE_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1 0
+SHAPEFILE_1_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1 0
+SHAPEFILE_1_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1 0
+SHAPEFILE_1_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1 0
+SHAPEFILE_1_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1 <Unused>, 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1 
+SHAPEFILE_1_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1)"
+GUI OPTIONAL COORDSYS SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_1 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1 <Unused>,NO 
+DEFAULT_MACRO SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1 NO
+SHAPEFILE_1_CLIP_TO_ENVELOPE "$(SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1)"
+GUI OPTIONAL CHECKBOX SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_1 YES%NO Clip to Search Envelope
+DEFAULT_MACRO SHAPEFILE_IN_ADVANCED_SHAPEFILE_1 
+GUI OPTIONAL DISCLOSUREGROUP SHAPEFILE_IN_ADVANCED_SHAPEFILE_1 SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_1%SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_1%SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_1%SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_1%SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_1%SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_1%SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_1 Advanced
+DEFAULT_MACRO SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_1 Yes
+SHAPEFILE_1_TRIM_PRECEDING_SPACES "$(SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_1)"
+GUI CHOICE SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_1 Yes%No Trim Preceding Spaces
+DEFAULT_MACRO SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_1 ZERO
+SHAPEFILE_1_READ_NUMERIC_PADDING_AS "$(SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_1)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_1 "\"Zero (0)\",ZERO"%Blank,BLANK Read Fully Padded Numeric Fields as:
+DEFAULT_MACRO SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_1 MISSING
+SHAPEFILE_1_READ_BLANK_AS "$(SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_1)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_1 Missing,MISSING%Null,NULL Read Blank Fields as:
+DEFAULT_MACRO SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_1 No
+SHAPEFILE_1_USE_STRING_FOR_NUMERIC_STORAGE "$(SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_1)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_1 Yes%No Read Floating Point Values as Strings:
+# ============================================================================
+# Option to use simple donut geometry creation, which is faster than the
+# original creation method, but less meticulous at detecting and correcting
+# geometric anomalies (i.e.holeswithinholes)
+DEFAULT_MACRO SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_1 ORIENTATION
+SHAPEFILE_1_DONUT_DETECTION "$(SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_1)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_1 "\"Orientation Only\",ORIENTATION"%"\"Orientation and Spatial Relationship\",SPATIAL" Donut Geometry Detection
+# ============================================================================
+# The following GUI line sets whether measure values in the shapefiles should
+# be treated as elevations.
+DEFAULT_MACRO SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_1 No
+SHAPEFILE_1_MEASURES_AS_Z "$(SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_1)"
+GUI CHOICE SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_1 Yes%No Treat Measures as Elevation
+# ============================================================================
+# The following keyword sets whether bad geometry should be reported via
+# the shape_geometry_errors attribute.
+DEFAULT_MACRO SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_1 No
+SHAPEFILE_1_REPORT_BAD_GEOMETRY "$(SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_1)"
+GUI CHOICE SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_1 Yes%No Report Geometry Anomalies
+# ===========================================================================
+DEFAULT_MACRO SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_1 
+SHAPEFILE_1_NETWORK_AUTHENTICATION "$(SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_1)"
+GUI OPTIONAL AUTHENTICATOR SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO SHAPEFILE_IN_ATTRIBUTE_READING_SHAPEFILE_1 ALL
+SHAPEFILE_1_ATTRIBUTE_READING "$(SHAPEFILE_IN_ATTRIBUTE_READING_SHAPEFILE_1)"
+# ============================================================================
+SHAPEFILE_1_GENERATE_FME_BUILD_NUM 22618
+SHAPEFILE_1_DATASET "$(SourceDataset_SHAPEFILE_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "SHAPEFILE_2"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SHAPEFILE SHAPEFILE_2
+SHAPEFILE_2_DYNAMIC_WORKFLOW YES
+# ============================================================================
+# The following GUI line prompts for the source shapefiles
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_SHAPEFILE_2 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SHAPEFILE SHAPEFILE_2
+DEFAULT_MACRO SourceDataset_SHAPEFILE_2 $(SourceDataset_SHAPEFILE_3)
+GUI MULTIFILE SourceDataset_SHAPEFILE_2 Shapefiles(*.shp)|*.shp|Compressed_Shapefiles(*.shz)|*.shz|All_Files(*)|* Source Esri Shapefile(s):
+DEFAULT_MACRO SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_2 
+GUI OPTIONAL DISCLOSUREGROUP SHAPEFILE_IN_READER_PARAMETERS_SHAPEFILE_2 SHAPEFILE_IN_ENCODING_SHAPEFILE_2%SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING Reader Parameters
+# ============================================================================
+# The following keyword allows the user to choose what encoding to
+# use for reading the shapefile, overrides dbf file LDID or .cpg
+# file if present.
+DEFAULT_MACRO SHAPEFILE_IN_ENCODING_SHAPEFILE_2 fme-source-encoding
+SHAPEFILE_2_ENCODING "$(SHAPEFILE_IN_ENCODING_SHAPEFILE_2)"
+GUI STRING_OR_ENCODING SHAPEFILE_IN_ENCODING_SHAPEFILE_2 fme-source-encoding%UTF-8%ISO*%Big5%ibm*%Shift_JIS%GB2312%GBK%win*%KSC_5601%macintosh%x-mac* Character Encoding
+# ============================================================================
+# Determines whether numeric attributes should be interpreted as binary or as
+# bound number fields (ActualDBFrepresentation)
+DEFAULT_MACRO SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING_SHAPEFILE_2 STANDARD_TYPES
+SHAPEFILE_2_NUMERIC_TYPE_ATTRIBUTE_HANDLING "$(SHAPEFILE_IN_NUMERIC_TYPE_ATTRIBUTE_HANDLING_SHAPEFILE_2)"
+#Note: Using the search envelope requires the shape index files (.sbnand.sbx)
+DEFAULT_MACRO SHAPEFILE_IN_EXPOSE_ATTRS_GROUP_SHAPEFILE_2 
+SHAPEFILE_2_EXPOSE_ATTRS_GROUP "$(SHAPEFILE_IN_EXPOSE_ATTRS_GROUP_SHAPEFILE_2)"
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_2 NO
+SHAPEFILE_2_USE_SEARCH_ENVELOPE "$(SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_2)"
+GUI ACTIVEDISCLOSUREGROUP SHAPEFILE_IN_USE_SEARCH_ENVELOPE_SHAPEFILE_2 SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2%SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2%SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2%SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2%SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2%SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2%SHAPEFILE_IN_SEARCH_METHOD%SHAPEFILE_IN_SEARCH_METHOD_FILTER%SHAPEFILE_IN_SEARCH_ORDER%SHAPEFILE_IN_SEARCH_FEATURE%SHAPEFILE_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2 0
+SHAPEFILE_2_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MINX_SHAPEFILE_2 Minimum X:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2 0
+SHAPEFILE_2_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MINY_SHAPEFILE_2 Minimum Y:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2 0
+SHAPEFILE_2_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MAXX_SHAPEFILE_2 Maximum X:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2 <Unused>,0 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2 0
+SHAPEFILE_2_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2)"
+GUI OPTIONAL FLOAT SHAPEFILE_IN_SEARCH_ENVELOPE_MAXY_SHAPEFILE_2 Maximum Y:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2 <Unused>, 
+DEFAULT_MACRO SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2 
+SHAPEFILE_2_SEARCH_ENVELOPE "$(SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2)"
+GUI OPTIONAL COORDSYS SHAPEFILE_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SHAPEFILE_2 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2 <Unused>,NO 
+DEFAULT_MACRO SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2 NO
+SHAPEFILE_2_CLIP_TO_ENVELOPE "$(SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2)"
+GUI OPTIONAL CHECKBOX SHAPEFILE_IN_CLIP_TO_ENVELOPE_SHAPEFILE_2 YES%NO Clip to Search Envelope
+DEFAULT_MACRO SHAPEFILE_IN_ADVANCED_SHAPEFILE_2 
+GUI OPTIONAL DISCLOSUREGROUP SHAPEFILE_IN_ADVANCED_SHAPEFILE_2 SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_2%SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_2%SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_2%SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_2%SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_2%SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_2%SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_2 Advanced
+DEFAULT_MACRO SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_2 Yes
+SHAPEFILE_2_TRIM_PRECEDING_SPACES "$(SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_2)"
+GUI CHOICE SHAPEFILE_IN_TRIM_PRECEDING_SPACES_SHAPEFILE_2 Yes%No Trim Preceding Spaces
+DEFAULT_MACRO SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_2 ZERO
+SHAPEFILE_2_READ_NUMERIC_PADDING_AS "$(SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_2)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_READ_NUMERIC_PADDING_AS_SHAPEFILE_2 "\"Zero (0)\",ZERO"%Blank,BLANK Read Fully Padded Numeric Fields as:
+DEFAULT_MACRO SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_2 MISSING
+SHAPEFILE_2_READ_BLANK_AS "$(SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_2)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_READ_BLANK_AS_SHAPEFILE_2 Missing,MISSING%Null,NULL Read Blank Fields as:
+DEFAULT_MACRO SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_2 No
+SHAPEFILE_2_USE_STRING_FOR_NUMERIC_STORAGE "$(SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_2)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_USE_STRING_FOR_NUMERIC_STORAGE_SHAPEFILE_2 Yes%No Read Floating Point Values as Strings:
+# ============================================================================
+# Option to use simple donut geometry creation, which is faster than the
+# original creation method, but less meticulous at detecting and correcting
+# geometric anomalies (i.e.holeswithinholes)
+DEFAULT_MACRO SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_2 ORIENTATION
+SHAPEFILE_2_DONUT_DETECTION "$(SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_2)"
+GUI LOOKUP_CHOICE SHAPEFILE_IN_DONUT_DETECTION_SHAPEFILE_2 "\"Orientation Only\",ORIENTATION"%"\"Orientation and Spatial Relationship\",SPATIAL" Donut Geometry Detection
+# ============================================================================
+# The following GUI line sets whether measure values in the shapefiles should
+# be treated as elevations.
+DEFAULT_MACRO SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_2 No
+SHAPEFILE_2_MEASURES_AS_Z "$(SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_2)"
+GUI CHOICE SHAPEFILE_IN_MEASURES_AS_Z_SHAPEFILE_2 Yes%No Treat Measures as Elevation
+# ============================================================================
+# The following keyword sets whether bad geometry should be reported via
+# the shape_geometry_errors attribute.
+DEFAULT_MACRO SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_2 No
+SHAPEFILE_2_REPORT_BAD_GEOMETRY "$(SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_2)"
+GUI CHOICE SHAPEFILE_IN_REPORT_BAD_GEOMETRY_SHAPEFILE_2 Yes%No Report Geometry Anomalies
+# ===========================================================================
+DEFAULT_MACRO SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_2 
+SHAPEFILE_2_NETWORK_AUTHENTICATION "$(SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_2)"
+GUI OPTIONAL AUTHENTICATOR SHAPEFILE_IN_NETWORK_AUTHENTICATION_SHAPEFILE_2 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO SHAPEFILE_IN_ATTRIBUTE_READING_SHAPEFILE_2 ALL
+SHAPEFILE_2_ATTRIBUTE_READING "$(SHAPEFILE_IN_ATTRIBUTE_READING_SHAPEFILE_2)"
+# ============================================================================
+SHAPEFILE_2_GENERATE_FME_BUILD_NUM 22618
+SHAPEFILE_2_DATASET "$(SourceDataset_SHAPEFILE_2)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)exercise-detect-schema-drift-with-the-schemascanner-complete.log"
+LOG_APPEND NO
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2022.0.0.0 (20220428 - Build 22337 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_SHAPEFILE_1 SHAPEFILE_1
+DEFAULT_MACRO DATASET_KEYWORD_SHAPEFILE_2 SHAPEFILE_2
+# -------------------------------------------------------------------------
+
+SHAPEFILE_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+SHAPEFILE_2_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+SHAPEFILE_1_MAX_FEATURES 1
+SHAPEFILE_2_MAX_FEATURES 1
+SHAPEFILE_2_FEATURE_TYPES $(FEATURE_TYPES)
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME exercise-detect-schema-drift-with-the-schemascanner-complete
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+SHAPEFILE_1_DEF BikePaths_L   shapefile_type               shapefile_line   PathId                       long   PathName                     varchar(30)   PathLength                   long   PathType                     varchar(1)
+# -------------------------------------------------------------------------
+SHAPEFILE_2_DEF Updated_BikePaths_L   shapefile_type               shapefile_line   PathId                       number(11,0)   PathName                     varchar(30)   Distance                     number(11,0)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE SHAPEFILE SHAPEFILE_1::BikePaths_L multi_reader_keyword,$(DATASET_KEYWORD_SHAPEFILE_1) TO FME_GENERIC ::BikePaths_L ALIAS_GEOMETRY    ROUTE SHAPEFILE SHAPEFILE_2::Updated_BikePaths_L multi_reader_keyword,$(DATASET_KEYWORD_SHAPEFILE_2) TO FME_GENERIC ::Updated_BikePaths_L ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+SHAPEFILE_1_MERGE_DEF SHAPEFILE_1::BikePaths_L EXACT BikePaths_L
+SHAPEFILE_2_MERGE_DEF SHAPEFILE_2::Updated_BikePaths_L GLOB *
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Updated_BikePaths_L_SHAPEFILE_2 Splitter"    INPUT FEATURE_TYPE Updated_BikePaths_L    OUTPUT FEATURE_TYPE Updated_BikePaths_L_SHAPEFILE_2
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "BikePaths_L_SHAPEFILE_1 Splitter"    INPUT FEATURE_TYPE BikePaths_L    OUTPUT FEATURE_TYPE BikePaths_L_SHAPEFILE_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+INCLUDE [    set dateTimeFormat FME;    set fixDateAttrs No;    switch NO_DATE {       NO_DATE                    { set dateTimeFormat <Invalid>; }       DATE_TIME_ATTRIBUTE_FORMAT { set dateTimeFormat {<Unused>};                                    set fixDateAttrs Yes; }    };    puts "MACRO SSFACT_DATE_TIME_ATTRIBUTE_FORMAT $dateTimeFormat";    puts "MACRO SSFACT_FIX_DATE_ATTRS $fixDateAttrs";    ;    set inferEmptySchema No;    set scanEmptyAttributes No;    switch IGNORE {       IGNORE              {}       SCANNER_DEFAULT     { set scanEmptyAttributes Yes; }       INFER_EMPTY_SCHEMA  { set inferEmptySchema Yes; }    };    puts "MACRO SSFACT_INFER_EMPTY_SCHEMA $inferEmptySchema";    puts "MACRO SSFACT_SCAN_EMPTY_ATTRIBUTES $scanEmptyAttributes"; ]
+FACTORY_DEF {*} SchemaScannerFactory    FACTORY_NAME { SchemaScanner_2 }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE Updated_BikePaths_L_SHAPEFILE_2    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    SCHEMA_FEATURES_FIRST { Yes }    SCHEMA_DEF_NAME_ATTR { "fme_feature_type_name" }    IGNORE_ATTRIBUTES_CONTAINING_REGEX { ^multi|^fme|^shape }    IGNORE_ATTRIBUTES_CASE_SENSITIVE { No }    COERCE_CHAR_TO_VARCHAR { Yes }    FIX_DATE_ATTRS { $(SSFACT_FIX_DATE_ATTRS) }    INFER_EMPTY_SCHEMA { $(SSFACT_INFER_EMPTY_SCHEMA) }    TEMPLATE_SCHEMA { PathId,number<openparen>11<comma>0<closeparen>,PathName,varchar<openparen>30<closeparen>,Distance,number<openparen>11<comma>0<closeparen>,fme_feature_type,varchar<openparen>50<closeparen> }    TYPE_OPTIONS { SCAN_USE_UNBOUNDED_STRINGS=No                   SCAN_USE_UNBOUNDED_TYPES=Yes                   SCAN_PREFER_UNSIGNED_TYPES_FOR_INTEGERS=Yes                   SCAN_FOR_DATE_ATTRIBUTES=Yes                   SCAN_FORCE_DATETIME=No                   SCAN_EMPTY_ATTRIBUTES=$(SSFACT_SCAN_EMPTY_ATTRIBUTES);                   SCAN_FOR_DATE_ATTRIBUTE_FORMAT=$(SSFACT_DATE_TIME_ATTRIBUTE_FORMAT) }    OUTPUT { SCHEMA FEATURE_TYPE SchemaScanner_2_<SCHEMA>           }    OUTPUT { REJECTED FEATURE_TYPE SchemaScanner_2_<REJECTED>        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME SchemaScanner_2_<Rejected> INPUT FEATURE_TYPE SchemaScanner_2_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SchemaScanner_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ElementFactory    FACTORY_NAME { ListExploder_2 }    INPUT  FEATURE_TYPE SchemaScanner_2_<SCHEMA>    LIST_NAME { "attribute{}" }    ELEMENT_NUMBER_FIELD { "_element_index" }    CLONE_GEOMETRY    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "INCOMING_IF_CONFLICT" }    INCOMING_PREFIX { "<Unused>" }    OUTPUT { ELEMENT FEATURE_TYPE ListExploder_2_ELEMENTS         @RemoveAttributes(ElementFactory.baseCloned)          }    OUTPUT { NOLIST FEATURE_TYPE ListExploder_2_<REJECTED>         @RemoveAttributes(ElementFactory.baseCloned)         fme_rejection_code MISSING_PARAMETER_LIST          }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME ListExploder_2_<Rejected> INPUT FEATURE_TYPE ListExploder_2_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, ListExploder_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+INCLUDE [    set dateTimeFormat FME;    set fixDateAttrs No;    switch NO_DATE {       NO_DATE                    { set dateTimeFormat <Invalid>; }       DATE_TIME_ATTRIBUTE_FORMAT { set dateTimeFormat {<Unused>};                                    set fixDateAttrs Yes; }    };    puts "MACRO SSFACT_DATE_TIME_ATTRIBUTE_FORMAT $dateTimeFormat";    puts "MACRO SSFACT_FIX_DATE_ATTRS $fixDateAttrs";    ;    set inferEmptySchema No;    set scanEmptyAttributes No;    switch IGNORE {       IGNORE              {}       SCANNER_DEFAULT     { set scanEmptyAttributes Yes; }       INFER_EMPTY_SCHEMA  { set inferEmptySchema Yes; }    };    puts "MACRO SSFACT_INFER_EMPTY_SCHEMA $inferEmptySchema";    puts "MACRO SSFACT_SCAN_EMPTY_ATTRIBUTES $scanEmptyAttributes"; ]
+FACTORY_DEF {*} SchemaScannerFactory    FACTORY_NAME { SchemaScanner }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE BikePaths_L_SHAPEFILE_1    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    SCHEMA_FEATURES_FIRST { Yes }    SCHEMA_DEF_NAME_ATTR { "fme_feature_type_name" }    IGNORE_ATTRIBUTES_CONTAINING_REGEX { ^multi|^fme|^shape }    IGNORE_ATTRIBUTES_CASE_SENSITIVE { No }    COERCE_CHAR_TO_VARCHAR { Yes }    FIX_DATE_ATTRS { $(SSFACT_FIX_DATE_ATTRS) }    INFER_EMPTY_SCHEMA { $(SSFACT_INFER_EMPTY_SCHEMA) }    TEMPLATE_SCHEMA { PathId,int32,PathName,varchar<openparen>30<closeparen>,PathLength,int32,PathType,varchar<openparen>1<closeparen> }    TYPE_OPTIONS { SCAN_USE_UNBOUNDED_STRINGS=No                   SCAN_USE_UNBOUNDED_TYPES=Yes                   SCAN_PREFER_UNSIGNED_TYPES_FOR_INTEGERS=Yes                   SCAN_FOR_DATE_ATTRIBUTES=Yes                   SCAN_FORCE_DATETIME=No                   SCAN_EMPTY_ATTRIBUTES=$(SSFACT_SCAN_EMPTY_ATTRIBUTES);                   SCAN_FOR_DATE_ATTRIBUTE_FORMAT=$(SSFACT_DATE_TIME_ATTRIBUTE_FORMAT) }    OUTPUT { SCHEMA FEATURE_TYPE SchemaScanner_<SCHEMA>           }    OUTPUT { REJECTED FEATURE_TYPE SchemaScanner_<REJECTED>        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME SchemaScanner_<Rejected> INPUT FEATURE_TYPE SchemaScanner_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SchemaScanner<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ElementFactory    FACTORY_NAME { ListExploder }    INPUT  FEATURE_TYPE SchemaScanner_<SCHEMA>    LIST_NAME { "attribute{}" }    ELEMENT_NUMBER_FIELD { "_element_index" }    CLONE_GEOMETRY    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "INCOMING_IF_CONFLICT" }    INCOMING_PREFIX { "<Unused>" }    OUTPUT { ELEMENT FEATURE_TYPE ListExploder_ELEMENTS         @RemoveAttributes(ElementFactory.baseCloned)          }    OUTPUT { NOLIST FEATURE_TYPE ListExploder_<REJECTED>         @RemoveAttributes(ElementFactory.baseCloned)         fme_rejection_code MISSING_PARAMETER_LIST          }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME ListExploder_<Rejected> INPUT FEATURE_TYPE ListExploder_<REJECTED>  OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, ListExploder<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+INCLUDE [    if { {MATCH} == {EXCEPT} } {       puts {MACRO ChangeDetector_ATTRMATCH MATCH_ALL_ATTRS_EXCEPT { name } };    }    elseif { {MATCH} == {ALL} } {       puts {MACRO ChangeDetector_ATTRMATCH MATCH_ALL_ATTRIBUTES};    }    elseif { {MATCH} == {MATCH} } {       puts {MACRO ChangeDetector_ATTRMATCH MATCH_ATTRIBUTES { name } };    }    else {       puts {MACRO ChangeDetector_ATTRMATCH MATCH_ATTRIBUTES};    };    if { {ORIGINAL} == {REVISED} } {       puts {MACRO ChangeDetector_OUTPUT_UNCHANGED_MACRO       };    }    elseif { {ORIGINAL} == {BOTH} } {       puts {MACRO ChangeDetector_OUTPUT_UNCHANGED_MACRO       };    }    else {       puts {MACRO ChangeDetector_OUTPUT_UNCHANGED_MACRO       };    }; ]
+FACTORY_DEF {*} MatchingFactory    FACTORY_NAME { ChangeDetector_Matcher }    INPUT ORIGINAL FEATURE_TYPE ListExploder_ELEMENTS    INPUT REVISED FEATURE_TYPE ListExploder_2_ELEMENTS    CHANGE_DETECTOR_MODE YES    MATCH_GEOMETRY { FULL }    UPDATED_LIST_NAME { "" }    PRE_MATCH_ATTRIBUTES {  }    $(ChangeDetector_ATTRMATCH)    BLANK_AND_MISSING_DIFFER { No }    BLANK_AND_MISSING_NAMES_TRAITS_DIFFER { No }    CHECK_TYPES_AND_ENCODINGS { No }    VECTOR_TOLERANCE { 0 }    LENIENT_GEOMETRY_MATCH { No }    CHECK_COORDINATE_SYSTEMS { No }    ADD_TO_MATCHED { <Unused> }    $(ChangeDetector_OUTPUT_UNCHANGED_MACRO)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
