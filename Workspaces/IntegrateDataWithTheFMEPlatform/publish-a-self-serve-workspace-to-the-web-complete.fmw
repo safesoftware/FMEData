@@ -1,7 +1,7 @@
 #! <?xml version="1.0" encoding="UTF-8" ?>
 #! <WORKSPACE
 #    Command line to run this workspace:
-#        "C:\Program Files\FME 2023.0.0.3\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\IntegrateDataWithTheFMEPlatform\publish-a-self-serve-workspace-to-the-web.fmw
+#        "C:\Program Files\FME 2023.0.0.3\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\IntegrateDataWithTheFMEPlatform\publish-a-self-serve-workspace-to-the-web-complete.fmw
 #          --OutputFormat "SHAPEFILE"
 #          --FEATURE_TYPES ""
 #          --FME_LAUNCH_VIEWER_APP "YES"
@@ -33,7 +33,7 @@
 #!   HISTORY=""
 #!   IGNORE_READER_FAILURE="No"
 #!   LAST_SAVE_BUILD="FME(R) 2023.0.0.3 (20230613 - Build 23319 - WIN64)"
-#!   LAST_SAVE_DATE="2023-08-01T13:35:27"
+#!   LAST_SAVE_DATE="2023-08-01T14:01:11"
 #!   LOG_FILE=""
 #!   LOG_MAX_RECORDED_FEATURES="200"
 #!   MARKDOWN_DESCRIPTION=""
@@ -52,7 +52,7 @@
 #!   TITLE="FILEGDB to GENERIC"
 #!   USAGE=""
 #!   USE_MARKDOWN=""
-#!   VIEW_POSITION="-806.258 187.502"
+#!   VIEW_POSITION="-887.509 187.502"
 #!   WARN_INVALID_XFORM_PARAM="Yes"
 #!   WORKSPACE_VERSION="1"
 #!   ZOOM_SCALE="100"
@@ -121,7 +121,7 @@
 #!   IS_SOURCE="false"
 #!   ROLE="WRITER"
 #!   FORMAT="GENERIC"
-#!   DATASET="C:\FMEData\Output\Training"
+#!   DATASET="$(FME_SHAREDRESOURCE_DATA)\CommunityMapping.zip"
 #!   KEYWORD="GENERIC_2"
 #!   MULTI_GEOM_ALLOWED="false"
 #!   ATTR_MAX_LENGTH="200"
@@ -1235,7 +1235,7 @@
 #! <DATASET
 #!   NAME="GENERIC_2"
 #!   OVERRIDE="-GENERIC_2_DATASET"
-#!   DATASET="GENERIC_2/Training"
+#!   DATASET="GENERIC_2/CommunityMapping.zip"
 #! />
 #! </WRITER_DATASETS>
 #! </FMESERVER>
@@ -1264,7 +1264,7 @@
 #!     <INFO NAME="FEATURE_TYPES" 
 #!   DEFAULT_VALUE=""
 #!   SCOPE="DEPENDENT"
-#!   GENERATED_GUI_LINE="true"
+#!   GENERATED_GUI_LINE="false"
 #!   GUI_LINE="GUI OPTIONAL LISTBOX_ENCODED FEATURE_TYPES GarbageSchedule%AccessibleParking%DrinkingFountains%CommunityCentres%TransitStations%Parks%Libraries%FoodVendors Feature Types to Read"
 #! />
 #! </PARAMETER_INFO>
@@ -1854,7 +1854,7 @@ INCLUDE [ if {"$(DestDataset)" != ""} {                          \
  } ]
 #! END_WB_HEADER
 #! START_DEST_HEADER GENERIC GENERIC_2
-DEFAULT_MACRO DestDataset_GENERIC_2 C:\FMEData\Output\Training
+DEFAULT_MACRO DestDataset_GENERIC_2 $(FME_SHAREDRESOURCE_DATA)\CommunityMapping.zip
 GUI DIRNAME DestDataset_GENERIC_2 Destination Generic (Any Format) Folder:
 DEFAULT_MACRO GENERIC_OUT_FME_GROUP_NAMED1_GENERIC_2 
 GUI OPTIONAL DISCLOSUREGROUP GENERIC_OUT_FME_GROUP_NAMED1_GENERIC_2 GENERIC_OUT_FORMAT_GENERIC_2%GENERIC_OUT_BASE_NAME_GENERIC_2 Writer Parameters
@@ -1894,7 +1894,7 @@ GENERIC_2_DATASET "$(DestDataset_GENERIC_2)"
 #! END_WB_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)publish-a-self-serve-workspace-to-the-web.log"
+LOG_FILENAME "$(FME_MF_DIR)publish-a-self-serve-workspace-to-the-web-complete.log"
 LOG_APPEND NO
 LOG_FILTER_MASK -1
 LOG_MAX_FEATURES 200
@@ -1920,7 +1920,7 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME publish-a-self-serve-workspace-to-the-web
+MACRO WORKSPACE_NAME publish-a-self-serve-workspace-to-the-web-complete
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
 
