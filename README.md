@@ -12,7 +12,7 @@ The data and workspaces herein relate to FME 2022 training, tutorials and demons
 
 ## Versions
 
-FMEData v2021
+FMEData v2022
 
 See GitHub branches for specific revisions and other versions of this dataset
 
