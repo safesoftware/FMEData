@@ -51,7 +51,7 @@ Contains information licensed under the Open Government Licence – British Colu
 
 ## Copyright
 
-2005-2023 Safe Software Inc. All rights are reserved.
+2005-2024 Safe Software Inc. All rights are reserved.
 
 ## Revisions
 
