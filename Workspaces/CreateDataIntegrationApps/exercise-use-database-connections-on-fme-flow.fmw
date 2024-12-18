@@ -1,0 +1,641 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME\2024\1\fme.exe" "G:\My Drive\Flow Authoring\Database Connection Exercise\exercise-use-database-connections-on-fme-flow.fmw"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAABtCAIAAAAApqDoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAANZElEQVR4nO3dW2wc13kH8G9ue9/lcsndJXdJihQlS6SkUBfbkSLbklU7lWjXQBLBaYs+NE0f+hSgRVHkpQiCAs1T0McUbYo8FHVb2ChgJJHjxrFEWbEUXXkRKZG6LG+7XHLvN+7M7MycPtCVdaFESuKSnMz/9yIQO3vmLLX7n3O+PXPIMcYIAMAM+I3uAADAaiGwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFgAYBriRncA1hXTVDU/z3R9ozvyWJxktzeGicOlFJaBwLIQpmsLH/+bWspx/GPioKapkmh7zNPVmmaT6v+G0XVbdHvotXfrfiIwIQSWhbCaWpMXOZ6fTeXPjd799pF9HMfR8I3/LKp2J0UcjdOJtGNntKucLIX7orFrH2b5Y21S2eNKzDkPRYrv3VLfDtjIaR+yud/tbKpXLwXBqBaYoXO8UK9TgGlh4G0l3Bf/8jx3/MWeRaW29KN7f9S3EJu4rYTD2q/Hi26bXCoS8ZzLw67fyWmT6UvJ+fPxQtCRvTRRXVxQwvVLqyU6q2/7YFocY3hzWIWhLCZ+8RPSaxvdkRWInkD4+HcxwoJHIbAsxFAW1WJW8vg3uiMrqBXT9mA7AgsehSkhAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFhgOVjJY164NQespVJlsbhmGHVpPNgotAYxCKgjBBZYiK7T5TFNJKWikkQi2ey2NV2dOpPUj3nJ6UBm1QsCCyykpjOey57/6EL3UWH6XJjzJ7OL4Wjz9Uz5cK9jNG4EE96Wt3Zuf+b2RZFklZyONewyPACXArAcUauVFIVq2fRsuUnI3UxJPuPK59fv6jOZ5udIK1gHGGGB1QQOfuMkEdE7lLs9Qtv2NN0e2bptz/5X168HTF7keG7l4zYPg5HDtdGdIEJggdWIArn/f8rm3r2HiNp271mrxtXVbIShVI2pm8S0tTppnRjDZ1k+RQ4nq6kcMfHEX/KR7o3uFAILLCbgo5CQ5Rv8tLTtqpIvkL/B/sWjmlbRdbdd0DRRfIbPhsu58jHG1NjIVHxRVg7u7yMiRVWJyG67b59XdbHCu9z3Tq+pCtnsy/ZGVRWbzU66otL9Xx8oqvpAg0/2RSMPY5mE3trJTY+zxjApMj/0Kd+6lbgNHhgisMBiGCv8+Ee1XDbwg38UQ/GBM6G9BwsXRsbU2y57rzORi3UavYty2dOWHvzN5JajX/X6Xjiw9Xk35JmYmLh9+zYRORwOY+7O+cHRH//rz/75Rz9894/6f3X6M8MwvnHiTSK9Mnd3rlQenpgtpGzRRt4ZVMey+s5oYL4Q6m0lOzd/V3cEWPXjD6RtR2tH7MqEHLJ3FUY+SmpuObzn5Df3uogoP/7ZP13lDqfOip2vZSJZwdvZMpSJ2/WW3b50qr3dmd/b1zP1m49PV6pBzRXokCrjav5AayiWDva0lOzbvtb6RdIxQaTkFAkil08xjid+U2TFpugErA+DGdxGXyFXheM5quPiTsZxgtfL22xEJIqk37k1eP2ir/1gaUDpeyU/fj61+yXlbnJc9r9pmzk319pKzxdYV69eIaL+/n5N0xhj+rhDcji7OtpPvnWciP7w6Cu6bhARaalb44vuJiMhqRFX89bX9X/5qfKK/+KYfNyr3DpfsjuLo3xbj6vD9fI+x8D4AjMyoQZ+RpG1cqzQc7i7MJme8cmy7cLtuRZ3hCJ9jgsT07UpTdI84VADSVMfjCwcDnTJlSwREe1/o2X0H4an9N632pI/uGT/nj+XVSPlual86/YvXy1HxHGM44jnmbYp9n3EBn7WIqdmBF40WH3WTa4FptdEt0/0BOrRuKyyqbgWdqmcy12P9tN5LdDAN/oe+PL91KlT/f39935klYI+fYN77H+BUS0UFFuD37nsN/hyNscFGr+cwBVmrl2cbTx8qHN1JXElmyuVk1lqe6HDu8Kh+qf/ZSQnWaiDq1VZLmX7s78Xdr60qpPUEwLLcrTF4mYeZ3G8wNvr9YWUrLLpuNbaLNC9vxuk5AuKk7OTz/5oGeeppXOa33dfYMnlsujxPDqNqRRM9qljBudp3OhOEGFKaEGiy7fRXdhIjKjw3r9L215wvHyI6OrAp6G97PP3ndlOvZfXY+7oDm+WpcsT0SPf6l5FBf0hxoM5dOX0B8mmfd1nr8T+9i9O3P+Au2HzXjE2NywcBYthTL0+nPzOH6u3xmmphqVTcXY8o88MDhUWr378+dx8TPM8Q1o9ivd3qNf+57+Hb6Wza9AaEKaEYClLNayGa59Iu/vE1siXD6RGxmgPpUZ6e59rTdayNSxYQwgssBBZZROTWrNfqlP7mYLWFv4ysBhjN2/e7OnpqdPpLAg1LLAWu0Tu5aZ7iqLYV71glDFVSP+U55nNHV0UX5Nrzmw2E4m2VZUHDhsYGOjt7V2bfgMRIbDAgq5du6wqStfWbaFQOfa/sxddjj2CY86x0FqRi1Kn7m3+am/rCh8MLW8XS9VSnNQZw9MWX2h45+2jf/6dv/raa2/7PJzPzcfj8Vqt1tHRHgqF1udFWQQCy3oY28x1AI6vewFo794Dly6eD4XCRGVKyc0tpWG1lEokpZcPKWOD+fABZcXAIo4YiZJLlDwqcYIg9PW9eOTIMW9js9/LN3j5HTt22NdinQQ8BDUsa5FTk4XRc5yqbnRHHs/hbjrQL7hXWtf4TJaK7i3Nz1/DYpI6qlVjBvHkfYPj7bquC4KAonu9YYRlIUxXcxd/qVdKRKTphig8/LlSa5pNEknXVBJ5QyPpXj3HUGtkkx44Xqvdf8D9ljn4qbqZufjz0Ot/+qxPXwFHD97A++DNz6uuZHGqkieyC/YgE2xEJAg8x9H9DT9u0Sg8D/w+LYRpmi7LRDQ+u3BpfOpPXj8g8DwNn/mhEDhaCTM72bwVVzo5oXiUihhsLC9wkWOR4sVC4zZlbnBOCe7ctTUTS0fCxcnFPT3c6d/Ku7arcrgvGrv2YZY/1iaVPa7EnH2/d+ZUpf0PpHLeplfdW452PO2KJs6olpmhc/ya7l5875dANDMz3dTUXKlUmpvTv7vs79Q+/Kx5v/Tr9xO7vh50GL3OuVip1x56UiWLadkGfliuJo1FVdX4ZKFpcvJO766vMPIS0cLZs1m3esPXd2I7AmuNYexqRSG/5+Sre1VNJyKi6D5pfnx++nK5Nl+Ox8tCfF7viEilkqNLqJ5JakF1YUr0b2lvdlUmJ3W3PDJXa6hdGS2xgEE2uVQk4jmXh12/k9Mm05eSU+fyrEVfuDRRzWaErqdOq/Vgs9nf+4+fBQJNRFWtqqdIrs2MaoFv7WyeGL4xNFeIqrODiYWc8oQmmKbKWaWaMQyNWE3TtWCoZfT68NKDoUhE1CTnnbGhdXk5loIaloUYymLiFz8h/Qm33RevXp3horv2hdevV48SPYHw8e/WY4S1VjUspise5X1NnjcYp7hPVvXGZDLZ3b0dNax6Q2BZiKEsqsWs5Hne3Z3qrVZM24PtdQqsm3c1v69eC0ezBa0risCqI0yxwVqcdvJ7GMdxjLG12rWiUiktjbB0fU3ag8dCYIHlDA5emUvEX3zpYChUHhq4klJ7nK6ZcsbtjhaKtxo6D/mzs2k5w1LxQV/3m/u+3hdZqcFMJmMYxm/PDezYfXg9XoCFYewKlrNv34sv7OgJhcJEZLe15GcvJGbimltW8tl8UB4+lRgc/h3n1o1tR7rVsVhu5QZFQUwtJHft/krdu255qGFZCGpYssom41pL09rXsJYmmOm81uRHDauOMCUEa3l44ej9FEV5+IYabZW3QxuGwfPCJt7J9fcEAgssZ2LiZlNTs67roVCYlLlYJrEwkCh2hQO5SnELHxZbqnc+OZXa2b8rINFErtDj6d1xoOVJNwZOTcW+/3ff++u/+b63saNW5eUKn81mp6enT5w48YRnwTPA2BUsJxKJ/uqjnweDISItMz1dIcnts8XHL81NDQ0Pz6ZuzFZePvyOI3ctMThZiPo8TorHC09sUNO0oaGrAwOfZrPpdCaVSqVu3Bg7c+b0Or0eK0ENy0JQw9INuhlTQ42Sscy7vnr3k8v8G692Pn2zslzNZTOtkbZ0Tt++RbBJmBnWCwLLQhBYRKTrNJOs15/YCzQIPg9mLXWEGhZYiyDQloiE6rhJ4WoAloO0Mi8EFgCYBgILAEwDgQUApoHAAgDTQGBZCMfxvDnqzWu28Qv8nsGyBgvhbA4SbLVSdjN/T8a0ms0fIg6XUlgGFo5aDqvJbLmF3psEJ4qcUK8dQcHsEFgAYBoYeAOAaSCwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAaSCwAMA0EFgAYBoILAAwDQQWAJgGAgsATAOBBQCmgcACANNAYAGAafwfaZ2Az3t6rgAAAAAASUVORK5CYII="
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="2575.67 720.257"
+#!   DOC_TOP_LEFT="380.266 -735.882"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="24612"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="76c59549-4757-48d2-a924-265238d81da7"
+#!   FME_DOCUMENT_PRIORGUID="48537fd4-303f-4d51-bb01-1ce0149b69e0,4ae7d35a-f332-4d73-bace-28b68634876d,ae3e8a60-70b7-4565-a3ef-e5a39a5e48b1,850d120a-1337-43ca-9948-905fade5c4a6,57940298-89bb-4c89-b42b-1ff7ff41c8d5,14148fa0-1a95-4be4-8ffd-e356abccce68,befb2e4f-6f17-43a8-bf3c-3893e9239436,71425259-94e7-4e13-b8e2-77d3efe0ecaa,2c4deb98-ffd1-487b-891f-b70ca14bc933,730dc4fb-0c49-492c-81ab-9cc4c2a56df0,4bc73145-2e00-4a8d-bfbe-a71c1bc21fbe,47849502-748d-4bd8-ad47-f57416aa4e25,ed2ef0c3-0ef4-4cba-adff-46e97ac885f4,c953ab2a-5a92-4b3b-89a4-1d7ba8161788,49683b7f-b532-4356-bde3-c6ff471c4474,01d383f7-169b-4c48-bdcf-79bd6d7b9515,d15fefd6-f62d-4322-ae1d-53a7c0a331ea,82a31e06-2361-45da-8bcc-c67f38466c35,3ca46920-f71f-49fc-8f1c-c1f5b97edc30,4929b8af-88d4-462e-868e-43b4b65639cf,c32f095b-14a4-435d-9abf-8da5d52716d7"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2024.1.0.0 (20240628 - Build 24612 - WIN64)"
+#!   LAST_SAVE_DATE="2024-12-09T15:20:46"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE="MULTI to NULL"
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-361.611 508.934"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="70"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="false"
+#!   ROLE="WRITER"
+#!   FORMAT="NULL"
+#!   DATASET=""
+#!   KEYWORD="NULL_1"
+#!   MULTI_GEOM_ALLOWED="true"
+#!   ATTR_MAX_LENGTH="200"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="false"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis number(31,15) fme_rotation number(31,15) fme_secondary_axis number(31,15) fme_start_angle number(31,15) fme_sweep_angle number(31,15) fme_text_size number(31,15) fme_text_string char(50) fme_type char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE=""
+#!   FTTR_TYPE=""
+#!   GENERATE_FME_BUILD_NUM="24612"
+#!   COORDSYS=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="NO"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(255)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(255)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(255)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(255)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(31,15)"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(15,7)"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(6,0)"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(4,0)"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="NULL"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="NULL"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_multipoint"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_point"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_null"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_line"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_line"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="NULL"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="null_null"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="NULL"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="Schools"
+#!   FEATURE_TYPE_NAME="@Value(NeighborhoodName)_Parks"
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="12"
+#!   FEAT_NAMEDGEOMTYPE=""
+#!   POSITION="2128.640707459705 -253.62740627406265"
+#!   BOUNDING_RECT="2128.640707459705 -253.62740627406265 827.29638615780641 65"
+#!   ORDER="500000000000011"
+#!   COLLAPSED="true"
+#!   KEYWORD="NULL_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   SCHEMA_ATTRIBUTE_SOURCE="0"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="_clipped" ATTR_TYPE="char(3)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <SERVICES>
+#! <SERVICE
+#!   NAME="fmejobsubmitter"
+#! >
+#! <PROPERTIES>
+#! <PROPERTY
+#!   NAME="ADVANCED"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   NAME="FAILURE_TOPICS"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   NAME="HTTP_DATASET"
+#!   VALUE="GML_1"
+#! />
+#! <PROPERTY
+#!   NAME="NOTIFICATION_WRITER"
+#!   VALUE=""
+#! />
+#! <PROPERTY
+#!   NAME="SUCCESS_TOPICS"
+#!   VALUE=""
+#! />
+#! </PROPERTIES>
+#! </SERVICE>
+#! </SERVICES>
+#! <REPOSITORY
+#!   NAME="Training"
+#! />
+#! <ITEM
+#!   NAME="exercise-use-database-connections-on-fme-flow.fmw"
+#! />
+#! <MODIFICATIONS>
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SERVER_DEST_DIR"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_BACKUP"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_DASHBOARD"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_DATA"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_ENGINE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_LOG"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_SYSTEM"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_SHAREDRESOURCE_TEMP"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":GlobalParameterMgr:FME_TOPIC_MESSAGE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:DESTINATION_ROUTING_FILE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:LOG_FILE"
+#!   VALUE=""
+#! />
+#! <MODIFICATION
+#!   UID=":WBDoc:SOURCE_ROUTING_FILE"
+#!   VALUE=""
+#! />
+#! </MODIFICATIONS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbXX0="
+#! >
+#! <PARAMETER_INFO>
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="8"
+#!   NAME="Parks Reader"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="380.26568750062518 -15.625156251562458"
+#!   ORDER="500000000000008"
+#!   PALETTE_COLOR="Reader/Writer"
+#!   BOTTOM_RIGHT="1130.2656875006251 -318.62740627406265"
+#!   BOUNDING_RECT="380.26568750062518 -15.625156251562458 750 303.00225002250016"
+#!   STICKY="true"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS=""
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="10"
+#!   NAME="Neighborhoods Reader"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="380.26568750062518 -432.87999297992246"
+#!   ORDER="500000000000008"
+#!   PALETTE_COLOR="Reader/Writer"
+#!   BOTTOM_RIGHT="1130.2656875006251 -735.88224300242268"
+#!   BOUNDING_RECT="380.26568750062518 -432.87999297992246 750 303.00225002250016"
+#!   STICKY="true"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS=""
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="Clipper"
+#!   VERSION="16"
+#!   POSITION="1543.7654376543765 -190.50112501125"
+#!   BOUNDING_RECT="1543.7654376543765 -190.50112501125 431 71"
+#!   ORDER="500000000000006"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#!   INPUT_FT_ORDER="CLIPPEE%CLIPPER"
+#! >
+#!     <OUTPUT_FEAT NAME="INSIDE"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="OUTSIDE"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_clipped" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="REMNANTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_PARM PARM_NAME="ADD_NODATA" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="MERGE"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="CANDIDATE"/>
+#!     <XFORM_PARM PARM_NAME="BOUNDARY_CASES" PARM_VALUE="INSIDE"/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE_LOOKUP" PARM_VALUE="AUTO"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPED_ATTR" PARM_VALUE="_clipped"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPERS_FIRST" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="CLIPPER_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="CONNECT_Z_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="INVALID_PARTS_HANDLING" PARM_VALUE="REJECT_PARTS"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MEASURES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="MISSING_M_MODE_LOOKUP" PARM_VALUE="LINEAR"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_Z_MODE_LOOKUP" PARM_VALUE="LINEAR"/>
+#!     <XFORM_PARM PARM_NAME="MULTIPLE_CLIPPERS" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="M_VAL_SOURCE" PARM_VALUE="CANDIDATE"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OVERLAPPING_CLIPPERS" PARM_VALUE="CLIP_OUTSIDE"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_FEATURE_ORDER" PARM_VALUE="ACROSS_OUTPUT_PORTS"/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_RASTER_EXTENTS" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_CELL_MODE" PARM_VALUE="CENTER"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Clipper"/>
+#!     <XFORM_PARM PARM_NAME="Z_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="Z_VAL_SOURCE" PARM_VALUE="CANDIDATE"/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE" PARM_IS_LOOKUP="true" PARM_VALUE="Automatic"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_M_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Linear Interpolation"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_Z_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Linear Interpolation"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="13"
+#!   SOURCE_NODE="7"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 INSIDE"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD PRIMARY_DEST
+PRIMARY_DEST_DATASET_ORDER BY_ID
+PRIMARY_DEST_FIRST_WRITER_ID 0
+PRIMARY_DEST_TYPE{0} NULL
+PRIMARY_DEST_KEYWORD{0} NULL_1
+PRIMARY_DEST_GEN_DIRECTIVES{0} ADD_WRITER_NEXT_ACTION,automatic
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "NULL_1"
+#! END_WB_HEADER
+#! START_DEST_HEADER NULL NULL_1
+# ============================================================================
+# Just fake out a macro; it's not used
+#! END_DEST_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO DestDataset
+INCLUDE [ if {"$(DestDataset)" != ""} {                          \
+ puts {DEFAULT_MACRO DestDataset_NULL_1 $(DestDataset)}         \
+ } ]
+#! END_WB_HEADER
+#! START_DEST_HEADER NULL NULL_1
+DEFAULT_MACRO DestDataset_NULL_1 NULL
+# ============================================================================
+NULL_1_GENERATE_FME_BUILD_NUM 24612
+NULL_1_DATASET "$(DestDataset_NULL_1)"
+#! END_DEST_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)exercise-use-database-connections-on-fme-flow.log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2024.1.0.0 (20240628 - Build 24612 - WIN64)"
+MAPPING_FILE_ID MULTI<space>to<space>NULL
+DEFAULT_MACRO DATASET_KEYWORD_NULL_1 NULL_1
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME exercise-use-database-connections-on-fme-flow
+MACRO FME_VIEWER_APP fmedatainspector
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC Clipper_INSIDE TO NULL __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>Schools<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>NeighborhoodName<lt>closeparen<gt>_Parks<comma>Schools<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
