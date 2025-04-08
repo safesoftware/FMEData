@@ -1,0 +1,830 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        C:\bin\FME250\fme.exe "C:\Users\t.miegel\con terra\O365_FME UC - PoDI 2025 - PoDI 2025\Python Training\Exercise 4\Exercise_4_End.fmw"
+#          --SourceDataset_FFS ".\waterlevel_list.ffs"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="2844.37 591.133"
+#!   DOC_TOP_LEFT="245.002 -910.509"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="25208"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="03e4d2b2-2e7d-44dd-a196-254595bb459f"
+#!   FME_DOCUMENT_PRIORGUID="bdcd6240-c09c-445a-8208-0beeb9f17173,fa3f76b6-d1a7-4998-b17d-798a8eeedc75,e0278d7d-d30b-49e2-ba49-04a0d92f2b7c,636e2bc5-e6d3-4da6-a335-6c878a5c1977,932682a3-f4e2-461c-9c99-ebe69f25a547,32b4433e-36c6-4fb6-b885-3b9c064a1941,6608a058-46fd-42f1-9375-6052abc60c8c"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2025.0.0.0 (20250228 - Build 25208 - WIN64)"
+#!   LAST_SAVE_DATE="2025-04-03T13:54:59"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="313"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-356.254 6.25006"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="FFS"
+#!   DATASET="$(SourceDataset_FFS)"
+#!   KEYWORD="FFS_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis real64 fme_rotation real64 fme_secondary_axis real64 fme_start_angle real64 fme_sweep_angle real64 fme_text_size real64 fme_text_string char(50) fme_type char(50) multi_reader_full_id int32 multi_reader_id int32 multi_reader_keyword char(50) multi_reader_type char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="21313"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="ffs file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the FFS file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the FFS file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varchar(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="binary(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="varbinary(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="binarybuffer"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int8"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="uint8"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="FFS"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="number(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="FFS"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_point_cloud"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_feature_table"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_voxel_grid"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="FFS"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="fme_no_geom"
+#!   FME_TYPE="SOURCE_GEOMTYPE"
+#!   FORMAT="FFS"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="waterlevel"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="11"
+#!   POSITION="245.00225002250022 -319.37584375843755"
+#!   BOUNDING_RECT="245.00225002250022 -319.37584375843755 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="FFS_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="fme_point fme_line fme_area fme_text fme_ellipse fme_arc fme_rectangle fme_rounded_rectangle fme_raster fme_collection fme_surface fme_solid fme_point_cloud fme_feature_table fme_voxel_grid fme_no_geom"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="fme_point fme_line fme_area fme_text fme_ellipse fme_arc fme_rectangle fme_rounded_rectangle fme_raster fme_collection fme_surface fme_solid fme_point_cloud fme_feature_table fme_voxel_grid fme_no_geom" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="level_number" ATTR_TYPE="number(11,0)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="km" ATTR_TYPE="number(8,3)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="name" ATTR_TYPE="varchar(31)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="measurements{}.measurement" ATTR_TYPE="number(8,2)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="FFS_1"
+#!   OVERRIDE="-FFS_1_DATASET"
+#!   DATASET="FFS_1/waterlevel_list.ffs"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_FFS FME_Feature_Store_Files(*.ffs)|*.ffs|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files|* Source FME Feature Store (FFS) File(s):"
+#!   DEFAULT_VALUE=".\waterlevel_list.ffs"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiU291cmNlRGF0YXNldF9GRlMiLCJwcm9tcHQiOiJTb3VyY2UgRk1FIEZlYXR1cmUgU3RvcmUgKEZGUykgRmlsZShzKToiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiIuXFx3YXRlcmxldmVsX2xpc3QuZmZzIiwiZGVwcmVjYXRlZEZsYWdzIjpbIm5vbmUiXSwidHlwZSI6ImZpbGUiLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwiaXRlbXNUb1NlbGVjdCI6ImZpbGVzIiwiYWNjZXNzTW9kZSI6InJlYWQiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkZNRSBGZWF0dXJlIFN0b3JlIEZpbGVzIiwiZmlsdGVyIjpbIiouZmZzIl19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV19XX0="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_FFS" 
+#!   DEFAULT_VALUE=".\waterlevel_list.ffs"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_FFS FME_Feature_Store_Files(*.ffs)|*.ffs|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files|* Source FME Feature Store (FFS) File(s):"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="16"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alternative&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="868.25256252562531 -705.75789925898516"
+#!   TOP_LEFT="868.25256252562531 -705.75789925898516"
+#!   BOTTOM_RIGHT="1322.2116802418025 -706.75789925898516"
+#!   BOUNDING_RECT="868.25256252562531 -705.75789925898516 453.95911771617716 1"
+#!   ORDER="500000000000016"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{619a98ae-cc47-4d3a-a0ae-46ed1a024eb0}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="14"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="5"
+#!   TYPE="ListElementCounter"
+#!   VERSION="2"
+#!   POSITION="1451.3770937709378 -319.37584375843755"
+#!   BOUNDING_RECT="1451.3770937709378 -319.37584375843755 454 71"
+#!   ORDER="500000000000012"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23332"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="level_number" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="km" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="measurements{}.measurement" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_count" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="CNT_ATTR" PARM_VALUE="_element_count"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="measurements&lt;opencurly&gt;&lt;closecurly&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListElementCounter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="ListSummer"
+#!   VERSION="0"
+#!   POSITION="2043.3770937709378 -319.37584375843755"
+#!   BOUNDING_RECT="2043.3770937709378 -319.37584375843755 454 71"
+#!   ORDER="500000000000013"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="21313"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="level_number" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="km" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="measurements{}.measurement" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_count" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_sum" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RESULT" PARM_VALUE="_sum"/>
+#!     <XFORM_PARM PARM_NAME="SRC_LIST" PARM_VALUE="measurements{}.measurement"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListSummer"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="9"
+#!   TYPE="ExpressionEvaluator"
+#!   VERSION="3"
+#!   POSITION="2635.3770937709378 -319.37584375843755"
+#!   BOUNDING_RECT="2635.3770937709378 -319.37584375843755 454 71"
+#!   ORDER="500000000000014"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="21313"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="level_number" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="km" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="measurements{}.measurement" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_element_count" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_sum" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="messwerte_mean" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ACTION" PARM_VALUE="Create New Attribute"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRLIST" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="EXPRESSION" PARM_VALUE="@Value(_sum)/@Value(_element_count)"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VAL_ATTR" PARM_VALUE="messwerte_mean"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ExpressionEvaluator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="13"
+#!   TYPE="PythonCaller"
+#!   VERSION="6"
+#!   POSITION="906.25256252562531 -319.37584375843755"
+#!   BOUNDING_RECT="906.25256252562531 -319.37584375843755 454 71"
+#!   ORDER="500000000000007"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25208"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="level_number" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="km" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="measurements{}.measurement" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;Rejected&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="level_number" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="km" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="measurements{}.measurement" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="HIDE_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NEW_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PYTHONSOURCE" PARM_VALUE="import&lt;space&gt;fme&lt;lf&gt;import&lt;space&gt;fmeobjects&lt;lf&gt;&lt;lf&gt;&lt;lf&gt;class&lt;space&gt;FeatureProcessor&lt;openparen&gt;object&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;__init__&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;input&lt;openparen&gt;self&lt;comma&gt;&lt;space&gt;feature&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;for&lt;space&gt;i&lt;comma&gt;&lt;space&gt;element&lt;space&gt;in&lt;space&gt;enumerate&lt;openparen&gt;feature.getAttribute&lt;openparen&gt;&lt;apos&gt;measurements&lt;opencurly&gt;&lt;closecurly&gt;.measurement&lt;apos&gt;&lt;closeparen&gt;&lt;closeparen&gt;:&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;newElement&lt;space&gt;=&lt;space&gt;element.replace&lt;openparen&gt;&lt;apos&gt;cm&lt;apos&gt;&lt;comma&gt;&lt;apos&gt;&lt;apos&gt;&lt;closeparen&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;feature.setAttribute&lt;openparen&gt;&lt;apos&gt;measurements&lt;opencurly&gt;&lt;apos&gt;+str&lt;openparen&gt;i&lt;closeparen&gt;+&lt;apos&gt;&lt;closecurly&gt;.measurement&lt;apos&gt;&lt;comma&gt;&lt;space&gt;newElement&lt;closeparen&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;self.pyoutput&lt;openparen&gt;feature&lt;closeparen&gt;&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;close&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;process_group&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass"/>
+#!     <XFORM_PARM PARM_NAME="PYTHONSYMBOL" PARM_VALUE="FeatureProcessor"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="PythonCaller_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="PythonCaller"
+#!   VERSION="6"
+#!   POSITION="906.25256252562531 -839.50858676586017"
+#!   BOUNDING_RECT="906.25256252562531 -839.50858676586017 454 71"
+#!   ORDER="500000000000007"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25208"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <OUTPUT_FEAT NAME="&lt;Rejected&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="HIDE_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NEW_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PYTHONSOURCE" PARM_VALUE="import&lt;space&gt;fme&lt;lf&gt;import&lt;space&gt;fmeobjects&lt;lf&gt;&lt;lf&gt;&lt;lf&gt;class&lt;space&gt;FeatureProcessor&lt;openparen&gt;object&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;__init__&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;input&lt;openparen&gt;self&lt;comma&gt;&lt;space&gt;feature&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;measurements&lt;space&gt;=&lt;space&gt;feature.getAttribute&lt;openparen&gt;&lt;apos&gt;measurements&lt;opencurly&gt;&lt;closecurly&gt;.measurement&lt;apos&gt;&lt;closeparen&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;for&lt;space&gt;i&lt;comma&gt;&lt;space&gt;element&lt;space&gt;in&lt;space&gt;enumerate&lt;openparen&gt;measurements&lt;closeparen&gt;:&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;newElement&lt;space&gt;=&lt;space&gt;element.replace&lt;openparen&gt;&lt;apos&gt;cm&lt;apos&gt;&lt;comma&gt;&lt;apos&gt;&lt;apos&gt;&lt;closeparen&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;measurements&lt;openbracket&gt;i&lt;closebracket&gt;&lt;space&gt;=&lt;space&gt;newElement&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;feature.setAttribute&lt;openparen&gt;&lt;apos&gt;measurements&lt;opencurly&gt;&lt;closecurly&gt;.measurement&lt;apos&gt;&lt;comma&gt;&lt;space&gt;measurements&lt;closeparen&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;self.pyoutput&lt;openparen&gt;feature&lt;closeparen&gt;&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;close&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass&lt;lf&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;def&lt;space&gt;process_group&lt;openparen&gt;self&lt;closeparen&gt;:&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;pass"/>
+#!     <XFORM_PARM PARM_NAME="PYTHONSYMBOL" PARM_VALUE="FeatureProcessor"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="PythonCaller"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="12"
+#!   SOURCE_NODE="11"
+#!   TARGET_NODE="13"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="8"
+#!   SOURCE_NODE="5"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="10"
+#!   SOURCE_NODE="7"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="13"
+#!   TARGET_NODE="5"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 313
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_FFS_1,FFS_IN_FME_GROUP_NAMED1_FFS_1,FFS_IN_PASSPHRASE_FFS_1,FFS_IN_CONSTRAINT_GROUP_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1,FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1,FFS_IN_USE_SEARCH_ENVELOPE_FFS_1,FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1,FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1,FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1,FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1,FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1,FFS_IN_CLIP_TO_ENVELOPE_FFS_1,FFS_IN_NETWORK_AUTHENTICATION_FFS_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_FFS .\waterlevel_list.ffs
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_FFS$encode)} == {}} { puts_real {Parameter 'SourceDataset_FFS' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} FFS
+MULTI_READER_KEYWORD{0} FFS_1
+MULTI_READER_GEN_DIRECTIVES{0} SEARCH_CLOSEST_POINT_MAX_DIST,,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,FFS_EXPOSE_FORMAT_ATTRS,,PASSPHRASE,,CONSTRAINT_GROUP,,_MERGE_SCHEMAS,YES,SEARCH_CLOSEST_POINT_GROUP,,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MAXY,0,TABLELIST,,SEARCH_ENVELOPE_MINY,0,USE_SEARCH_ENVELOPE,NO,SEARCH_CLOSEST_POINT_X,,CLIP_TO_ENVELOPE,NO,SEARCH_ENVELOPE_MAXX,0,SEARCH_CLOSEST_POINT_Y,
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD MULTI_DEST
+MULTI_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "FFS_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER FFS FFS_1
+# ============================================================================
+# The following GUI line prompts for the Feature Store file to be read
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_FFS_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER FFS FFS_1
+DEFAULT_MACRO SourceDataset_FFS_1 $(SourceDataset_FFS)
+GUI MULTIFILE SourceDataset_FFS_1 FME_Feature_Store_Files(*.ffs)|*.ffs|All_Files|* Source FME Feature Store (FFS) File(s):
+DEFAULT_MACRO FFS_IN_FME_GROUP_NAMED1_FFS_1 
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_FME_GROUP_NAMED1_FFS_1 FFS_IN_PASSPHRASE_FFS_1 File Parameters
+# ============================================================================
+# Set the passphrase (which is optional)
+DEFAULT_MACRO FFS_IN_PASSPHRASE_FFS_1 
+FFS_1_PASSPHRASE "$(FFS_IN_PASSPHRASE_FFS_1)"
+GUI OPTIONAL PASSWORD_ENCODED FFS_IN_PASSPHRASE_FFS_1 Password:
+DEFAULT_MACRO FFS_IN_CONSTRAINT_GROUP_FFS_1 
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_CONSTRAINT_GROUP_FFS_1 FFS_IN_TABLELIST%FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1%FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 Constraints - Spatial Index (.fsi) Required
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1 
+GUI OPTIONAL DISCLOSUREGROUP FFS_IN_SEARCH_CLOSEST_POINT_GROUP_FFS_1 FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1%FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1%FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 Search Closest Point
+# If desired, the below string can specify a point, and the closest feature
+# in the FFS file will be read and returned.
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_X "$(FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_X_FFS_1 Search Closest Point X
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_Y "$(FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_Y_FFS_1 Search Closest Point Y
+DEFAULT_MACRO FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 
+FFS_1_SEARCH_CLOSEST_POINT_MAX_DIST "$(FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_CLOSEST_POINT_MAX_DIST_FFS_1 Search Closest Max Distance
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 NO
+FFS_1_USE_SEARCH_ENVELOPE "$(FFS_IN_USE_SEARCH_ENVELOPE_FFS_1)"
+GUI ACTIVEDISCLOSUREGROUP FFS_IN_USE_SEARCH_ENVELOPE_FFS_1 FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1%FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1%FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1%FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1%FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1%FFS_IN_CLIP_TO_ENVELOPE_FFS_1%FFS_IN_SEARCH_METHOD%FFS_IN_SEARCH_METHOD_FILTER%FFS_IN_SEARCH_ORDER%FFS_IN_SEARCH_FEATURE%FFS_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MINX_FFS_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MINY_FFS_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MAXX_FFS_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 <Unused>,0 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 0
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1)"
+GUI OPTIONAL FLOAT FFS_IN_SEARCH_ENVELOPE_MAXY_FFS_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 <Unused>, 
+DEFAULT_MACRO FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 
+FFS_1_SEARCH_ENVELOPE "$(FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1)"
+GUI OPTIONAL COORDSYS FFS_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_FFS_1 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP FFS_IN_CLIP_TO_ENVELOPE_FFS_1 <Unused>,NO 
+DEFAULT_MACRO FFS_IN_CLIP_TO_ENVELOPE_FFS_1 NO
+FFS_1_CLIP_TO_ENVELOPE "$(FFS_IN_CLIP_TO_ENVELOPE_FFS_1)"
+GUI OPTIONAL CHECKBOX FFS_IN_CLIP_TO_ENVELOPE_FFS_1 YES%NO Clip to Search Envelope
+DEFAULT_MACRO FFS_IN_EXPOSE_ATTRS_GROUP_FFS_1 
+FFS_1_EXPOSE_ATTRS_GROUP "$(FFS_IN_EXPOSE_ATTRS_GROUP_FFS_1)"
+# By default, strip FME meta-attributes (likemulti_reader_keyword) from
+# the features the FFS reader creates.
+FFS_1_STRIP_META_ATTRS YES
+# By default, ignore spillover files (*_1.ffs,*_2.ffs,etc).
+# When enabled, these files will be ignored by the reader, and only read when
+# *.ffs itself is read.
+FFS_1_ENFORCE_SECONDARY_FILE_NAMES YES
+# ===========================================================================
+DEFAULT_MACRO FFS_IN_NETWORK_AUTHENTICATION_FFS_1 
+FFS_1_NETWORK_AUTHENTICATION "$(FFS_IN_NETWORK_AUTHENTICATION_FFS_1)"
+GUI OPTIONAL AUTHENTICATOR FFS_IN_NETWORK_AUTHENTICATION_FFS_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO FFS_IN_ATTRIBUTE_READING_FFS_1 ALL
+FFS_1_ATTRIBUTE_READING "$(FFS_IN_ATTRIBUTE_READING_FFS_1)"
+# ============================================================================
+FFS_1_GENERATE_FME_BUILD_NUM 21313
+FFS_1_DATASET "$(SourceDataset_FFS_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_TIMINGS YES
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2025.0.0.0 (20250228 - Build 25208 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_FFS_1 FFS_1
+# -------------------------------------------------------------------------
+
+FFS_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+FFS_1_DEF waterlevel   level_number                 number(11,0)   km                           number(8,3)   name                         varchar(31)   measurements{}.measurement   number(8,2)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_FFS_1)   INPUT FEATURE_TYPE *    ROUTE FFS FFS_1::waterlevel multi_reader_keyword,$(DATASET_KEYWORD_FFS_1) TO FME_GENERIC ::waterlevel ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+FFS_1_MERGE_DEF FFS_1::waterlevel EXACT waterlevel
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "waterlevel_FFS_1 Splitter"    INPUT FEATURE_TYPE waterlevel    OUTPUT FEATURE_TYPE waterlevel_FFS_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FME_PYTHON_PATH "$(FME_MF_DIR)"
+FACTORY_DEF {*} PythonFactory    FACTORY_NAME { PythonCaller_2 }    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    INPUT  FEATURE_TYPE waterlevel_FFS_1    SYMBOL_NAME { FeatureProcessor }    SOURCE_CODE { import<space>fme<lf>import<space>fmeobjects<lf><lf><lf>class<space>FeatureProcessor<openparen>object<closeparen>:<lf><space><space><space><space>def<space>__init__<openparen>self<closeparen>:<lf><space><space><space><space><space><space><space><space>pass<lf><lf><space><space><space><space>def<space>input<openparen>self<comma><space>feature<closeparen>:<lf><space><space><space><space><space><space><space><space>for<space>i<comma><space>element<space>in<space>enumerate<openparen>feature.getAttribute<openparen><apos>measurements<opencurly><closecurly>.measurement<apos><closeparen><closeparen>:<space><space><space><space><space><space><space><space><lf><space><space><space><space><space><space><space><space><space><space><space><space>newElement<space>=<space>element.replace<openparen><apos>cm<apos><comma><apos><apos><closeparen><lf><space><space><space><space><space><space><space><space><space><space><space><space>feature.setAttribute<openparen><apos>measurements<opencurly><apos>+str<openparen>i<closeparen>+<apos><closecurly>.measurement<apos><comma><space>newElement<closeparen><lf><space><space><space><space><space><space><space><space>self.pyoutput<openparen>feature<closeparen><lf><lf><space><space><space><space>def<space>close<openparen>self<closeparen>:<lf><space><space><space><space><space><space><space><space>pass<lf><lf><space><space><space><space>def<space>process_group<openparen>self<closeparen>:<lf><space><space><space><space><space><space><space><space>pass }    PY_OUTPUT_TAGS { PYOUTPUT <Rejected> }    OUTPUT { PYOUTPUT FEATURE_TYPE PythonCaller_2_OUTPUT         }    OUTPUT { <Rejected> FEATURE_TYPE PythonCaller_2_<Rejected>         }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME PythonCaller_2_<Rejected> INPUT FEATURE_TYPE PythonCaller_2_<Rejected>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, PythonCaller_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { ListElementCounter }    INPUT  FEATURE_TYPE PythonCaller_2_OUTPUT    OUTPUT { FEATURE_TYPE ListElementCounter_OUTPUT         @SupplyAttributes(ENCODED, _element_count, @NumElements("measurements<opencurly><closecurly>",ENCODED))          }
+# -------------------------------------------------------------------------
+TCL proc ListSummer_summer {} {    global FME_Attributes;    set sum 0;    regsub \"{}\" {measurements{}.measurement} \"{*}\" listPattern;    foreach {name value} [array get FME_Attributes $listPattern] {        catch {set sum [expr $sum + $value] };    };    FME_SetAttribute {"_sum"} $sum; }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { ListSummer }    INPUT  FEATURE_TYPE ListElementCounter_OUTPUT    OUTPUT { FEATURE_TYPE ListSummer_OUTPUT         @TCL("ListSummer_summer")          }
+# -------------------------------------------------------------------------
+INCLUDE TCL
+   if {{OUTGOING} == {OUTGOING}} {      set attrs [list {messwerte_mean}];    } else {      set attrAll {<Unused>};      if {[string length $attrAll] == 0} { return; };      set attrs [split {<Unused>} { }];    };    if {{NO_OP} == {NO_OP}} {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV;    } else {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV_MULTI_FEATURE;    };    foreach attr $attrs {     lappend parmList $attr;     lappend parmList {<at>Value<openparen>_sum<closeparen><solidus><at>Value<openparen>_element_count<closeparen>};     lappend parmList {FLOAT};    };    lappend parmList {ExpressionEvaluator};    if {{NO_OP} == {OTHER_NULL_VALUE_2}} {     lappend parmList {NO_OP};     lappend parmList {<Unused>};     lappend parmList {0};    };    puts "MACRO __fme_expressionevaluator_evaluateArgs__ [join $parmList ,]";
+END_INCLUDE
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { ExpressionEvaluator }    INPUT  FEATURE_TYPE ListSummer_OUTPUT
+MACRO __fme_expressionevaluator_evaluateArgs__
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
