@@ -1,0 +1,1373 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME 2025.0.1 b25220\fme.exe" "G:\Shared drives\Customer Education\Training\2025\FME Form Basic\Workspaces\AdvancedDataTransformation\what-are-list-attributes-complete.fmw"
+#          --SourceDataset_JSON "https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit.json"
+#          --SourceDataset_JSON_3 "https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit-nested.json"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="4909.32 4688.79"
+#!   DOC_TOP_LEFT="-1506.27 -3463.77"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="25220"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="923a8495-773b-4ada-b429-792260afc736"
+#!   FME_DOCUMENT_PRIORGUID="176ec88c-f3e7-41aa-b48f-db79e875fe5d,b7fb1713-445d-48b2-a009-8a177347885b,145473ae-7caf-464b-a030-8c4393a3f929,33fb32f0-d564-4d93-9b27-9febd8b9c281,a6844f4c-acdd-426f-a0f2-cbad39d7b315,b4ff2f94-73b2-11e7-b581-b4750ee4dbfa,1d617dc6-73b3-11e7-b581-b4750ee4dbfa,97767d48-76db-11e7-99e3-6c4008be7862,683fd8b4-76de-11e7-8d56-6c4008be7862,f587193e-76df-11e7-b406-6c4008be7862,b78b7bc0-76fd-11e7-a96b-6c4008be7862,f2a67944-7702-11e7-b816-6c4008be7862,a6192bc2-7959-11e7-9252-6c4008be7862,f68986e8-f774-49d3-b01d-368c9ef6c4be,3ecf57f6-b3db-4a60-b9d6-0e21bfd52423,907c0fbe-b53b-42fb-96da-834f4bea4b3c,1faa9dff-015c-4142-8584-b3849329a521,1f031d27-f7da-4449-9f60-acbf4f734780,d69c4a54-0df0-4c9b-9707-c853943b17c5,971ffd57-3fd3-4006-8667-307ccdd6f99f,0d3e0875-f141-4348-bb77-460f1bb6aa7d,2663ba63-97ca-43c1-9562-1ca52a0e1802,193f69e1-63dc-44e1-87ae-cf00ba51663a,c0b5df6a-d7cb-4293-b51a-7e171b83778d,83163b89-15cb-4bf2-9ad9-01181d452afa,cc859500-8b7b-4aa5-932a-42c48101d911,be68ebf0-415e-420e-b6e1-6570e524f346,545ab6ca-e7c0-4488-9b17-ee4b1359c6e8,fae3b70b-84db-421b-96d9-cb9c90fb1b12,b36c14c4-57f8-40b8-abc5-11572bd4f923,d3465446-f564-4439-b0d0-0c135a1bdfba,5e61f946-20e9-4733-b4b9-004b65aab551"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="00000001"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2025.0.1.0 (20250327 - Build 25220 - WIN64)"
+#!   LAST_SAVE_DATE="2025-05-06T13:42:57"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN="NO"
+#!   VIEW_POSITION="-1194.86 -344.673"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="136"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="JSON"
+#!   DATASET="$(SourceDataset_JSON)"
+#!   KEYWORD="JSON_2"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string string fme_type string multi_reader_full_id int multi_reader_id int multi_reader_keyword string multi_reader_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="25220"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/json ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the JSON file(s) or Specify the JSON URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the JSON file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="JSON"
+#!   DATASET="$(SourceDataset_JSON_3)"
+#!   KEYWORD="JSON_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string string fme_type string multi_reader_full_id int multi_reader_id int multi_reader_keyword string multi_reader_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="25220"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/json ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the JSON file(s) or Specify the JSON URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the JSON file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="JSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="JSON"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="JSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="JSON"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="JSONFeature"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="20"
+#!   POSITION="-327.02032055621487 -565.76724656135389"
+#!   BOUNDING_RECT="-327.02032055621487 -565.76724656135389 586.5905478634262 65"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="JSON_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="json_no_geom"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="json_no_geom" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="name" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="scientificName" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="JSONFeature"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="25"
+#!   POSITION="-307.59272895005188 -3187.7729592406527"
+#!   BOUNDING_RECT="-307.59272895005188 -3187.7729592406527 491.390625 65"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="JSON_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="json_no_geom"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="json_no_geom" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fruits{}.name" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fruits{}.scientificName" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fruits{}.fields{}" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="JSON_2"
+#!   OVERRIDE="-JSON_2_DATASET"
+#!   DATASET="JSON_2/fruit.json"
+#! />
+#! <DATASET
+#!   NAME="JSON_1"
+#!   OVERRIDE="-JSON_1_DATASET"
+#!   DATASET="JSON_1/fruit-nested.json"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON INCLUDE_WEB_BROWSER%JSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit.json"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON_3 INCLUDE_WEB_BROWSER%JSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit-nested.json"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiU291cmNlRGF0YXNldF9KU09OIiwicHJvbXB0IjoiU291cmNlIEpTT04gKEphdmFTY3JpcHQgT2JqZWN0IE5vdGF0aW9uKSBGaWxlIG9yIFVSTDoiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vRk1FRGF0YS9GTUVEYXRhL1Jlc291cmNlcy9Gb3JtQmFzaWMvZnJ1aXQuanNvbiIsInR5cGUiOiJmaWxlIiwic2VsZWN0TXVsdGlwbGUiOnRydWUsIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsImFjY2Vzc01vZGUiOiJyZWFkIiwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJhbGxvd1VSTCI6dHJ1ZSwiaW5jbHVkZVdlYkJyb3dzZXIiOnRydWUsImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiSlNPTiBEb2N1bWVudHMiLCJmaWx0ZXIiOlsiKi5qc29uIl19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV19LHsibmFtZSI6IlNvdXJjZURhdGFzZXRfSlNPTl8zIiwicHJvbXB0IjoiU291cmNlIEpTT04gKEphdmFTY3JpcHQgT2JqZWN0IE5vdGF0aW9uKSBGaWxlIG9yIFVSTDoiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vRk1FRGF0YS9GTUVEYXRhL1Jlc291cmNlcy9Gb3JtQmFzaWMvZnJ1aXQtbmVzdGVkLmpzb24iLCJ0eXBlIjoiZmlsZSIsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJhY2Nlc3NNb2RlIjoicmVhZCIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwiYWxsb3dVUkwiOnRydWUsImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6IkpTT04gRG9jdW1lbnRzIiwiZmlsdGVyIjpbIiouanNvbiJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQWxsIEZpbGVzIiwiZmlsdGVyIjpbIioiXX1dfV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_JSON" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit.json"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON INCLUDE_WEB_BROWSER%JSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#! />
+#!     <INFO NAME="SourceDataset_JSON_3" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit-nested.json"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_JSON_3 INCLUDE_WEB_BROWSER%JSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="11"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;[&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;name&amp;quot; : &amp;quot;Apple&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;scientificName&amp;quot; : &amp;quot;Malus domestica&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   },&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;name&amp;quot; : &amp;quot;Orange&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;scientificName&amp;quot; : &amp;quot;Citrus X sinensis&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   },&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;name&amp;quot; : &amp;quot;Pear&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &amp;quot;scientificName&amp;quot; : &amp;quot;Pyrus&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   }&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="259.57022730721133 1131.8857188571883"
+#!   TOP_LEFT="259.57022730721133 1131.8857188571883"
+#!   BOTTOM_RIGHT="1028.1321004259426 376.87846878468758"
+#!   BOUNDING_RECT="259.57022730721133 1131.8857188571883 768.56187311873123 755.00725007250071"
+#!   ORDER="500000000000042"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{3d2e99bf-1614-461d-9302-853bcfa2206b}"
+#!   COLOUR="0.32549019607843138,0.62352941176470589,0.92549019607843142,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="9"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="12"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Reading JSON as features using JSON reader&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;name&#9;   scientificName&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Apple&#9;  Malus domestica&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Orange&#9;  Citrus X sinensis&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pear&#9;     Pyrus&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-327.00740409410264 -77.637965268541564"
+#!   TOP_LEFT="-327.00740409410264 -77.637965268541564"
+#!   BOTTOM_RIGHT="259.57022730721133 -78.637965268541564"
+#!   BOUNDING_RECT="-327.00740409410264 -77.637965268541564 586.57763140131397 1"
+#!   ORDER="500000000000043"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{f1b7f91f-f269-4022-afad-f92df462bd1d}"
+#!   COLOUR="0.58039215686274515,0.65490196078431373,1,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="20"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="14"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Back to features&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="1120.6882192278706 -615.76649655385381"
+#!   TOP_LEFT="1120.6882192278706 -615.76649655385381"
+#!   BOTTOM_RIGHT="1556.6784072547509 -616.76649655385381"
+#!   BOUNDING_RECT="1120.6882192278706 -615.76649655385381 435.99018802688028 1"
+#!   ORDER="500000000000046"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{1068c1e0-def9-4364-ade9-365a3d6ff474}"
+#!   COLOUR="0.58039215686274515,0.65490196078431373,1,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="4"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="13"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{0}.name&apos; has value `Apple&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{0}.scientificName&apos; has value `Malus domestica&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{1}.name&apos; has value `Orange&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{1}.scientificName&apos; has value `Citrus X sinensis&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{2}.name&apos; has value `Pear&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)          : `_fruit{2}.scientificName&apos; has value `Pyrus&apos;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="421.29923965906323 -127.63846527354158"
+#!   TOP_LEFT="421.29923965906323 -127.63846527354158"
+#!   BOTTOM_RIGHT="1879.6141040577072 -482.64171530604187"
+#!   BOUNDING_RECT="421.29923965906323 -127.63846527354158 1458.314864398644 355.00325003250032"
+#!   ORDER="500000000000047"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{aae69b53-1f72-425d-b872-f804c595a438}"
+#!   COLOUR="0.58039215686274515,0.65490196078431373,1,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="21"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="15"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Add example with nesting&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Use bookmarks&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;JSON as attribute unnested&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Reading JSON, build list, explode&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;JSON as attribute nested&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Reading JSON, viewing list on features&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-1506.2650626506265 -853.13353133531336"
+#!   TOP_LEFT="-1506.2650626506265 -853.13353133531336"
+#!   BOTTOM_RIGHT="-756.30689119391195 -903.13353133531336"
+#!   BOUNDING_RECT="-1506.2650626506265 -853.13353133531336 749.95817145671458 50"
+#!   ORDER="500000000000048"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{2007f422-386a-429e-adb3-e80ad2c37c10}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="19"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;{&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &amp;quot;fruits&amp;quot;: [&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;name&amp;quot;: &amp;quot;Apple&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;scientificName&amp;quot;: &amp;quot;Malus domestica&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;fields&amp;quot;: [&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;north&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;south&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            ]&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        },&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;name&amp;quot;: &amp;quot;Orange&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;scientificName&amp;quot;: &amp;quot;Citrus X sinensis&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;fields&amp;quot;: [&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;north&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;east&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            ]&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        },&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        {&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;name&amp;quot;: &amp;quot;Pear&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;scientificName&amp;quot;: &amp;quot;Pyrus&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            &amp;quot;fields&amp;quot;: [&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;west&amp;quot;,&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                &amp;quot;south&amp;quot;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;            ]&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;        }&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    ]&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;}&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="273.22199234723826 -1202.9635944803392"
+#!   TOP_LEFT="273.22199234723826 -1202.9635944803392"
+#!   BOTTOM_RIGHT="1118.9819030713456 -2757.9788446328407"
+#!   BOUNDING_RECT="273.22199234723826 -1202.9635944803392 845.75991072410727 1555.0152501525015"
+#!   ORDER="500000000000042"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{19106923-b0db-40ff-9ab0-9b1ff5108cd1}"
+#!   COLOUR="0.67843137254901964,0.88235294117647056,0.92156862745098034,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="17"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="33"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;How would you get a feature per fruit and per field?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="1471.3688803554701 -2790.4767196115899"
+#!   TOP_LEFT="1471.3688803554701 -2790.4767196115899"
+#!   BOTTOM_RIGHT="1992.9556274729412 -2791.4767196115899"
+#!   BOUNDING_RECT="1471.3688803554701 -2790.4767196115899 521.58674711747119 1"
+#!   ORDER="500000000000059"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{2f201074-4126-4b1a-a8b1-7ec5a623ffe4}"
+#!   COLOUR="0.67843137254901964,0.80784313725490198,0.72941176470588232,1"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="32"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="36"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Example feature:&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)           : `fields&apos; has value `north&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)           : `name&apos; has value `Apple&apos;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Attribute(string: UTF-8)           : `scientificName&apos; has value `Malus domestica&apos;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="2080.6315332752092 -2690.4757196015903"
+#!   TOP_LEFT="2080.6315332752092 -2690.4757196015903"
+#!   BOTTOM_RIGHT="3403.0563668985451 -2995.4784696290908"
+#!   BOUNDING_RECT="2080.6315332752092 -2690.4757196015903 1322.4248336233361 305.00275002750027"
+#!   ORDER="500000000000061"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{89836771-ad2a-4067-aec1-2f7290e50d46}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="22"
+#!   NAME="Data as flat JSON"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-377.02032055621487 1225.0122501225012"
+#!   ORDER="500000000000049"
+#!   PALETTE_COLOR="Workflow1"
+#!   BOTTOM_RIGHT="1078.1321004259426 56.253312533125381"
+#!   BOUNDING_RECT="-377.02032055621487 1225.0122501225012 1455.1524209821573 1168.7589375893758"
+#!   STICKY="true"
+#!   COLOUR="0.32549019607843138,0.62352941176470589,0.92549019607843142,1"
+#!   CONTENTS="7 11 10 9 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="23"
+#!   NAME="JSON as features, building a list, exploding a list"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-377.02032055621487 12.362034731458436"
+#!   ORDER="500000000000050"
+#!   PALETTE_COLOR="Workflow2"
+#!   BOTTOM_RIGHT="1929.6141040577077 -1025.7672465613546"
+#!   BOUNDING_RECT="-377.02032055621487 12.362034731458436 2306.6344246139224 1038.1292812928129"
+#!   STICKY="true"
+#!   COLOUR="0.58039215686274515,0.65490196078431373,1,1"
+#!   CONTENTS="12 20 24 14 13 4 21 5 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="28"
+#!   NAME="Data as nested JSON"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-363.36855551618817 -1112.9635944803392"
+#!   ORDER="500000000000053"
+#!   PALETTE_COLOR="Workflow3"
+#!   BOTTOM_RIGHT="1168.9819030713456 -3025.4784696290903"
+#!   BOUNDING_RECT="-363.36855551618817 -1112.9635944803392 1532.3504585875339 1912.5148751487511"
+#!   STICKY="true"
+#!   COLOUR="0.67843137254901964,0.88235294117647056,0.92156862745098034,1"
+#!   CONTENTS="19 16 17 18 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="29"
+#!   NAME="Reading nested JSON, exploding to features, list still present"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-357.59272895005188 -3097.7729592406527"
+#!   ORDER="500000000000054"
+#!   PALETTE_COLOR="Workflow4"
+#!   BOTTOM_RIGHT="1168.9819030713456 -3462.7729592406527"
+#!   BOUNDING_RECT="-357.59272895005188 -3097.7729592406527 1526.5746320213975 365"
+#!   STICKY="true"
+#!   COLOUR="0.81176470588235294,0.92941176470588238,0.81176470588235294,1"
+#!   CONTENTS="25 26 27 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="32"
+#!   NAME="Exercise"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="1471.3688803554701 -3097.7729592406527"
+#!   ORDER="500000000000058"
+#!   PALETTE_COLOR="Workflow5"
+#!   BOTTOM_RIGHT="2052.9719186080747 -3463.7729592406527"
+#!   BOUNDING_RECT="1471.3688803554701 -3097.7729592406527 581.60303825260462 366"
+#!   STICKY="false"
+#!   COLOUR="0.67843137254901964,0.80784313725490198,0.72941176470588232,1"
+#!   CONTENTS=""
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="21"
+#!   TYPE="ListBuilder"
+#!   VERSION="3"
+#!   POSITION="421.29923965906323 -565.76724656135389"
+#!   BOUNDING_RECT="421.29923965906323 -565.76724656135389 436 65"
+#!   ORDER="500000000000036"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="fruit{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fruit{}.scientificName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="name scientificName"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE_LU" PARM_VALUE="SELECTED"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="fruit"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListBuilder"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Selected Attributes"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="4"
+#!   TYPE="ListExploder"
+#!   VERSION="6"
+#!   POSITION="1120.6882192278706 -750.76724656135389"
+#!   BOUNDING_RECT="1120.6882192278706 -750.76724656135389 436 65"
+#!   ORDER="500000000000037"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="ELEMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE_LOOKUP" PARM_VALUE="HANDLE_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES_LOOKUP" PARM_VALUE="INCOMING_IF_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="INCOMING_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTR" PARM_VALUE="fruit{}"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListExploder"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Merge List Attributes"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_IS_LOOKUP="true" PARM_VALUE="Use List Attribute Values"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="Creator"
+#!   VERSION="7"
+#!   POSITION="-327.02032055621487 331.25331253312544"
+#!   BOUNDING_RECT="-327.02032055621487 331.25331253312544 436 65"
+#!   ORDER="500000000000039"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="CREATED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATEND" PARM_VALUE="no"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CRE_ATTR" PARM_VALUE="_creation_instance"/>
+#!     <XFORM_PARM PARM_NAME="GEOJSON" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM" PARM_VALUE="&lt;lt&gt;?xml&lt;space&gt;version=&lt;quote&gt;1.0&lt;quote&gt;&lt;space&gt;encoding=&lt;quote&gt;US_ASCII&lt;quote&gt;&lt;space&gt;standalone=&lt;quote&gt;no&lt;quote&gt;&lt;space&gt;?&lt;gt&gt;&lt;lt&gt;geometry&lt;space&gt;dimension=&lt;quote&gt;2&lt;quote&gt;&lt;gt&gt;&lt;lt&gt;null&lt;solidus&gt;&lt;gt&gt;&lt;lt&gt;&lt;solidus&gt;geometry&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOMTYPE" PARM_VALUE="Geometry Object"/>
+#!     <XFORM_PARM PARM_NAME="NUM" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Creator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="9"
+#!   TYPE="JSONFormatter"
+#!   VERSION="4"
+#!   POSITION="259.57022730721133 331.25331253312544"
+#!   BOUNDING_RECT="259.57022730721133 331.25331253312544 436 65"
+#!   ORDER="500000000000040"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_formatted" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.line" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.column" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.severity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ERROR_LIST_ATTR" PARM_VALUE="_json_error"/>
+#!     <XFORM_PARM PARM_NAME="FILEPATH_OR_URL" PARM_VALUE="C:&lt;backslash&gt;FMEData&lt;backslash&gt;Resources&lt;backslash&gt;FormBasic&lt;backslash&gt;fruit.json"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_LOOKUP" PARM_VALUE="PRETTY_PRINT"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INDENT_SIZE" PARM_VALUE="3"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JSON_DOCUMENT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ATTR" PARM_VALUE="_formatted"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ENCODING" PARM_VALUE="UTF-8"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READ_FROM_FILE" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_OBJECTS_AND_ARRAYS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_STRINGS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_NULLS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="JSONFormatter"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT" PARM_IS_LOOKUP="true" PARM_VALUE="Pretty Print"/>
+#!     <XFORM_PARM PARM_NAME="INDENT_STYLE" PARM_IS_LOOKUP="true" PARM_VALUE="3 spaces"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_OBJECTS_AND_ARRAYS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_STRINGS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_NULLS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="16"
+#!   TYPE="Creator"
+#!   VERSION="7"
+#!   POSITION="-313.36855551618817 -2750.4784696290903"
+#!   BOUNDING_RECT="-313.36855551618817 -2750.4784696290903 436 65"
+#!   ORDER="500000000000039"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="CREATED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATEND" PARM_VALUE="no"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CRE_ATTR" PARM_VALUE="_creation_instance"/>
+#!     <XFORM_PARM PARM_NAME="GEOJSON" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM" PARM_VALUE="&lt;lt&gt;?xml&lt;space&gt;version=&lt;quote&gt;1.0&lt;quote&gt;&lt;space&gt;encoding=&lt;quote&gt;US_ASCII&lt;quote&gt;&lt;space&gt;standalone=&lt;quote&gt;no&lt;quote&gt;&lt;space&gt;?&lt;gt&gt;&lt;lt&gt;geometry&lt;space&gt;dimension=&lt;quote&gt;2&lt;quote&gt;&lt;gt&gt;&lt;lt&gt;null&lt;solidus&gt;&lt;gt&gt;&lt;lt&gt;&lt;solidus&gt;geometry&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOMTYPE" PARM_VALUE="Geometry Object"/>
+#!     <XFORM_PARM PARM_NAME="NUM" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Creator_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="17"
+#!   TYPE="JSONFormatter"
+#!   VERSION="4"
+#!   POSITION="273.22199234723826 -2750.4784696290903"
+#!   BOUNDING_RECT="273.22199234723826 -2750.4784696290903 436 65"
+#!   ORDER="500000000000040"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_formatted" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.line" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.column" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.severity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ERROR_LIST_ATTR" PARM_VALUE="_json_error"/>
+#!     <XFORM_PARM PARM_NAME="FILEPATH_OR_URL" PARM_VALUE="C:&lt;backslash&gt;FMEData&lt;backslash&gt;Resources&lt;backslash&gt;FormBasic&lt;backslash&gt;fruit-nested.json"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_LOOKUP" PARM_VALUE="PRETTY_PRINT"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INDENT_SIZE" PARM_VALUE="3"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JSON_DOCUMENT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ATTR" PARM_VALUE="_formatted"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_ENCODING" PARM_VALUE="UTF-8"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READ_FROM_FILE" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_OBJECTS_AND_ARRAYS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_STRINGS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_NULLS_LOOKUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="JSONFormatter_2"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT" PARM_IS_LOOKUP="true" PARM_VALUE="Pretty Print"/>
+#!     <XFORM_PARM PARM_NAME="INDENT_STYLE" PARM_IS_LOOKUP="true" PARM_VALUE="3 spaces"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_OBJECTS_AND_ARRAYS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_EMPTY_STRINGS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_NULLS" PARM_IS_LOOKUP="true" PARM_VALUE="No"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="26"
+#!   TYPE="ListExploder"
+#!   VERSION="6"
+#!   POSITION="283.79789604994812 -3187.7729592406527"
+#!   BOUNDING_RECT="283.79789604994812 -3187.7729592406527 436 65"
+#!   ORDER="500000000000052"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="ELEMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fields{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fields{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE_LOOKUP" PARM_VALUE="HANDLE_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES_LOOKUP" PARM_VALUE="INCOMING_IF_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="INCOMING_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTR" PARM_VALUE="fruits{}"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListExploder_2"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Merge List Attributes"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_IS_LOOKUP="true" PARM_VALUE="Use List Attribute Values"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="30"
+#!   TYPE="ListExploder"
+#!   VERSION="6"
+#!   POSITION="1544.6315332752094 -3187.7729592406527"
+#!   BOUNDING_RECT="1544.6315332752094 -3187.7729592406527 436 65"
+#!   ORDER="500000000000055"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="ELEMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fields" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="scientificName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fields" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE_LOOKUP" PARM_VALUE="HANDLE_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES_LOOKUP" PARM_VALUE="INCOMING_IF_CONFLICT"/>
+#!     <XFORM_PARM PARM_NAME="INCOMING_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX_ATTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTR" PARM_VALUE="fields{}"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ListExploder_3"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_IS_LOOKUP="true" PARM_VALUE="Merge List Attributes"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_IS_LOOKUP="true" PARM_VALUE="Use List Attribute Values"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="10"
+#!   SOURCE_NODE="7"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="fo 0 CREATED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="18"
+#!   SOURCE_NODE="16"
+#!   TARGET_NODE="17"
+#!   SOURCE_PORT_DESC="fo 0 CREATED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="24"
+#!   SOURCE_NODE="20"
+#!   TARGET_NODE="21"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="27"
+#!   SOURCE_NODE="25"
+#!   TARGET_NODE="26"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="5"
+#!   SOURCE_NODE="21"
+#!   TARGET_NODE="4"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="31"
+#!   SOURCE_NODE="26"
+#!   TARGET_NODE="30"
+#!   SOURCE_PORT_DESC="fo 0 ELEMENTS"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_JSON_2,JSON_IN_FME_GROUP_NAMED1_JSON_2,JSON_IN_SCAN_MODE_JSON_2,JSON_IN_QUERY_TABLE_JSON_2,JSON_IN_FME_GROUP_NAMED2_JSON_2,JSON_IN_FEATURE_TYPE_KEY_JSON_2,JSON_IN_GEOMETRY_FORMAT_JSON_2,JSON_IN_GEOMETRY_KEY_JSON_2,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2,JSON_IN_SAVE_FRAGMENTS_JSON_2,JSON_IN_USE_SEARCH_ENVELOPE_JSON_2,JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2,JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2,JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2,JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2,JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2,JSON_IN_CLIP_TO_ENVELOPE_JSON_2,JSON_IN_NETWORK_AUTHENTICATION_JSON_2,SourceDataset_JSON_1,JSON_IN_FME_GROUP_NAMED1_JSON_1,JSON_IN_SCAN_MODE_JSON_1,JSON_IN_QUERY_TABLE_JSON_1,JSON_IN_FME_GROUP_NAMED2_JSON_1,JSON_IN_FEATURE_TYPE_KEY_JSON_1,JSON_IN_GEOMETRY_FORMAT_JSON_1,JSON_IN_GEOMETRY_KEY_JSON_1,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1,JSON_IN_SAVE_FRAGMENTS_JSON_1,JSON_IN_USE_SEARCH_ENVELOPE_JSON_1,JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1,JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1,JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1,JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1,JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1,JSON_IN_CLIP_TO_ENVELOPE_JSON_1,JSON_IN_NETWORK_AUTHENTICATION_JSON_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_JSON https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit.json
+
+DEFAULT_MACRO SourceDataset_JSON_3 https://s3.amazonaws.com/FMEData/FMEData/Resources/FormBasic/fruit-nested.json
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_JSON$encode)} == {}} { puts_real {Parameter 'SourceDataset_JSON' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_JSON_3$encode)} == {}} { puts_real {Parameter 'SourceDataset_JSON_3' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} JSON
+MULTI_READER_KEYWORD{0} JSON_2
+MULTI_READER_GEN_DIRECTIVES{0} SEARCH_ENVELOPE_COORDINATE_SYSTEM,,FLATTEN_MODE,ALL_LEVELS,GEOMETRY_FORMAT,None,DECODE_TEXT_STRINGS,Yes,_MERGE_SCHEMAS,YES,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MAXY,0,SCAN_MODE,AUTO,COORDINATE_SYSTEM_KEY,<lt>Unused<gt>,USE_SEARCH_ENVELOPE,NO,SAVE_FRAGMENTS,NO,CLIP_TO_ENVELOPE,NO,JSON_EXPOSE_FORMAT_ATTRS,,GEOMETRY_KEY,<lt>Unused<gt>,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,No,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MINY,0,QUERY_TABLE,<lt>Unused<gt>,SEARCH_ENVELOPE_MINX,0,FEATURE_TYPE_KEY,json_featuretype
+MULTI_READER_TYPE{1} JSON
+MULTI_READER_KEYWORD{1} JSON_1
+MULTI_READER_GEN_DIRECTIVES{1} SEARCH_ENVELOPE_COORDINATE_SYSTEM,,FLATTEN_MODE,ALL_LEVELS,GEOMETRY_FORMAT,None,DECODE_TEXT_STRINGS,Yes,_MERGE_SCHEMAS,YES,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MAXY,0,SCAN_MODE,AUTO,COORDINATE_SYSTEM_KEY,<lt>Unused<gt>,USE_SEARCH_ENVELOPE,NO,SAVE_FRAGMENTS,NO,CLIP_TO_ENVELOPE,NO,JSON_EXPOSE_FORMAT_ATTRS,,GEOMETRY_KEY,<lt>Unused<gt>,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,No,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MINY,0,QUERY_TABLE,<lt>Unused<gt>,SEARCH_ENVELOPE_MINX,0,FEATURE_TYPE_KEY,json_featuretype
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD MULTI_DEST
+MULTI_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "JSON_2"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_2
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_JSON_2 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_2
+DEFAULT_MACRO SourceDataset_JSON_2 $(SourceDataset_JSON)
+GUI FILE_OR_URL SourceDataset_JSON_2 JSON_Documents(*.json)|*.json|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED1_JSON_2 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED1_JSON_2 JSON_IN_SCAN_MODE_JSON_2%JSON_IN_QUERY_TABLE_JSON_2%JSON_IN_FLATTEN_MODE Schema Scan
+DEFAULT_MACRO JSON_IN_SCAN_MODE_JSON_2 AUTO
+JSON_2_SCAN_MODE "$(JSON_IN_SCAN_MODE_JSON_2)"
+GUI ACTIVECHOICE_LOOKUP JSON_IN_SCAN_MODE_JSON_2 Auto,AUTO,JSON_IN_QUERY_TABLE_JSON_2%JSON<space>Query,QUERY Schema Scan Mode
+DEFAULT_MACRO JSON_IN_QUERY_TABLE_JSON_2 <Unused>
+JSON_2_QUERY_TABLE "$(JSON_IN_QUERY_TABLE_JSON_2)"
+GUI GUI_LINE_TABLE JSON_IN_QUERY_TABLE_JSON_2 NO_LABEL%NOT_OK_IF_INVALID%START_NUM_ROWS:1%"Feature Type"%"STRING_ENCODED FTYPE"%Query%"DYNAMIC_SINGLE_SELECT_ENCODED QUERY $[SourceDataset_JSON_2],_FORMAT_OVERRIDE_,JSON,_GET_ATTRIBUTE_VALUES_,,JSON_SCAN_FOR_QUERIES,YES,FME_DELIM,<u001F>,FME_PARENT_SELECTION,root_node,FME_READ_SCHEMA,NO,FME_DN_ATTR,display_value,FME_PATH_ATTR,query_string,FME_EXPAND,json" JSON Queries for Feature Objects:
+DEFAULT_MACRO JSON_IN_FLATTEN_MODE_JSON_2 ALL_LEVELS
+JSON_2_FLATTEN_MODE "$(JSON_IN_FLATTEN_MODE_JSON_2)"
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED2_JSON_2 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED2_JSON_2 JSON_IN_FEATURE_TYPE_KEY_JSON_2%JSON_IN_GEOMETRY_FORMAT_JSON_2%JSON_IN_GEOMETRY_KEY_JSON_2%JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2%JSON_IN_SAVE_FRAGMENTS_JSON_2 Feature Parameters
+DEFAULT_MACRO JSON_IN_FEATURE_TYPE_KEY_JSON_2 json_featuretype
+JSON_2_FEATURE_TYPE_KEY "$(JSON_IN_FEATURE_TYPE_KEY_JSON_2)"
+GUI OPTIONAL TEXT JSON_IN_FEATURE_TYPE_KEY_JSON_2 Feature Type Key Name:
+DEFAULT_MACRO JSON_IN_GEOMETRY_FORMAT_JSON_2 None
+JSON_2_GEOMETRY_FORMAT "$(JSON_IN_GEOMETRY_FORMAT_JSON_2)"
+GUI ACTIVECHOICE JSON_IN_GEOMETRY_FORMAT_JSON_2 GeoJSON%OGC-WKT%None,JSON_IN_GEOMETRY_KEY_JSON_2,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2 Geometry Format:
+DEFAULT_MACRO JSON_IN_GEOMETRY_KEY_JSON_2 
+JSON_2_GEOMETRY_KEY "$(JSON_IN_GEOMETRY_KEY_JSON_2)"
+GUI OPTIONAL TEXT JSON_IN_GEOMETRY_KEY_JSON_2 Geometry Key Name:
+DEFAULT_MACRO JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2 <Unused>
+JSON_2_COORDINATE_SYSTEM_KEY "$(JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2)"
+GUI TEXT JSON_IN_COORDINATE_SYSTEM_KEY_JSON_2 Coordinate System Key Name:
+DEFAULT_MACRO JSON_IN_SAVE_FRAGMENTS_JSON_2 NO
+JSON_2_SAVE_FRAGMENTS "$(JSON_IN_SAVE_FRAGMENTS_JSON_2)"
+GUI LOOKUP_CHOICE JSON_IN_SAVE_FRAGMENTS_JSON_2 Yes,YES%No,NO Read Entire Feature as JSON Fragment:
+DEFAULT_MACRO JSON_IN_DECODE_TEXT_STRINGS_JSON_2 Yes
+JSON_2_DECODE_TEXT_STRINGS "$(JSON_IN_DECODE_TEXT_STRINGS_JSON_2)"
+DEFAULT_MACRO JSON_IN_EXPOSE_ATTRS_GROUP_JSON_2 
+JSON_2_EXPOSE_ATTRS_GROUP "$(JSON_IN_EXPOSE_ATTRS_GROUP_JSON_2)"
+DEFAULT_MACRO JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_2 No
+JSON_2_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE "$(JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_2)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO JSON_IN_USE_SEARCH_ENVELOPE_JSON_2 NO
+JSON_2_USE_SEARCH_ENVELOPE "$(JSON_IN_USE_SEARCH_ENVELOPE_JSON_2)"
+GUI ACTIVEDISCLOSUREGROUP JSON_IN_USE_SEARCH_ENVELOPE_JSON_2 JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2%JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2%JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2%JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2%JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2%JSON_IN_CLIP_TO_ENVELOPE_JSON_2%JSON_IN_SEARCH_METHOD%JSON_IN_SEARCH_METHOD_FILTER%JSON_IN_SEARCH_ORDER%JSON_IN_SEARCH_FEATURE%JSON_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2 0
+JSON_2_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINX_JSON_2 Minimum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2 0
+JSON_2_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINY_JSON_2 Minimum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2 0
+JSON_2_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_2 Maximum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2 0
+JSON_2_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_2 Maximum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2 <Unused>, 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2 
+JSON_2_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2)"
+GUI OPTIONAL COORDSYS JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_2 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP JSON_IN_CLIP_TO_ENVELOPE_JSON_2 <Unused>,NO 
+DEFAULT_MACRO JSON_IN_CLIP_TO_ENVELOPE_JSON_2 NO
+JSON_2_CLIP_TO_ENVELOPE "$(JSON_IN_CLIP_TO_ENVELOPE_JSON_2)"
+GUI OPTIONAL CHECKBOX JSON_IN_CLIP_TO_ENVELOPE_JSON_2 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO JSON_IN_NETWORK_AUTHENTICATION_JSON_2 
+JSON_2_NETWORK_AUTHENTICATION "$(JSON_IN_NETWORK_AUTHENTICATION_JSON_2)"
+GUI OPTIONAL AUTHENTICATOR JSON_IN_NETWORK_AUTHENTICATION_JSON_2 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO JSON_IN_ATTRIBUTE_READING_JSON_2 ALL
+JSON_2_ATTRIBUTE_READING "$(JSON_IN_ATTRIBUTE_READING_JSON_2)"
+# ============================================================================
+JSON_2_GENERATE_FME_BUILD_NUM 25220
+JSON_2_DATASET "$(SourceDataset_JSON_2)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "JSON_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_JSON_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER JSON JSON_1
+DEFAULT_MACRO SourceDataset_JSON_1 $(SourceDataset_JSON_3)
+GUI FILE_OR_URL SourceDataset_JSON_1 JSON_Documents(*.json)|*.json|All_Files(*)|* Source JSON (JavaScript Object Notation) File or URL:
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED1_JSON_1 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED1_JSON_1 JSON_IN_SCAN_MODE_JSON_1%JSON_IN_QUERY_TABLE_JSON_1%JSON_IN_FLATTEN_MODE Schema Scan
+DEFAULT_MACRO JSON_IN_SCAN_MODE_JSON_1 AUTO
+JSON_1_SCAN_MODE "$(JSON_IN_SCAN_MODE_JSON_1)"
+GUI ACTIVECHOICE_LOOKUP JSON_IN_SCAN_MODE_JSON_1 Auto,AUTO,JSON_IN_QUERY_TABLE_JSON_1%JSON<space>Query,QUERY Schema Scan Mode
+DEFAULT_MACRO JSON_IN_QUERY_TABLE_JSON_1 <Unused>
+JSON_1_QUERY_TABLE "$(JSON_IN_QUERY_TABLE_JSON_1)"
+GUI GUI_LINE_TABLE JSON_IN_QUERY_TABLE_JSON_1 NO_LABEL%NOT_OK_IF_INVALID%START_NUM_ROWS:1%"Feature Type"%"STRING_ENCODED FTYPE"%Query%"DYNAMIC_SINGLE_SELECT_ENCODED QUERY $[SourceDataset_JSON_1],_FORMAT_OVERRIDE_,JSON,_GET_ATTRIBUTE_VALUES_,,JSON_SCAN_FOR_QUERIES,YES,FME_DELIM,<u001F>,FME_PARENT_SELECTION,root_node,FME_READ_SCHEMA,NO,FME_DN_ATTR,display_value,FME_PATH_ATTR,query_string,FME_EXPAND,json" JSON Queries for Feature Objects:
+DEFAULT_MACRO JSON_IN_FLATTEN_MODE_JSON_1 ALL_LEVELS
+JSON_1_FLATTEN_MODE "$(JSON_IN_FLATTEN_MODE_JSON_1)"
+DEFAULT_MACRO JSON_IN_FME_GROUP_NAMED2_JSON_1 
+GUI OPTIONAL DISCLOSUREGROUP JSON_IN_FME_GROUP_NAMED2_JSON_1 JSON_IN_FEATURE_TYPE_KEY_JSON_1%JSON_IN_GEOMETRY_FORMAT_JSON_1%JSON_IN_GEOMETRY_KEY_JSON_1%JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1%JSON_IN_SAVE_FRAGMENTS_JSON_1 Feature Parameters
+DEFAULT_MACRO JSON_IN_FEATURE_TYPE_KEY_JSON_1 json_featuretype
+JSON_1_FEATURE_TYPE_KEY "$(JSON_IN_FEATURE_TYPE_KEY_JSON_1)"
+GUI OPTIONAL TEXT JSON_IN_FEATURE_TYPE_KEY_JSON_1 Feature Type Key Name:
+DEFAULT_MACRO JSON_IN_GEOMETRY_FORMAT_JSON_1 None
+JSON_1_GEOMETRY_FORMAT "$(JSON_IN_GEOMETRY_FORMAT_JSON_1)"
+GUI ACTIVECHOICE JSON_IN_GEOMETRY_FORMAT_JSON_1 GeoJSON%OGC-WKT%None,JSON_IN_GEOMETRY_KEY_JSON_1,JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 Geometry Format:
+DEFAULT_MACRO JSON_IN_GEOMETRY_KEY_JSON_1 
+JSON_1_GEOMETRY_KEY "$(JSON_IN_GEOMETRY_KEY_JSON_1)"
+GUI OPTIONAL TEXT JSON_IN_GEOMETRY_KEY_JSON_1 Geometry Key Name:
+DEFAULT_MACRO JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 <Unused>
+JSON_1_COORDINATE_SYSTEM_KEY "$(JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1)"
+GUI TEXT JSON_IN_COORDINATE_SYSTEM_KEY_JSON_1 Coordinate System Key Name:
+DEFAULT_MACRO JSON_IN_SAVE_FRAGMENTS_JSON_1 NO
+JSON_1_SAVE_FRAGMENTS "$(JSON_IN_SAVE_FRAGMENTS_JSON_1)"
+GUI LOOKUP_CHOICE JSON_IN_SAVE_FRAGMENTS_JSON_1 Yes,YES%No,NO Read Entire Feature as JSON Fragment:
+DEFAULT_MACRO JSON_IN_DECODE_TEXT_STRINGS_JSON_1 Yes
+JSON_1_DECODE_TEXT_STRINGS "$(JSON_IN_DECODE_TEXT_STRINGS_JSON_1)"
+DEFAULT_MACRO JSON_IN_EXPOSE_ATTRS_GROUP_JSON_1 
+JSON_1_EXPOSE_ATTRS_GROUP "$(JSON_IN_EXPOSE_ATTRS_GROUP_JSON_1)"
+DEFAULT_MACRO JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_1 No
+JSON_1_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE "$(JSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_JSON_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO JSON_IN_USE_SEARCH_ENVELOPE_JSON_1 NO
+JSON_1_USE_SEARCH_ENVELOPE "$(JSON_IN_USE_SEARCH_ENVELOPE_JSON_1)"
+GUI ACTIVEDISCLOSUREGROUP JSON_IN_USE_SEARCH_ENVELOPE_JSON_1 JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1%JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1%JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1%JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1%JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1%JSON_IN_CLIP_TO_ENVELOPE_JSON_1%JSON_IN_SEARCH_METHOD%JSON_IN_SEARCH_METHOD_FILTER%JSON_IN_SEARCH_ORDER%JSON_IN_SEARCH_FEATURE%JSON_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINX_JSON_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MINY_JSON_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXX_JSON_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 <Unused>,0 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 0
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1)"
+GUI OPTIONAL FLOAT JSON_IN_SEARCH_ENVELOPE_MAXY_JSON_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 <Unused>, 
+DEFAULT_MACRO JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 
+JSON_1_SEARCH_ENVELOPE "$(JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1)"
+GUI OPTIONAL COORDSYS JSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_JSON_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP JSON_IN_CLIP_TO_ENVELOPE_JSON_1 <Unused>,NO 
+DEFAULT_MACRO JSON_IN_CLIP_TO_ENVELOPE_JSON_1 NO
+JSON_1_CLIP_TO_ENVELOPE "$(JSON_IN_CLIP_TO_ENVELOPE_JSON_1)"
+GUI OPTIONAL CHECKBOX JSON_IN_CLIP_TO_ENVELOPE_JSON_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO JSON_IN_NETWORK_AUTHENTICATION_JSON_1 
+JSON_1_NETWORK_AUTHENTICATION "$(JSON_IN_NETWORK_AUTHENTICATION_JSON_1)"
+GUI OPTIONAL AUTHENTICATOR JSON_IN_NETWORK_AUTHENTICATION_JSON_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO JSON_IN_ATTRIBUTE_READING_JSON_1 ALL
+JSON_1_ATTRIBUTE_READING "$(JSON_IN_ATTRIBUTE_READING_JSON_1)"
+# ============================================================================
+JSON_1_GENERATE_FME_BUILD_NUM 25220
+JSON_1_DATASET "$(SourceDataset_JSON_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 00000001
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2025.0.1.0 (20250327 - Build 25220 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_JSON_2 JSON_2
+DEFAULT_MACRO DATASET_KEYWORD_JSON_1 JSON_1
+# -------------------------------------------------------------------------
+
+JSON_2_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+JSON_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+JSON_2_DEF JSONFeature   name                         string   scientificName               string
+# -------------------------------------------------------------------------
+JSON_1_DEF JSONFeature   fruits{}.name                string   fruits{}.scientificName      string   fruits{}.fields{}            string
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE JSON JSON_2::JSONFeature multi_reader_keyword,$(DATASET_KEYWORD_JSON_2) TO FME_GENERIC ::JSONFeature ALIAS_GEOMETRY    ROUTE JSON JSON_1::JSONFeature multi_reader_keyword,$(DATASET_KEYWORD_JSON_1) TO FME_GENERIC ::JSONFeature ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+JSON_2_MERGE_DEF JSON_2::JSONFeature EXACT JSONFeature
+JSON_1_MERGE_DEF JSON_1::JSONFeature EXACT JSONFeature
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "JSONFeature_JSON_2 Splitter"    INPUT FEATURE_TYPE JSONFeature      multi_reader_keyword $(DATASET_KEYWORD_JSON_2)    OUTPUT FEATURE_TYPE JSONFeature_JSON_2
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "JSONFeature_JSON_1 Splitter"    INPUT FEATURE_TYPE JSONFeature      multi_reader_keyword $(DATASET_KEYWORD_JSON_1)    OUTPUT FEATURE_TYPE JSONFeature_JSON_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+Tcl2 proc Creator_CoordSysRemover {} {   global FME_CoordSys;   set FME_CoordSys {}; }
+MACRO Creator_XML     NOT_ACTIVATED
+MACRO Creator_GEOJSON NOT_ACTIVATED
+INCLUDE [ if { {Geometry Object} == {Geometry Object} } {            puts {MACRO Creator_XML *} } ]
+INCLUDE [ if { {Geometry Object} == {GeoJSON} } {            puts {MACRO Creator_GEOJSON *} } ]
+FACTORY_DEF {$(Creator_XML)} CreationFactory    FACTORY_NAME { Creator_XML_Creator }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______        @Geometry(FROM_ENCODED_STRING,<lt>?xml<space>version=<quote>1.0<quote><space>encoding=<quote>US_ASCII<quote><space>standalone=<quote>no<quote><space>?<gt><lt>geometry<space>dimension=<quote>2<quote><gt><lt>null<solidus><gt><lt><solidus>geometry<gt>) }
+FACTORY_DEF {$(Creator_GEOJSON)} CreationFactory    FACTORY_NAME { Creator_GEOJSON_Creator }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______ 	   @SupplyAttributes(ENCODED,__GeoJSONCreatorTemp__,<Unused>)        @JSONGeometry(FROM_ATTRIBUTE,GEOJSON,__GeoJSONCreatorTemp__, PREFER_ERROR_OVER_REJECTION) 	   @RemoveAttributes(__GeoJSONCreatorTemp__) }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Creator_Cloner }    INPUT FEATURE_TYPE _____CREATED______        @Tcl2(Creator_CoordSysRemover)        @CoordSys()    NUMBER_OF_COPIES { 1 }    COPY_NUMBER_ATTRIBUTE { "_creation_instance" }    OUTPUT { FEATURE_TYPE Creator_CREATED        fme_feature_type Creator         }
+FACTORY_DEF * BranchingFactory   FACTORY_NAME "Creator_CREATED Brancher -1 10"   INPUT FEATURE_TYPE Creator_CREATED   TARGET_FACTORY "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   MAXIMUM_COUNT None   OUTPUT PASSED FEATURE_TYPE *
+# -------------------------------------------------------------------------
+Tcl2 proc Creator_2_CoordSysRemover {} {   global FME_CoordSys;   set FME_CoordSys {}; }
+MACRO Creator_2_XML     NOT_ACTIVATED
+MACRO Creator_2_GEOJSON NOT_ACTIVATED
+INCLUDE [ if { {Geometry Object} == {Geometry Object} } {            puts {MACRO Creator_2_XML *} } ]
+INCLUDE [ if { {Geometry Object} == {GeoJSON} } {            puts {MACRO Creator_2_GEOJSON *} } ]
+FACTORY_DEF {$(Creator_2_XML)} CreationFactory    FACTORY_NAME { Creator_2_XML_Creator }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______        @Geometry(FROM_ENCODED_STRING,<lt>?xml<space>version=<quote>1.0<quote><space>encoding=<quote>US_ASCII<quote><space>standalone=<quote>no<quote><space>?<gt><lt>geometry<space>dimension=<quote>2<quote><gt><lt>null<solidus><gt><lt><solidus>geometry<gt>) }
+FACTORY_DEF {$(Creator_2_GEOJSON)} CreationFactory    FACTORY_NAME { Creator_2_GEOJSON_Creator }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______ 	   @SupplyAttributes(ENCODED,__GeoJSONCreatorTemp__,<Unused>)        @JSONGeometry(FROM_ATTRIBUTE,GEOJSON,__GeoJSONCreatorTemp__, PREFER_ERROR_OVER_REJECTION) 	   @RemoveAttributes(__GeoJSONCreatorTemp__) }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Creator_2_Cloner }    INPUT FEATURE_TYPE _____CREATED______        @Tcl2(Creator_2_CoordSysRemover)        @CoordSys()    NUMBER_OF_COPIES { 1 }    COPY_NUMBER_ATTRIBUTE { "_creation_instance" }    OUTPUT { FEATURE_TYPE Creator_2_CREATED        fme_feature_type Creator_2         }
+FACTORY_DEF * BranchingFactory   FACTORY_NAME "Creator_2_CREATED Brancher -1 18"   INPUT FEATURE_TYPE Creator_2_CREATED   TARGET_FACTORY "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   MAXIMUM_COUNT None   OUTPUT PASSED FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   INPUT FEATURE_TYPE *  OUTPUT FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} JSONFormatterFactory    FACTORY_NAME { JSONFormatter_2 }       INPUT  FEATURE_TYPE Creator_2_CREATED    JSON_DOCUMENT { "<Unused>" }    READ_FROM_FILE { YES }    FILEPATH_OR_URL { "C:<backslash>FMEData<backslash>Resources<backslash>FormBasic<backslash>fruit-nested.json" }    FORMAT { PRETTY_PRINT }    INDENT_SIZE { 3 }    REMOVE_EMPTY_STRINGS { NO }    REMOVE_NULL_VALUES { NO }    REMOVE_EMPTY_OBJECTS_AND_ARRAYS { NO }    OUTPUT_ATTR { "_formatted" }    OUTPUT_ENCODING { UTF-8 }    SYNTAX_ERROR_LIST_ATTR { "_json_error" }    OUTPUT { OUTPUT FEATURE_TYPE JSONFormatter_2_OUTPUT        }    OUTPUT { INVALID FEATURE_TYPE JSONFormatter_2_<REJECTED>        }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "JSONFormatter_2 OUTPUT Transformer Output Nuker"   INPUT FEATURE_TYPE JSONFormatter_2_OUTPUT
+FACTORY_DEF * TeeFactory   FACTORY_NAME "JSONFormatter_2 <REJECTED> Transformer Output Nuker"   INPUT FEATURE_TYPE JSONFormatter_2_<REJECTED>
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} JSONFormatterFactory    FACTORY_NAME { JSONFormatter }       INPUT  FEATURE_TYPE Creator_CREATED    JSON_DOCUMENT { "<Unused>" }    READ_FROM_FILE { YES }    FILEPATH_OR_URL { "C:<backslash>FMEData<backslash>Resources<backslash>FormBasic<backslash>fruit.json" }    FORMAT { PRETTY_PRINT }    INDENT_SIZE { 3 }    REMOVE_EMPTY_STRINGS { NO }    REMOVE_NULL_VALUES { NO }    REMOVE_EMPTY_OBJECTS_AND_ARRAYS { NO }    OUTPUT_ATTR { "_formatted" }    OUTPUT_ENCODING { UTF-8 }    SYNTAX_ERROR_LIST_ATTR { "_json_error" }    OUTPUT { OUTPUT FEATURE_TYPE JSONFormatter_OUTPUT        }    OUTPUT { INVALID FEATURE_TYPE JSONFormatter_<REJECTED>        }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "JSONFormatter OUTPUT Transformer Output Nuker"   INPUT FEATURE_TYPE JSONFormatter_OUTPUT
+FACTORY_DEF * TeeFactory   FACTORY_NAME "JSONFormatter <REJECTED> Transformer Output Nuker"   INPUT FEATURE_TYPE JSONFormatter_<REJECTED>
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ElementFactory    FACTORY_NAME { ListExploder_2 }    INPUT  FEATURE_TYPE JSONFeature_JSON_1    LIST_NAME { "fruits{}" }    CLONE_GEOMETRY    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "INCOMING_IF_CONFLICT" }    INCOMING_PREFIX { "<Unused>" }    OUTPUT { ELEMENT FEATURE_TYPE ListExploder_2_ELEMENTS         @RemoveAttributes(ElementFactory.baseCloned)          }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ElementFactory    FACTORY_NAME { ListExploder_3 }    INPUT  FEATURE_TYPE ListExploder_2_ELEMENTS    LIST_NAME { "fields{}" }    CLONE_GEOMETRY    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "INCOMING_IF_CONFLICT" }    INCOMING_PREFIX { "<Unused>" }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { ListBuilder_fme_type_remover }    INPUT  FEATURE_TYPE JSONFeature_JSON_2    OUTPUT { FEATURE_TYPE ListBuilder_no_fme_type       @RemoveAttributes(fme_type,fme_geometry) }
+FACTORY_DEF {*} ListFactory    FACTORY_NAME { ListBuilder }    INPUT { FEATURE_TYPE ListBuilder_no_fme_type }    LIST_NAME { "fruit" }    LIST_ATTRS_TO_INCLUDE { name scientificName }    LIST_ATTRS_TO_INCLUDE_MODE { SELECTED }    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    OUTPUT { LIST FEATURE_TYPE ListBuilder_OUTPUT          }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} ElementFactory    FACTORY_NAME { ListExploder }    INPUT  FEATURE_TYPE ListBuilder_OUTPUT    LIST_NAME { "fruit{}" }    CLONE_GEOMETRY    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "INCOMING_IF_CONFLICT" }    INCOMING_PREFIX { "<Unused>" }
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+

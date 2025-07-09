@@ -1,0 +1,1834 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME 2025.0.1 b25220\fme.exe" "G:\Shared drives\Customer Education\Training\2025\FME Form Basic\TransformAttributes\process-data-in-groups-complete.fmw"
+#          --SourceDataset_MITAB "https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#          --DestDataset_MITAB "C:\FMEData\Output\Training"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="6407.18 930.952"
+#!   DOC_TOP_LEFT="-504 -718.45"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="25220"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="a96140a0-d2a0-47a0-bbe3-cf79ee4918ba"
+#!   FME_DOCUMENT_PRIORGUID="dff14947-22d7-467f-b31d-8d0f3ee7e621,146c3c65-1531-4125-beb5-3aa35d0643cd,5882d31c-0e15-41ff-9454-923a8beec83a,b63e2173-15a4-4369-9677-7484b9e16e25,c71c2c88-027e-4a38-aafd-3e895561f3b1,3395a54b-3201-4b0b-849d-2f54729abfbb,496652c3-c6de-4eaa-8247-ad059ef5ac97,22a94d82-40f4-43ad-b848-533a5e6fe714,2a15f84d-9f60-4db3-9fb7-07704e12019f,87b54753-b034-4d7f-9c2d-8427bfa395a4,69745e41-1334-4678-916c-d8e1f21f64a9"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2025.0.1.0 (20250327 - Build 25220 - WIN64)"
+#!   LAST_SAVE_DATE="2025-04-24T13:38:49"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="2371.9 621.881"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="MITAB"
+#!   DATASET="$(SourceDataset_MITAB)"
+#!   KEYWORD="MITAB_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string char(50) fme_type char(50) mapinfo_brush_background integer mapinfo_brush_foreground integer mapinfo_brush_pattern smallint mapinfo_brush_transparent logical mapinfo_center_xcoord float mapinfo_center_ycoord float mapinfo_centroid_x float mapinfo_centroid_y float mapinfo_metadata{}.name char(255) mapinfo_metadata{}.value char(255) mapinfo_pen_color integer mapinfo_pen_pattern smallint mapinfo_pen_width smallint mapinfo_primary_axis float mapinfo_rotation float mapinfo_rounding float mapinfo_secondary_axis float mapinfo_smooth logical mapinfo_start_angle float mapinfo_sweep_angle float mapinfo_symbol_angle float mapinfo_symbol_color integer mapinfo_symbol_file_name char(255) mapinfo_symbol_font char(50) mapinfo_symbol_shape integer mapinfo_symbol_size integer mapinfo_symbol_style smallint mapinfo_text_fontbgcolor integer mapinfo_text_fontfgcolor integer mapinfo_text_fontname char(50) mapinfo_text_fontsize float mapinfo_text_fontstyle smallint mapinfo_text_fontstyle_allcaps char(10) mapinfo_text_fontstyle_blink char(10) mapinfo_text_fontstyle_bold char(10) mapinfo_text_fontstyle_expanded char(10) mapinfo_text_fontstyle_halo char(10) mapinfo_text_fontstyle_inverse char(10) mapinfo_text_fontstyle_italic char(10) mapinfo_text_fontstyle_opaque char(10) mapinfo_text_fontstyle_outline char(10) mapinfo_text_fontstyle_shadow char(10) mapinfo_text_fontstyle_strikeout char(10) mapinfo_text_fontstyle_underline char(10) mapinfo_text_height float mapinfo_text_justification char(30) mapinfo_text_line_end_x float mapinfo_text_line_end_y float mapinfo_text_line_pen_color integer mapinfo_text_line_pen_pattern integer mapinfo_text_line_pen_width integer mapinfo_text_linetype integer mapinfo_text_spacing smallint mapinfo_text_string char(255) mapinfo_text_width float mapinfo_type char(25) multi_reader_full_id integer multi_reader_id integer multi_reader_keyword char(50) multi_reader_type char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="19238"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="tab file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Table1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the MITAB files"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the MITAB file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="false"
+#!   ROLE="WRITER"
+#!   FORMAT="MITAB"
+#!   DATASET="$(DestDataset_MITAB)"
+#!   KEYWORD="MITAB_2"
+#!   MULTI_GEOM_ALLOWED="true"
+#!   ATTR_MAX_LENGTH="31"
+#!   ATTR_CASE="ANY_FIRST_NONNUMERIC"
+#!   FEATURE_TYPE_CASE="ANY"
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS="&quot;:?*&lt;&gt;|"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string char(50) fme_type char(50) mapinfo_brush_background integer mapinfo_brush_foreground integer mapinfo_brush_pattern smallint mapinfo_brush_transparent logical mapinfo_center_xcoord float mapinfo_center_ycoord float mapinfo_centroid_x float mapinfo_centroid_y float mapinfo_metadata{}.name char(255) mapinfo_metadata{}.value char(255) mapinfo_pen_color integer mapinfo_pen_pattern smallint mapinfo_pen_width smallint mapinfo_primary_axis float mapinfo_rotation float mapinfo_rounding float mapinfo_secondary_axis float mapinfo_smooth logical mapinfo_start_angle float mapinfo_sweep_angle float mapinfo_symbol_angle float mapinfo_symbol_color integer mapinfo_symbol_file_name char(255) mapinfo_symbol_font char(50) mapinfo_symbol_shape integer mapinfo_symbol_size integer mapinfo_symbol_style smallint mapinfo_text_fontbgcolor integer mapinfo_text_fontfgcolor integer mapinfo_text_fontname char(50) mapinfo_text_fontsize float mapinfo_text_fontstyle smallint mapinfo_text_fontstyle_allcaps char(10) mapinfo_text_fontstyle_blink char(10) mapinfo_text_fontstyle_bold char(10) mapinfo_text_fontstyle_expanded char(10) mapinfo_text_fontstyle_halo char(10) mapinfo_text_fontstyle_inverse char(10) mapinfo_text_fontstyle_italic char(10) mapinfo_text_fontstyle_opaque char(10) mapinfo_text_fontstyle_outline char(10) mapinfo_text_fontstyle_shadow char(10) mapinfo_text_fontstyle_strikeout char(10) mapinfo_text_fontstyle_underline char(10) mapinfo_text_height float mapinfo_text_justification char(30) mapinfo_text_line_end_x float mapinfo_text_line_end_y float mapinfo_text_line_pen_color integer mapinfo_text_line_pen_pattern integer mapinfo_text_line_pen_width integer mapinfo_text_linetype integer mapinfo_text_spacing smallint mapinfo_text_string char(255) mapinfo_text_width float mapinfo_type char(25)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS="\\/&quot;:?*&lt;&gt;|[]= %~!@$&amp;#()^&apos;+-.,`;"
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE=""
+#!   GENERATE_FME_BUILD_NUM="19238"
+#!   COORDSYS=""
+#!   FANOUT_EXPRESSION="&lt;Unused&gt;"
+#!   FANOUT_GROUP="NO"
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="tab file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Table1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the MITAB files"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the MITAB file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="decimal(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="MITAB"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_custom_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_font_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_none"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_custom_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_font_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="mapinfo_none"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="MITAB"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Parks"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   POSITION="-434.3793437934379 -22.499874998749988"
+#!   BOUNDING_RECT="-434.3793437934379 -22.499874998749988 492.87996879968796 71"
+#!   ORDER="500000000000072"
+#!   COLLAPSED="false"
+#!   KEYWORD="MITAB_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="mapinfo_text mapinfo_ellipse mapinfo_arc mapinfo_point mapinfo_polyline mapinfo_rectangle mapinfo_rounded_rectangle mapinfo_region mapinfo_custom_point mapinfo_font_point mapinfo_none mapinfo_collection"
+#!   HIDDEN_USER_ATTRS="Washrooms SpecialFeatures RefParkId"
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="false"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="mapinfo_text mapinfo_ellipse mapinfo_arc mapinfo_point mapinfo_polyline mapinfo_rectangle mapinfo_rounded_rectangle mapinfo_region mapinfo_custom_point mapinfo_font_point mapinfo_none mapinfo_collection" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkId" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="RefParkId" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkName" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodName" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="VisitorCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TreeCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="DogPark" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Washrooms" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SpecialFeatures" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="ParksMaintenanceData"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   POSITION="5202.3950257032093 -40.937359373593722"
+#!   BOUNDING_RECT="5202.3950257032093 -40.937359373593722 644.53844363148301 71"
+#!   ORDER="500000000000073"
+#!   COLLAPSED="false"
+#!   KEYWORD="MITAB_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="&lt;all&gt;"
+#!   SCHEMA_ATTRIBUTE_SOURCE="0"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="&lt;all&gt;" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="AverageParkArea" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Popularity" ATTR_TYPE="char(100)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkId" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkName" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Neighborhood" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="VisitorCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TreeCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="DogPark" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkArea" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="MITAB_1"
+#!   OVERRIDE="-MITAB_1_DATASET"
+#!   DATASET="MITAB_1/Parks.zip"
+#! />
+#! </READER_DATASETS>
+#! <WRITER_DATASETS>
+#! <DATASET
+#!   NAME="MITAB_2"
+#!   OVERRIDE="-MITAB_2_DATASET"
+#!   DATASET="MITAB_2/Training"
+#! />
+#! </WRITER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_MITAB TAB_Files(*.tab)|*.tab|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source MapInfo TAB File(s):"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI DIRNAME DestDataset_MITAB Destination MapInfo Folder:"
+#!   DEFAULT_VALUE="C:\FMEData\Output\Training"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiU291cmNlRGF0YXNldF9NSVRBQiIsInByb21wdCI6IlNvdXJjZSBNYXBJbmZvIFRBQiBGaWxlKHMpOiIsInZhbHVlVHlwZSI6InN0cmluZyIsImRlZmF1bHRWYWx1ZSI6Imh0dHBzOi8vczMuYW1hem9uYXdzLmNvbS9GTUVEYXRhL0ZNRURhdGEvRGF0YS9QYXJrcy56aXAiLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJ0eXBlIjoiZmlsZSIsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJhY2Nlc3NNb2RlIjoicmVhZCIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwiaW5jbHVkZVdlYkJyb3dzZXIiOnRydWUsImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiVEFCIEZpbGVzIiwiZmlsdGVyIjpbIioudGFiIl19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV19LHsibmFtZSI6IkRlc3REYXRhc2V0X01JVEFCIiwicHJvbXB0IjoiRGVzdGluYXRpb24gTWFwSW5mbyBGb2xkZXI6IiwidmFsdWVUeXBlIjoic3RyaW5nIiwiZGVmYXVsdFZhbHVlIjoiQzpcXEZNRURhdGFcXE91dHB1dFxcVHJhaW5pbmciLCJkZXByZWNhdGVkRmxhZ3MiOlsibm9uZSJdLCJ0eXBlIjoiZmlsZSIsInNlbGVjdE11bHRpcGxlIjpmYWxzZSwiaXRlbXNUb1NlbGVjdCI6ImZvbGRlcnMiLCJhY2Nlc3NNb2RlIjoid3JpdGUiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2V9XX0="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_MITAB" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_MITAB TAB_Files(*.tab)|*.tab|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source MapInfo TAB File(s):"
+#! />
+#!     <INFO NAME="DestDataset_MITAB" 
+#!   DEFAULT_VALUE="C:\FMEData\Output\Training"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI DIRNAME DestDataset_MITAB Destination MapInfo Folder:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="32"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rename NeighborhoodName to Neighborhood&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="237.61099698644637 212.50187501875018"
+#!   TOP_LEFT="237.61099698644637 212.50187501875018"
+#!   BOTTOM_RIGHT="691.57011470262353 211.50187501875018"
+#!   BOUNDING_RECT="237.61099698644637 212.50187501875018 453.95911771617716 1"
+#!   ORDER="500000000000439"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{ed0cb7b8-8b98-4d96-9ce6-5292253b1be2}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="7"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="33"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Filter by park type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="846.8834688346883 112.50087500875009"
+#!   TOP_LEFT="846.8834688346883 112.50087500875009"
+#!   BOTTOM_RIGHT="1396.8884688846888 111.50087500875009"
+#!   BOUNDING_RECT="846.8834688346883 112.50087500875009 550.00500005000049 1"
+#!   ORDER="500000000000440"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{62c88efd-f30a-4e5d-a10a-4f06dee2f89d}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="14"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="34"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Filter by popularity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="1525.4577529198032 112.50087500875009"
+#!   TOP_LEFT="1525.4577529198032 112.50087500875009"
+#!   BOTTOM_RIGHT="1976.8777827451013 111.50087500875009"
+#!   BOUNDING_RECT="1525.4577529198032 112.50087500875009 451.42002982529823 1"
+#!   ORDER="500000000000441"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{797adbea-75a1-4752-8c4d-4c964b965f1b}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="18"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="36"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Filter by Neighborhood&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="2723.1384405079293 162.50137501375013"
+#!   TOP_LEFT="2723.1384405079293 162.50137501375013"
+#!   BOTTOM_RIGHT="3159.1286285348096 161.50137501375013"
+#!   BOUNDING_RECT="2723.1384405079293 162.50137501375013 435.99018802688028 1"
+#!   ORDER="500000000000443"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{003f9c82-00ae-421d-aede-806d26c6acf9}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="16"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="5"
+#!   NAME="Reader Feature Types"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-504 87.500125001250012"
+#!   ORDER="500000000000000"
+#!   PALETTE_COLOR="Reader/Writers"
+#!   BOTTOM_RIGHT="135 -565.63065630656308"
+#!   BOUNDING_RECT="-504 87.500125001250012 639 653.13078130781309"
+#!   STICKY="true"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS="2 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="6"
+#!   NAME="Writer Feature Types"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="5144.3960939609387 69.062640626406278"
+#!   ORDER="500000000000000"
+#!   PALETTE_COLOR="Reader/Writers"
+#!   BOTTOM_RIGHT="5903.1840318403174 -718.44973449734471"
+#!   BOUNDING_RECT="5144.3960939609387 69.062640626406278 758.78793787937866 787.51237512375099"
+#!   STICKY="true"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS="3 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="35"
+#!   NAME="Set Popularity attribute"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="2053.7406874068752 106.25556255562526"
+#!   ORDER="500000000000442"
+#!   PALETTE_COLOR="Workflow1"
+#!   BOTTOM_RIGHT="2600.5095387736724 -633.49987499874999"
+#!   BOUNDING_RECT="2053.7406874068752 106.25556255562526 546.76885136679721 739.75543755437525"
+#!   STICKY="true"
+#!   COLOUR="0.32549019607843138,0.62352941176470589,0.92549019607843142,1"
+#!   CONTENTS="23 22 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="31"
+#!   NAME="Calculate AverageParkArea"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="3290.1472481735509 69.062640626406278"
+#!   ORDER="500000000000444"
+#!   PALETTE_COLOR="Workflow6"
+#!   BOTTOM_RIGHT="5047.4421278062973 -241.93735937359372"
+#!   BOUNDING_RECT="3290.1472481735509 69.062640626406278 1757.2948796327464 311"
+#!   STICKY="true"
+#!   COLOUR="0.82745098039215681,0.74117647058823533,0.93725490196078431,1"
+#!   CONTENTS="29 30 37 38 28 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="AttributeManager"
+#!   VERSION="5"
+#!   POSITION="237.61099698644637 -22.499874998749988"
+#!   BOUNDING_RECT="237.61099698644637 -22.499874998749988 454 71"
+#!   ORDER="500000000000074"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="ParkId ParkId  int16 NO_OP ParkName ParkName  varchar&lt;openparen&gt;40&lt;closeparen&gt; NO_OP NeighborhoodName Neighborhood  varchar&lt;openparen&gt;40&lt;closeparen&gt; RENAME_SET_VALUE VisitorCount VisitorCount  int16 NO_OP TreeCount TreeCount  int16 NO_OP DogPark DogPark  varchar&lt;openparen&gt;1&lt;closeparen&gt; NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_EXPOSED_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_MODIFIED_ATTRIBUTE_TYPES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeManager"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="TestFilter"
+#!   VERSION="3"
+#!   POSITION="846.8834688346883 -22.499874998749988"
+#!   BOUNDING_RECT="846.8834688346883 -22.499874998749988 550.00550005500031 65"
+#!   ORDER="500000000000435"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="Dog&lt;space&gt;Parks"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="Named&lt;space&gt;Non-Dog&lt;space&gt;Parks"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="Unnamed&lt;space&gt;Parks"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DEFAULT_VALUE" PARM_VALUE="Unnamed&lt;space&gt;Parks"/>
+#!     <XFORM_PARM PARM_NAME="PASSED_TEST_GROUP_OUTPUT" PARM_VALUE="FIRST"/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_FEATURE_ORDER" PARM_VALUE="PER_OUTPUT_PORT"/>
+#!     <XFORM_PARM PARM_NAME="TESTLISTGRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TEST_LIST" PARM_VALUE="&quot;BOOL_OP,OR,COMPOSITE_TEST,&quot;&quot;&quot;&quot;&quot;&quot;1&quot;&quot;&quot;&quot;&quot;&quot;,TEST_CLAUSE,TEST&lt;space&gt;&lt;lt&gt;at&lt;gt&gt;Value&lt;lt&gt;openparen&lt;gt&gt;DogPark&lt;lt&gt;closeparen&lt;gt&gt;&lt;space&gt;=&lt;space&gt;Y&quot;,Dog&lt;space&gt;Parks,&quot;BOOL_OP,OR,COMPOSITE_TEST,&quot;&quot;&quot;&quot;&quot;&quot;1&quot;&quot;&quot;&quot;&quot;&quot;,TEST_CLAUSE,TEST&lt;space&gt;ParkName&lt;space&gt;ATTRIBUTE_HAS_A_VALUE&lt;space&gt;&lt;quote&gt;&lt;quote&gt;&quot;,Named&lt;space&gt;Non-Dog&lt;space&gt;Parks"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="TestFilter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="16"
+#!   TYPE="AttributeFilter"
+#!   VERSION="6"
+#!   POSITION="2723.1384405079293 -22.499874998749988"
+#!   BOUNDING_RECT="2723.1384405079293 -22.499874998749988 436 65"
+#!   ORDER="500000000000436"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="&lt;lt&gt;EMPTY&lt;gt&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;lt&gt;MISSING&lt;gt&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;lt&gt;NULL&lt;gt&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <OUTPUT_FEAT NAME="&lt;lt&gt;UNFILTERED&lt;gt&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <OUTPUT_FEAT NAME="Downtown"/>
+#!     <FEAT_COLLAPSED COLLAPSED="4"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <OUTPUT_FEAT NAME="Fairview"/>
+#!     <FEAT_COLLAPSED COLLAPSED="5"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="5" />
+#!     <OUTPUT_FEAT NAME="Kitsilano"/>
+#!     <FEAT_COLLAPSED COLLAPSED="6"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="6" />
+#!     <OUTPUT_FEAT NAME="Mount&lt;space&gt;Pleasant"/>
+#!     <FEAT_COLLAPSED COLLAPSED="7"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="7" />
+#!     <OUTPUT_FEAT NAME="Strathcona"/>
+#!     <FEAT_COLLAPSED COLLAPSED="8"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="8" />
+#!     <OUTPUT_FEAT NAME="West&lt;space&gt;End"/>
+#!     <FEAT_COLLAPSED COLLAPSED="9"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="9" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_NAME" PARM_VALUE="Neighborhood"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_VALUES" PARM_VALUE="&lt;lt&gt;Empty&lt;gt&gt;,&lt;lt&gt;Missing&lt;gt&gt;,&lt;lt&gt;Null&lt;gt&gt;,&lt;lt&gt;Unfiltered&lt;gt&gt;,Downtown,Fairview,Kitsilano,Mount&lt;space&gt;Pleasant,Strathcona,West&lt;space&gt;End"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_VALUES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_FEATURE_ORDER" PARM_VALUE="PER_OUTPUT_PORT"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeFilter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="18"
+#!   TYPE="AttributeRangeFilter"
+#!   VERSION="0"
+#!   POSITION="1525.4577529198032 -22.499874998749988"
+#!   BOUNDING_RECT="1525.4577529198032 -22.499874998749988 451.421875 65"
+#!   ORDER="500000000000437"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="Popular"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="Not Popular"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;UNFILTERED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="IN_ATTR" PARM_VALUE="VisitorCount"/>
+#!     <XFORM_PARM PARM_NAME="LUT" PARM_VALUE="15001,100000,Popular,0,15000,Not&lt;space&gt;Popular"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RANGEMAP_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeRangeFilter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="23"
+#!   TYPE="AttributeCreator"
+#!   VERSION="10"
+#!   POSITION="2097.4906249062496 -22.499874998749988"
+#!   BOUNDING_RECT="2097.4906249062496 -22.499874998749988 436 65"
+#!   ORDER="500000000000438"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="&quot;&quot; Popularity SET_TO Popular varchar(100)"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_MODIFIED_ATTRIBUTE_TYPES" PARM_VALUE="&lt;bell&gt;Popularity varchar&lt;openparen&gt;100&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeCreator"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="22"
+#!   TYPE="AttributeCreator"
+#!   VERSION="10"
+#!   POSITION="2097.4906249062496 -358.49987499875022"
+#!   BOUNDING_RECT="2097.4906249062496 -358.49987499875022 436 65"
+#!   ORDER="500000000000438"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="&quot;&quot; Popularity SET_TO Not&lt;space&gt;Popular varchar(100)"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_MODIFIED_ATTRIBUTE_TYPES" PARM_VALUE="&lt;bell&gt;Popularity varchar&lt;openparen&gt;100&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeCreator_2"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="28"
+#!   TYPE="AreaCalculator"
+#!   VERSION="5"
+#!   POSITION="3340.1472481735509 -20.937359373593722"
+#!   BOUNDING_RECT="3340.1472481735509 -20.937359373593722 454 71"
+#!   ORDER="500000000000077"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="AREA_ATTR" PARM_VALUE="ParkArea"/>
+#!     <XFORM_PARM PARM_NAME="AREA_TYPE" PARM_VALUE="Plane Area"/>
+#!     <XFORM_PARM PARM_NAME="MULT" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AreaCalculator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="29"
+#!   TYPE="StatisticsCalculator"
+#!   VERSION="11"
+#!   POSITION="3939.1819019862551 -20.937359373593722"
+#!   BOUNDING_RECT="3939.1819019862551 -20.937359373593722 430 71"
+#!   ORDER="500000000000083"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25220"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="SUMMARY"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkArea.mean" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="COMPLETE"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkArea" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ParkArea.mean" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ADV_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="ADV_PARAMETERMAP_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="None"/>
+#!     <XFORM_PARM PARM_NAME="CALCULATION_MODE" PARM_VALUE="NUMERIC"/>
+#!     <XFORM_PARM PARM_NAME="CUMULATIVE_STATS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FEAT_STATS" PARM_VALUE="ParkArea,NUMERIC_MODE,,,,,MEAN,,,,,,,,"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="Neighborhood"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PREPEND_ATTR_NAME_OBS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="STATISTIC_SUFFIX_RENAME_MAP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="STATS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="StatisticsCalculator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="30"
+#!   TYPE="AttributeRenamer"
+#!   VERSION="5"
+#!   POSITION="4543.4421278062973 -22.499874998749988"
+#!   BOUNDING_RECT="4543.4421278062973 -22.499874998749988 454 71"
+#!   ORDER="500000000000085"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22337"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="AverageParkArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Popularity" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Neighborhood" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VisitorCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TreeCount" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DogPark" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ParkArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="ParkArea.mean AverageParkArea RENAME_SET_DEFAULT "/>
+#!     <XFORM_PARM PARM_NAME="KEEP_RENAMED_ONLY" PARM_VALUE="no"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_INPUT_ATTRS" PARM_VALUE="REMOVE"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeRenamer"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="8"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="7"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="24"
+#!   SOURCE_NODE="18"
+#!   TARGET_NODE="23"
+#!   SOURCE_PORT_DESC="fo 0 Popular"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="27"
+#!   SOURCE_NODE="22"
+#!   TARGET_NODE="16"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="25"
+#!   SOURCE_NODE="23"
+#!   TARGET_NODE="16"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="37"
+#!   SOURCE_NODE="28"
+#!   TARGET_NODE="29"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="40"
+#!   SOURCE_NODE="30"
+#!   TARGET_NODE="3"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="21"
+#!   SOURCE_NODE="14"
+#!   TARGET_NODE="18"
+#!   SOURCE_PORT_DESC="fo 1 Named&lt;lt&gt;space&lt;gt&gt;Non-Dog&lt;lt&gt;space&lt;gt&gt;Parks"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="26"
+#!   SOURCE_NODE="18"
+#!   TARGET_NODE="22"
+#!   SOURCE_PORT_DESC="fo 1 Not&lt;space&gt;Popular"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="38"
+#!   SOURCE_NODE="29"
+#!   TARGET_NODE="30"
+#!   SOURCE_PORT_DESC="fo 1 COMPLETE"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="39"
+#!   SOURCE_NODE="16"
+#!   TARGET_NODE="28"
+#!   SOURCE_PORT_DESC="fo 4 Downtown"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="41"
+#!   SOURCE_NODE="16"
+#!   TARGET_NODE="28"
+#!   SOURCE_PORT_DESC="fo 5 Fairview"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_MITAB_1,MITAB_IN_FME_GROUP_NAMED1_MITAB_1,MITAB_IN_ENCODING_MITAB_1,MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_1,MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1,MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1,MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1,MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1,MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1,MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1,MITAB_IN_NETWORK_AUTHENTICATION_MITAB_1,MITAB_OUT_FME_GROUP_NAMED1_MITAB_2,MITAB_OUT_VERSION_MITAB_2,MITAB_OUT_BUILD_OPTIMAL_SPATIAL_INDEX_MITAB_2,MITAB_OUT_FME_GROUP_NAMED2_MITAB_2,MITAB_OUT_WRITE_REGION_CENTROIDS_MITAB_2,MITAB_OUT_TWO_POINT_LINE_AS_POLYLINE_MITAB_2,MITAB_OUT_STROKE_ARCS_MITAB_2,MITAB_OUT_FME_GROUP_NAMED3_MITAB_2,MITAB_OUT_ENCODING_MITAB_2,MITAB_OUT_FME_GROUP_NAMED4_MITAB_2,MITAB_OUT_COORDSYS_STATEMENT_MITAB_2,MITAB_OUT_MIF_MINX_MITAB_2,MITAB_OUT_MIF_MINY_MITAB_2,MITAB_OUT_MIF_MAXX_MITAB_2,MITAB_OUT_MIF_MAXY_MITAB_2,DestDataset_MITAB_2
+# ============================================================================
+DEFAULT_MACRO SourceDataset_MITAB https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip
+
+DEFAULT_MACRO DestDataset_MITAB C:\FMEData\Output\Training
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_MITAB$encode)} == {}} { puts_real {Parameter 'SourceDataset_MITAB' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(DestDataset_MITAB$encode)} == {}} { puts_real {Parameter 'DestDataset_MITAB' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! encoding="utf-8"
+#! WORKSPACE_VERSION 1
+# ============================================================================ 
+# 
+# This mapping file was generated by FME Workbench
+# on 03/14/19 for translation between MITAB and MITAB
+# 
+# This workspace was generated with FME build 19226
+#
+# You may edit this mapping file to customize its operation.  Comments are 
+# placed throughout to assist you. 
+# 
+# Modification History:
+# 
+#     Name              Date     Description
+#     ================= ======== =============================================
+# 
+# 
+# ============================================================================ 
+# ============================================================================ 
+# The following line defines the title presented to the user when this
+# mapping file is run through the FME GUI.  You may modify this
+# if a more meaningful title would be appropriate.
+GUI TITLE MITAB to MITAB Translation 
+# ============================================================================ 
+# The following line names the log file to which useful statistics about
+# the translation will be written.  This line can be uncommented and
+# updated if you do wish to keep these statistics.
+# LOG_FILENAME translation.log
+# LOG_APPEND NO
+# ============================================================================ 
+# The following line instructs the FME to log any features that do not
+# match any of the source feature patterns listed further down in
+# this file.  If you are modifying this mapping file, this will be
+# useful to describe to you exactly which features you are losing
+# during translation, if the statistics indicate that features are
+# not being correlated or grouped.  Uncorrelated features do not
+# match any source specification, ungrouped features do not have
+# any corresponding _DEF line. 
+# FME_DEBUG UNGROUPED UNCORRELATED
+# ============================================================================ 
+# The following two lines define the type of reader and writer to be
+# used for this translation.  If you want to translate your data
+# back into its original format, you may make a copy of this file
+# and switch the reader and writer types.  If you rerun the FME, you
+# will get your original data back again (together with any modifications
+# you made in the meantime).  Note that several formats are NOT
+# bi-directional (for example, GIF can only be used as a WRITER)
+# so a reverse translation may not always be possible.
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} MITAB
+MULTI_READER_KEYWORD{0} MITAB_1
+MULTI_READER_GEN_DIRECTIVES{0} ENCODING,fme-source-encoding,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXY,0,UNENCODED_ATTR_PREFIX,fme_<space>mapinfo_,SEARCH_ENVELOPE_MAXX,0,USE_SEARCH_ENVELOPE,NO,CLIP_TO_ENVELOPE,NO,ENCODED_ATTRS,mapinfo_text_string,MITAB_EXPOSE_FORMAT_ATTRS,,_MERGE_SCHEMAS,YES,SEARCH_ENVELOPE_MINX,0,_MITAB_FULL_ENHANCED_GEOMETRY,YES,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,UPDATE_FEATURE_TYPES,no
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD PRIMARY_DEST
+PRIMARY_DEST_DATASET_ORDER BY_ID
+PRIMARY_DEST_FIRST_WRITER_ID 0
+PRIMARY_DEST_TYPE{0} MITAB
+PRIMARY_DEST_KEYWORD{0} MITAB_2
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "MITAB_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER MITAB MITAB_1
+# ============================================================================
+# The following GUI line prompts for files to be used as the source data
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_MITAB_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER MITAB MITAB_1
+DEFAULT_MACRO SourceDataset_MITAB_1 $(SourceDataset_MITAB)
+GUI MULTIFILE SourceDataset_MITAB_1 TAB_Files(*.tab)|*.tab|All_Files(*)|* Source MapInfo TAB File(s):
+# BUG47627: MITAB rich compatibility flag
+DEFAULT_MACRO MITAB_IN__MITAB_FULL_ENHANCED_GEOMETRY_MITAB_1 YES
+MITAB_1__MITAB_FULL_ENHANCED_GEOMETRY "$(MITAB_IN__MITAB_FULL_ENHANCED_GEOMETRY_MITAB_1)"
+DEFAULT_MACRO MITAB_IN_FME_GROUP_NAMED1_MITAB_1 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_IN_FME_GROUP_NAMED1_MITAB_1 MITAB_IN_ENCODING_MITAB_1 File Contents
+DEFAULT_MACRO MITAB_IN_ENCODING_MITAB_1 fme-source-encoding
+MITAB_1_ENCODING "$(MITAB_IN_ENCODING_MITAB_1)"
+GUI STRING_OR_ENCODING MITAB_IN_ENCODING_MITAB_1 fme-source-encoding%* Character Encoding:
+# =====================================================================
+# Provide some control over what attributes have the user-selected
+# encoding applied. Normally all attributes are updated after being
+# read, but the following lines exclude from this treatment all
+# attributes whose names start with fme_ or <attrPrefix>_, except
+# for <attrPrefix>_text_string, which always needs the encoding.
+DEFAULT_MACRO MITAB_IN_ENCODED_ATTRS_MITAB_1 mapinfo_text_string
+MITAB_1_ENCODED_ATTRS "$(MITAB_IN_ENCODED_ATTRS_MITAB_1)"
+DEFAULT_MACRO MITAB_IN_UNENCODED_ATTR_PREFIX_MITAB_1 fme_ mapinfo_
+MITAB_1_UNENCODED_ATTR_PREFIX "$(MITAB_IN_UNENCODED_ATTR_PREFIX_MITAB_1)"
+DEFAULT_MACRO MITAB_IN_EXPOSE_ATTRS_GROUP_MITAB_1 
+MITAB_1_EXPOSE_ATTRS_GROUP "$(MITAB_IN_EXPOSE_ATTRS_GROUP_MITAB_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_1 NO
+MITAB_1_USE_SEARCH_ENVELOPE "$(MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_1)"
+GUI ACTIVEDISCLOSUREGROUP MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_1 MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1%MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1%MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1%MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1%MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1%MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1%MITAB_IN_SEARCH_METHOD%MITAB_IN_SEARCH_METHOD_FILTER%MITAB_IN_SEARCH_ORDER%MITAB_IN_SEARCH_FEATURE%MITAB_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1 0
+MITAB_1_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1 0
+MITAB_1_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1 0
+MITAB_1_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1 0
+MITAB_1_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1 <Unused>, 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1 
+MITAB_1_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1)"
+GUI OPTIONAL COORDSYS MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1 <Unused>,NO 
+DEFAULT_MACRO MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1 NO
+MITAB_1_CLIP_TO_ENVELOPE "$(MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1)"
+GUI OPTIONAL CHECKBOX MITAB_IN_CLIP_TO_ENVELOPE_MITAB_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO MITAB_IN_NETWORK_AUTHENTICATION_MITAB_1 
+MITAB_1_NETWORK_AUTHENTICATION "$(MITAB_IN_NETWORK_AUTHENTICATION_MITAB_1)"
+GUI OPTIONAL AUTHENTICATOR MITAB_IN_NETWORK_AUTHENTICATION_MITAB_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================ 
+DEFAULT_MACRO MITAB_IN_ATTRIBUTE_READING_MITAB_1 ALL
+MITAB_1_ATTRIBUTE_READING "$(MITAB_IN_ATTRIBUTE_READING_MITAB_1)"
+# ============================================================================ 
+MITAB_1_GENERATE_FME_BUILD_NUM 19238
+MITAB_1_DATASET "$(SourceDataset_MITAB_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "MITAB_2"
+#! END_WB_HEADER
+#! START_DEST_HEADER MITAB MITAB_2
+DEFAULT_MACRO MITAB_OUT_FME_GROUP_NAMED1_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_OUT_FME_GROUP_NAMED1_MITAB_2 MITAB_OUT_VERSION_MITAB_2%MITAB_OUT_BUILD_OPTIMAL_SPATIAL_INDEX_MITAB_2 Writer
+DEFAULT_MACRO MITAB_OUT_VERSION_MITAB_2 900
+MITAB_2_VERSION "$(MITAB_OUT_VERSION_MITAB_2)"
+GUI CHOICE MITAB_OUT_VERSION_MITAB_2 300%450%900%950%1000%1050%1100%1150 File Version:
+DEFAULT_MACRO MITAB_OUT_BUILD_OPTIMAL_SPATIAL_INDEX_MITAB_2 no
+MITAB_2_BUILD_OPTIMAL_SPATIAL_INDEX "$(MITAB_OUT_BUILD_OPTIMAL_SPATIAL_INDEX_MITAB_2)"
+GUI OPTIONAL CHOICE MITAB_OUT_BUILD_OPTIMAL_SPATIAL_INDEX_MITAB_2 yes%no Build Optimal Spatial Index:
+DEFAULT_MACRO MITAB_OUT_FME_GROUP_NAMED2_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_OUT_FME_GROUP_NAMED2_MITAB_2 MITAB_OUT_WRITE_REGION_CENTROIDS_MITAB_2%MITAB_OUT_TWO_POINT_LINE_AS_POLYLINE_MITAB_2%MITAB_OUT_STROKE_ARCS_MITAB_2 Geometry
+DEFAULT_MACRO MITAB_OUT_WRITE_REGION_CENTROIDS_MITAB_2 no
+MITAB_2_WRITE_REGION_CENTROIDS "$(MITAB_OUT_WRITE_REGION_CENTROIDS_MITAB_2)"
+GUI CHOICE MITAB_OUT_WRITE_REGION_CENTROIDS_MITAB_2 yes%no Generate and Write Region Centroids:
+DEFAULT_MACRO MITAB_OUT_TWO_POINT_LINE_AS_POLYLINE_MITAB_2 no
+MITAB_2_TWO_POINT_LINE_AS_POLYLINE "$(MITAB_OUT_TWO_POINT_LINE_AS_POLYLINE_MITAB_2)"
+GUI OPTIONAL CHOICE MITAB_OUT_TWO_POINT_LINE_AS_POLYLINE_MITAB_2 yes%no Write 2 Point Line as Polyline:
+DEFAULT_MACRO MITAB_OUT_STROKE_ARCS_MITAB_2 no
+MITAB_2_STROKE_ARCS "$(MITAB_OUT_STROKE_ARCS_MITAB_2)"
+GUI OPTIONAL CHOICE MITAB_OUT_STROKE_ARCS_MITAB_2 yes%no Stroke Arcs into Polyline:
+DEFAULT_MACRO MITAB_OUT_FME_GROUP_NAMED3_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_OUT_FME_GROUP_NAMED3_MITAB_2 MITAB_OUT_ENCODING_MITAB_2 File Contents
+DEFAULT_MACRO MITAB_OUT_ENCODING_MITAB_2 fme-source-encoding
+MITAB_2_ENCODING "$(MITAB_OUT_ENCODING_MITAB_2)"
+GUI STRING_OR_ENCODING MITAB_OUT_ENCODING_MITAB_2 fme-source-encoding%fme-system%SJIS%CP437%CP850%CP852%CP855%CP857%CP860%CP861%CP863%CP864%CP865%CP869%CP874%CP932%CP936%CP950%CP1250%CP1251%CP1252%CP1253%CP1254%CP1255%CP1256%CP1257%ISO8859-1%ISO8859-2%ISO8859-3%ISO8859-4%ISO8859-5%ISO8859-6%ISO8859-7%ISO8859-8%ISO8859-9 Character Encoding:
+# ============================================================================
+# By default, we'll NOT try to use any bounding box information that can be
+# read from the source data when the output coordinate system is unknown
+DEFAULT_MACRO MITAB_OUT__USE_SOURCE_BOUNDING_BOX_MITAB_2 no
+MITAB_2__USE_SOURCE_BOUNDING_BOX "$(MITAB_OUT__USE_SOURCE_BOUNDING_BOX_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_PLUGIN_MAX_CHANNELS_MITAB_2 100
+MITAB_2_PLUGIN_MAX_CHANNELS "$(MITAB_OUT_PLUGIN_MAX_CHANNELS_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_FME_GROUP_NAMED4_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_OUT_FME_GROUP_NAMED4_MITAB_2 MITAB_OUT_COORDSYS_STATEMENT_MITAB_2%MITAB_OUT_MIF_MINX_MITAB_2%MITAB_OUT_MIF_MINY_MITAB_2%MITAB_OUT_MIF_MAXX_MITAB_2%MITAB_OUT_MIF_MAXY_MITAB_2 Coordinate System
+# ============================================================================
+# The following lines override the default coordinate system for features. This
+# provides a mapinfo-specific coordinate system line to the writer.
+DEFAULT_MACRO MITAB_OUT_COORDSYS_STATEMENT_MITAB_2 
+MITAB_2_COORDSYS_STATEMENT "$(MITAB_OUT_COORDSYS_STATEMENT_MITAB_2)"
+GUI OPTIONAL TEXT MITAB_OUT_COORDSYS_STATEMENT_MITAB_2 Coordinate System Statement:
+# ============================================================================
+# The following lines provide a bounding area for the output files. Because
+# MapInfo has a limited precision available for coordinate storage, providing
+# a tight bounds on the storage can preserve accuracy.
+# Despite being named MIF_ these apply to MapInfo and MITAB too
+DEFAULT_MACRO MITAB_OUT_MIF_MINX_MITAB_2 
+MITAB_2_MIF_MINX "$(MITAB_OUT_MIF_MINX_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_MIF_MINY_MITAB_2 
+MITAB_2_MIF_MINY "$(MITAB_OUT_MIF_MINY_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_MIF_MAXX_MITAB_2 
+MITAB_2_MIF_MAXX "$(MITAB_OUT_MIF_MAXX_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_MIF_MAXY_MITAB_2 
+MITAB_2_MIF_MAXY "$(MITAB_OUT_MIF_MAXY_MITAB_2)"
+GUI OPTIONAL FLOAT MITAB_OUT_MIF_MINX_MITAB_2 Bounds Min X:
+GUI OPTIONAL FLOAT MITAB_OUT_MIF_MINY_MITAB_2 Bounds Min Y:
+GUI OPTIONAL FLOAT MITAB_OUT_MIF_MAXX_MITAB_2 Bounds Max X:
+GUI OPTIONAL FLOAT MITAB_OUT_MIF_MAXY_MITAB_2 Bounds Max Y:
+# ============================================================================
+# Opt in for destination dataset type vs format type validation
+DEFAULT_MACRO MITAB_OUT_DESTINATION_DATASETTYPE_VALIDATION_MITAB_2 Yes
+MITAB_2_DESTINATION_DATASETTYPE_VALIDATION "$(MITAB_OUT_DESTINATION_DATASETTYPE_VALIDATION_MITAB_2)"
+DEFAULT_MACRO MITAB_OUT_COORDINATE_SYSTEM_GRANULARITY_MITAB_2 FEATURE_TYPE
+MITAB_2_COORDINATE_SYSTEM_GRANULARITY "$(MITAB_OUT_COORDINATE_SYSTEM_GRANULARITY_MITAB_2)"
+# ============================================================================
+# The following GUI line prompts for a folder to be used as the
+# the destination for the files.
+# The user input is stored in a macro, which is then used to define
+# the dataset to be written.
+#! END_DEST_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO DestDataset
+INCLUDE [ if {"$(DestDataset)" != ""} {                          \
+ puts {DEFAULT_MACRO DestDataset_MITAB_2 $(DestDataset)}         \
+ } ]
+#! END_WB_HEADER
+#! START_DEST_HEADER MITAB MITAB_2
+DEFAULT_MACRO DestDataset_MITAB_2 $(DestDataset_MITAB)
+GUI DIRNAME DestDataset_MITAB_2 Destination MapInfo Folder:
+# ============================================================================ 
+MITAB_2_GENERATE_FME_BUILD_NUM 19238
+MITAB_2_BOUNDS $(MITAB_OUT_MIF_MINX_MITAB_2) $(MITAB_OUT_MIF_MINY_MITAB_2) $(MITAB_OUT_MIF_MAXX_MITAB_2) $(MITAB_OUT_MIF_MAXY_MITAB_2)
+INCLUDE "$(FME_HOME)/metafile/mapinfoMacros.fmi"
+MITAB_2_DATASET "$(DestDataset_MITAB_2)"
+#! END_DEST_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2025.0.1.0 (20250327 - Build 25220 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_MITAB_1 MITAB_1
+DEFAULT_MACRO DATASET_KEYWORD_MITAB_2 MITAB_2
+# -------------------------------------------------------------------------
+
+MITAB_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+MITAB_1_DEF Parks   ParkId                       smallint   RefParkId                    smallint   ParkName                     char(40)   NeighborhoodName             char(40)   VisitorCount                 smallint   TreeCount                    smallint   DogPark                      char(1)   Washrooms                    char(1)   SpecialFeatures              char(1)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_MITAB_1)   INPUT FEATURE_TYPE *    ROUTE MITAB MITAB_1::Parks multi_reader_keyword,$(DATASET_KEYWORD_MITAB_1) TO FME_GENERIC ::Parks ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+MITAB_1_MERGE_DEF MITAB_1::Parks EXACT Parks
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Parks_MITAB_1 Splitter"    INPUT FEATURE_TYPE Parks    OUTPUT FEATURE_TYPE Parks_MITAB_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FACTORY_NAME { AttributeManager }    INPUT  FEATURE_TYPE Parks_MITAB_1    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ACTION_COLUMN 4    DEF_VAL_COLUMN 2    NUM_OF_COLUMNS 5    MISSING_INPUT_ATTR_HANDLING RENAME_SET_VALUE REMOVE    ATTR_ACTION { "ParkId" "ParkId" "" "int16" "NO_OP" }      ATTR_ACTION { "ParkName" "ParkName" "" "varchar<openparen>40<closeparen>" "NO_OP" }      ATTR_ACTION { "NeighborhoodName" "Neighborhood" "" "varchar<openparen>40<closeparen>" "RENAME_SET_VALUE" }      ATTR_ACTION { "VisitorCount" "VisitorCount" "" "int16" "NO_OP" }      ATTR_ACTION { "TreeCount" "TreeCount" "" "int16" "NO_OP" }      ATTR_ACTION { "DogPark" "DogPark" "" "varchar<openparen>1<closeparen>" "NO_OP" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeManager_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { TestFilter_INPUT }    INPUT  FEATURE_TYPE AttributeManager_OUTPUT    OUTPUT { FEATURE_TYPE TestFilter_INPUTLINE }
+FACTORY_DEF {*} TestFactory FACTORY_NAME { TestFilter } INPUT FEATURE_TYPE TestFilter_INPUTLINE FEATURE_TABLE_SHIM_SUPPORT Yes PASSED_TEST_GROUP_OUTPUT FIRST TEST_GROUP TEST { @EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>DogPark<closeparen>,TestFilter) = Y ENCODED } BOOLEAN_OPERATOR OR COMPOSITE_TEST_EXPR "1" OUTPUT PASSED_0 FEATURE_TYPE TestFilter_Dog<space>Parks TEST_GROUP TEST { ParkName ATTRIBUTE_HAS_A_VALUE "" ENCODED } BOOLEAN_OPERATOR OR COMPOSITE_TEST_EXPR "1" OUTPUT PASSED_1 FEATURE_TYPE TestFilter_Named<space>Non-Dog<space>Parks OUTPUT FAILED FEATURE_TYPE TestFilter_Unnamed<space>Parks
+FACTORY_DEF * TeeFactory   FACTORY_NAME "TestFilter Dog<space>Parks Transformer Output Nuker"   INPUT FEATURE_TYPE TestFilter_Dog<space>Parks
+FACTORY_DEF * TeeFactory   FACTORY_NAME "TestFilter Unnamed<space>Parks Transformer Output Nuker"   INPUT FEATURE_TYPE TestFilter_Unnamed<space>Parks
+# -------------------------------------------------------------------------
+Lookup AttributeRangeFilter_LOOKUP_TABLE      15001:100000 Popular           0:15000 Not<space>Popular   :               <UNFILTERED>   ENCODED|RANGE_MAP
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { AttributeRangeFilter }    INPUT  FEATURE_TYPE TestFilter_Named<space>Non-Dog<space>Parks    OUTPUT { FEATURE_TYPE *       @FeatureType(AttributeRangeFilter_@Lookup(AttributeRangeFilter_LOOKUP_TABLE,VisitorCount,RANGE_MAP|ENCODED_ATTR)) }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeRangeFilter <UNFILTERED> Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeRangeFilter_<UNFILTERED>
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME { AttributeCreator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE AttributeRangeFilter_Popular    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    NUM_OF_COLUMNS 5    ATTR_ACTION { "" "Popularity" "SET_TO" "Popular" "varchar(100)" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME { AttributeCreator_2 }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE "AttributeRangeFilter_Not Popular"    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    NUM_OF_COLUMNS 5    ATTR_ACTION { "" "Popularity" "SET_TO" "Not<space>Popular" "varchar(100)" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeCreator_2_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { AttributeFilter }    INPUT  FEATURE_TYPE AttributeCreator_2_OUTPUT    INPUT  FEATURE_TYPE AttributeCreator_OUTPUT    OUTPUT { FEATURE_TYPE AttributeFilter_FILTER }
+FACTORY_DEF {*} AttributeFilterFactory FACTORY_NAME AttributeFilter_Filter COMMAND_PARM_EVALUATION SINGLE_PASS INPUT FEATURE_TYPE AttributeFilter_FILTER FILTER_ATTRIBUTE { Neighborhood } FILTER_VALUES { <lt>EMPTY<gt> <lt>MISSING<gt> <lt>NULL<gt> <lt>UNFILTERED<gt> Downtown Fairview Kitsilano Mount<space>Pleasant Strathcona West<space>End } PRESERVE_FEATURE_ORDER PER_OUTPUT_PORT OUTPUT <lt>EMPTY<gt> FEATURE_TYPE AttributeFilter_<lt>EMPTY<gt> OUTPUT <lt>MISSING<gt> FEATURE_TYPE AttributeFilter_<lt>MISSING<gt> OUTPUT <lt>NULL<gt> FEATURE_TYPE AttributeFilter_<lt>NULL<gt> OUTPUT <lt>UNFILTERED<gt> FEATURE_TYPE AttributeFilter_<lt>UNFILTERED<gt> OUTPUT Downtown FEATURE_TYPE AttributeFilter_Downtown OUTPUT Fairview FEATURE_TYPE AttributeFilter_Fairview OUTPUT Kitsilano FEATURE_TYPE AttributeFilter_Kitsilano OUTPUT Mount<space>Pleasant FEATURE_TYPE AttributeFilter_Mount<space>Pleasant OUTPUT Strathcona FEATURE_TYPE AttributeFilter_Strathcona OUTPUT West<space>End FEATURE_TYPE AttributeFilter_West<space>End
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter <lt>EMPTY<gt> Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_<lt>EMPTY<gt>
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter <lt>MISSING<gt> Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_<lt>MISSING<gt>
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter <lt>NULL<gt> Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_<lt>NULL<gt>
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter <lt>UNFILTERED<gt> Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_<lt>UNFILTERED<gt>
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter Kitsilano Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_Kitsilano
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter Mount<space>Pleasant Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_Mount<space>Pleasant
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter Strathcona Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_Strathcona
+FACTORY_DEF * TeeFactory   FACTORY_NAME "AttributeFilter West<space>End Transformer Output Nuker"   INPUT FEATURE_TYPE AttributeFilter_West<space>End
+# -------------------------------------------------------------------------
+INCLUDE [          if { ({Plane Area} == {Sloped Area}) } {             puts {MACRO AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,SLOPED_AREAS,"1")};          } else {             puts {MACRO AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,"1")};          }          ]
+FACTORY_DEF {*} ExecuteFunctionFactory    FACTORY_NAME { AreaCalculator_AreaCalculator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE AttributeFilter_Downtown    INPUT  FEATURE_TYPE AttributeFilter_Fairview    FUNCTION_DEFINITION { $(AreaCalculator_func) }    RESULT_ATTRIBUTE { "ParkArea" }    OUTPUT { COMPLETE FEATURE_TYPE AreaCalculator_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} StatisticsCalculatorFactory    FACTORY_NAME { StatisticsCalculator }    INPUT  FEATURE_TYPE AreaCalculator_OUTPUT    GROUP_BY { Neighborhood }    FLUSH_WHEN_GROUPS_CHANGE { No }    FEAT_STATS { ParkArea,NUMERIC_MODE,,,,,MEAN,,,,,,,, }    ADVANCED_MODE { NO }    CUMULATIVE_STATS {  }    CALCULATION_MODE { NUMERIC }    ATTR_ACCUM_MODE { None }    ATTRIBUTE_NAMES_AND_TYPES { Popularity,varchar<openparen>100<closeparen>,ParkId,int16,ParkName,varchar<openparen>40<closeparen>,Neighborhood,varchar<openparen>40<closeparen>,VisitorCount,int16,TreeCount,int16,DogPark,varchar<openparen>1<closeparen>,ParkArea,real64 }    TREAT_INVALID_AS_NULL Yes    OUTPUT { COMPLETE FEATURE_TYPE StatisticsCalculator_COMPLETE        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FACTORY_NAME { AttributeRenamer }    INPUT  FEATURE_TYPE StatisticsCalculator_COMPLETE 	ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    MISSING_INPUT_ATTR_HANDLING { RENAME_SET_DEFAULT REMOVE }    KEEP_OUTPUT_ATTRS_ONLY { no } 	ATTR_ACTION { "ParkArea.mean" "AverageParkArea" "RENAME_SET_DEFAULT" "" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeRenamer_OUTPUT        }
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC AttributeRenamer_OUTPUT TO MITAB __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>ParksMaintenanceData<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+MITAB_2_DEF ParksMaintenanceData   AverageParkArea              float   Popularity                   char(100)   ParkId                       smallint   ParkName                     char(40)   Neighborhood                 char(40)   VisitorCount                 smallint   TreeCount                    smallint   DogPark                      char(1)   ParkArea                     float
