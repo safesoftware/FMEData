@@ -1,0 +1,103 @@
+{
+	"additionalProperties": false,
+	"properties": {
+		"decision": {
+			"enum": [
+				"accept",
+				"accept_with_warnings",
+				"reject"
+			],
+			"type": "string"
+		},
+		"issues": {
+			"items": {
+				"additionalProperties": false,
+				"properties": {
+					"code": {
+						"minLength": 1,
+						"type": "string"
+					},
+					"evidence": {
+						"type": "string"
+					},
+					"message": {
+						"minLength": 1,
+						"type": "string"
+					},
+					"severity": {
+						"enum": [
+							"error",
+							"warning",
+							"info"
+						],
+						"type": "string"
+					}
+				},
+				"required": [
+					"code",
+					"severity",
+					"message",
+					"evidence"
+				],
+				"type": "object"
+			},
+			"type": "array"
+		},
+		"quality_tags": {
+			"items": {
+				"enum": [
+					"Completeness",
+					"Validity",
+					"Consistency",
+					"Accuracy"
+				],
+				"type": "string"
+			},
+			"type": "array"
+		},
+		"record_id": {
+			"minLength": 1,
+			"type": "string"
+		},
+		"suggested_fixes": {
+			"items": {
+				"additionalProperties": false,
+				"properties": {
+					"confidence": {
+						"maximum": 1,
+						"minimum": 0,
+						"type": "number"
+					},
+					"field": {
+						"minLength": 1,
+						"type": "string"
+					},
+					"proposed_value": {
+						"description": "Proposed value as a string; serialize non-string literals as strings if needed.",
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"field",
+					"proposed_value",
+					"reason",
+					"confidence"
+				],
+				"type": "object"
+			},
+			"type": "array"
+		}
+	},
+	"required": [
+		"record_id",
+		"decision",
+		"issues",
+		"suggested_fixes",
+		"quality_tags"
+	],
+	"title": "SewagePipeRecordValidation",
+	"type": "object"
+}
