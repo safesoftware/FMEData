@@ -27,6 +27,7 @@ jobs:
       - name: Sync to S3
         run: |
           aws s3 sync . s3://FMEData/FMEData/ \
+            --delete \
             --exclude "index.html" \
             --exclude ".git/*" \
             --exclude ".github/*"
