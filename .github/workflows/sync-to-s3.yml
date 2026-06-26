@@ -27,6 +27,14 @@ jobs:
       - name: Sync to S3
         run: |
           aws s3 sync . s3://FMEData/FMEData/ \
+            --delete \
             --exclude ".git/*" \
             --exclude ".github/*"
  
+      - name: Create and upload ZIP
+        run: |
+          cd ..
+          zip -r FMEData.zip FMEData/ \
+            --exclude "FMEData/.git/*" \
+            --exclude "FMEData/.github/*"
+          aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
