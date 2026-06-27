@@ -28,9 +28,10 @@ jobs:
         run: |
           aws s3 sync . s3://FMEData/FMEData/ \
             --delete \
-            --exclude "index.html" \
             --exclude ".git/*" \
-            --exclude ".github/*"
+            --exclude ".github/*" \
+            --exclude "*.gdb/*" \
+            --exclude "index.html"
  
       - name: Create and upload ZIP
         run: |
@@ -39,3 +40,69 @@ jobs:
             --exclude "FMEData/.git/*" \
             --exclude "FMEData/.github/*"
           aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
+ 
+      - name: Generate and upload index.html
+        run: |
+          python3 << 'EOF'
+          import subprocess
+          import json
+          from datetime import datetime
+ 
+          region = '${{ secrets.AWS_REGION }}'
+          bucket = 'FMEData'
+          prefix = 'FMEData/'
+ 
+          result = subprocess.run(
+            ['aws', 's3api', 'list-objects-v2', '--bucket', bucket, '--prefix', prefix],
+            capture_output=True, text=True
+          )
+          data = json.loads(result.stdout)
+ 
+          rows = []
+          for obj in sorted(data.get('Contents', []), key=lambda x: x['Key']):
+            key = obj['Key']
+            if key.endswith('index.htm'):
+              continue
+            name = key[len(prefix):]
+            if not name:
+              continue
+            url = f'https://{bucket}.s3.{region}.amazonaws.com/{key}'
+            size = obj['Size']
+            size_str = f'{size / 1024:.1f} KB' if size < 1024 * 1024 else f'{size / 1024 / 1024:.1f} MB'
+            modified = obj['LastModified'][:10]
+            rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td><td>{modified}</td></tr>')
+ 
+          generated = datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
+          html = f"""<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>FMEData</title>
+            <style>
+              body {{ font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; }}
+              h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
+              p.meta {{ color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }}
+              table {{ width: 100%; border-collapse: collapse; }}
+              th {{ text-align: left; border-bottom: 2px solid #ddd; padding: 8px 12px; }}
+              td {{ padding: 8px 12px; border-bottom: 1px solid #eee; }}
+              a {{ color: #0066cc; text-decoration: none; }}
+              a:hover {{ text-decoration: underline; }}
+            </style>
+          </head>
+          <body>
+            <h1>FMEData</h1>
+            <p class="meta">Generated {generated}</p>
+            <table>
+              <thead><tr><th>File</th><th>Size</th><th>Last Modified</th></tr></thead>
+              <tbody>{''.join(rows)}</tbody>
+            </table>
+          </body>
+          </html>"""
+ 
+          with open('index.htm', 'w') as f:
+            f.write(html)
+ 
+          subprocess.run(['aws', 's3', 'cp', 'index.htm', f's3://{bucket}/{prefix}index.htm'])
+          print(f'Uploaded index.html with {len(rows)} entries.')
+          EOF
