@@ -80,11 +80,12 @@ jobs:
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>FMEData</title>
             <style>
-              body {{ font-family: sans-serif; max-width: 900px; margin: 20px auto; padding: 0 10px; }}
+              body {{ font-family: sans-serif; margin: 20px 10px; padding: 0; }}
               h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
               p.meta {{ color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }}
               table {{ width: 100%; border-collapse: collapse; }}
               th {{ text-align: left; border-bottom: 2px solid #ddd; padding: 8px 12px; }}
+              th button {{ background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; color: inherit; }}
               td {{ padding: 8px 12px; border-bottom: 1px solid #eee; }}
               a {{ color: #0066cc; text-decoration: none; }}
               a:hover {{ text-decoration: underline; }}
@@ -93,10 +94,53 @@ jobs:
           <body>
             <h1>FMEData</h1>
             <p class="meta">Generated {generated}</p>
-            <table>
-              <thead><tr><th>File</th><th>Size</th><th>Last Modified</th></tr></thead>
+            <table id="fileTable">
+              <thead>
+                <tr>
+                  <th><button type="button" data-sort="name">File</button></th>
+                  <th><button type="button" data-sort="size">Size</button></th>
+                  <th><button type="button" data-sort="date">Last Modified</button></th>
+                </tr>
+              </thead>
               <tbody>{''.join(rows)}</tbody>
             </table>
+            <script>
+              const table = document.getElementById('fileTable');
+              const tbody = table.tBodies[0];
+              const headers = table.querySelectorAll('th button');
+              const directions = {{'name': 1, 'size': 1, 'date': 1}};
+
+              function parseSize(value) {{
+                const match = value.match(/^([0-9.]+)\\s*(kb|mb|gb)?$/i);
+                if (!match) return Number.MAX_SAFE_INTEGER;
+                const amount = parseFloat(match[1]);
+                const unit = (match[2] || 'b').toLowerCase();
+                const multipliers = {{'b': 1, 'kb': 1024, 'mb': 1024 * 1024, 'gb': 1024 * 1024 * 1024}};
+                return amount * (multipliers[unit] || 1);
+              }}
+
+              headers.forEach((button) => {{
+                button.addEventListener('click', () => {{
+                  const key = button.dataset.sort;
+                  const direction = directions[key] || 1;
+                  const rows = Array.from(tbody.rows);
+
+                  rows.sort((a, b) => {{
+                    let aValue = a.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+                    let bValue = b.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+
+                    if (key === 'size') {{
+                      return (parseSize(aValue) - parseSize(bValue)) * direction;
+                    }}
+
+                    return aValue.localeCompare(bValue) * direction;
+                  }});
+
+                  rows.forEach((row) => tbody.appendChild(row));
+                  directions[key] *= -1;
+                }});
+              }});
+            </script>
           </body>
           </html>"""
  
