@@ -71,8 +71,7 @@ jobs:
             url = f'https://s3.amazonaws.com/{bucket}/{key}'
             size = obj['Size']
             size_str = f'{size / 1024:.1f} KB' if size < 1024 * 1024 else f'{size / 1024 / 1024:.1f} MB'
-            modified = datetime.fromisoformat(obj['LastModified']).astimezone(ZoneInfo('America/Los_Angeles')).strftime('%Y-%m-%d %H:%M %Z')
-            rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td><td>{modified}</td></tr>')
+            rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td></tr>')
  
           pacific = datetime.now(timezone.utc).astimezone(ZoneInfo('America/Los_Angeles'))
           generated = pacific.strftime('%A, %Y-%m-%d %H:%M %Z')
@@ -104,7 +103,6 @@ jobs:
                 <tr>
                   <th><button type="button" data-sort="name">File</button></th>
                   <th><button type="button" data-sort="size">Size</button></th>
-                  <th><button type="button" data-sort="date">Last Modified</button></th>
                 </tr>
               </thead>
               <tbody>{''.join(rows)}</tbody>
@@ -113,7 +111,7 @@ jobs:
               const table = document.getElementById('fileTable');
               const tbody = table.tBodies[0];
               const headers = table.querySelectorAll('th button');
-              const directions = {{'name': 1, 'size': 1, 'date': 1}};
+              const directions = {{'name': 1, 'size': 1}};
               const filterInput = document.getElementById('filter');
 
               filterInput.addEventListener('input', () => {{
@@ -140,8 +138,8 @@ jobs:
                   const rows = Array.from(tbody.rows);
 
                   rows.sort((a, b) => {{
-                    let aValue = a.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
-                    let bValue = b.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+                    let aValue = a.cells[key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+                    let bValue = b.cells[key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
 
                     if (key === 'size') {{
                       return (parseSize(aValue) - parseSize(bValue)) * direction;
