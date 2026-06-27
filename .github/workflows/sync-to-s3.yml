@@ -36,6 +36,7 @@ jobs:
           cd ..
           zip -r FMEData.zip FMEData/ \
             --exclude "FMEData/.git/*" \
+            --exclude "FMEData/.git*" \
             --exclude "FMEData/.github/*"
           aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
  
@@ -44,7 +45,8 @@ jobs:
           python3 << 'EOF'
           import subprocess
           import json
-          from datetime import datetime
+          from datetime import datetime, timezone
+          from zoneinfo import ZoneInfo
  
           region = '${{ secrets.AWS_REGION }}'
           bucket = 'FMEData'
@@ -72,7 +74,8 @@ jobs:
             modified = obj['LastModified'][:10]
             rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td><td>{modified}</td></tr>')
  
-          generated = datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
+          pacific = datetime.now(timezone.utc).astimezone(ZoneInfo('America/Los_Angeles'))
+          generated = pacific.strftime('%A, %Y-%m-%d %H:%M %Z')
           html = f"""<!DOCTYPE html>
           <html lang="en">
           <head>
