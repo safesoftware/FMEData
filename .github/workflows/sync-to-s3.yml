@@ -86,6 +86,7 @@ jobs:
               body {{ font-family: sans-serif; margin: 20px 10px; padding: 0; }}
               h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
               p.meta {{ color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }}
+              input#filter {{ width: 100%; box-sizing: border-box; padding: 8px 12px; font: inherit; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }}
               table {{ width: 100%; border-collapse: collapse; }}
               th {{ text-align: left; border-bottom: 2px solid #ddd; padding: 8px 12px; }}
               th button {{ background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; color: inherit; }}
@@ -97,6 +98,7 @@ jobs:
           <body>
             <h1>FMEData</h1>
             <p class="meta">Generated {generated}</p>
+            <input type="text" id="filter" placeholder="Filter by file name...">
             <table id="fileTable">
               <thead>
                 <tr>
@@ -112,6 +114,15 @@ jobs:
               const tbody = table.tBodies[0];
               const headers = table.querySelectorAll('th button');
               const directions = {{'name': 1, 'size': 1, 'date': 1}};
+              const filterInput = document.getElementById('filter');
+
+              filterInput.addEventListener('input', () => {{
+                const term = filterInput.value.trim().toLowerCase();
+                Array.from(tbody.rows).forEach((row) => {{
+                  const name = row.cells[0].textContent.toLowerCase();
+                  row.style.display = name.includes(term) ? '' : 'none';
+                }});
+              }});
 
               function parseSize(value) {{
                 const match = value.match(/^([0-9.]+)\\s*(kb|mb|gb)?$/i);
