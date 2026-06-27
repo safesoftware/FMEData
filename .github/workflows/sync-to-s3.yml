@@ -28,10 +28,7 @@ jobs:
         run: |
           aws s3 sync . s3://FMEData/FMEData/ \
             --delete \
-            --exclude ".git/*" \
             --exclude ".git*" \
-            --exclude ".github/*" \
-            --exclude "*.gdb/*" \
             --exclude "index.html"
  
       - name: Create and upload ZIP
@@ -63,6 +60,8 @@ jobs:
           for obj in sorted(data.get('Contents', []), key=lambda x: x['Key']):
             key = obj['Key']
             if key.endswith('index.htm'):
+              continue
+            if '.gdb/' in key:
               continue
             name = key[len(prefix):]
             if not name:
