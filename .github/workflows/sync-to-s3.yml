@@ -39,7 +39,7 @@ jobs:
             --exclude "FMEData/.github/*"
           aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
  
-      - name: Generate and upload index.html
+      - name: Generate and upload index.htm
         run: |
           python3 << 'EOF'
           import subprocess
@@ -80,7 +80,7 @@ jobs:
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>FMEData</title>
             <style>
-              body {{ font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; }}
+              body {{ font-family: sans-serif; max-width: 900px; margin: 20px auto; padding: 0 10px; }}
               h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
               p.meta {{ color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }}
               table {{ width: 100%; border-collapse: collapse; }}
@@ -104,5 +104,5 @@ jobs:
             f.write(html)
  
           subprocess.run(['aws', 's3', 'cp', 'index.htm', f's3://{bucket}/{prefix}index.htm'])
-          print(f'Uploaded index.html with {len(rows)} entries.')
+          print(f'Uploaded index.htm with {len(rows)} entries.')
           EOF
