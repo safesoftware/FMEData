@@ -71,7 +71,7 @@ jobs:
             url = f'https://s3.amazonaws.com/{bucket}/{key}'
             size = obj['Size']
             size_str = f'{size / 1024:.1f} KB' if size < 1024 * 1024 else f'{size / 1024 / 1024:.1f} MB'
-            modified = obj['LastModified'][:10]
+            modified = datetime.fromisoformat(obj['LastModified']).astimezone(ZoneInfo('America/Los_Angeles')).strftime('%Y-%m-%d %H:%M %Z')
             rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td><td>{modified}</td></tr>')
  
           pacific = datetime.now(timezone.utc).astimezone(ZoneInfo('America/Los_Angeles'))
