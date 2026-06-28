@@ -40,7 +40,7 @@ jobs:
             --exclude "FMEData/.github/*"
           aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
  
-      - name: Generate and upload index.htm
+      - name: Generate and upload index.html
         run: |
           python3 << 'EOF'
           import subprocess
@@ -61,7 +61,7 @@ jobs:
           rows = []
           for obj in sorted(data.get('Contents', []), key=lambda x: x['Key']):
             key = obj['Key']
-            if key.endswith('index.htm'):
+            if key.endswith('index.html'):
               continue
             if '.gdb/' in key:
               continue
@@ -157,9 +157,9 @@ jobs:
           </body>
           </html>"""
  
-          with open('index.htm', 'w') as f:
+          with open('index.html', 'w') as f:
             f.write(html)
- 
-          subprocess.run(['aws', 's3', 'cp', 'index.htm', f's3://{bucket}/{prefix}index.htm'])
-          print(f'Uploaded index.htm with {len(rows)} entries.')
+
+          subprocess.run(['aws', 's3', 'cp', 'index.html', f's3://{bucket}/{prefix}index.html'])
+          print(f'Uploaded index.html with {len(rows)} entries.')
           EOF
