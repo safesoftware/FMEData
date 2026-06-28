@@ -17,6 +17,7 @@ FMEData main
 See GitHub branches for specific revisions and other versions of this dataset
 
 Updates to FMEData main are automatically synced to the FMEData S3 bucket.
+https://s3.amazonaws.com/FMEData/FMEData/index.html
 
 ## Document and Copyright Information
 
