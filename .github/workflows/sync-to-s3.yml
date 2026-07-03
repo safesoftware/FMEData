@@ -1,0 +1,173 @@
+name: Sync to S3
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+ 
+    permissions:
+      id-token: write   # Required for OIDC auth (recommended)
+      contents: read
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Full history required to restore per-file mtimes
+
+      - name: Restore file mtimes from git history
+        uses: chetan/git-restore-mtime-action@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+ 
+      - name: Sync to S3
+        run: |
+          aws s3 sync . s3://FMEData/FMEData/ \
+            --delete \
+            --exclude ".git*" \
+            --exclude "index.html"
+ 
+      - name: Create and upload ZIP
+        run: |
+          cd ..
+          zip -r FMEData.zip FMEData/ \
+            --exclude "FMEData/.git/*" \
+            --exclude "FMEData/.git*" \
+            --exclude "FMEData/.github/*"
+          aws s3 cp FMEData.zip s3://FMEData/FMEData.zip
+ 
+      - name: Generate and upload index.html
+        run: |
+          python3 << 'EOF'
+          import subprocess
+          import json
+          from datetime import datetime, timezone
+          from zoneinfo import ZoneInfo
+ 
+          region = '${{ secrets.AWS_REGION }}'
+          bucket = 'FMEData'
+          prefix = 'FMEData/'
+ 
+          result = subprocess.run(
+            ['aws', 's3api', 'list-objects-v2', '--bucket', bucket, '--prefix', prefix],
+            capture_output=True, text=True
+          )
+          data = json.loads(result.stdout)
+ 
+          rows = []
+          for obj in sorted(data.get('Contents', []), key=lambda x: x['Key']):
+            key = obj['Key']
+            if key.endswith('index.html'):
+              continue
+            if '.gdb/' in key:
+              continue
+            name = key[len(prefix):]
+            if not name:
+              continue
+            url = f'https://s3.amazonaws.com/{bucket}/{key}'
+            size = obj['Size']
+            size_str = f'{size / 1024:.1f} KB' if size < 1024 * 1024 else f'{size / 1024 / 1024:.1f} MB'
+            modified = datetime.fromisoformat(obj['LastModified']).astimezone(ZoneInfo('America/Los_Angeles')).strftime('%Y-%m-%d %H:%M %Z')
+            rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{size_str}</td><td>{modified}</td></tr>')
+ 
+          pacific = datetime.now(timezone.utc).astimezone(ZoneInfo('America/Los_Angeles'))
+          generated = pacific.strftime('%A, %Y-%m-%d %H:%M %Z')
+          html = f"""<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>FMEData</title>
+            <style>
+              body {{ font-family: sans-serif; margin: 20px 10px; padding: 0; }}
+              h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
+              p.meta {{ color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }}
+              input#filter {{ width: 100%; box-sizing: border-box; padding: 8px 12px; font: inherit; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }}
+              table {{ width: 100%; border-collapse: collapse; }}
+              th {{ text-align: left; border-bottom: 2px solid #ddd; padding: 8px 12px; }}
+              th button {{ background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; color: inherit; }}
+              td {{ padding: 8px 12px; border-bottom: 1px solid #eee; }}
+              th:nth-child(2), td:nth-child(2),
+              th:nth-child(3), td:nth-child(3) {{ white-space: nowrap; width: 1%; }}
+              a {{ color: #0066cc; text-decoration: none; }}
+              a:hover {{ text-decoration: underline; }}
+            </style>
+          </head>
+          <body>
+            <h1>FMEData</h1>
+            <p class="meta">Generated {generated}</p>
+            <input type="text" id="filter" placeholder="Filter by file name...">
+            <table id="fileTable">
+              <thead>
+                <tr>
+                  <th><button type="button" data-sort="name">File</button></th>
+                  <th><button type="button" data-sort="size">Size</button></th>
+                  <th><button type="button" data-sort="date">Last Modified</button></th>
+                </tr>
+              </thead>
+              <tbody>{''.join(rows)}</tbody>
+            </table>
+            <script>
+              const table = document.getElementById('fileTable');
+              const tbody = table.tBodies[0];
+              const headers = table.querySelectorAll('th button');
+              const directions = {{'name': 1, 'size': 1, 'date': 1}};
+              const filterInput = document.getElementById('filter');
+
+              filterInput.addEventListener('input', () => {{
+                const term = filterInput.value.trim().toLowerCase();
+                Array.from(tbody.rows).forEach((row) => {{
+                  const name = row.cells[0].textContent.toLowerCase();
+                  row.style.display = name.includes(term) ? '' : 'none';
+                }});
+              }});
+
+              function parseSize(value) {{
+                const match = value.match(/^([0-9.]+)\\s*(kb|mb|gb)?$/i);
+                if (!match) return Number.MAX_SAFE_INTEGER;
+                const amount = parseFloat(match[1]);
+                const unit = (match[2] || 'b').toLowerCase();
+                const multipliers = {{'b': 1, 'kb': 1024, 'mb': 1024 * 1024, 'gb': 1024 * 1024 * 1024}};
+                return amount * (multipliers[unit] || 1);
+              }}
+
+              headers.forEach((button) => {{
+                button.addEventListener('click', () => {{
+                  const key = button.dataset.sort;
+                  const direction = directions[key] || 1;
+                  const rows = Array.from(tbody.rows);
+
+                  rows.sort((a, b) => {{
+                    let aValue = a.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+                    let bValue = b.cells[key === 'date' ? 2 : key === 'size' ? 1 : 0].textContent.trim().toLowerCase();
+
+                    if (key === 'size') {{
+                      return (parseSize(aValue) - parseSize(bValue)) * direction;
+                    }}
+
+                    return aValue.localeCompare(bValue) * direction;
+                  }});
+
+                  rows.forEach((row) => tbody.appendChild(row));
+                  directions[key] *= -1;
+                }});
+              }});
+            </script>
+          </body>
+          </html>"""
+ 
+          with open('index.html', 'w') as f:
+            f.write(html)
+
+          subprocess.run(['aws', 's3', 'cp', 'index.html', f's3://{bucket}/{prefix}index.html'])
+          print(f'Uploaded index.html with {len(rows)} entries.')
+          EOF

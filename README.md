@@ -16,6 +16,9 @@ FMEData main
 
 See GitHub branches for specific revisions and other versions of this dataset
 
+Updates to FMEData main are automatically synced to the FMEData S3 bucket.
+https://s3.amazonaws.com/FMEData/FMEData/index.html
+
 ## Document and Copyright Information
 
 Permission is hereby granted to use, modify and distribute the FME Tutorials and related data and documentation (collectively, the “Tutorials”), subject to the following restrictions:
@@ -51,7 +54,7 @@ Contains information licensed under the Open Government Licence – British Colu
 
 ## Copyright
 
-2005-2024 Safe Software Inc. All rights are reserved.
+2005-2026 Safe Software Inc. All rights are reserved.
 
 ## Revisions
 
