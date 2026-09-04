@@ -1,0 +1,2481 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME Form 2026.2 b26333\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\AdvancedReadingAndWriting\define-schema-from-a-schema-table-or-schema-feature.fmw
+#          --SourceDataset_GML "https://s3.amazonaws.com/FMEData/FMEData/Data/Emergency/FireHalls.gml"
+#          --FEATURE_TYPES ""
+#          --DestDataset_GML "C:\FMEData\Output\Training\NewCommunityMap.gml"
+#          --SourceDataset_MITAB "https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#          --FEATURE_TYPES_2 ""
+#          --SourceDataset_OPENFILEGDB "https://s3.amazonaws.com/FMEData/FMEData/Data/CommunityMapping/CommunityMap.gdb.zip"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   AI_CONTEXT_ENABLED="Yes"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1728.85 756.258"
+#!   DOC_TOP_LEFT="-446 -575.006"
+#!   ENABLE_DATA_CACHING="Yes"
+#!   ENABLE_FEATURE_COUNTING="Yes"
+#!   ENABLE_PERFORMANCE_PROFILING="No"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="26333"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="0fa30b29-517f-46c2-b92f-7d487cdb49ec"
+#!   FME_DOCUMENT_PRIORGUID="754f2717-34b5-4c06-98db-0951714cfe9e,0e9f4aa8-bea4-4bdd-af49-ba2b0cf5263a,3f478ae2-be5f-421c-ac4e-eefbe64f0564"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   INCOMPLETE_CACHE_HANDLING="Stale"
+#!   LAST_SAVE_BUILD="FME(R) 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+#!   LAST_SAVE_DATE="2026-09-02T11:45:06"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PROMPT_FOR_PARAMS="Yes"
+#!   PYTHON_COMPATIBILITY="313"
+#!   PYTHON_SCRIPTS_ENABLED="Yes"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   STOP_AT_BREAKPOINTS="No"
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1043.76 615.631"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="GML"
+#!   DATASET="$(SourceDataset_GML)"
+#!   KEYWORD="GML_3"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename xml_char(50) fme_color xml_char(50) fme_dataset xml_char(50) fme_feature_type xml_char(50) fme_fill_color xml_char(50) fme_geometry xml_char(50) fme_primary_axis xml_real64 fme_rotation xml_real64 fme_secondary_axis xml_real64 fme_start_angle xml_real64 fme_sweep_angle xml_real64 fme_text_size xml_real64 fme_text_string xml_char(50) fme_type xml_char(50) gml_id xml_char(254) gml_original_coordinate_system xml_char(64) gml_parent_id xml_char(254) gml_parent_property xml_char(254) gml_srsName xml_char(64) multi_reader_full_id xml_int32 multi_reader_id xml_int32 multi_reader_keyword xml_char(50) multi_reader_type xml_char(50) xml_ns_uri xml_char(254) xml_type xml_char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE_OR_URL"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="26333"
+#!   FEATURE_TYPES="$(FEATURE_TYPES)"
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="GML_IN_SYSTEM_ENCODING GML_IN_CONTINUE_ON_GEOM_ERROR GML_IN_CACHE_XSD GML_IN_CACHE_XSD_EXPIRY_TIME GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV GML_IN_MAP_GEOMETRY_COLUMNS GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES GML_IN_MAX_MULTI_LIST_LEVEL GML_IN_XML_FRAGMENTS_AS_DOCUMENTS GML_IN_USE_OLD_READER GML_IN_DISABLE_XML_NAMESPACE_PROCESSING GML_IN_FLATTEN_XML_FRAGMENTS GML_IN_XML_FRAGMENTS_AS_DOCUMENTS GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS GML_IN_MAP_COMPLEX_PROPERTIES_AS GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR GML_IN_MAP_PREDEFINED_GML_PROPERTIES GML_IN_MAP_EMBEDDED_OBJECTS_AS GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/xml"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="ALWAYS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the GML file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_NAME_EXPECTED"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_TYPE_EXPECTED"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the GML file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="MITAB"
+#!   DATASET="$(SourceDataset_MITAB)"
+#!   KEYWORD="MITAB_2"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename char(50) fme_color char(50) fme_dataset char(50) fme_feature_type char(50) fme_fill_color char(50) fme_geometry char(50) fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string char(50) fme_type char(50) mapinfo_brush_background integer mapinfo_brush_foreground integer mapinfo_brush_pattern smallint mapinfo_brush_transparent logical mapinfo_center_xcoord float mapinfo_center_ycoord float mapinfo_centroid_x float mapinfo_centroid_y float mapinfo_metadata{}.name char(255) mapinfo_metadata{}.value char(255) mapinfo_pen_color integer mapinfo_pen_pattern smallint mapinfo_pen_width smallint mapinfo_primary_axis float mapinfo_rotation float mapinfo_rounding float mapinfo_secondary_axis float mapinfo_smooth logical mapinfo_start_angle float mapinfo_sweep_angle float mapinfo_symbol_angle float mapinfo_symbol_color integer mapinfo_symbol_file_name char(255) mapinfo_symbol_font char(50) mapinfo_symbol_shape integer mapinfo_symbol_size integer mapinfo_symbol_style smallint mapinfo_text_fontbgcolor integer mapinfo_text_fontfgcolor integer mapinfo_text_fontname char(50) mapinfo_text_fontsize float mapinfo_text_fontstyle smallint mapinfo_text_fontstyle_allcaps char(10) mapinfo_text_fontstyle_blink char(10) mapinfo_text_fontstyle_bold char(10) mapinfo_text_fontstyle_expanded char(10) mapinfo_text_fontstyle_halo char(10) mapinfo_text_fontstyle_inverse char(10) mapinfo_text_fontstyle_italic char(10) mapinfo_text_fontstyle_opaque char(10) mapinfo_text_fontstyle_outline char(10) mapinfo_text_fontstyle_shadow char(10) mapinfo_text_fontstyle_strikeout char(10) mapinfo_text_fontstyle_underline char(10) mapinfo_text_height float mapinfo_text_justification char(30) mapinfo_text_line_end_x float mapinfo_text_line_end_y float mapinfo_text_line_pen_color integer mapinfo_text_line_pen_pattern integer mapinfo_text_line_pen_width integer mapinfo_text_linetype integer mapinfo_text_spacing smallint mapinfo_text_string char(255) mapinfo_text_width float mapinfo_type char(25) multi_reader_full_id integer multi_reader_id integer multi_reader_keyword char(50) multi_reader_type char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="26333"
+#!   FEATURE_TYPES="$(FEATURE_TYPES_2)"
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="Table1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the MITAB files"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the MITAB file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_SPATIAL_DEFINITION_TABLE"
+#!   VALUE="YES"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="SCHEMA_READER"
+#!   FORMAT="OPENFILEGDB"
+#!   DATASET="$(SourceDataset_OPENFILEGDB)"
+#!   KEYWORD="OPENFILEGDB_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE="openfilegdb_type {FME_GEN_GEOMETRY} openfilegdb_where_wwjd &quot;&quot;"
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename text(50) fme_color text(50) fme_dataset text(50) fme_feature_type text(50) fme_fill_color text(50) fme_geometry text(50) fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string text(50) fme_type text(50) multi_reader_full_id int multi_reader_id int multi_reader_keyword text(50) multi_reader_type text(50) OBJECTID integer64 openfilegdb_type string(255)"
+#!   DEFLINE_PARMS="&quot;GUI OPTIONAL NAMEDGROUP openfilegdb_table_settings_group openfilegdb_where_wwjd Table Settings&quot; &quot;&quot; &quot;GUI OPTIONAL TEXT_EDIT_SQL_CFG openfilegdb_where_wwjd MODE,WHERE;FORMAT,FILEGDB WHERE Clause&quot; &quot;&quot; "
+#!   ATTR_INDEX_TYPES="Indexed"
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="GEODATABASE"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="26333"
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="OPENFILEGDB_IN_BEGIN_SQL OPENFILEGDB_IN_END_SQL OPENFILEGDB_OUT_ALWAYS_CREATE_FEATURE_TYPES OPENFILEGDB_OUT_BEGIN_SQL OPENFILEGDB_OUT_END_SQL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING"
+#!   VALUE="DEFLINE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="ATTRIBUTE_READING_HISTORIC"
+#!   VALUE="ALL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DEF_PARAMETER_WRITER_SPATIAL_NAME"
+#!   VALUE="openfilegdb_shape_field"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="FeatureClass1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="Feature Class or Table"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the File Geodatabase folder"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_NAME_EXPECTED"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_TYPE_EXPECTED"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="SUPPORTS_ORDERED_FEATURE_TYPE_READING"
+#!   VALUE="yes"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify File Geodatabase folder"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DEFAULT_SPATIAL_NAME"
+#!   VALUE="SHAPE"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_SPATIAL_DEFINITION_TABLE"
+#!   VALUE="YES"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="false"
+#!   ROLE="WRITER"
+#!   FORMAT="GML"
+#!   DATASET="$(DestDataset_GML)"
+#!   KEYWORD="GML_1"
+#!   MULTI_GEOM_ALLOWED="true"
+#!   ATTR_MAX_LENGTH="254"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE="ANY"
+#!   FEATURE_TYPE_LENGTH="254"
+#!   FEATURE_TYPE_INVALID_CHARS="\\/&quot;:?*&lt;&gt;|[]= %~!@$&amp;#()^&apos;+"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename xml_char(50) fme_color xml_char(50) fme_dataset xml_char(50) fme_feature_type xml_char(50) fme_fill_color xml_char(50) fme_geometry xml_char(50) fme_primary_axis xml_real64 fme_rotation xml_real64 fme_secondary_axis xml_real64 fme_start_angle xml_real64 fme_sweep_angle xml_real64 fme_text_size xml_real64 fme_text_string xml_char(50) fme_type xml_char(50) gml_id xml_char(254) gml_original_coordinate_system xml_char(64) gml_parent_id xml_char(254) gml_parent_property xml_char(254) gml_srsName xml_char(64) xml_document xml_xml xml_document_append_as xml_char(32) xml_document_append_path xml_char(255) xml_fragment xml_xml xml_fragment_id xml_char(64) xml_ns_uri xml_char(254) xml_type xml_char(50) xml_wrapper xml_xml xml_wrapper_append_as xml_char(32) xml_wrapper_append_path xml_char(255)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS="[]= %~!@$&amp;#[()^?*&apos;+\\/&quot;:"
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE_OR_URL"
+#!   FTTR_TYPE=""
+#!   GENERATE_FME_BUILD_NUM="26333"
+#!   FANOUT_EXPRESSION=""
+#!   FANOUT_GROUP="NO"
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="GML_OUT_SYSTEM_ENCODING GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS GML_OUT_DOCUMENTS_TO_WRITE GML_OUT_SUPPRESS_XSI_SCHEMALOCATION GML_OUT_MAXIMUM_FRACTION_DIGITS GML_OUT_MINIMUM_FRACTION_DIGITS GML_OUT_APPLY_STYLESHEET GML_OUT_STYLESHEET_RESULT GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS GML_OUT_TARGET_NS_PREFIX GML_OUT_TARGET_NS_URI GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES GML_OUT_MAX_MULTI_LIST_LEVEL GML_OUT_FEATURE_COLLECTION GML_OUT_FEATURE_COLLECTION_ID GML_OUT_FEATURE_COLLECTION_NS_URI GML_OUT_MAP_EMBEDDED_OBJECTS_AS GML_OUT_MAP_PREDEFINED_GML_PROPERTIES GML_OUT_MAP_COMPLEX_PROPERTIES_AS GML_OUT_INDENT_SIZE GML_OUT_REPLACE_TABS_WITH_SPACES GML_OUT_TEXT_INDENT GML_OUT_OUTPUT_ENCODING GML_OUT_TARGET_XSI_SCHEMALOCATION_URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/xml"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="ALWAYS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the GML file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_NAME_EXPECTED"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_SPATIAL_TYPE_EXPECTED"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the GML file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="char(254)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(20,0)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="decimal(11,0)"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="logical"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="integer"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="MITAB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(2048)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(2048)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(2048)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="blob"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="single"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="largeint"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="text(20)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="smallint"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="guid"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_datetime"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_date"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_time"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_byte"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_ubyte"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(20)"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(8)"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_char(12)"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_geometry"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_datetime"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_date"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_time"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_byte"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_ubyte"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(20)"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(8)"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(12)"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_geometry"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GML"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_custom_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_font_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_none"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_polyline"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="mapinfo_region"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="MITAB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polyline"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipoint"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipatch"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_multipatch"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_point"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polyline"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="geodb_no_geom"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="OPENFILEGDB"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_aggregate"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_mesh"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_raster"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_point_cloud"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="xml_point_cloud"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_aggregate"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_mesh"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_raster"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_point_cloud"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_point_cloud"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="GML"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="DYNAMIC"
+#!   FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="true"
+#!   IDENTIFIER="3"
+#!   POSITION="771.85171851718542 -95"
+#!   BOUNDING_RECT="771.85171851718542 -95 436 65"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GML_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE=""
+#!   SCHEMA_ATTRIBUTE_SOURCE="2"
+#!   DYNAMIC_SCHEMA="true"
+#!   DYNAMIC_SCHEMA_SOURCES="GML_3 OPENFILEGDB_1"
+#!   DYNAMIC_SCHEMA_FEATURE_TYPE="AUTOMATIC"
+#!   DYNAMIC_SCHEMA_FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#!   DYNAMIC_SCHEMA_DEFINITION="AUTOMATIC"
+#!   DYNAMIC_SCHEMA_DEFINITION_NAME=""
+#!   DYNAMIC_SCHEMA_GEOMETRY="AUTOMATIC"
+#!   DYNAMIC_SCHEMA_GEOMETRY_NAME="from_schema_definition"
+#!   DYNAMIC_SCHEMA_ATTRIBUTES_TO_REMOVE="OBJECTID"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="LastUpdatedBy" ATTR_TYPE="xml_char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="FireHalls"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="11"
+#!   POSITION="-336 -95"
+#!   BOUNDING_RECT="-336 -95 436 65"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GML_3"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_NAMEDGEOMTYPE="gml_pointProperty,xml_no_geom&lt;space&gt;xml_point,gml_multiPointProperty,xml_no_geom&lt;space&gt;xml_point"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="true"
+#! >
+#!     <FEAT_GEOMETRY NAME="gml_pointProperty" TYPE="xml_no_geom xml_point" SPATIAL_TYPE=""/>
+#!     <FEAT_GEOMETRY NAME="gml_multiPointProperty" TYPE="xml_no_geom xml_point" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_parent_id" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_parent_property" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_id" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="HallNumber" ATTR_TYPE="xml_char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Name" ATTR_TYPE="xml_char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Address" ATTR_TYPE="xml_char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="PhoneNumber" ATTR_TYPE="xml_char(30)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Engine" ATTR_TYPE="xml_char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Ladder" ATTR_TYPE="xml_char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Quint" ATTR_TYPE="xml_char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Rescue" ATTR_TYPE="xml_char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Medic" ATTR_TYPE="xml_char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_pointProperty" ATTR_TYPE="xml_geometry" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_multiPointProperty" ATTR_TYPE="xml_geometry" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="xml_char(50)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_id" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_parent_id" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_parent_property" ATTR_TYPE="xml_char(254)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="xml_char(50)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Parks"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="12"
+#!   POSITION="-336 -426.87696876968766"
+#!   BOUNDING_RECT="-336 -426.87696876968766 436 65"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="MITAB_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="mapinfo_text mapinfo_ellipse mapinfo_arc mapinfo_point mapinfo_polyline mapinfo_rectangle mapinfo_rounded_rectangle mapinfo_region mapinfo_custom_point mapinfo_font_point mapinfo_none mapinfo_collection"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="true"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="mapinfo_text mapinfo_ellipse mapinfo_arc mapinfo_point mapinfo_polyline mapinfo_rectangle mapinfo_rounded_rectangle mapinfo_region mapinfo_custom_point mapinfo_font_point mapinfo_none mapinfo_collection" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkId" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="RefParkId" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ParkName" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodName" ATTR_TYPE="char(40)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="VisitorCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TreeCount" ATTR_TYPE="smallint" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="DogPark" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Washrooms" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="SpecialFeatures" ATTR_TYPE="char(1)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="char(50)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="char(50)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="OPENFILEGDB_1"
+#!   OVERRIDE="-OPENFILEGDB_1_DATASET"
+#!   DATASET="OPENFILEGDB_1/CommunityMap.gdb.zip"
+#! />
+#! <DATASET
+#!   NAME="GML_3"
+#!   OVERRIDE="-GML_3_DATASET"
+#!   DATASET="GML_3/FireHalls.gml"
+#! />
+#! <DATASET
+#!   NAME="MITAB_2"
+#!   OVERRIDE="-MITAB_2_DATASET"
+#!   DATASET="MITAB_2/Parks.zip"
+#! />
+#! </READER_DATASETS>
+#! <WRITER_DATASETS>
+#! <DATASET
+#!   NAME="GML_1"
+#!   OVERRIDE="-GML_1_DATASET"
+#!   DATASET="GML_1/NewCommunityMap.gml"
+#! />
+#! </WRITER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL MULTIFILE SourceDataset_GML INCLUDE_WEB_BROWSER%GML_Files(*.gml;*gz;*.xml)|*.gml;*gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source Geography Markup Language (GML) File(s):"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Emergency/FireHalls.gml"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES &quot;https:&lt;solidus&gt;&lt;solidus&gt;s3.amazonaws.com&lt;solidus&gt;FMEData&lt;solidus&gt;FMEData&lt;solidus&gt;Data&lt;solidus&gt;Emergency&lt;solidus&gt;FireHalls.gml,_FORMAT_OVERRIDE_,GML,_DATASET_OVERRIDE_,SourceDataset_GML,FME_GROUP_NAMED1,,IGNORE_APPLICATON_SCHEMA,no,XSD_DOC,,VALIDATE_DATASET,no,SKIP_SCHEMA_LOCATION_IN_DATASET,No,MAP_FEATURE_COLLECTION,,GML_FEATURE_ELEMENTS,&lt;Unused&gt;,FEATURE_PROPERTIES_READER,,MAP_EMBEDDED_OBJECTS_AS,ATTRIBUTES,MAP_PREDEFINED_GML_PROPERTIES,NO,MAP_ALL_SUBSTITUTABLE_PROPERTIES,YES,ADD_NAMESPACE_PREFIX_TO_NAMES,,QNAMES_FOR_PROPERTIES_TO_IGNORE,,MAP_COVERAGES_AS_FEATURE_TYPES,NO,ATTRIBUTE_HANDLING,,MAP_COMPLEX_PROPERTIES_AS,\&quot;Nested Attributes\&quot;,MAX_MULTI_LIST_LEVEL,,XML_FRAGMENTS_AS_DOCUMENTS,YES,FLATTEN_XML_FRAGMENTS,NO,FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE,,FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE,,FLATTEN_XML_FRAGMENTS_SEPARATOR,,GML_READER_GROUP,,USE_OLD_READER,NO,DISABLE_AUTOMATIC_READER_TYPE_SELECTION,NO,DISABLE_XML_NAMESPACE_PROCESSING,NO,EXPLORE_XSD_VALUES_GROUP,,EXPLORE_XSD_VALUES,NO,SPATIAL_GROUP,,COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,SRS_GEOMETRY_PARAMETERS,,SRS_AXIS_ORDER,,SRS_ANGLE_DIRECTION,,ENFORCE_PATH_CONTINUITY_BY,SNAPPING_END_POINTS,PROCESS_XLINK_GEOMETRIES,No,MAP_GEOMETRY_COLUMNS,YES,ADD_GEOMETRIES_AS_XML_FRAGMENTS,NO,REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES,yes,GML_RDR_ADV,,CONTINUE_ON_GEOM_ERROR,yes,CACHE_XSD,yes,CACHE_XSD_EXPIRY_TIME,,MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV,no,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,SUPPORTED_READER_ARCHIVE_EXTENSIONS,\&quot;xml.gz,gml.gz\&quot;,FEATURE_TYPES_SCHEMA_MODE,XML_SCHEMA,UPDATE_FEATURE_TYPES,yes,_MERGE_SCHEMAS,YES,_ALLOW_ORDERING_,YES,_MERGE_SCHEMAS,YES&quot; Feature Types to Read"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILENAME DestDataset_GML GML_Files(*.gml;*.gz;*.xml)|*.gml;*.gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|All_Files(*)|* Destination Geography Markup Language (GML) File:"
+#!   DEFAULT_VALUE="C:\FMEData\Output\Training\NewCommunityMap.gml"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_MITAB INCLUDE_WEB_BROWSER%TAB_Files(*.tab)|*.tab|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source MapInfo TAB File(s):"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES_2 &quot;https:&lt;solidus&gt;&lt;solidus&gt;s3.amazonaws.com&lt;solidus&gt;FMEData&lt;solidus&gt;FMEData&lt;solidus&gt;Data&lt;solidus&gt;Parks.zip,_FORMAT_OVERRIDE_,MITAB,_DATASET_OVERRIDE_,SourceDataset_MITAB,FME_GROUP_NAMED1,,ENCODING,fme-source-encoding,SPATIAL_GROUP,,COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,UNENCODED_ATTR_PREFIX,\&quot;fme_ mapinfo_\&quot;,_MITAB_FULL_ENHANCED_GEOMETRY,YES,ENABLE_REPROJECTABLE_ATTRS,no,UPDATE_FEATURE_TYPES,yes,CREATE_FEATURE_TABLES_FROM_DATA,Yes,ENCODED_ATTRS,mapinfo_text_string,_MERGE_SCHEMAS,YES,_ALLOW_ORDERING_,YES,_MERGE_SCHEMAS,YES&quot; Feature Types to Read"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI SOURCE_GEODATABASE_CFG SourceDataset_OPENFILEGDB SWIZZLER:YES File Geodatabase:"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/CommunityMapping/CommunityMap.gdb.zip"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiU291cmNlRGF0YXNldF9HTUwiLCJwcm9tcHQiOiJTb3VyY2UgR2VvZ3JhcGh5IE1hcmt1cCBMYW5ndWFnZSAoR01MKSBGaWxlKHMpOiIsInZhbHVlVHlwZSI6InN0cmluZyIsInJlcXVpcmVkIjpmYWxzZSwiZGVmYXVsdFZhbHVlIjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL0ZNRURhdGEvRk1FRGF0YS9EYXRhL0VtZXJnZW5jeS9GaXJlSGFsbHMuZ21sIiwidHlwZSI6ImZpbGUiLCJhY2Nlc3NNb2RlIjoicmVhZCIsIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsImZpbHRlcnMiOlt7ImZpbHRlciI6WyIqLmdtbCIsIipneiIsIioueG1sIl0sImRlc2NyaXB0aW9uIjoiR01MIEZpbGVzIn0seyJmaWx0ZXIiOlsiKi5nbWwiXSwiZGVzY3JpcHRpb24iOiJHTUwgRmlsZXMifSx7ImZpbHRlciI6WyIqLmd6Il0sImRlc2NyaXB0aW9uIjoiQ29tcHJlc3NlZCBHTUwgRmlsZXMifSx7ImZpbHRlciI6WyIqLnhtbCJdLCJkZXNjcmlwdGlvbiI6IkdNTCBGaWxlcyJ9LHsiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXSwiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIn0seyJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il0sImRlc2NyaXB0aW9uIjoiQ29tcHJlc3NlZCBGaWxlcyJ9LHsiZmlsdGVyIjpbIioiXSwiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMifV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlfSx7Im5hbWUiOiJGRUFUVVJFX1RZUEVTIiwicHJvbXB0IjoiRmVhdHVyZSBUeXBlcyB0byBSZWFkIiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZFBhcnRzIiwicmVxdWlyZWQiOmZhbHNlLCJkZWZhdWx0VmFsdWUiOiIiLCJjaG9pY2VTZXR0aW5ncyI6eyJjaG9pY2VTZXQiOiJyZWFkZXJWYWx1ZXMiLCJ2YWx1ZXNUb1VzZSI6ImZlYXR1cmVUeXBlcyIsImZvcm1hdCI6IkdNTCIsImRhdGFzZXQiOiJodHRwczo8c29saWR1cz48c29saWR1cz5zMy5hbWF6b25hd3MuY29tPHNvbGlkdXM+Rk1FRGF0YTxzb2xpZHVzPkZNRURhdGE8c29saWR1cz5EYXRhPHNvbGlkdXM+RW1lcmdlbmN5PHNvbGlkdXM+RmlyZUhhbGxzLmdtbCIsImNvbmZpZ3VyYXRpb24iOlt7Im5hbWUiOiJfREFUQVNFVF9PVkVSUklERV8iLCJ2YWx1ZSI6IlNvdXJjZURhdGFzZXRfR01MIn0seyJuYW1lIjoiRk1FX0dST1VQX05BTUVEMSIsInZhbHVlIjoiIn0seyJuYW1lIjoiSUdOT1JFX0FQUExJQ0FUT05fU0NIRU1BIiwidmFsdWUiOiJubyJ9LHsibmFtZSI6IlhTRF9ET0MiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IlZBTElEQVRFX0RBVEFTRVQiLCJ2YWx1ZSI6Im5vIn0seyJuYW1lIjoiU0tJUF9TQ0hFTUFfTE9DQVRJT05fSU5fREFUQVNFVCIsInZhbHVlIjoiTm8ifSx7Im5hbWUiOiJNQVBfRkVBVFVSRV9DT0xMRUNUSU9OIiwidmFsdWUiOiIifSx7Im5hbWUiOiJHTUxfRkVBVFVSRV9FTEVNRU5UUyIsInZhbHVlIjoiPFVudXNlZD4ifSx7Im5hbWUiOiJGRUFUVVJFX1BST1BFUlRJRVNfUkVBREVSIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNQVBfRU1CRURERURfT0JKRUNUU19BUyIsInZhbHVlIjoiQVRUUklCVVRFUyJ9LHsibmFtZSI6Ik1BUF9QUkVERUZJTkVEX0dNTF9QUk9QRVJUSUVTIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6Ik1BUF9BTExfU1VCU1RJVFVUQUJMRV9QUk9QRVJUSUVTIiwidmFsdWUiOiJZRVMifSx7Im5hbWUiOiJBRERfTkFNRVNQQUNFX1BSRUZJWF9UT19OQU1FUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiUU5BTUVTX0ZPUl9QUk9QRVJUSUVTX1RPX0lHTk9SRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFQX0NPVkVSQUdFU19BU19GRUFUVVJFX1RZUEVTIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IkFUVFJJQlVURV9IQU5ETElORyIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFQX0NPTVBMRVhfUFJPUEVSVElFU19BUyIsInZhbHVlIjoiTmVzdGVkIEF0dHJpYnV0ZXMifSx7Im5hbWUiOiJNQVhfTVVMVElfTElTVF9MRVZFTCIsInZhbHVlIjoiIn0seyJuYW1lIjoiWE1MX0ZSQUdNRU5UU19BU19ET0NVTUVOVFMiLCJ2YWx1ZSI6IllFUyJ9LHsibmFtZSI6IkZMQVRURU5fWE1MX0ZSQUdNRU5UUyIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJGTEFUVEVOX1hNTF9GUkFHTUVOVFNfT1BFTl9MSVNUX0JSQUNFIiwidmFsdWUiOiIifSx7Im5hbWUiOiJGTEFUVEVOX1hNTF9GUkFHTUVOVFNfQ0xPU0VfTElTVF9CUkFDRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiRkxBVFRFTl9YTUxfRlJBR01FTlRTX1NFUEFSQVRPUiIsInZhbHVlIjoiIn0seyJuYW1lIjoiR01MX1JFQURFUl9HUk9VUCIsInZhbHVlIjoiIn0seyJuYW1lIjoiVVNFX09MRF9SRUFERVIiLCJ2YWx1ZSI6Ik5PIn0seyJuYW1lIjoiRElTQUJMRV9BVVRPTUFUSUNfUkVBREVSX1RZUEVfU0VMRUNUSU9OIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IkRJU0FCTEVfWE1MX05BTUVTUEFDRV9QUk9DRVNTSU5HIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IkVYUExPUkVfWFNEX1ZBTFVFU19HUk9VUCIsInZhbHVlIjoiIn0seyJuYW1lIjoiRVhQTE9SRV9YU0RfVkFMVUVTIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IlNQQVRJQUxfR1JPVVAiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IkNPT1JESU5BVEVfU1lTVEVNIiwidmFsdWUiOiIifSx7Im5hbWUiOiJVU0VfU0VBUkNIX0VOVkVMT1BFIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NSU5YIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01JTlkiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUFYWCIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NQVhZIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX0NPT1JESU5BVEVfU1lTVEVNIiwidmFsdWUiOiIifSx7Im5hbWUiOiJDTElQX1RPX0VOVkVMT1BFIiwidmFsdWUiOiJOTyJ9LHsibmFtZSI6IlNSU19HRU9NRVRSWV9QQVJBTUVURVJTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJTUlNfQVhJU19PUkRFUiIsInZhbHVlIjoiIn0seyJuYW1lIjoiU1JTX0FOR0xFX0RJUkVDVElPTiIsInZhbHVlIjoiIn0seyJuYW1lIjoiRU5GT1JDRV9QQVRIX0NPTlRJTlVJVFlfQlkiLCJ2YWx1ZSI6IlNOQVBQSU5HX0VORF9QT0lOVFMifSx7Im5hbWUiOiJQUk9DRVNTX1hMSU5LX0dFT01FVFJJRVMiLCJ2YWx1ZSI6Ik5vIn0seyJuYW1lIjoiTUFQX0dFT01FVFJZX0NPTFVNTlMiLCJ2YWx1ZSI6IllFUyJ9LHsibmFtZSI6IkFERF9HRU9NRVRSSUVTX0FTX1hNTF9GUkFHTUVOVFMiLCJ2YWx1ZSI6Ik5PIn0seyJuYW1lIjoiUkVQUk9KRUNUX0RJU1BBUkFURV9DUlNfSU5fTVVMVElQTEVfR0VPTUVUUklFUyIsInZhbHVlIjoieWVzIn0seyJuYW1lIjoiR01MX1JEUl9BRFYiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IkNPTlRJTlVFX09OX0dFT01fRVJST1IiLCJ2YWx1ZSI6InllcyJ9LHsibmFtZSI6IkNBQ0hFX1hTRCIsInZhbHVlIjoieWVzIn0seyJuYW1lIjoiQ0FDSEVfWFNEX0VYUElSWV9USU1FIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNVUxUSV9WQUxVRV9TSU1QTEVfUFJPUEVSVElFU19BU19DU1YiLCJ2YWx1ZSI6Im5vIn0seyJuYW1lIjoiTkVUV09SS19BVVRIRU5USUNBVElPTiIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ09PUkRTWVMiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6IlNUQVJUX0ZFQVRVUkUiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6Ik1BWF9GRUFUVVJFUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFYX0ZFQVRVUkVTX1BFUl9GRUFUVVJFX1RZUEUiLCJ2YWx1ZSI6IiJ9LHsibmFtZSI6Ik1JTl9GRUFUVVJFUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiU1VQUE9SVEVEX1JFQURFUl9BUkNISVZFX0VYVEVOU0lPTlMiLCJ2YWx1ZSI6InhtbC5neixnbWwuZ3oifSx7Im5hbWUiOiJGRUFUVVJFX1RZUEVTX1NDSEVNQV9NT0RFIiwidmFsdWUiOiJYTUxfU0NIRU1BIn0seyJuYW1lIjoiVVBEQVRFX0ZFQVRVUkVfVFlQRVMiLCJ2YWx1ZSI6InllcyJ9LHsibmFtZSI6Il9NRVJHRV9TQ0hFTUFTIiwidmFsdWUiOiJZRVMifSx7Im5hbWUiOiJfTUVSR0VfU0NIRU1BUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiUkVUUklFVkVfQUxMX1RBQkxFX05BTUVTIiwidmFsdWUiOiJZRVMifSx7Im5hbWUiOiJfQUxMT1dfT1JERVJJTkdfIiwidmFsdWUiOiJZRVMifV19LCJ0eXBlIjoibGlzdGJveCJ9LHsibmFtZSI6IkRlc3REYXRhc2V0X0dNTCIsInByb21wdCI6IkRlc3RpbmF0aW9uIEdlb2dyYXBoeSBNYXJrdXAgTGFuZ3VhZ2UgKEdNTCkgRmlsZToiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiJDOlxcRk1FRGF0YVxcT3V0cHV0XFxUcmFpbmluZ1xcTmV3Q29tbXVuaXR5TWFwLmdtbCIsInR5cGUiOiJmaWxlIiwiYWNjZXNzTW9kZSI6IndyaXRlIiwiaXRlbXNUb1NlbGVjdCI6ImZpbGVzIiwic2VsZWN0TXVsdGlwbGUiOmZhbHNlLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsImZpbHRlcnMiOlt7ImZpbHRlciI6WyIqLmdtbCIsIiouZ3oiLCIqLnhtbCJdLCJkZXNjcmlwdGlvbiI6IkdNTCBGaWxlcyJ9LHsiZmlsdGVyIjpbIiouZ21sIl0sImRlc2NyaXB0aW9uIjoiR01MIEZpbGVzIn0seyJmaWx0ZXIiOlsiKi5neiJdLCJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgR01MIEZpbGVzIn0seyJmaWx0ZXIiOlsiKi54bWwiXSwiZGVzY3JpcHRpb24iOiJHTUwgRmlsZXMifSx7ImZpbHRlciI6WyIqIl0sImRlc2NyaXB0aW9uIjoiQWxsIEZpbGVzIn1dfSx7Im5hbWUiOiJTb3VyY2VEYXRhc2V0X01JVEFCIiwicHJvbXB0IjoiU291cmNlIE1hcEluZm8gVEFCIEZpbGUocyk6IiwidmFsdWVUeXBlIjoic3RyaW5nIiwiZGVmYXVsdFZhbHVlIjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL0ZNRURhdGEvRk1FRGF0YS9EYXRhL1BhcmtzLnppcCIsInR5cGUiOiJmaWxlIiwiYWNjZXNzTW9kZSI6InJlYWQiLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJmaWx0ZXJzIjpbeyJmaWx0ZXIiOlsiKi50YWIiXSwiZGVzY3JpcHRpb24iOiJUQUIgRmlsZXMifSx7ImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il0sImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyJ9LHsiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdLCJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMifSx7ImZpbHRlciI6WyIqIl0sImRlc2NyaXB0aW9uIjoiQWxsIEZpbGVzIn1dLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZX0seyJuYW1lIjoiRkVBVFVSRV9UWVBFU18yIiwicHJvbXB0IjoiRmVhdHVyZSBUeXBlcyB0byBSZWFkIiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZFBhcnRzIiwicmVxdWlyZWQiOmZhbHNlLCJkZWZhdWx0VmFsdWUiOiIiLCJjaG9pY2VTZXR0aW5ncyI6eyJjaG9pY2VTZXQiOiJyZWFkZXJWYWx1ZXMiLCJ2YWx1ZXNUb1VzZSI6ImZlYXR1cmVUeXBlcyIsImZvcm1hdCI6Ik1JVEFCIiwiZGF0YXNldCI6Imh0dHBzOjxzb2xpZHVzPjxzb2xpZHVzPnMzLmFtYXpvbmF3cy5jb208c29saWR1cz5GTUVEYXRhPHNvbGlkdXM+Rk1FRGF0YTxzb2xpZHVzPkRhdGE8c29saWR1cz5QYXJrcy56aXAiLCJjb25maWd1cmF0aW9uIjpbeyJuYW1lIjoiX0RBVEFTRVRfT1ZFUlJJREVfIiwidmFsdWUiOiJTb3VyY2VEYXRhc2V0X01JVEFCIn0seyJuYW1lIjoiRk1FX0dST1VQX05BTUVEMSIsInZhbHVlIjoiIn0seyJuYW1lIjoiRU5DT0RJTkciLCJ2YWx1ZSI6ImZtZS1zb3VyY2UtZW5jb2RpbmcifSx7Im5hbWUiOiJTUEFUSUFMX0dST1VQIiwidmFsdWUiOiIifSx7Im5hbWUiOiJDT09SRElOQVRFX1NZU1RFTSIsInZhbHVlIjoiIn0seyJuYW1lIjoiVVNFX1NFQVJDSF9FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUlOWCIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NSU5ZIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01BWFgiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUFYWSIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9DT09SRElOQVRFX1NZU1RFTSIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ0xJUF9UT19FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJORVRXT1JLX0FVVEhFTlRJQ0FUSU9OIiwidmFsdWUiOiIifSx7Im5hbWUiOiJDT09SRFNZUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiU1RBUlRfRkVBVFVSRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFYX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNQVhfRkVBVFVSRVNfUEVSX0ZFQVRVUkVfVFlQRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUlOX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJVTkVOQ09ERURfQVRUUl9QUkVGSVgiLCJ2YWx1ZSI6ImZtZV8gbWFwaW5mb18ifSx7Im5hbWUiOiJfTUlUQUJfRlVMTF9FTkhBTkNFRF9HRU9NRVRSWSIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiRU5BQkxFX1JFUFJPSkVDVEFCTEVfQVRUUlMiLCJ2YWx1ZSI6Im5vIn0seyJuYW1lIjoiVVBEQVRFX0ZFQVRVUkVfVFlQRVMiLCJ2YWx1ZSI6InllcyJ9LHsibmFtZSI6IkNSRUFURV9GRUFUVVJFX1RBQkxFU19GUk9NX0RBVEEiLCJ2YWx1ZSI6IlllcyJ9LHsibmFtZSI6IkVOQ09ERURfQVRUUlMiLCJ2YWx1ZSI6Im1hcGluZm9fdGV4dF9zdHJpbmcifSx7Im5hbWUiOiJfTUVSR0VfU0NIRU1BUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiX01FUkdFX1NDSEVNQVMiLCJ2YWx1ZSI6IllFUyJ9LHsibmFtZSI6IlJFVFJJRVZFX0FMTF9UQUJMRV9OQU1FUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiX0FMTE9XX09SREVSSU5HXyIsInZhbHVlIjoiWUVTIn1dfSwidHlwZSI6Imxpc3Rib3gifSx7Im5hbWUiOiJTb3VyY2VEYXRhc2V0X09QRU5GSUxFR0RCIiwicHJvbXB0IjoiRmlsZSBHZW9kYXRhYmFzZToiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vRk1FRGF0YS9GTUVEYXRhL0RhdGEvQ29tbXVuaXR5TWFwcGluZy9Db21tdW5pdHlNYXAuZ2RiLnppcCIsInR5cGUiOiJmaWxlIiwiYWNjZXNzTW9kZSI6InJlYWQiLCJpdGVtc1RvU2VsZWN0IjoiZmlsZWdlb2RiIiwic2VsZWN0TXVsdGlwbGUiOnRydWUsInZhbGlkYXRlRXhpc3RlbmNlIjp0cnVlLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZX1dfQ=="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_GML" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Emergency/FireHalls.gml"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI OPTIONAL MULTIFILE SourceDataset_GML INCLUDE_WEB_BROWSER%GML_Files(*.gml;*gz;*.xml)|*.gml;*gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source Geography Markup Language (GML) File(s):"
+#! />
+#!     <INFO NAME="FEATURE_TYPES" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES &quot;https:&lt;solidus&gt;&lt;solidus&gt;s3.amazonaws.com&lt;solidus&gt;FMEData&lt;solidus&gt;FMEData&lt;solidus&gt;Data&lt;solidus&gt;Emergency&lt;solidus&gt;FireHalls.gml,_FORMAT_OVERRIDE_,GML,_DATASET_OVERRIDE_,SourceDataset_GML,FME_GROUP_NAMED1,,IGNORE_APPLICATON_SCHEMA,no,XSD_DOC,,VALIDATE_DATASET,no,SKIP_SCHEMA_LOCATION_IN_DATASET,No,MAP_FEATURE_COLLECTION,,GML_FEATURE_ELEMENTS,&lt;Unused&gt;,FEATURE_PROPERTIES_READER,,MAP_EMBEDDED_OBJECTS_AS,ATTRIBUTES,MAP_PREDEFINED_GML_PROPERTIES,NO,MAP_ALL_SUBSTITUTABLE_PROPERTIES,YES,ADD_NAMESPACE_PREFIX_TO_NAMES,,QNAMES_FOR_PROPERTIES_TO_IGNORE,,MAP_COVERAGES_AS_FEATURE_TYPES,NO,ATTRIBUTE_HANDLING,,MAP_COMPLEX_PROPERTIES_AS,\&quot;Nested Attributes\&quot;,MAX_MULTI_LIST_LEVEL,,XML_FRAGMENTS_AS_DOCUMENTS,YES,FLATTEN_XML_FRAGMENTS,NO,FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE,,FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE,,FLATTEN_XML_FRAGMENTS_SEPARATOR,,GML_READER_GROUP,,USE_OLD_READER,NO,DISABLE_AUTOMATIC_READER_TYPE_SELECTION,NO,DISABLE_XML_NAMESPACE_PROCESSING,NO,EXPLORE_XSD_VALUES_GROUP,,EXPLORE_XSD_VALUES,NO,SPATIAL_GROUP,,COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,SRS_GEOMETRY_PARAMETERS,,SRS_AXIS_ORDER,,SRS_ANGLE_DIRECTION,,ENFORCE_PATH_CONTINUITY_BY,SNAPPING_END_POINTS,PROCESS_XLINK_GEOMETRIES,No,MAP_GEOMETRY_COLUMNS,YES,ADD_GEOMETRIES_AS_XML_FRAGMENTS,NO,REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES,yes,GML_RDR_ADV,,CONTINUE_ON_GEOM_ERROR,yes,CACHE_XSD,yes,CACHE_XSD_EXPIRY_TIME,,MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV,no,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,SUPPORTED_READER_ARCHIVE_EXTENSIONS,\&quot;xml.gz,gml.gz\&quot;,FEATURE_TYPES_SCHEMA_MODE,XML_SCHEMA,UPDATE_FEATURE_TYPES,yes,_MERGE_SCHEMAS,YES,_ALLOW_ORDERING_,YES,_MERGE_SCHEMAS,YES&quot; Feature Types to Read"
+#! />
+#!     <INFO NAME="DestDataset_GML" 
+#!   DEFAULT_VALUE="C:\FMEData\Output\Training\NewCommunityMap.gml"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILENAME DestDataset_GML GML_Files(*.gml;*.gz;*.xml)|*.gml;*.gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|All_Files(*)|* Destination Geography Markup Language (GML) File:"
+#! />
+#!     <INFO NAME="SourceDataset_MITAB" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_MITAB INCLUDE_WEB_BROWSER%TAB_Files(*.tab)|*.tab|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source MapInfo TAB File(s):"
+#! />
+#!     <INFO NAME="FEATURE_TYPES_2" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES_2 &quot;https:&lt;solidus&gt;&lt;solidus&gt;s3.amazonaws.com&lt;solidus&gt;FMEData&lt;solidus&gt;FMEData&lt;solidus&gt;Data&lt;solidus&gt;Parks.zip,_FORMAT_OVERRIDE_,MITAB,_DATASET_OVERRIDE_,SourceDataset_MITAB,FME_GROUP_NAMED1,,ENCODING,fme-source-encoding,SPATIAL_GROUP,,COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,UNENCODED_ATTR_PREFIX,\&quot;fme_ mapinfo_\&quot;,_MITAB_FULL_ENHANCED_GEOMETRY,YES,ENABLE_REPROJECTABLE_ATTRS,no,UPDATE_FEATURE_TYPES,yes,CREATE_FEATURE_TABLES_FROM_DATA,Yes,ENCODED_ATTRS,mapinfo_text_string,_MERGE_SCHEMAS,YES,_ALLOW_ORDERING_,YES,_MERGE_SCHEMAS,YES&quot; Feature Types to Read"
+#! />
+#!     <INFO NAME="SourceDataset_OPENFILEGDB" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/CommunityMapping/CommunityMap.gdb.zip"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI SOURCE_GEODATABASE_CFG SourceDataset_OPENFILEGDB SWIZZLER:YES File Geodatabase:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="9"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;: FireHalls [GML]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-336 40.000750007500073"
+#!   TOP_LEFT="-336 40.000750007500073"
+#!   BOTTOM_RIGHT="127.9689834398344 39.000750007500073"
+#!   BOUNDING_RECT="-336 40.000750007500073 463.9689834398344 1"
+#!   ORDER="500000000000005"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{fe18d860-bec7-491d-95d9-10609160cbc0}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="11"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="10"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;: Parks [MITAB]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-336 -291.87621876218759"
+#!   TOP_LEFT="-336 -291.87621876218759"
+#!   BOTTOM_RIGHT="103.99413431634315 -292.87621876218759"
+#!   BOUNDING_RECT="-336 -291.87621876218759 439.99413431634315 1"
+#!   ORDER="500000000000006"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{f7d9b350-9c21-4667-9119-65193a545f1a}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="12"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   PALETTE_COLOR="Reader/Writers"
+#!   STICKY="true"
+#!   IDENTIFIER="5"
+#!   NAME="Reader Feature Types"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-446 181.25181251812518"
+#!   ORDER="500000000000000"
+#!   BOTTOM_RIGHT="175 -575.00575005750056"
+#!   BOUNDING_RECT="-446 181.25181251812518 621 756.2575625756258"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS="12 11 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   PALETTE_COLOR="Reader/Writers"
+#!   STICKY="true"
+#!   IDENTIFIER="6"
+#!   NAME="Writer Feature Types"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="666.85171851718542 40"
+#!   ORDER="500000000000000"
+#!   BOTTOM_RIGHT="1282.8517185171854 -235"
+#!   BOUNDING_RECT="666.85171851718542 40 616 275"
+#!   COLOUR="0.8901960784313725,0.66274509803921566,0.52941176470588236,1"
+#!   CONTENTS="3 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <LOOPS>
+#! </LOOPS>
+#! <TRANSFORMERS>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="4"
+#!   SOURCE_NODE="11"
+#!   TARGET_NODE="3"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="8"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="3"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 313
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_GML_3,GML_IN_FME_GROUP_NAMED1_GML_3,GML_IN_IGNORE_APPLICATON_SCHEMA_GML_3,GML_IN_XSD_DOC_GML_3,GML_IN_VALIDATE_DATASET_GML_3,GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3,GML_IN_MAP_FEATURE_COLLECTION_GML_3,GML_IN_GML_FEATURE_ELEMENTS_GML_3,GML_IN_FEATURE_PROPERTIES_READER_GML_3,GML_IN_MAP_EMBEDDED_OBJECTS_AS_GML_3,GML_IN_MAP_PREDEFINED_GML_PROPERTIES_GML_3,GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3,GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_3,GML_IN_QNAMES_FOR_PROPERTIES_TO_IGNORE_GML_3,GML_IN_MAP_COVERAGES_AS_FEATURE_TYPES_GML_3,GML_IN_ATTRIBUTE_HANDLING_GML_3,GML_IN_MAP_COMPLEX_PROPERTIES_AS_GML_3,GML_IN_MAX_MULTI_LIST_LEVEL_GML_3,GML_IN_XML_FRAGMENTS_AS_DOCUMENTS_GML_3,GML_IN_FLATTEN_XML_FRAGMENTS_GML_3,GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3,GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3,GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3,GML_IN_GML_READER_GROUP_GML_3,GML_IN_USE_OLD_READER_GML_3,GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION_GML_3,GML_IN_DISABLE_XML_NAMESPACE_PROCESSING_GML_3,GML_IN_EXPLORE_XSD_VALUES_GROUP_GML_3,GML_IN_EXPLORE_XSD_VALUES_GML_3,GML_IN_SPATIAL_GROUP_GML_3,GML_IN_COORDINATE_SYSTEM_GML_3,GML_IN_USE_SEARCH_ENVELOPE_GML_3,GML_IN_SEARCH_ENVELOPE_MINX_GML_3,GML_IN_SEARCH_ENVELOPE_MINY_GML_3,GML_IN_SEARCH_ENVELOPE_MAXX_GML_3,GML_IN_SEARCH_ENVELOPE_MAXY_GML_3,GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3,GML_IN_CLIP_TO_ENVELOPE_GML_3,GML_IN_SRS_GEOMETRY_PARAMETERS_GML_3,GML_IN_SRS_AXIS_ORDER_GML_3,GML_IN_SRS_ANGLE_DIRECTION_GML_3,GML_IN_ENFORCE_PATH_CONTINUITY_BY_GML_3,GML_IN_PROCESS_XLINK_GEOMETRIES_GML_3,GML_IN_MAP_GEOMETRY_COLUMNS_GML_3,GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS_GML_3,GML_IN_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES_GML_3,GML_IN_GML_RDR_ADV_GML_3,GML_IN_CONTINUE_ON_GEOM_ERROR_GML_3,GML_IN_CACHE_XSD_GML_3,GML_IN_CACHE_XSD_EXPIRY_TIME_GML_3,GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV_GML_3,GML_IN_NETWORK_AUTHENTICATION_GML_3,SourceDataset_MITAB_2,MITAB_IN_FME_GROUP_NAMED1_MITAB_2,MITAB_IN_ENCODING_MITAB_2,MITAB_IN_SPATIAL_GROUP_MITAB_2,MITAB_IN_COORDINATE_SYSTEM_MITAB_2,MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_2,MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2,MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2,MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2,MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2,MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2,MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2,MITAB_IN_NETWORK_AUTHENTICATION_MITAB_2,SourceDataset_OPENFILEGDB_1,OPENFILEGDB_IN_FME_CONNECTION_GROUP_OPENFILEGDB_1,OPENFILEGDB_IN_SPATIAL_GROUP_OPENFILEGDB_1,OPENFILEGDB_IN_COORDINATE_SYSTEM_OPENFILEGDB_1,OPENFILEGDB_IN_USE_SEARCH_ENVELOPE_OPENFILEGDB_1,OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1,OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1,OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1,OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1,OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1,OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1,OPENFILEGDB_IN_SIMPLE_DONUT_GEOMETRY_OPENFILEGDB_1,OPENFILEGDB_IN_ADVANCED_OPENFILEGDB_1,OPENFILEGDB_IN_BEGIN_SQL_OPENFILEGDB_1,OPENFILEGDB_IN_END_SQL_OPENFILEGDB_1,OPENFILEGDB_IN_STRIP_GUID_GLOBALID_BRACES_OPENFILEGDB_1,OPENFILEGDB_IN_NETWORK_AUTHENTICATION_OPENFILEGDB_1,DestDataset_GML_1,GML_OUT_FME_GROUP_NAMED1_GML_1,GML_OUT_PROFILE_GML_1,GML_OUT_XSD_DOC_GML_1,GML_OUT_FME_GROUP_NAMED2_GML_1,GML_OUT_TARGET_NS_PREFIX_GML_1,GML_OUT_TARGET_NS_URI_GML_1,GML_OUT_PRETTY_PRINT_SETTINGS_GML_1,GML_OUT_PRETTY_PRINT_GML_1,GML_OUT_INDENT_SIZE_GML_1,GML_OUT_REPLACE_TABS_WITH_SPACES_GML_1,GML_OUT_TEXT_INDENT_GML_1,GML_OUT_FEATURE_COLLECTION_GROUP_GML_1,GML_OUT_FEATURE_COLLECTION_GML_1,GML_OUT_FEATURE_COLLECTION_ID_GML_1,GML_OUT_FEATURE_COLLECTION_NS_URI_GML_1,GML_OUT_FEATURE_PROPERTIES_GML_1,GML_OUT_MAP_EMBEDDED_OBJECTS_AS_GML_1,GML_OUT_MAP_PREDEFINED_GML_PROPERTIES_GML_1,GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_1,GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_1,GML_OUT_GUESS_GEOMETRY_NAMES_GML_1,GML_OUT_MAP_COVERAGES_AS_FEATURE_TYPES_GML_1,GML_OUT_FEATURE_PROPERTIES_ATTRIBUTE_HANDLING_GML_1,GML_OUT_MAP_COMPLEX_PROPERTIES_AS_GML_1,GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1,GML_OUT_XML_APPENDER_SETTINGS_GML_1,GML_OUT_XML_APPENDER_XML_DOCUMENT_SETTINGS_GML_1,GML_OUT_XML_DOCUMENT_GML_1,GML_OUT_XML_DOCUMENT_APPEND_PATH_GML_1,GML_OUT_XML_DOCUMENT_APPEND_AS_GML_1,GML_OUT_XML_APPENDER_XML_WRAPPER_SETTINGS_GML_1,GML_OUT_XML_WRAPPER_GML_1,GML_OUT_XML_WRAPPER_APPEND_PATH_GML_1,GML_OUT_XML_WRAPPER_APPEND_AS_GML_1,GML_OUT_SPATIAL_GROUP_GML_1,GML_OUT_COORDINATE_SYSTEM_GML_1,GML_OUT_GEOMETRY_PARAMATERS_GROUP_GML_1,GML_OUT_SRS_NAME_GML_1,GML_OUT_SRS_AXIS_ORDER_GML_1,GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1,GML_OUT_FME_PATHS_OPTIONS_FOR_GML_RINGS_GML_1,GML_OUT_GML_WRT_ADV_PARAMETERS_GML_1,GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1,GML_OUT_MAXIMUM_FRACTION_DIGITS_GML_1,GML_OUT_MINIMUM_FRACTION_DIGITS_GML_1,GML_OUT_DOCUMENTS_TO_WRITE_GML_1,GML_OUT_SUPPRESS_XSI_SCHEMALOCATION_GML_1,GML_OUT_APPLY_STYLESHEET_GML_1,GML_OUT_STYLESHEET_RESULT_GML_1,GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET_GML_1,GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS_GML_1,GML_OUT_PREFER_POLYGON_OVER_SURFACE_GML_1,GML_OUT_VALIDATE_OUTPUT_DATASET_GML_1,GML_OUT_GENERATE_GEOMETRY_IDS_GML_1,GML_OUT_OUTPUT_ENCODING_GML_1,GML_OUT_TARGET_XSI_SCHEMALOCATION_URL_GML_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_GML https://s3.amazonaws.com/FMEData/FMEData/Data/Emergency/FireHalls.gml
+
+DEFAULT_MACRO FEATURE_TYPES 
+
+DEFAULT_MACRO DestDataset_GML C:\FMEData\Output\Training\NewCommunityMap.gml
+
+DEFAULT_MACRO SourceDataset_MITAB https://s3.amazonaws.com/FMEData/FMEData/Data/Parks.zip
+
+DEFAULT_MACRO FEATURE_TYPES_2 
+
+DEFAULT_MACRO SourceDataset_OPENFILEGDB https://s3.amazonaws.com/FMEData/FMEData/Data/CommunityMapping/CommunityMap.gdb.zip
+
+# ============================================================================
+INCLUDE [ if {{$(DestDataset_GML$encode)} == {}} { puts_real {Parameter 'DestDataset_GML' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_MITAB$encode)} == {}} { puts_real {Parameter 'SourceDataset_MITAB' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_OPENFILEGDB$encode)} == {}} { puts_real {Parameter 'SourceDataset_OPENFILEGDB' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! encoding="utf-8"
+#! WORKSPACE_VERSION 1
+# ============================================================================ 
+# 
+# This mapping file was generated by FME Workbench
+# on 09/26/25 for translation between GML and GML
+# 
+# This workspace was generated with FME build 25606
+#
+# You may edit this mapping file to customize its operation.  Comments are 
+# placed throughout to assist you. 
+# 
+# Modification History:
+# 
+#     Name              Date     Description
+#     ================= ======== =============================================
+# 
+# 
+# ============================================================================ 
+# ============================================================================ 
+# The following line defines the title presented to the user when this
+# mapping file is run through the FME GUI.  You may modify this
+# if a more meaningful title would be appropriate.
+GUI TITLE GML to GML Translation 
+# ============================================================================ 
+# The following line names the log file to which useful statistics about
+# the translation will be written.  This line can be uncommented and
+# updated if you do wish to keep these statistics.
+# LOG_FILENAME translation.log
+# LOG_APPEND NO
+# ============================================================================ 
+# The following line instructs the FME to log any features that do not
+# match any of the source feature patterns listed further down in
+# this file.  If you are modifying this mapping file, this will be
+# useful to describe to you exactly which features you are losing
+# during translation, if the statistics indicate that features are
+# not being correlated or grouped.  Uncorrelated features do not
+# match any source specification, ungrouped features do not have
+# any corresponding _DEF line. 
+# FME_DEBUG ALL
+# ============================================================================ 
+# The following two lines define the type of reader and writer to be
+# used for this translation.  If you want to translate your data
+# back into its original format, you may make a copy of this file
+# and switch the reader and writer types.  If you rerun the FME, you
+# will get your original data back again (together with any modifications
+# you made in the meantime).  Note that several formats are NOT
+# bi-directional (for example, GIF can only be used as a WRITER)
+# so a reverse translation may not always be possible.
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} GML
+MULTI_READER_KEYWORD{0} GML_3
+MULTI_READER_GEN_DIRECTIVES{0} SRS_ANGLE_DIRECTION,,GML_RDR_ADV,,EXPLORE_XSD_VALUES,NO,ADD_GEOMETRIES_AS_XML_FRAGMENTS,NO,SEARCH_ENVELOPE_MAXX,0,SRS_GEOMETRY_PARAMETERS,,QNAMES_FOR_PROPERTIES_TO_IGNORE,,FLATTEN_XML_FRAGMENTS,NO,SEARCH_ENVELOPE_MAXY,0,FEATURE_PROPERTIES_READER,,MAP_COMPLEX_PROPERTIES_AS,Nested<space>Attributes,SUPPORTED_READER_ARCHIVE_EXTENSIONS,xml.gz<comma>gml.gz,FEATURE_TYPES_SCHEMA_MODE,XML_SCHEMA,CLIP_TO_ENVELOPE,NO,XML_FRAGMENTS_AS_DOCUMENTS,YES,MAP_PREDEFINED_GML_PROPERTIES,NO,REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES,yes,ATTRIBUTE_HANDLING,,MAX_MULTI_LIST_LEVEL,,EXPLORE_XSD_VALUES_GROUP,,SPATIAL_GROUP,,IGNORE_APPLICATON_SCHEMA,no,DISABLE_AUTOMATIC_READER_TYPE_SELECTION,NO,GML_READER_GROUP,,USE_OLD_READER,NO,UPDATE_FEATURE_TYPES,yes,MAP_GEOMETRY_COLUMNS,YES,FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE,,MAP_FEATURE_COLLECTION,,NETWORK_AUTHENTICATION,,MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV,no,DISABLE_XML_NAMESPACE_PROCESSING,NO,FLATTEN_XML_FRAGMENTS_SEPARATOR,,EXPOSE_ATTRS_GROUP,,ENFORCE_PATH_CONTINUITY_BY,SNAPPING_END_POINTS,VALIDATE_DATASET,no,_MERGE_SCHEMAS,YES,SEARCH_ENVELOPE_MINX,0,SRS_AXIS_ORDER,,ADD_NAMESPACE_PREFIX_TO_NAMES,,FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE,,PROCESS_XLINK_GEOMETRIES,No,SEARCH_ENVELOPE_MINY,0,MAP_EMBEDDED_OBJECTS_AS,ATTRIBUTES,CACHE_XSD,yes,CONTINUE_ON_GEOM_ERROR,yes,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CACHE_XSD_EXPIRY_TIME,,SKIP_SCHEMA_LOCATION_IN_DATASET,No,USE_SEARCH_ENVELOPE,NO,COORDINATE_SYSTEM,,GML_EXPOSE_FORMAT_ATTRS,,MAP_COVERAGES_AS_FEATURE_TYPES,NO,GML_FEATURE_ELEMENTS,<lt>Unused<gt>,XSD_DOC,,MAP_ALL_SUBSTITUTABLE_PROPERTIES,YES
+MULTI_READER_TYPE{1} MITAB
+MULTI_READER_KEYWORD{1} MITAB_2
+MULTI_READER_GEN_DIRECTIVES{1} SEARCH_ENVELOPE_MAXX,0,UNENCODED_ATTR_PREFIX,fme_<space>mapinfo_,SEARCH_ENVELOPE_MAXY,0,CLIP_TO_ENVELOPE,NO,_MITAB_FULL_ENHANCED_GEOMETRY,YES,MITAB_EXPOSE_FORMAT_ATTRS,,SPATIAL_GROUP,,ENABLE_REPROJECTABLE_ATTRS,no,UPDATE_FEATURE_TYPES,yes,CREATE_FEATURE_TABLES_FROM_DATA,Yes,ENCODED_ATTRS,mapinfo_text_string,NETWORK_AUTHENTICATION,,EXPOSE_ATTRS_GROUP,,_MERGE_SCHEMAS,YES,ENCODING,fme-source-encoding,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,COORDINATE_SYSTEM,
+MULTI_READER_TYPE{2} NULL
+MULTI_READER_FORMAT{2} OPENFILEGDB
+MULTI_READER_KEYWORD{2} OPENFILEGDB_1
+MULTI_READER_GEN_DIRECTIVES{2} BEGIN_SQL,,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,ADVANCED,,READ_NULLS,YES,CLIP_TO_ENVELOPE,NO,SPATIAL_GROUP,,SIMPLE_DONUT_GEOMETRY,simple,OPENFILEGDB_EXPOSE_FORMAT_ATTRS,,REMOVE_FEATURE_DATASET,NO,NETWORK_AUTHENTICATION,,EXPOSE_ATTRS_GROUP,,_MERGE_SCHEMAS,YES,STRIP_GUID_GLOBALID_BRACES,no,SEARCH_ENVELOPE_MINX,0,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,TABLELIST,,SEARCH_ENVELOPE_MINY,0,END_SQL,,READ_BOOLEANS_AS_YES_NO,YES,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,USE_SEARCH_ENVELOPE,NO,COORDINATE_SYSTEM,
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD PRIMARY_DEST
+PRIMARY_DEST_DATASET_ORDER BY_ID
+PRIMARY_DEST_FIRST_WRITER_ID 0
+PRIMARY_DEST_TYPE{0} GML
+PRIMARY_DEST_KEYWORD{0} GML_1
+PRIMARY_DEST_GEN_DIRECTIVES{0} MAP_ALL_SUBSTITUTABLE_PROPERTIES,<lt>Unused<gt>,XML_DOCUMENT,<lt>Unused<gt>,OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS,,VALIDATE_OUTPUT_DATASET,NO,FEATURE_COLLECTION_ID,,MAP_COMPLEX_PROPERTIES_AS,<lt>Unused<gt>,PRETTY_PRINT_SETTINGS,,COORDINATE_SYSTEM_GRANULARITY,DATASET,MAP_PREDEFINED_GML_PROPERTIES,<lt>Unused<gt>,USE_STYLESHEET_RESULT_AS_DATASET,no,XML_WRAPPER_APPEND_PATH,<lt>Unused<gt>,MAX_MULTI_LIST_LEVEL,,FEATURE_COLLECTION,,XML_DOCUMENT_APPEND_AS,<lt>Unused<gt>,SPATIAL_GROUP,,PREFER_POLYGON_OVER_SURFACE,no,APPLY_STYLESHEET,,PROFILE,3.1.1,XML_APPENDER_SETTINGS,<lt>Unused<gt>,TARGET_NS_PREFIX,fme,SRS_NAME,,TARGET_XSI_SCHEMALOCATION_URL,,WRITE_ALL_FEATURE_TYPE_DEFNS,no,UPDATE_FEATURE_TYPES,no,FEATURE_PROPERTIES_ATTRIBUTE_HANDLING,<lt>Unused<gt>,GENERATE_GEOMETRY_IDS,NO,DESTINATION_DATASETTYPE_VALIDATION,Yes,SUPPRESS_XSI_SCHEMALOCATION,no,XML_APPENDER_XML_WRAPPER_SETTINGS,<lt>Unused<gt>,NETWORK_AUTHENTICATION,,OUTPUT_ENCODING,utf-8,FEATURE_COLLECTION_GROUP,,XML_WRAPPER_APPEND_AS,<lt>Unused<gt>,XML_DOCUMENT_APPEND_PATH,<lt>Unused<gt>,TARGET_NS_URI,http:<solidus><solidus>www.safe.com<solidus>gml<solidus>fme,SRS_AXIS_ORDER,,ADD_NAMESPACE_PREFIX_TO_NAMES,<lt>Unused<gt>,PROCESS_XLINK_GEOMETRIES,<lt>Unused<gt>,MINIMUM_FRACTION_DIGITS,,STYLESHEET_RESULT,,MAP_EMBEDDED_OBJECTS_AS,<lt>Unused<gt>,PRETTY_PRINT,No,REPLACE_TABS_WITH_SPACES,No,MAXIMUM_FRACTION_DIGITS,,GUESS_GEOMETRY_NAMES,<lt>Unused<gt>,FME_PATHS_OPTIONS_FOR_GML_RINGS,SEGMENTS_ONLY_FOR_NO_ID_PATHS,FEATURE_COLLECTION_NS_URI,,GML_WRT_ADV_PARAMETERS,,XML_WRAPPER,<lt>Unused<gt>,ADD_WRITER_NEXT_ACTION,none,COORDINATE_SYSTEM,,DOCUMENTS_TO_WRITE,BOTH,MAP_COVERAGES_AS_FEATURE_TYPES,<lt>Unused<gt>,FEATURE_PROPERTIES,<lt>Unused<gt>,XSD_DOC,,TEXT_INDENT,No,INDENT_SIZE,1
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GML_3"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GML GML_3
+# ============================================================================
+# The following GUI lines prompt for a GML file to be used as the
+# the source of the data.
+# The user input is stored in a macro, which is then used to define
+# the dataset to be written.
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_GML_3 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GML GML_3
+DEFAULT_MACRO SourceDataset_GML_3 $(SourceDataset_GML)
+GUI OPTIONAL MULTIFILE SourceDataset_GML_3 GML_Files(*.gml;*.gz;*.xml)|*.gml;*gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|All_Files(*)|* Source Geography Markup Language (GML) File(s):
+DEFAULT_MACRO GML_IN_SUPPORTED_READER_ARCHIVE_EXTENSIONS_GML_3 xml.gz,gml.gz
+GML_3_SUPPORTED_READER_ARCHIVE_EXTENSIONS "$(GML_IN_SUPPORTED_READER_ARCHIVE_EXTENSIONS_GML_3)"
+# ============================================================================
+DEFAULT_MACRO GML_IN_FME_GROUP_NAMED1_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_FME_GROUP_NAMED1_GML_3 GML_IN_IGNORE_APPLICATON_SCHEMA_GML_3%GML_IN_XSD_DOC_GML_3%GML_IN_VALIDATE_DATASET_GML_3%GML_IN_FEATURE_TYPES_SCHEMA_MODE%GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3%GML_IN_MAP_FEATURE_COLLECTION_GML_3%GML_IN_GML_FEATURE_ELEMENTS_GML_3 Application Schema
+DEFAULT_MACRO GML_IN_IGNORE_APPLICATON_SCHEMA_GML_3 no
+GML_3_IGNORE_APPLICATON_SCHEMA "$(GML_IN_IGNORE_APPLICATON_SCHEMA_GML_3)"
+GUI ACTIVECHOICE GML_IN_IGNORE_APPLICATON_SCHEMA_GML_3 no,GML_IN_GML_FEATURE_ELEMENTS_GML_3%yes,GML_IN_XSD_DOC_GML_3,GML_IN_VALIDATE_DATASET_GML_3,GML_IN_FEATURE_TYPES_SCHEMA_MODE,GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3,GML_IN_MAP_FEATURE_COLLECTION_GML_3,GML_IN_FEATURE_PROPERTIES_READER_GML_3,GML_IN_ATTRIBUTE_HANDLING_GML_3,GML_IN_GML_READER_GROUP_GML_3 Ignore Application Schema:
+# ============================================================================
+# The XSD_DOC keyword overwrites the location of the XML Schema document that
+# is specified in the xsi:schemaLocation of the XML dataset.
+DEFAULT_MACRO GML_IN_XSD_DOC_GML_3 
+GML_3_XSD_DOC "$(GML_IN_XSD_DOC_GML_3)"
+GUI OPTIONAL FILE_OR_URL GML_IN_XSD_DOC_GML_3 GML_Schema_File(*.xsd)|*.xsd|All_Files(*)|* Application Schema:
+# ============================================================================
+# This specifies whether the XML dataset should be validated against its
+# DTD file. If set to 'auto', the XML document will only be validated if
+# its DTD file is available.
+DEFAULT_MACRO GML_IN_VALIDATE_DATASET_GML_3 no
+GML_3_VALIDATE_DATASET "$(GML_IN_VALIDATE_DATASET_GML_3)"
+GUI CHOICE GML_IN_VALIDATE_DATASET_GML_3 yes%no Validate GML Dataset File:
+# ============================================================================
+# Specifies whether we should only show feature types from XSD or dataset
+DEFAULT_MACRO GML_IN_FEATURE_TYPES_SCHEMA_MODE_GML_3 XML_SCHEMA
+GML_3_FEATURE_TYPES_SCHEMA_MODE "$(GML_IN_FEATURE_TYPES_SCHEMA_MODE_GML_3)"
+DEFAULT_MACRO GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3 No
+GML_3_SKIP_SCHEMA_LOCATION_IN_DATASET "$(GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3)"
+GUI CHOICE GML_IN_SKIP_SCHEMA_LOCATION_IN_DATASET_GML_3 Yes%No Ignore xsi:schemaLocation in Dataset:
+DEFAULT_MACRO GML_IN_MAP_FEATURE_COLLECTION_GML_3 
+GML_3_MAP_FEATURE_COLLECTION "$(GML_IN_MAP_FEATURE_COLLECTION_GML_3)"
+GUI OPTIONAL LOOKUP_LISTBOX GML_IN_MAP_FEATURE_COLLECTION_GML_3 gml:FeatureCollection,gml%wfs:FeatureCollection,wfs Map FeatureCollection:
+DEFAULT_MACRO GML_IN_GML_FEATURE_ELEMENTS_GML_3 <Unused>
+GML_3_GML_FEATURE_ELEMENTS "$(GML_IN_GML_FEATURE_ELEMENTS_GML_3)"
+GUI OPTIONAL DYNAMIC_MULTI_SELECT_ENCODED GML_IN_GML_FEATURE_ELEMENTS_GML_3 $[SourceDataset_GML_3],_FORMAT_OVERRIDE_,XML,_GET_ATTRIBUTE_VALUES_,,XML_PATH_SCAN,YES,NETWORK_AUTHENTICATION,$[GML_IN_NETWORK_AUTHENTICATION_GML_3],FME_DELIM,<space>,FME_PARENT_SELECTION,root_node,FME_READ_SCHEMA,NO,FME_DN_ATTR,display_value,FME_PATH_ATTR,feature_path GML Feature Elements:
+# ============================================================================
+DEFAULT_MACRO GML_IN_FEATURE_PROPERTIES_READER_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_FEATURE_PROPERTIES_READER_GML_3 GML_IN_MAP_EMBEDDED_OBJECTS_AS_GML_3%GML_IN_MAP_PREDEFINED_GML_PROPERTIES_GML_3%GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3%GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_3%GML_IN_QNAMES_FOR_PROPERTIES_TO_IGNORE_GML_3%GML_IN_MAP_COVERAGES_AS_FEATURE_TYPES_GML_3 Feature Properties
+DEFAULT_MACRO GML_IN_MAP_EMBEDDED_OBJECTS_AS_GML_3 ATTRIBUTES
+GML_3_MAP_EMBEDDED_OBJECTS_AS "$(GML_IN_MAP_EMBEDDED_OBJECTS_AS_GML_3)"
+GUI LOOKUP_CHOICE GML_IN_MAP_EMBEDDED_OBJECTS_AS_GML_3 "\"Attributes\",ATTRIBUTES"%"\"Geometries\",GEOMETRIES"%"\"Feature Types\",FEATURE_TYPES" Map Embedded Objects as:
+DEFAULT_MACRO GML_IN_MAP_PREDEFINED_GML_PROPERTIES_GML_3 NO
+GML_3_MAP_PREDEFINED_GML_PROPERTIES "$(GML_IN_MAP_PREDEFINED_GML_PROPERTIES_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_MAP_PREDEFINED_GML_PROPERTIES_GML_3 YES%NO Map Predefined Properties
+DEFAULT_MACRO GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3 YES
+GML_3_MAP_ALL_SUBSTITUTABLE_PROPERTIES "$(GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3 YES%NO Map All Substitutable Properties
+DEFAULT_MACRO GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_3 
+GML_3_ADD_NAMESPACE_PREFIX_TO_NAMES "$(GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_3)"
+GUI OPTIONAL LOOKUP_CHOICE GML_IN_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_3 "\"Feature Types\",FEATURE_TYPES"%"\"Feature Types (On Conflict)\",CONFLICTING_FEATURE_TYPES"%"\"Feature Types and Attributes\",FEATURE_TYPES_AND_ATTRIBUTES" Add XML Namespace Prefix to:
+DEFAULT_MACRO GML_IN_QNAMES_FOR_PROPERTIES_TO_IGNORE_GML_3 
+GML_3_QNAMES_FOR_PROPERTIES_TO_IGNORE "$(GML_IN_QNAMES_FOR_PROPERTIES_TO_IGNORE_GML_3)"
+GUI OPTIONAL TEXT_EDIT_XML GML_IN_QNAMES_FOR_PROPERTIES_TO_IGNORE_GML_3 Properties to Ignore:
+DEFAULT_MACRO GML_IN_MAP_COVERAGES_AS_FEATURE_TYPES_GML_3 NO
+GML_3_MAP_COVERAGES_AS_FEATURE_TYPES "$(GML_IN_MAP_COVERAGES_AS_FEATURE_TYPES_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_MAP_COVERAGES_AS_FEATURE_TYPES_GML_3 YES%NO Map Coverages as Feature Types
+# ============================================================================
+DEFAULT_MACRO GML_IN_ATTRIBUTE_HANDLING_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_ATTRIBUTE_HANDLING_GML_3 GML_IN_MAP_COMPLEX_PROPERTIES_AS_GML_3%GML_IN_MAX_MULTI_LIST_LEVEL_GML_3%GML_IN_XML_FRAGMENTS_AS_DOCUMENTS_GML_3%GML_IN_FLATTEN_XML_FRAGMENTS_GML_3 Feature Properties - Attribute Handling
+DEFAULT_MACRO GML_IN_MAP_COMPLEX_PROPERTIES_AS_GML_3 Nested Attributes
+GML_3_MAP_COMPLEX_PROPERTIES_AS "$(GML_IN_MAP_COMPLEX_PROPERTIES_AS_GML_3)"
+GUI ACTIVECHOICE GML_IN_MAP_COMPLEX_PROPERTIES_AS_GML_3 "Nested Attributes"%"\"XML Fragments\",GML_IN_MAX_MULTI_LIST_LEVEL_GML_3" Map Complex Properties as:
+GUI LOOKUP GML_IN_MAX_MULTI_LIST_LEVEL_GML_3 <Unused>, 
+DEFAULT_MACRO GML_IN_MAX_MULTI_LIST_LEVEL_GML_3 
+GML_3_MAX_MULTI_LIST_LEVEL "$(GML_IN_MAX_MULTI_LIST_LEVEL_GML_3)"
+GUI OPTIONAL CHOICE GML_IN_MAX_MULTI_LIST_LEVEL_GML_3 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20 Limit Number of Lists in Nested Attributes:
+DEFAULT_MACRO GML_IN_XML_FRAGMENTS_AS_DOCUMENTS_GML_3 YES
+GML_3_XML_FRAGMENTS_AS_DOCUMENTS "$(GML_IN_XML_FRAGMENTS_AS_DOCUMENTS_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_XML_FRAGMENTS_AS_DOCUMENTS_GML_3 YES%NO Include XML Declaration in XML Fragments
+DEFAULT_MACRO GML_IN_FLATTEN_XML_FRAGMENTS_GML_3 NO
+GML_3_FLATTEN_XML_FRAGMENTS "$(GML_IN_FLATTEN_XML_FRAGMENTS_GML_3)"
+GUI ACTIVEDISCLOSUREGROUP GML_IN_FLATTEN_XML_FRAGMENTS_GML_3 GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3%GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3%GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3 Flatten XML Fragments
+GUI LOOKUP GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3 <Unused>, 
+DEFAULT_MACRO GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3 
+GML_3_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE "$(GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3)"
+GUI OPTIONAL STRING_OR_CHOICE GML_IN_FLATTEN_XML_FRAGMENTS_OPEN_LIST_BRACE_GML_3 {%_%-%empty_string Substitute Open List Brace:
+GUI LOOKUP GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3 <Unused>, 
+DEFAULT_MACRO GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3 
+GML_3_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE "$(GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3)"
+GUI OPTIONAL STRING_OR_CHOICE GML_IN_FLATTEN_XML_FRAGMENTS_CLOSE_LIST_BRACE_GML_3 }%_%-%empty_string Substitute Close List Brace:
+GUI LOOKUP GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3 <Unused>, 
+DEFAULT_MACRO GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3 
+GML_3_FLATTEN_XML_FRAGMENTS_SEPARATOR "$(GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3)"
+GUI OPTIONAL STRING_OR_CHOICE GML_IN_FLATTEN_XML_FRAGMENTS_SEPARATOR_GML_3 .%_%empty_string Substitute Element List Separator:
+# ============================================================================
+DEFAULT_MACRO GML_IN_GML_READER_GROUP_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_GML_READER_GROUP_GML_3 GML_IN_USE_OLD_READER_GML_3%GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION_GML_3%GML_IN_DISABLE_XML_NAMESPACE_PROCESSING_GML_3 Version and XML Namespace Processing
+DEFAULT_MACRO GML_IN_USE_OLD_READER_GML_3 NO
+GML_3_USE_OLD_READER "$(GML_IN_USE_OLD_READER_GML_3)"
+GUI OPTIONAL ACTIVECHECK GML_IN_USE_OLD_READER_GML_3 YES,GML_IN_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_3%NO Use Old Reader for GML v3.1.1 and v2.1.2 Documents
+DEFAULT_MACRO GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION_GML_3 NO
+GML_3_DISABLE_AUTOMATIC_READER_TYPE_SELECTION "$(GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_DISABLE_AUTOMATIC_READER_TYPE_SELECTION_GML_3 YES%NO Disable Automatic Reader Type Selection
+DEFAULT_MACRO GML_IN_DISABLE_XML_NAMESPACE_PROCESSING_GML_3 NO
+GML_3_DISABLE_XML_NAMESPACE_PROCESSING "$(GML_IN_DISABLE_XML_NAMESPACE_PROCESSING_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_DISABLE_XML_NAMESPACE_PROCESSING_GML_3 YES%NO Disable XML Namespace Processing
+# ============================================================================
+DEFAULT_MACRO GML_IN_EXPLORE_XSD_VALUES_GROUP_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_EXPLORE_XSD_VALUES_GROUP_GML_3 GML_IN_EXPLORE_XSD_VALUES_GML_3 Explore XSD Values
+DEFAULT_MACRO GML_IN_EXPLORE_XSD_VALUES_GML_3 NO
+GML_3_EXPLORE_XSD_VALUES "$(GML_IN_EXPLORE_XSD_VALUES_GML_3)"
+GUI OPTIONAL ACTIVECHECK GML_IN_EXPLORE_XSD_VALUES_GML_3 YES,GML_IN_VALIDATE_DATASET_GML_3,GML_IN_FEATURE_TYPES_SCHEMA_MODE,GML_IN_SRS_GEOMETRY_PARAMETERS_GML_3,GML_IN_USE_OLD_READER_GML_3,GML_IN_USE_SEARCH_ENVELOPE_GML_3%NO Explore XSD Values
+DEFAULT_MACRO GML_IN_EXPOSE_ATTRS_GROUP_GML_3 
+GML_3_EXPOSE_ATTRS_GROUP "$(GML_IN_EXPOSE_ATTRS_GROUP_GML_3)"
+DEFAULT_MACRO GML_IN_SPATIAL_GROUP_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_SPATIAL_GROUP_GML_3 GML_IN_COORDINATE_SYSTEM_GML_3%GML_IN_SRS_GEOMETRY_PARAMETERS_GML_3%GML_IN_MAP_GEOMETRY_COLUMNS_GML_3%GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS_GML_3%GML_IN_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES_GML_3%GML_IN_USE_SEARCH_ENVELOPE_GML_3 Spatial
+DEFAULT_MACRO GML_IN_COORDINATE_SYSTEM_GML_3 
+GML_3_COORDINATE_SYSTEM "$(GML_IN_COORDINATE_SYSTEM_GML_3)"
+GUI OPTIONAL COORDSYS GML_IN_COORDINATE_SYSTEM_GML_3 Coordinate System:
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO GML_IN_USE_SEARCH_ENVELOPE_GML_3 NO
+GML_3_USE_SEARCH_ENVELOPE "$(GML_IN_USE_SEARCH_ENVELOPE_GML_3)"
+GUI ACTIVEDISCLOSUREGROUP GML_IN_USE_SEARCH_ENVELOPE_GML_3 GML_IN_SEARCH_ENVELOPE_MINX_GML_3%GML_IN_SEARCH_ENVELOPE_MINY_GML_3%GML_IN_SEARCH_ENVELOPE_MAXX_GML_3%GML_IN_SEARCH_ENVELOPE_MAXY_GML_3%GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3%GML_IN_CLIP_TO_ENVELOPE_GML_3%GML_IN_SEARCH_METHOD%GML_IN_SEARCH_METHOD_FILTER%GML_IN_SEARCH_ORDER%GML_IN_SEARCH_FEATURE%GML_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP GML_IN_SEARCH_ENVELOPE_MINX_GML_3 <Unused>,0 
+DEFAULT_MACRO GML_IN_SEARCH_ENVELOPE_MINX_GML_3 0
+GML_3_SEARCH_ENVELOPE "$(GML_IN_SEARCH_ENVELOPE_MINX_GML_3)"
+GUI OPTIONAL FLOAT GML_IN_SEARCH_ENVELOPE_MINX_GML_3 Minimum X:
+# ===========================================================================
+GUI LOOKUP GML_IN_SEARCH_ENVELOPE_MINY_GML_3 <Unused>,0 
+DEFAULT_MACRO GML_IN_SEARCH_ENVELOPE_MINY_GML_3 0
+GML_3_SEARCH_ENVELOPE "$(GML_IN_SEARCH_ENVELOPE_MINY_GML_3)"
+GUI OPTIONAL FLOAT GML_IN_SEARCH_ENVELOPE_MINY_GML_3 Minimum Y:
+# ===========================================================================
+GUI LOOKUP GML_IN_SEARCH_ENVELOPE_MAXX_GML_3 <Unused>,0 
+DEFAULT_MACRO GML_IN_SEARCH_ENVELOPE_MAXX_GML_3 0
+GML_3_SEARCH_ENVELOPE "$(GML_IN_SEARCH_ENVELOPE_MAXX_GML_3)"
+GUI OPTIONAL FLOAT GML_IN_SEARCH_ENVELOPE_MAXX_GML_3 Maximum X:
+# ===========================================================================
+GUI LOOKUP GML_IN_SEARCH_ENVELOPE_MAXY_GML_3 <Unused>,0 
+DEFAULT_MACRO GML_IN_SEARCH_ENVELOPE_MAXY_GML_3 0
+GML_3_SEARCH_ENVELOPE "$(GML_IN_SEARCH_ENVELOPE_MAXY_GML_3)"
+GUI OPTIONAL FLOAT GML_IN_SEARCH_ENVELOPE_MAXY_GML_3 Maximum Y:
+# ===========================================================================
+GUI LOOKUP GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3 <Unused>, 
+DEFAULT_MACRO GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3 
+GML_3_SEARCH_ENVELOPE "$(GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3)"
+GUI OPTIONAL COORDSYS GML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GML_3 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP GML_IN_CLIP_TO_ENVELOPE_GML_3 <Unused>,NO 
+DEFAULT_MACRO GML_IN_CLIP_TO_ENVELOPE_GML_3 NO
+GML_3_CLIP_TO_ENVELOPE "$(GML_IN_CLIP_TO_ENVELOPE_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_CLIP_TO_ENVELOPE_GML_3 YES%NO Clip to Search Envelope
+# ============================================================================
+DEFAULT_MACRO GML_IN_SRS_GEOMETRY_PARAMETERS_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_SRS_GEOMETRY_PARAMETERS_GML_3 GML_IN_SRS_AXIS_ORDER_GML_3%GML_IN_SRS_ANGLE_DIRECTION_GML_3%GML_IN_ENFORCE_PATH_CONTINUITY_BY_GML_3%GML_IN_PROCESS_XLINK_GEOMETRIES_GML_3 GML SRS/Geometry Parameters
+DEFAULT_MACRO GML_IN_SRS_AXIS_ORDER_GML_3 
+GML_3_SRS_AXIS_ORDER "$(GML_IN_SRS_AXIS_ORDER_GML_3)"
+GUI OPTIONAL CHOICE GML_IN_SRS_AXIS_ORDER_GML_3 1,2%2,1%1,2,3%2,1,3 GML SRS Axis Order:
+DEFAULT_MACRO GML_IN_SRS_ANGLE_DIRECTION_GML_3 
+GML_3_SRS_ANGLE_DIRECTION "$(GML_IN_SRS_ANGLE_DIRECTION_GML_3)"
+GUI OPTIONAL LOOKUP_CHOICE GML_IN_SRS_ANGLE_DIRECTION_GML_3 Counterclockwise,CCW%Clockwise,CW GML SRS Angle Direction:
+DEFAULT_MACRO GML_IN_ENFORCE_PATH_CONTINUITY_BY_GML_3 SNAPPING_END_POINTS
+GML_3_ENFORCE_PATH_CONTINUITY_BY "$(GML_IN_ENFORCE_PATH_CONTINUITY_BY_GML_3)"
+GUI OPTIONAL LOOKUP_CHOICE GML_IN_ENFORCE_PATH_CONTINUITY_BY_GML_3 "\"Snapping End Points\",SNAPPING_END_POINTS"%"\"Inserting New Line\",INSERTING_NEW_LINE" Enforce Path Continuity By:
+DEFAULT_MACRO GML_IN_PROCESS_XLINK_GEOMETRIES_GML_3 No
+GML_3_PROCESS_XLINK_GEOMETRIES "$(GML_IN_PROCESS_XLINK_GEOMETRIES_GML_3)"
+GUI CHOICE GML_IN_PROCESS_XLINK_GEOMETRIES_GML_3 Yes%No Process XLink Geometries:
+DEFAULT_MACRO GML_IN_MAP_GEOMETRY_COLUMNS_GML_3 YES
+GML_3_MAP_GEOMETRY_COLUMNS "$(GML_IN_MAP_GEOMETRY_COLUMNS_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_MAP_GEOMETRY_COLUMNS_GML_3 YES%NO Map Geometry Columns
+DEFAULT_MACRO GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS_GML_3 NO
+GML_3_ADD_GEOMETRIES_AS_XML_FRAGMENTS "$(GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS_GML_3)"
+GUI OPTIONAL CHECKBOX GML_IN_ADD_GEOMETRIES_AS_XML_FRAGMENTS_GML_3 YES%NO Add Geometries as XML Fragments
+# ============================================================================
+DEFAULT_MACRO GML_IN_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES_GML_3 yes
+GML_3_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES "$(GML_IN_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES_GML_3)"
+GUI CHOICE GML_IN_REPROJECT_DISPARATE_CRS_IN_MULTIPLE_GEOMETRIES_GML_3 yes%no Reproject Disparate CRS in Multiple Geometries:
+DEFAULT_MACRO GML_IN_GML_RDR_ADV_GML_3 
+GUI OPTIONAL DISCLOSUREGROUP GML_IN_GML_RDR_ADV_GML_3 GML_IN_CONTINUE_ON_GEOM_ERROR_GML_3%GML_IN_CACHE_XSD_GML_3%GML_IN_CACHE_XSD_EXPIRY_TIME_GML_3%GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV_GML_3 Advanced
+# ============================================================================
+# This keyword allows the GML reader to continue reading the input dataset when
+# it encounters an error reading a feature's geometry.
+DEFAULT_MACRO GML_IN_CONTINUE_ON_GEOM_ERROR_GML_3 yes
+GML_3_CONTINUE_ON_GEOM_ERROR "$(GML_IN_CONTINUE_ON_GEOM_ERROR_GML_3)"
+GUI CHOICE GML_IN_CONTINUE_ON_GEOM_ERROR_GML_3 yes%no Continue on Geometry Error:
+# ============================================================================
+# This keyword allows XML Schemas to be temporarily cached thereby minimizing
+# the number of network fetches.
+DEFAULT_MACRO GML_IN_CACHE_XSD_GML_3 yes
+GML_3_CACHE_XSD "$(GML_IN_CACHE_XSD_GML_3)"
+GUI CHOICE GML_IN_CACHE_XSD_GML_3 yes%no Cache XSD Documents:
+# ============================================================================
+# Specifies the amount of time in seconds an XML Schema document is allowed
+# to be cached before it expires.
+DEFAULT_MACRO GML_IN_CACHE_XSD_EXPIRY_TIME_GML_3 
+GML_3_CACHE_XSD_EXPIRY_TIME "$(GML_IN_CACHE_XSD_EXPIRY_TIME_GML_3)"
+GUI OPTIONAL INTEGER GML_IN_CACHE_XSD_EXPIRY_TIME_GML_3 Cache XSD Expiry Time:
+DEFAULT_MACRO GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV_GML_3 no
+GML_3_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV "$(GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV_GML_3)"
+GUI CHOICE GML_IN_MULTI_VALUE_SIMPLE_PROPERTIES_AS_CSV_GML_3 no%yes Simple multi-valued properties as csv:
+# ===========================================================================
+DEFAULT_MACRO GML_IN_NETWORK_AUTHENTICATION_GML_3 
+GML_3_NETWORK_AUTHENTICATION "$(GML_IN_NETWORK_AUTHENTICATION_GML_3)"
+GUI OPTIONAL AUTHENTICATOR GML_IN_NETWORK_AUTHENTICATION_GML_3 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO GML_IN_ATTRIBUTE_READING_GML_3 ALL
+GML_3_ATTRIBUTE_READING "$(GML_IN_ATTRIBUTE_READING_GML_3)"
+# ============================================================================
+GML_3_GENERATE_FME_BUILD_NUM 26333
+GML_3_DATASET "$(SourceDataset_GML_3)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "MITAB_2"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER MITAB MITAB_2
+# ============================================================================
+# The following GUI line prompts for files to be used as the source data
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_MITAB_2 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER MITAB MITAB_2
+DEFAULT_MACRO SourceDataset_MITAB_2 $(SourceDataset_MITAB)
+GUI MULTIFILE SourceDataset_MITAB_2 TAB_Files(*.tab)|*.tab|All_Files(*)|* Source MapInfo TAB File(s):
+# BUG47627: MITAB rich compatibility flag
+DEFAULT_MACRO MITAB_IN__MITAB_FULL_ENHANCED_GEOMETRY_MITAB_2 YES
+MITAB_2__MITAB_FULL_ENHANCED_GEOMETRY "$(MITAB_IN__MITAB_FULL_ENHANCED_GEOMETRY_MITAB_2)"
+DEFAULT_MACRO MITAB_IN_CREATE_FEATURE_TABLES_FROM_DATA_MITAB_2 Yes
+MITAB_2_CREATE_FEATURE_TABLES_FROM_DATA "$(MITAB_IN_CREATE_FEATURE_TABLES_FROM_DATA_MITAB_2)"
+DEFAULT_MACRO MITAB_IN_FME_GROUP_NAMED1_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_IN_FME_GROUP_NAMED1_MITAB_2 MITAB_IN_ENCODING_MITAB_2 File Contents
+DEFAULT_MACRO MITAB_IN_ENCODING_MITAB_2 fme-source-encoding
+MITAB_2_ENCODING "$(MITAB_IN_ENCODING_MITAB_2)"
+GUI STRING_OR_ENCODING MITAB_IN_ENCODING_MITAB_2 fme-source-encoding%* Character Encoding:
+# =====================================================================
+# Provide some control over what attributes have the user-selected
+# encoding applied. Normally all attributes are updated after being
+# read, but the following lines exclude from this treatment all
+# attributes whose names start with fme_ or <attrPrefix>_, except
+# for <attrPrefix>_text_string, which always needs the encoding.
+DEFAULT_MACRO MITAB_IN_ENCODED_ATTRS_MITAB_2 mapinfo_text_string
+MITAB_2_ENCODED_ATTRS "$(MITAB_IN_ENCODED_ATTRS_MITAB_2)"
+DEFAULT_MACRO MITAB_IN_UNENCODED_ATTR_PREFIX_MITAB_2 fme_ mapinfo_
+MITAB_2_UNENCODED_ATTR_PREFIX "$(MITAB_IN_UNENCODED_ATTR_PREFIX_MITAB_2)"
+DEFAULT_MACRO MITAB_IN_EXPOSE_ATTRS_GROUP_MITAB_2 
+MITAB_2_EXPOSE_ATTRS_GROUP "$(MITAB_IN_EXPOSE_ATTRS_GROUP_MITAB_2)"
+DEFAULT_MACRO MITAB_IN_SPATIAL_GROUP_MITAB_2 
+GUI OPTIONAL DISCLOSUREGROUP MITAB_IN_SPATIAL_GROUP_MITAB_2 MITAB_IN_COORDINATE_SYSTEM_MITAB_2%MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_2 Spatial
+DEFAULT_MACRO MITAB_IN_COORDINATE_SYSTEM_MITAB_2 
+MITAB_2_COORDINATE_SYSTEM "$(MITAB_IN_COORDINATE_SYSTEM_MITAB_2)"
+GUI OPTIONAL COORDSYS MITAB_IN_COORDINATE_SYSTEM_MITAB_2 Coordinate System:
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_2 NO
+MITAB_2_USE_SEARCH_ENVELOPE "$(MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_2)"
+GUI ACTIVEDISCLOSUREGROUP MITAB_IN_USE_SEARCH_ENVELOPE_MITAB_2 MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2%MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2%MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2%MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2%MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2%MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2%MITAB_IN_SEARCH_METHOD%MITAB_IN_SEARCH_METHOD_FILTER%MITAB_IN_SEARCH_ORDER%MITAB_IN_SEARCH_FEATURE%MITAB_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2 0
+MITAB_2_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MINX_MITAB_2 Minimum X:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2 0
+MITAB_2_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MINY_MITAB_2 Minimum Y:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2 0
+MITAB_2_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MAXX_MITAB_2 Maximum X:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2 <Unused>,0 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2 0
+MITAB_2_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2)"
+GUI OPTIONAL FLOAT MITAB_IN_SEARCH_ENVELOPE_MAXY_MITAB_2 Maximum Y:
+# ===========================================================================
+GUI LOOKUP MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2 <Unused>, 
+DEFAULT_MACRO MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2 
+MITAB_2_SEARCH_ENVELOPE "$(MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2)"
+GUI OPTIONAL COORDSYS MITAB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_MITAB_2 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2 <Unused>,NO 
+DEFAULT_MACRO MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2 NO
+MITAB_2_CLIP_TO_ENVELOPE "$(MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2)"
+GUI OPTIONAL CHECKBOX MITAB_IN_CLIP_TO_ENVELOPE_MITAB_2 YES%NO Clip to Search Envelope
+DEFAULT_MACRO MITAB_IN_ENABLE_REPROJECTABLE_ATTRS_MITAB_2 no
+MITAB_2_ENABLE_REPROJECTABLE_ATTRS "$(MITAB_IN_ENABLE_REPROJECTABLE_ATTRS_MITAB_2)"
+# ===========================================================================
+DEFAULT_MACRO MITAB_IN_NETWORK_AUTHENTICATION_MITAB_2 
+MITAB_2_NETWORK_AUTHENTICATION "$(MITAB_IN_NETWORK_AUTHENTICATION_MITAB_2)"
+GUI OPTIONAL AUTHENTICATOR MITAB_IN_NETWORK_AUTHENTICATION_MITAB_2 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO MITAB_IN_ATTRIBUTE_READING_MITAB_2 ALL
+MITAB_2_ATTRIBUTE_READING "$(MITAB_IN_ATTRIBUTE_READING_MITAB_2)"
+# ============================================================================
+MITAB_2_GENERATE_FME_BUILD_NUM 26333
+MITAB_2_DATASET "$(SourceDataset_MITAB_2)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "OPENFILEGDB_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OPENFILEGDB OPENFILEGDB_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_OPENFILEGDB_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OPENFILEGDB OPENFILEGDB_1
+DEFAULT_MACRO SourceDataset_OPENFILEGDB_1 $(SourceDataset_OPENFILEGDB)
+GUI SOURCE_GEODATABASE SourceDataset_OPENFILEGDB_1 File Geodatabase:
+DEFAULT_MACRO OPENFILEGDB_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_OPENFILEGDB_1 Yes
+OPENFILEGDB_1_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS "$(OPENFILEGDB_IN_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS_OPENFILEGDB_1)"
+DEFAULT_MACRO OPENFILEGDB_IN_FME_CONNECTION_GROUP_OPENFILEGDB_1 
+GUI OPTIONAL DISCLOSUREGROUP OPENFILEGDB_IN_FME_CONNECTION_GROUP_OPENFILEGDB_1 OPENFILEGDB_IN_NAMED_CONNECTION Database Connection
+DEFAULT_MACRO OPENFILEGDB_IN_REMOVE_FEATURE_DATASET_OPENFILEGDB_1 NO
+OPENFILEGDB_1_REMOVE_FEATURE_DATASET "$(OPENFILEGDB_IN_REMOVE_FEATURE_DATASET_OPENFILEGDB_1)"
+DEFAULT_MACRO OPENFILEGDB_IN_EXPOSE_ATTRS_GROUP_OPENFILEGDB_1 
+OPENFILEGDB_1_EXPOSE_ATTRS_GROUP "$(OPENFILEGDB_IN_EXPOSE_ATTRS_GROUP_OPENFILEGDB_1)"
+DEFAULT_MACRO OPENFILEGDB_IN_READ_BOOLEANS_AS_YES_NO_OPENFILEGDB_1 YES
+OPENFILEGDB_1_READ_BOOLEANS_AS_YES_NO "$(OPENFILEGDB_IN_READ_BOOLEANS_AS_YES_NO_OPENFILEGDB_1)"
+DEFAULT_MACRO OPENFILEGDB_IN_READ_NULLS_OPENFILEGDB_1 YES
+OPENFILEGDB_1_READ_NULLS "$(OPENFILEGDB_IN_READ_NULLS_OPENFILEGDB_1)"
+DEFAULT_MACRO OPENFILEGDB_IN_SPATIAL_GROUP_OPENFILEGDB_1 
+GUI OPTIONAL DISCLOSUREGROUP OPENFILEGDB_IN_SPATIAL_GROUP_OPENFILEGDB_1 OPENFILEGDB_IN_COORDINATE_SYSTEM_OPENFILEGDB_1%OPENFILEGDB_IN_SIMPLE_DONUT_GEOMETRY_OPENFILEGDB_1%OPENFILEGDB_IN_USE_SEARCH_ENVELOPE_OPENFILEGDB_1 Spatial
+DEFAULT_MACRO OPENFILEGDB_IN_COORDINATE_SYSTEM_OPENFILEGDB_1 
+OPENFILEGDB_1_COORDINATE_SYSTEM "$(OPENFILEGDB_IN_COORDINATE_SYSTEM_OPENFILEGDB_1)"
+GUI OPTIONAL COORDSYS OPENFILEGDB_IN_COORDINATE_SYSTEM_OPENFILEGDB_1 Coordinate System:
+# Include this file in source setting section to add native search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO OPENFILEGDB_IN_USE_SEARCH_ENVELOPE_OPENFILEGDB_1 NO
+OPENFILEGDB_1_USE_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_USE_SEARCH_ENVELOPE_OPENFILEGDB_1)"
+GUI ACTIVEDISCLOSUREGROUP OPENFILEGDB_IN_USE_SEARCH_ENVELOPE_OPENFILEGDB_1 OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1%OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1%OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1%OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1%OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1%OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1%OPENFILEGDB_IN_SEARCH_METHOD%OPENFILEGDB_IN_SEARCH_METHOD_FILTER%OPENFILEGDB_IN_SEARCH_ORDER%OPENFILEGDB_IN_SEARCH_FEATURE%OPENFILEGDB_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1 <Unused>,0 
+DEFAULT_MACRO OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1 0
+OPENFILEGDB_1_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1)"
+GUI OPTIONAL FLOAT OPENFILEGDB_IN_SEARCH_ENVELOPE_MINX_OPENFILEGDB_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1 <Unused>,0 
+DEFAULT_MACRO OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1 0
+OPENFILEGDB_1_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1)"
+GUI OPTIONAL FLOAT OPENFILEGDB_IN_SEARCH_ENVELOPE_MINY_OPENFILEGDB_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1 <Unused>,0 
+DEFAULT_MACRO OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1 0
+OPENFILEGDB_1_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1)"
+GUI OPTIONAL FLOAT OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXX_OPENFILEGDB_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1 <Unused>,0 
+DEFAULT_MACRO OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1 0
+OPENFILEGDB_1_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1)"
+GUI OPTIONAL FLOAT OPENFILEGDB_IN_SEARCH_ENVELOPE_MAXY_OPENFILEGDB_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1 <Unused>, 
+DEFAULT_MACRO OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1 
+OPENFILEGDB_1_SEARCH_ENVELOPE "$(OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1)"
+GUI OPTIONAL COORDSYS OPENFILEGDB_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OPENFILEGDB_1 Search Envelope Coordinate System:
+# ===========================================================================
+GUI LOOKUP OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1 <Unused>,NO 
+DEFAULT_MACRO OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1 NO
+OPENFILEGDB_1_CLIP_TO_ENVELOPE "$(OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1)"
+GUI OPTIONAL CHECKBOX OPENFILEGDB_IN_CLIP_TO_ENVELOPE_OPENFILEGDB_1 YES%NO Clip to Search Envelope
+# ============================================================================
+# Option to use simple donut geometry creation, which is faster than the
+# original creation method, but less meticulous at detecting and correcting
+# geometric anomalies
+DEFAULT_MACRO OPENFILEGDB_IN_SIMPLE_DONUT_GEOMETRY_OPENFILEGDB_1 simple
+OPENFILEGDB_1_SIMPLE_DONUT_GEOMETRY "$(OPENFILEGDB_IN_SIMPLE_DONUT_GEOMETRY_OPENFILEGDB_1)"
+GUI LOOKUP_CHOICE OPENFILEGDB_IN_SIMPLE_DONUT_GEOMETRY_OPENFILEGDB_1 "\"Orientation Only\",simple"%"\"Orientation and Spatial Relationship\",complex" Donut Geometry Detection
+#
+DEFAULT_MACRO OPENFILEGDB_IN_ADVANCED_OPENFILEGDB_1 
+GUI OPTIONAL DISCLOSUREGROUP OPENFILEGDB_IN_ADVANCED_OPENFILEGDB_1 OPENFILEGDB_IN_BEGIN_SQL_OPENFILEGDB_1%OPENFILEGDB_IN_END_SQL_OPENFILEGDB_1%OPENFILEGDB_IN_GEOMETRY%OPENFILEGDB_IN_STRIP_GUID_GLOBALID_BRACES_OPENFILEGDB_1 Advanced
+DEFAULT_MACRO OPENFILEGDB_IN_BEGIN_SQL_OPENFILEGDB_1 
+OPENFILEGDB_1_BEGIN_SQL "$(OPENFILEGDB_IN_BEGIN_SQL_OPENFILEGDB_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG OPENFILEGDB_IN_BEGIN_SQL_OPENFILEGDB_1 MODE,SQL;FORMAT,FILEGDB SQL To Run Before Read
+DEFAULT_MACRO OPENFILEGDB_IN_END_SQL_OPENFILEGDB_1 
+OPENFILEGDB_1_END_SQL "$(OPENFILEGDB_IN_END_SQL_OPENFILEGDB_1)"
+GUI OPTIONAL TEXT_EDIT_SQL_CFG OPENFILEGDB_IN_END_SQL_OPENFILEGDB_1 MODE,SQL;FORMAT,FILEGDB SQL To Run After Read
+DEFAULT_MACRO OPENFILEGDB_IN_STRIP_GUID_GLOBALID_BRACES_OPENFILEGDB_1 no
+OPENFILEGDB_1_STRIP_GUID_GLOBALID_BRACES "$(OPENFILEGDB_IN_STRIP_GUID_GLOBALID_BRACES_OPENFILEGDB_1)"
+GUI LOOKUP_CHOICE OPENFILEGDB_IN_STRIP_GUID_GLOBALID_BRACES_OPENFILEGDB_1 Yes,yes%No,no Strip braces off GlobalID and GUID:
+# ===========================================================================
+DEFAULT_MACRO OPENFILEGDB_IN_NETWORK_AUTHENTICATION_OPENFILEGDB_1 
+OPENFILEGDB_1_NETWORK_AUTHENTICATION "$(OPENFILEGDB_IN_NETWORK_AUTHENTICATION_OPENFILEGDB_1)"
+GUI OPTIONAL AUTHENTICATOR OPENFILEGDB_IN_NETWORK_AUTHENTICATION_OPENFILEGDB_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO OPENFILEGDB_IN_ATTRIBUTE_READING_OPENFILEGDB_1 DEFLINE
+OPENFILEGDB_1_ATTRIBUTE_READING "$(OPENFILEGDB_IN_ATTRIBUTE_READING_OPENFILEGDB_1)"
+# ============================================================================
+OPENFILEGDB_1_GENERATE_FME_BUILD_NUM 26333
+OPENFILEGDB_1_DATASET "$(SourceDataset_OPENFILEGDB_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GML_1"
+#! END_WB_HEADER
+#! START_DEST_HEADER GML GML_1
+# ============================================================================
+# The following GUI lines prompt for a GML file to be used as the
+# the destination of the data.
+#! END_DEST_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO DestDataset
+INCLUDE [ if {"$(DestDataset)" != ""} {                          \
+ puts {DEFAULT_MACRO DestDataset_GML_1 $(DestDataset)}         \
+ } ]
+#! END_WB_HEADER
+#! START_DEST_HEADER GML GML_1
+DEFAULT_MACRO DestDataset_GML_1 $(DestDataset_GML)
+GUI FILENAME DestDataset_GML_1 GML_Files(*.gml;*.gz;*.xml)|*.gml;*.gz;*.xml|GML_Files(*.gml)|*.gml|Compressed_GML_Files(*.gz)|*.gz|GML_Files(*.xml)|*.xml|All_Files(*)|* Destination Geography Markup Language (GML) File:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_FME_GROUP_NAMED1_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_FME_GROUP_NAMED1_GML_1 GML_OUT_PROFILE_GML_1%GML_OUT_XSD_DOC_GML_1 GML Version
+DEFAULT_MACRO GML_OUT_PROFILE_GML_1 3.1.1
+GML_1_PROFILE "$(GML_OUT_PROFILE_GML_1)"
+GUI ACTIVECHOICE GML_OUT_PROFILE_GML_1 3.1.1,GML_OUT_XSD_DOC_GML_1,GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1,GML_OUT_FEATURE_PROPERTIES_GML_1,GML_OUT_FEATURE_PROPERTIES_ATTRIBUTE_HANDLING_GML_1,GML_OUT_XML_APPENDER_SETTINGS_GML_1%3.2.1,GML_OUT_XSD_DOC_GML_1,GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1,GML_OUT_FEATURE_PROPERTIES_GML_1,GML_OUT_FEATURE_PROPERTIES_ATTRIBUTE_HANDLING_GML_1,GML_OUT_XML_APPENDER_SETTINGS_GML_1%"\"GML Application Schema\",GML_OUT_TARGET_NS_PREFIX_GML_1,GML_OUT_TARGET_NS_URI_GML_1,GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1,GML_OUT_DOCUMENTS_TO_WRITE_GML_1" GML Version:
+GUI LOOKUP GML_OUT_XSD_DOC_GML_1 <Unused>, 
+DEFAULT_MACRO GML_OUT_XSD_DOC_GML_1 
+GML_1_XSD_DOC "$(GML_OUT_XSD_DOC_GML_1)"
+GUI OPTIONAL FILE_OR_URL GML_OUT_XSD_DOC_GML_1 GML_Schema_File(*.xsd)|*.xsd|All_Files(*)|* Application Schema:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_FME_GROUP_NAMED2_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_FME_GROUP_NAMED2_GML_1 GML_OUT_TARGET_NS_PREFIX_GML_1%GML_OUT_TARGET_NS_URI_GML_1 Namespace Options
+DEFAULT_MACRO GML_OUT_TARGET_NS_PREFIX_GML_1 fme
+GML_1_TARGET_NS_PREFIX "$(GML_OUT_TARGET_NS_PREFIX_GML_1)"
+GUI OPTIONAL TEXT GML_OUT_TARGET_NS_PREFIX_GML_1 Target Namespace Prefix:
+DEFAULT_MACRO GML_OUT_TARGET_NS_URI_GML_1 http://www.safe.com/gml/fme
+GML_1_TARGET_NS_URI "$(GML_OUT_TARGET_NS_URI_GML_1)"
+GUI OPTIONAL TEXT GML_OUT_TARGET_NS_URI_GML_1 Target Namespace URI:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_PRETTY_PRINT_SETTINGS_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_PRETTY_PRINT_SETTINGS_GML_1 GML_OUT_PRETTY_PRINT_GML_1%GML_OUT_INDENT_SIZE_GML_1%GML_OUT_REPLACE_TABS_WITH_SPACES_GML_1%GML_OUT_TEXT_INDENT_GML_1 Pretty Printing
+DEFAULT_MACRO GML_OUT_PRETTY_PRINT_GML_1 No
+GML_1_PRETTY_PRINT "$(GML_OUT_PRETTY_PRINT_GML_1)"
+GUI CHOICE GML_OUT_PRETTY_PRINT_GML_1 Yes%No Pretty Print:
+DEFAULT_MACRO GML_OUT_INDENT_SIZE_GML_1 1
+GML_1_INDENT_SIZE "$(GML_OUT_INDENT_SIZE_GML_1)"
+GUI CHOICE GML_OUT_INDENT_SIZE_GML_1 0%1%2%3%4%5%6%7%8%9 Indent Size:
+DEFAULT_MACRO GML_OUT_REPLACE_TABS_WITH_SPACES_GML_1 No
+GML_1_REPLACE_TABS_WITH_SPACES "$(GML_OUT_REPLACE_TABS_WITH_SPACES_GML_1)"
+GUI CHOICE GML_OUT_REPLACE_TABS_WITH_SPACES_GML_1 Yes%No Replace Tabs with Spaces:
+DEFAULT_MACRO GML_OUT_TEXT_INDENT_GML_1 No
+GML_1_TEXT_INDENT "$(GML_OUT_TEXT_INDENT_GML_1)"
+GUI CHOICE GML_OUT_TEXT_INDENT_GML_1 Yes%No Indent Text:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_FEATURE_COLLECTION_GROUP_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_FEATURE_COLLECTION_GROUP_GML_1 GML_OUT_FEATURE_COLLECTION_GML_1%GML_OUT_FEATURE_COLLECTION_ID_GML_1%GML_OUT_FEATURE_COLLECTION_NS_URI_GML_1 Feature Collection
+DEFAULT_MACRO GML_OUT_FEATURE_COLLECTION_GML_1 
+GML_1_FEATURE_COLLECTION "$(GML_OUT_FEATURE_COLLECTION_GML_1)"
+GUI OPTIONAL STRING_OR_CHOICE GML_OUT_FEATURE_COLLECTION_GML_1 FeatureCollection%target-namespace Feature Collection:
+# This optional keyword specifies value for the gml:id in the featureCollection
+# container element.
+DEFAULT_MACRO GML_OUT_FEATURE_COLLECTION_ID_GML_1 
+GML_1_FEATURE_COLLECTION_ID "$(GML_OUT_FEATURE_COLLECTION_ID_GML_1)"
+GUI OPTIONAL TEXT GML_OUT_FEATURE_COLLECTION_ID_GML_1 Feature Collection ID:
+DEFAULT_MACRO GML_OUT_FEATURE_COLLECTION_NS_URI_GML_1 
+GML_1_FEATURE_COLLECTION_NS_URI "$(GML_OUT_FEATURE_COLLECTION_NS_URI_GML_1)"
+GUI OPTIONAL STRING_OR_CHOICE GML_OUT_FEATURE_COLLECTION_NS_URI_GML_1 http://www.opengis.net/gml%http://www.opengis.net/gml/3.2%http://www.opengis.net/wfs%http://www.opengis.net/wfs/2.0 Feature Collection NS URI:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_FEATURE_PROPERTIES_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_FEATURE_PROPERTIES_GML_1 GML_OUT_MAP_EMBEDDED_OBJECTS_AS_GML_1%GML_OUT_MAP_PREDEFINED_GML_PROPERTIES_GML_1%GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_1%GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_1%GML_OUT_GUESS_GEOMETRY_NAMES_GML_1%GML_OUT_MAP_COVERAGES_AS_FEATURE_TYPES_GML_1 Feature Properties
+DEFAULT_MACRO GML_OUT_MAP_EMBEDDED_OBJECTS_AS_GML_1 <Unused>
+GML_1_MAP_EMBEDDED_OBJECTS_AS "$(GML_OUT_MAP_EMBEDDED_OBJECTS_AS_GML_1)"
+GUI LOOKUP_CHOICE GML_OUT_MAP_EMBEDDED_OBJECTS_AS_GML_1 "\"Attributes\",ATTRIBUTES"%"\"Geometries\",GEOMETRIES"%"\"Feature Types\",FEATURE_TYPES" Map Embedded Objects as:
+DEFAULT_MACRO GML_OUT_MAP_PREDEFINED_GML_PROPERTIES_GML_1 <Unused>
+GML_1_MAP_PREDEFINED_GML_PROPERTIES "$(GML_OUT_MAP_PREDEFINED_GML_PROPERTIES_GML_1)"
+GUI OPTIONAL CHECKBOX GML_OUT_MAP_PREDEFINED_GML_PROPERTIES_GML_1 YES%NO Map Predefined Properties
+DEFAULT_MACRO GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_1 <Unused>
+GML_1_MAP_ALL_SUBSTITUTABLE_PROPERTIES "$(GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_1)"
+GUI OPTIONAL CHECKBOX GML_OUT_MAP_ALL_SUBSTITUTABLE_PROPERTIES_GML_1 YES%NO Map All Substitutable Properties
+DEFAULT_MACRO GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_1 <Unused>
+GML_1_ADD_NAMESPACE_PREFIX_TO_NAMES "$(GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_1)"
+GUI OPTIONAL LOOKUP_CHOICE GML_OUT_ADD_NAMESPACE_PREFIX_TO_NAMES_GML_1 "\"Feature Types\",FEATURE_TYPES"%"\"Feature Types (On Conflict)\",CONFLICTING_FEATURE_TYPES"%"\"Feature Types and Attributes\",FEATURE_TYPES_AND_ATTRIBUTES" Add XML Namespace Prefix to:
+DEFAULT_MACRO GML_OUT_GUESS_GEOMETRY_NAMES_GML_1 <Unused>
+GML_1_GUESS_GEOMETRY_NAMES "$(GML_OUT_GUESS_GEOMETRY_NAMES_GML_1)"
+GUI OPTIONAL CHECKBOX GML_OUT_GUESS_GEOMETRY_NAMES_GML_1 YES%NO Guess Geometry Names
+DEFAULT_MACRO GML_OUT_MAP_COVERAGES_AS_FEATURE_TYPES_GML_1 <Unused>
+GML_1_MAP_COVERAGES_AS_FEATURE_TYPES "$(GML_OUT_MAP_COVERAGES_AS_FEATURE_TYPES_GML_1)"
+GUI OPTIONAL CHECKBOX GML_OUT_MAP_COVERAGES_AS_FEATURE_TYPES_GML_1 YES%NO Map Coverages as Feature Types
+# ============================================================================
+DEFAULT_MACRO GML_OUT_FEATURE_PROPERTIES_ATTRIBUTE_HANDLING_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_FEATURE_PROPERTIES_ATTRIBUTE_HANDLING_GML_1 GML_OUT_MAP_COMPLEX_PROPERTIES_AS_GML_1%GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1%GML_OUT_XML_FRAGMENTS_AS_DOCUMENTS%GML_OUT_FLATTEN_XML_FRAGMENTS Feature Properties - Attribute Handling
+DEFAULT_MACRO GML_OUT_MAP_COMPLEX_PROPERTIES_AS_GML_1 <Unused>
+GML_1_MAP_COMPLEX_PROPERTIES_AS "$(GML_OUT_MAP_COMPLEX_PROPERTIES_AS_GML_1)"
+GUI ACTIVECHOICE GML_OUT_MAP_COMPLEX_PROPERTIES_AS_GML_1 "Nested Attributes"%"\"XML Fragments\",GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1" Map Complex Properties as:
+GUI LOOKUP GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1 <Unused>, 
+DEFAULT_MACRO GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1 
+GML_1_MAX_MULTI_LIST_LEVEL "$(GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1)"
+GUI OPTIONAL CHOICE GML_OUT_MAX_MULTI_LIST_LEVEL_GML_1 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20 Limit Number of Lists in Nested Attributes:
+DEFAULT_MACRO GML_OUT_XML_APPENDER_SETTINGS_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_XML_APPENDER_SETTINGS_GML_1 GML_OUT_XML_APPENDER_XML_DOCUMENT_SETTINGS_GML_1%GML_OUT_XML_APPENDER_XML_WRAPPER_SETTINGS_GML_1 XML Appender
+DEFAULT_MACRO GML_OUT_XML_APPENDER_XML_DOCUMENT_SETTINGS_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_XML_APPENDER_XML_DOCUMENT_SETTINGS_GML_1 GML_OUT_XML_DOCUMENT_GML_1%GML_OUT_XML_DOCUMENT_APPEND_PATH_GML_1%GML_OUT_XML_DOCUMENT_APPEND_AS_GML_1 XML Document
+DEFAULT_MACRO GML_OUT_XML_DOCUMENT_GML_1 <Unused>
+GML_1_XML_DOCUMENT "$(GML_OUT_XML_DOCUMENT_GML_1)"
+GUI OPTIONAL TEXT_EDIT_XML GML_OUT_XML_DOCUMENT_GML_1 XML Document:
+DEFAULT_MACRO GML_OUT_XML_DOCUMENT_APPEND_PATH_GML_1 <Unused>
+GML_1_XML_DOCUMENT_APPEND_PATH "$(GML_OUT_XML_DOCUMENT_APPEND_PATH_GML_1)"
+GUI OPTIONAL TEXT_EDIT_XML GML_OUT_XML_DOCUMENT_APPEND_PATH_GML_1 XML Document Append Path:
+DEFAULT_MACRO GML_OUT_XML_DOCUMENT_APPEND_AS_GML_1 <Unused>
+GML_1_XML_DOCUMENT_APPEND_AS "$(GML_OUT_XML_DOCUMENT_APPEND_AS_GML_1)"
+GUI LOOKUP_CHOICE GML_OUT_XML_DOCUMENT_APPEND_AS_GML_1 "\"Preceding Children\",PRECEDING_CHILDREN"%"\"Succeeding Children\",SUCCEEDING_CHILDREN"%"\"Preceding Siblings\",PRECEDING_SIBLINGS"%"\"Succeeding Siblings\",SUCCEEDING_SIBLINGS" XML Document Append As:
+DEFAULT_MACRO GML_OUT_XML_APPENDER_XML_WRAPPER_SETTINGS_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_XML_APPENDER_XML_WRAPPER_SETTINGS_GML_1 GML_OUT_XML_WRAPPER_GML_1%GML_OUT_XML_WRAPPER_APPEND_PATH_GML_1%GML_OUT_XML_WRAPPER_APPEND_AS_GML_1 XML Wrapper
+DEFAULT_MACRO GML_OUT_XML_WRAPPER_GML_1 <Unused>
+GML_1_XML_WRAPPER "$(GML_OUT_XML_WRAPPER_GML_1)"
+GUI OPTIONAL TEXT_EDIT_XML GML_OUT_XML_WRAPPER_GML_1 XML Wrapper:
+DEFAULT_MACRO GML_OUT_XML_WRAPPER_APPEND_PATH_GML_1 <Unused>
+GML_1_XML_WRAPPER_APPEND_PATH "$(GML_OUT_XML_WRAPPER_APPEND_PATH_GML_1)"
+GUI OPTIONAL TEXT_EDIT_XML GML_OUT_XML_WRAPPER_APPEND_PATH_GML_1 XML Wrapper Append Path:
+DEFAULT_MACRO GML_OUT_XML_WRAPPER_APPEND_AS_GML_1 <Unused>
+GML_1_XML_WRAPPER_APPEND_AS "$(GML_OUT_XML_WRAPPER_APPEND_AS_GML_1)"
+GUI LOOKUP_CHOICE GML_OUT_XML_WRAPPER_APPEND_AS_GML_1 "\"Preceding Children\",PRECEDING_CHILDREN"%"\"Succeeding Children\",SUCCEEDING_CHILDREN"%"\"Preceding Siblings\",PRECEDING_SIBLINGS"%"\"Succeeding Siblings\",SUCCEEDING_SIBLINGS" XML Wrapper Append As:
+DEFAULT_MACRO GML_OUT_SPATIAL_GROUP_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_SPATIAL_GROUP_GML_1 GML_OUT_COORDINATE_SYSTEM_GML_1%GML_OUT_GEOMETRY_PARAMATERS_GROUP_GML_1 Spatial
+DEFAULT_MACRO GML_OUT_COORDINATE_SYSTEM_GML_1 
+GML_1_COORDINATE_SYSTEM "$(GML_OUT_COORDINATE_SYSTEM_GML_1)"
+GUI OPTIONAL COORDSYS GML_OUT_COORDINATE_SYSTEM_GML_1 Coordinate System:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_GEOMETRY_PARAMATERS_GROUP_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_GEOMETRY_PARAMATERS_GROUP_GML_1 GML_OUT_SRS_NAME_GML_1%GML_OUT_SRS_AXIS_ORDER_GML_1%GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1%GML_OUT_FME_PATHS_OPTIONS_FOR_GML_RINGS_GML_1 GML SRS/Geometry Parameters
+DEFAULT_MACRO GML_OUT_SRS_NAME_GML_1 
+GML_1_SRS_NAME "$(GML_OUT_SRS_NAME_GML_1)"
+GUI OPTIONAL TEXT GML_OUT_SRS_NAME_GML_1 GML srsName:
+DEFAULT_MACRO GML_OUT_SRS_AXIS_ORDER_GML_1 
+GML_1_SRS_AXIS_ORDER "$(GML_OUT_SRS_AXIS_ORDER_GML_1)"
+GUI OPTIONAL CHOICE GML_OUT_SRS_AXIS_ORDER_GML_1 1,2%2,1%1,2,3%2,1,3 GML SRS Axis Order:
+DEFAULT_MACRO GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1 <Unused>
+GML_1_PROCESS_XLINK_GEOMETRIES "$(GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1)"
+GUI CHOICE GML_OUT_PROCESS_XLINK_GEOMETRIES_GML_1 Yes%No Process XLink Geometries:
+DEFAULT_MACRO GML_OUT_FME_PATHS_OPTIONS_FOR_GML_RINGS_GML_1 SEGMENTS_ONLY_FOR_NO_ID_PATHS
+GML_1_FME_PATHS_OPTIONS_FOR_GML_RINGS "$(GML_OUT_FME_PATHS_OPTIONS_FOR_GML_RINGS_GML_1)"
+GUI OPTIONAL LOOKUP_CHOICE GML_OUT_FME_PATHS_OPTIONS_FOR_GML_RINGS_GML_1 "\"Segment-Only Output for Unidentified Paths\",SEGMENTS_ONLY_FOR_NO_ID_PATHS"%"\"Full Paths as GML Curve\",FULL_PATH_AS_GML_CURVE" FME Path Options for GML Rings:
+DEFAULT_MACRO GML_OUT_GML_WRT_ADV_PARAMETERS_GML_1 
+GUI OPTIONAL DISCLOSUREGROUP GML_OUT_GML_WRT_ADV_PARAMETERS_GML_1 GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1%GML_OUT_MAXIMUM_FRACTION_DIGITS_GML_1%GML_OUT_MINIMUM_FRACTION_DIGITS_GML_1%GML_OUT_DOCUMENTS_TO_WRITE_GML_1%GML_OUT_SUPPRESS_XSI_SCHEMALOCATION_GML_1%GML_OUT_APPLY_STYLESHEET_GML_1%GML_OUT_STYLESHEET_RESULT_GML_1%GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET_GML_1%GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS_GML_1%GML_OUT_PREFER_POLYGON_OVER_SURFACE_GML_1%GML_OUT_VALIDATE_OUTPUT_DATASET_GML_1%GML_OUT_GENERATE_GEOMETRY_IDS_GML_1%GML_OUT_TARGET_XSI_SCHEMALOCATION_URL_GML_1%GML_OUT_OUTPUT_ENCODING_GML_1 Advanced
+# ============================================================================
+# When set to YES then the GML application schema document will declare and
+# define all GML feature type definitions even if it had no corresponding
+# feature instances during translation.
+DEFAULT_MACRO GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1 no
+GML_1_WRITE_ALL_FEATURE_TYPE_DEFNS "$(GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1)"
+GUI CHOICE GML_OUT_WRITE_ALL_FEATURE_TYPE_DEFNS_GML_1 no%yes Write All Feature Types:
+# ============================================================================
+# This keyword specifies the maximum number of decimal places to output
+DEFAULT_MACRO GML_OUT_MAXIMUM_FRACTION_DIGITS_GML_1 
+GML_1_MAXIMUM_FRACTION_DIGITS "$(GML_OUT_MAXIMUM_FRACTION_DIGITS_GML_1)"
+GUI OPTIONAL INTEGER GML_OUT_MAXIMUM_FRACTION_DIGITS_GML_1 Maximum Decimal Places:
+# ============================================================================
+# This keyword specifies the minimum number of decimal places to output
+DEFAULT_MACRO GML_OUT_MINIMUM_FRACTION_DIGITS_GML_1 
+GML_1_MINIMUM_FRACTION_DIGITS "$(GML_OUT_MINIMUM_FRACTION_DIGITS_GML_1)"
+GUI OPTIONAL INTEGER GML_OUT_MINIMUM_FRACTION_DIGITS_GML_1 Minimum Decimal Places:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_DOCUMENTS_TO_WRITE_GML_1 BOTH
+GML_1_DOCUMENTS_TO_WRITE "$(GML_OUT_DOCUMENTS_TO_WRITE_GML_1)"
+GUI OPTIONAL LOOKUP_CHOICE GML_OUT_DOCUMENTS_TO_WRITE_GML_1 "\"Both\",BOTH"%"\"GML Only\",GML_ONLY"%"\"XSD Only\",XSD_ONLY" Documents To Write:
+# ============================================================================
+# The xsi:schemaLocation is merely a hint to an XML processor for a set of
+# schema namespace/location pairs whose grammar would validate the XML instance
+# document, this keyword allows the suppression of the xsi:schemaLocation in
+# the output GML instance document.
+DEFAULT_MACRO GML_OUT_SUPPRESS_XSI_SCHEMALOCATION_GML_1 no
+GML_1_SUPPRESS_XSI_SCHEMALOCATION "$(GML_OUT_SUPPRESS_XSI_SCHEMALOCATION_GML_1)"
+GUI CHOICE GML_OUT_SUPPRESS_XSI_SCHEMALOCATION_GML_1 no%yes Suppress xsi:schemaLocation Attribute:
+# ============================================================================
+# Specifies the XSLT stylesheet to be applied to the output document.
+DEFAULT_MACRO GML_OUT_APPLY_STYLESHEET_GML_1 
+GML_1_APPLY_STYLESHEET "$(GML_OUT_APPLY_STYLESHEET_GML_1)"
+GUI OPTIONAL FILENAME_MUSTEXIST GML_OUT_APPLY_STYLESHEET_GML_1 XSLT_Stylesheet_Files(*.xslt;*.xsl)|*.xslt;*.xsl|All_Files(*)|* XSLT Stylesheet to Apply:
+# ============================================================================
+# The location and name of the resulting document after XSLT stylesheet
+# transformation. This is an optional keyword.
+DEFAULT_MACRO GML_OUT_STYLESHEET_RESULT_GML_1 
+GML_1_STYLESHEET_RESULT "$(GML_OUT_STYLESHEET_RESULT_GML_1)"
+GUI OPTIONAL FILENAME GML_OUT_STYLESHEET_RESULT_GML_1 All_Files(*)|* Stylesheet Result:
+# ============================================================================
+# Uses the DATASET value as the resulting document of the stylesheet transformation.
+# STYLESHEET_RESULT is ignored when this value is set to yes, and a temporary file
+# is generated and then deleted as the source for the stylesheet transform.
+DEFAULT_MACRO GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET_GML_1 no
+GML_1_USE_STYLESHEET_RESULT_AS_DATASET "$(GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET_GML_1)"
+GUI CHOICE GML_OUT_USE_STYLESHEET_RESULT_AS_DATASET_GML_1 no%yes Dataset as Stylesheet Result:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS_GML_1 
+GML_1_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS "$(GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS_GML_1)"
+GUI OPTIONAL TEXT_EDIT_XML GML_OUT_OVERRIDE_XSD_AND_USE_NAMESPACE_DECLARATIONS_GML_1 Override XSD And Use Namespace Declarations:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_PREFER_POLYGON_OVER_SURFACE_GML_1 no
+GML_1_PREFER_POLYGON_OVER_SURFACE "$(GML_OUT_PREFER_POLYGON_OVER_SURFACE_GML_1)"
+GUI CHOICE GML_OUT_PREFER_POLYGON_OVER_SURFACE_GML_1 no%yes Prefer Polygons over Surfaces:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_VALIDATE_OUTPUT_DATASET_GML_1 NO
+GML_1_VALIDATE_OUTPUT_DATASET "$(GML_OUT_VALIDATE_OUTPUT_DATASET_GML_1)"
+GUI CHOICE GML_OUT_VALIDATE_OUTPUT_DATASET_GML_1 YES%NO Validate Output File:
+# ============================================================================
+DEFAULT_MACRO GML_OUT_GENERATE_GEOMETRY_IDS_GML_1 NO
+GML_1_GENERATE_GEOMETRY_IDS "$(GML_OUT_GENERATE_GEOMETRY_IDS_GML_1)"
+GUI CHOICE GML_OUT_GENERATE_GEOMETRY_IDS_GML_1 YES%NO Generate Geometry gml:id(s):
+# ============================================================================
+# This keyword specifies the encoding to use for the output XML documents.
+# If no value is specified then the encoding defaults to UTF-8.
+DEFAULT_MACRO GML_OUT_OUTPUT_ENCODING_GML_1 utf-8
+GML_1_OUTPUT_ENCODING "$(GML_OUT_OUTPUT_ENCODING_GML_1)"
+GUI STRING_OR_ENCODING GML_OUT_OUTPUT_ENCODING_GML_1 * Output Encoding
+# ============================================================================
+# The keyword is optional. The xsi:schemaLocation attribute in an XML instance
+# is made up of a sequence of namespace uri and xsd document url pairs. This
+# keyword allows the user to specify explicitly the url for the xsd document
+# whose target namespace is settable with the TARGET_NS_URI keyword.
+DEFAULT_MACRO GML_OUT_TARGET_XSI_SCHEMALOCATION_URL_GML_1 
+GML_1_TARGET_XSI_SCHEMALOCATION_URL "$(GML_OUT_TARGET_XSI_SCHEMALOCATION_URL_GML_1)"
+GUI OPTIONAL TEXT GML_OUT_TARGET_XSI_SCHEMALOCATION_URL_GML_1 Target xsi:schemaLocation URL
+# ============================================================================
+# Opt in for destination dataset type vs format type validation
+DEFAULT_MACRO GML_OUT_DESTINATION_DATASETTYPE_VALIDATION_GML_1 Yes
+GML_1_DESTINATION_DATASETTYPE_VALIDATION "$(GML_OUT_DESTINATION_DATASETTYPE_VALIDATION_GML_1)"
+DEFAULT_MACRO GML_OUT_COORDINATE_SYSTEM_GRANULARITY_GML_1 DATASET
+GML_1_COORDINATE_SYSTEM_GRANULARITY "$(GML_OUT_COORDINATE_SYSTEM_GRANULARITY_GML_1)"
+# ============================================================================
+GML_1_GENERATE_FME_BUILD_NUM 26333
+GML_1_DATASET "$(DestDataset_GML_1)"
+#! END_DEST_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_GML_3 GML_3
+DEFAULT_MACRO DATASET_KEYWORD_MITAB_2 MITAB_2
+DEFAULT_MACRO DATASET_KEYWORD_OPENFILEGDB_1 OPENFILEGDB_1
+DEFAULT_MACRO DATASET_KEYWORD_GML_1 GML_1
+# -------------------------------------------------------------------------
+
+GML_3_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MITAB_2_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+OPENFILEGDB_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+GML_3_FEATURE_TYPES $(FEATURE_TYPES)
+MITAB_2_FEATURE_TYPES $(FEATURE_TYPES_2)
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+GML_3_DEF FireHalls   HallNumber                   xml_char(30)   Name                         xml_char(30)   Address                      xml_char(30)   PhoneNumber                  xml_char(30)   Engine                       xml_char(1)   Ladder                       xml_char(1)   Quint                        xml_char(1)   Rescue                       xml_char(1)   Medic                        xml_char(1)   gml_pointProperty            xml_geometry   gml_multiPointProperty       xml_geometry
+# -------------------------------------------------------------------------
+MITAB_2_DEF Parks   ParkId                       smallint   RefParkId                    smallint   ParkName                     char(40)   NeighborhoodName             char(40)   VisitorCount                 smallint   TreeCount                    smallint   DogPark                      char(1)   Washrooms                    char(1)   SpecialFeatures              char(1)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE GML GML_3::FireHalls multi_reader_keyword,$(DATASET_KEYWORD_GML_3) TO FME_GENERIC ::FireHalls ALIAS_GEOMETRY    ROUTE MITAB MITAB_2::Parks multi_reader_keyword,$(DATASET_KEYWORD_MITAB_2) TO FME_GENERIC ::Parks ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+GML_3_MERGE_DEF GML_3::FireHalls GLOB *
+MITAB_2_MERGE_DEF MITAB_2::Parks GLOB *
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "FireHalls_GML_3 Splitter"    INPUT FEATURE_TYPE FireHalls    OUTPUT FEATURE_TYPE FireHalls_GML_3
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Parks_MITAB_2 Splitter"    INPUT FEATURE_TYPE Parks    OUTPUT FEATURE_TYPE Parks_MITAB_2
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC FireHalls_GML_3 TO GML __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>DYNAMIC<closeparen>,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>DYNAMIC<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>fme_feature_type<lt>closeparen<gt><comma>DYNAMIC<closeparen> GEOMETRY    ROUTE FME_GENERIC Parks_MITAB_2 TO GML __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>DYNAMIC<closeparen>,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>DYNAMIC<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>fme_feature_type<lt>closeparen<gt><comma>DYNAMIC<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+GML_1_DEF_TEMPLATE DYNAMIC   fme_schema_readers           "GML_3 OPENFILEGDB_1"   fme_schema_feature_first     no   fme_schema_attributes_to_remove OBJECTID   LastUpdatedBy                xml_char(30)
