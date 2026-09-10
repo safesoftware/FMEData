@@ -1,0 +1,1422 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME Form 2026.2 b26333\fme.exe" C:\Users\sam.walker_safe\Documents\GitHub\FMEData\Workspaces\AdvancedDataTransformation\parameterize-a-custom-transformer-complete-advanced.fmw
+#          --SourceDataset_OGCKML "https://s3.amazonaws.com/FMEData/FMEData/Data/Boundaries/VancouverNeighborhoods.kml"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   AI_CONTEXT_ENABLED="Yes"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="4126.04 207.626"
+#!   DOC_TOP_LEFT="-3040.66 533.374"
+#!   ENABLE_DATA_CACHING="Yes"
+#!   ENABLE_FEATURE_COUNTING="Yes"
+#!   ENABLE_PERFORMANCE_PROFILING="No"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="26333"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="0d65e8a5-204e-48a8-a153-6bda0a7b18ed"
+#!   FME_DOCUMENT_PRIORGUID="b31a2ed7-551c-426f-bff5-01045c3b6e83,e6266205-6f5e-45e8-b109-e8ad3a157602,c118a95d-1314-4073-9062-2607112849fc,86b3e474-da8c-46f1-8942-cf540a179d8a,1f00b590-6661-4f6c-8fbf-f8d0afc585f7,36585f1b-45b8-4b54-8303-4f701a553475,05396f83-4181-4520-9644-d57115600129,997e1035-459c-4bb8-b0ab-077efe31c43e,1bd260ce-753a-4956-addb-e7ee55a4ce99,c7bab677-16db-4adf-a77d-dfa814595230,bbf75f9b-d82e-44f2-a3a5-d864e2e42095,6c1751c2-cfa0-40f6-9708-7bdfca731e1e,b3356391-131e-4806-b92b-5e8fcfe39706,5b702a51-b32c-4971-b69b-9bee5fe0be95,fe42f534-e396-4c03-ac17-9ea11ec2fb21,b171d6ba-2b14-4711-a686-5f3681d6af9a,72a13d6c-c074-4532-8492-8bc59e589460,571920a4-2b4c-4f1b-ac0d-43de471c279f,01a6be70-7935-4c25-ae6d-b1afa5218da3,e29daa4d-ab7f-4f90-906b-806ebefdb02b"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   INCOMPLETE_CACHE_HANDLING="Stale"
+#!   LAST_SAVE_BUILD="FME(R) 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+#!   LAST_SAVE_DATE="2026-08-13T14:31:10"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PROMPT_FOR_PARAMS="Yes"
+#!   PYTHON_COMPATIBILITY="37"
+#!   PYTHON_SCRIPTS_ENABLED="Yes"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   STOP_AT_BREAKPOINTS="No"
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-3640.66 1728.14"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="OGCKML"
+#!   DATASET="$(SourceDataset_OGCKML)"
+#!   KEYWORD="OGCKML_2"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   FEATURE_TYPE_CASE=""
+#!   FEATURE_TYPE_LENGTH="0"
+#!   FEATURE_TYPE_INVALID_CHARS=""
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename kml_char(50) fme_color kml_char(50) fme_dataset kml_char(50) fme_feature_type kml_char(50) fme_fill_color kml_char(50) fme_fill_opacity kml_real64 fme_geometry kml_char(50) fme_opacity kml_real64 fme_pen_opacity kml_real64 fme_primary_axis kml_real64 fme_rotation kml_real64 fme_secondary_axis kml_real64 fme_start_angle kml_real64 fme_sweep_angle kml_real64 fme_text_size kml_real64 fme_text_string kml_char(50) fme_type kml_char(50) kml_address kml_buffer kml_altitude kml_real64 kml_altitude_mode kml_char(50) kml_animated_update kml_buffer kml_atom_author_email kml_buffer kml_atom_author_name kml_buffer kml_atom_link_href kml_buffer kml_atom_link_rel kml_buffer kml_attribute_table_title kml_buffer kml_balloon_color kml_char(10) kml_balloon_opacity kml_real64 kml_balloon_text_color kml_char(10) kml_balloon_text_opacity kml_real64 kml_balloonstyle_bgcolor kml_char(10) kml_balloonstyle_raw_text kml_buffer kml_balloonstyle_text kml_buffer kml_balloonstyle_text_color kml_char(10) kml_camera_altitude kml_real64 kml_camera_altitude_mode kml_char(50) kml_camera_gx_timespan_begin kml_datetime kml_camera_gx_timespan_end kml_datetime kml_camera_gx_timestamp_when kml_datetime kml_camera_heading kml_real64 kml_camera_latitude kml_real64 kml_camera_longitude kml_real64 kml_camera_roll kml_real64 kml_camera_tilt kml_real64 kml_color kml_char(8) kml_common_style kml_buffer kml_cookie kml_buffer kml_create_info_point kml_char(3) kml_data{}.display_name kml_buffer kml_data{}.display_name_raw_text kml_buffer kml_data{}.name kml_buffer kml_data{}.value kml_buffer kml_description kml_buffer kml_description_raw_text kml_buffer kml_description_text kml_buffer kml_document kml_buffer kml_document_href kml_buffer kml_document_path kml_buffer kml_draw_order kml_int16 kml_expires kml_datetime kml_extended_data_xml kml_buffer kml_extended_data_xmlns_prefix kml_buffer kml_extended_data_xmlns_url kml_buffer kml_extrude kml_int16 kml_fly_to_view kml_int16 kml_gx_altitude_mode kml_char(50) kml_gx_balloon_visibility kml_int16 kml_gx_camera_altitude_mode kml_char(50) kml_gx_duration kml_int16 kml_gx_flyto_mode kml_char(10) kml_gx_latlonaltbox_altitude_mode kml_char(50) kml_gx_lookat_altitude_mode kml_char(50) kml_gx_play_mode kml_char(20) kml_gx_timespan_begin kml_datetime kml_gx_timespan_end kml_datetime kml_gx_timestamp_when kml_datetime kml_hotspot_x kml_int16 kml_hotspot_xunits kml_char(20) kml_hotspot_y kml_int16 kml_hotspot_yunits kml_char(20) kml_href kml_buffer kml_icon kml_buffer kml_icon_color kml_char(50) kml_icon_href kml_buffer kml_icon_http_query kml_buffer kml_icon_opacity kml_real64 kml_icon_refresh_interval kml_int16 kml_icon_refresh_mode kml_char(50) kml_icon_temp_file_location kml_buffer kml_icon_view_bound_scale kml_real64 kml_icon_view_format kml_buffer kml_icon_view_refresh_mode kml_char(50) kml_icon_view_refresh_time kml_int16 kml_iconstyle_color kml_char(10) kml_iconstyle_color_mode kml_char(20) kml_iconstyle_heading kml_real64 kml_iconstyle_scale kml_real64 kml_id kml_buffer kml_imagepyramid_gridorigin kml_buffer kml_imagepyramid_maxheight kml_int16 kml_imagepyramid_maxwidth kml_int16 kml_imagepyramid_tilesize kml_real64 kml_label_color kml_char(50) kml_label_opacity kml_real64 kml_labelstyle_color kml_char(10) kml_labelstyle_color_mode kml_char(20) kml_labelstyle_scale kml_real64 kml_latlonaltbox_altitude_mode kml_char(50) kml_latlonaltbox_east kml_char(255) kml_latlonaltbox_max_altitude kml_real64 kml_latlonaltbox_min_altitude kml_real64 kml_latlonaltbox_north kml_real64 kml_latlonaltbox_south kml_real64 kml_latlonaltbox_west kml_real64 kml_latlonbox_east kml_real64 kml_latlonbox_north kml_real64 kml_latlonbox_rotation kml_real64 kml_latlonbox_south kml_real64 kml_latlonbox_west kml_real64 kml_linestyle_color kml_char(10) kml_linestyle_color_mode kml_char(20) kml_linestyle_label_visibility kml_boolean kml_linestyle_physical_width kml_real64 kml_linestyle_width kml_real64 kml_link_description kml_buffer kml_link_href kml_buffer kml_link_http_query kml_buffer kml_link_name kml_buffer kml_link_refresh_interval kml_real64 kml_link_refresh_mode kml_char(50) kml_link_snippet kml_buffer kml_link_snippet_max_lines kml_int16 kml_link_view_bound_scale kml_real64 kml_link_view_format kml_buffer kml_link_view_refresh_mode kml_char(50) kml_link_view_refresh_time kml_int16 kml_liststyle_bgcolor kml_char(50) kml_liststyle_item_icon kml_buffer kml_liststyle_item_icon{}.href kml_buffer kml_liststyle_item_icon{}.state kml_char(50) kml_liststyle_list_item_type kml_char(50) kml_location_altitude kml_real64 kml_location_latitude kml_real64 kml_location_longitude kml_real64 kml_lod_max_fade_extent kml_real64 kml_lod_max_lod_pixels kml_real64 kml_lod_min_fade_extent kml_real64 kml_lod_min_lod_pixels kml_real64 kml_lookat_altitude kml_real64 kml_lookat_altitude_mode kml_char(20) kml_lookat_gx_timespan_begin kml_datetime kml_lookat_gx_timespan_end kml_datetime kml_lookat_gx_timestamp_when kml_datetime kml_lookat_heading kml_real64 kml_lookat_latitude kml_real64 kml_lookat_longitude kml_real64 kml_lookat_range kml_real64 kml_lookat_tilt kml_real64 kml_max_session_length kml_real64 kml_message kml_buffer kml_min_refresh_period kml_real64 kml_name kml_buffer kml_open kml_int16 kml_orientation_heading kml_real64 kml_orientation_roll kml_real64 kml_orientation_tilt kml_real64 kml_overlayxy_x kml_real64 kml_overlayxy_xunits kml_char(20) kml_overlayxy_y kml_real64 kml_overlayxy_yunits kml_char(20) kml_parent kml_buffer kml_phone_number kml_buffer kml_polystyle_color kml_char(10) kml_polystyle_color_mode kml_char(20) kml_polystyle_fill kml_real64 kml_polystyle_outline kml_int16 kml_raw_text kml_buffer kml_refresh_visibility kml_int16 kml_roll kml_real64 kml_rotation kml_real64 kml_rotationxy_x kml_real64 kml_rotationxy_xunits kml_char(20) kml_rotationxy_y kml_real64 kml_rotationxy_yunits kml_char(20) kml_scale_x kml_real64 kml_scale_y kml_real64 kml_scale_z kml_real64 kml_schema_data{}.name kml_buffer kml_schema_data{}.value kml_buffer kml_schema_url kml_buffer kml_screenxy_x kml_real64 kml_screenxy_xunits kml_char(20) kml_screenxy_y kml_real64 kml_screenxy_yunits kml_char(20) kml_shape kml_buffer kml_size_x kml_real64 kml_size_xunits kml_char(20) kml_size_y kml_real64 kml_size_yunits kml_char(20) kml_snippet kml_buffer kml_snippet_raw_text kml_buffer kml_sort_value kml_buffer kml_style_id kml_buffer kml_style_url kml_buffer kml_style_url_highlight kml_buffer kml_style_url_normal kml_buffer kml_target_href kml_buffer kml_target_style kml_buffer kml_target_style_highlight kml_buffer kml_target_style_normal kml_buffer kml_tessellate kml_int16 kml_timespan_begin kml_datetime kml_timespan_end kml_datetime kml_timestamp_when kml_datetime kml_tour kml_buffer kml_tour_stop_delay_duration kml_int16 kml_tour_stop_delay_type kml_char(10) kml_tour_stop_display_balloon kml_char(3) kml_tour_stop_flyto_duration kml_int16 kml_tour_stop_flyto_mode kml_char(20) kml_tour_stop_tour_duration kml_int16 kml_tour_stop_tour_name kml_buffer kml_tour_stop_view_heading kml_char(25) kml_tour_stop_view_perspective kml_char(15) kml_tour_stop_view_range kml_char(25) kml_tour_stop_view_tilt kml_char(25) kml_update_mode kml_char(10) kml_viewvolume_bottomfov kml_int16 kml_viewvolume_leftfov kml_int16 kml_viewvolume_near kml_int16 kml_viewvolume_rightfov kml_int16 kml_viewvolume_topfov kml_int16 kml_visibility kml_int16 multi_reader_full_id kml_int32 multi_reader_id kml_int32 multi_reader_keyword kml_char(50) multi_reader_type kml_char(50)"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE_OR_URL"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="26333"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="KML21_RASTER_COMPRESSION_LEVEL OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE=".kml application/vnd.google-earth.kml+xml .kmz application/vnd.google-earth.kmz ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_AUTHENTICATION"
+#!   VALUE="ALWAYS"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="NETWORK_PROXY"
+#!   VALUE="NO"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the Google Earth KML file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="SUPPORTS_ESTABLISHED_CACHE"
+#!   VALUE="YES"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the Google Earth KML File"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_SPATIAL_DEFINITION_TABLE"
+#!   VALUE="YES"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(255)"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_datetime"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_time"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int16"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_int32"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(20)"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(20)"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_char(1)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="OGCKML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_real64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="OGCKML"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_aggregate"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_point"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_line"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_area"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="OGCKML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="kml_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="OGCKML"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="Neighborhoods"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="40"
+#!   POSITION="-3040.6564065640659 607.24903125031256"
+#!   BOUNDING_RECT="-3040.6564065640659 607.24903125031256 534.38134381343821 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="false"
+#!   KEYWORD="OGCKML_2"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   FEAT_GEOMTYPE="kml_no_geom kml_point kml_line kml_area kml_aggregate kml_surface kml_solid"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="false"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_GEOMETRY NAME="" TYPE="kml_no_geom kml_point kml_line kml_area kml_aggregate kml_surface kml_solid" SPATIAL_TYPE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodId" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodName" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="NeighborhoodURL" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TotalPopulation2001" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="TotalPopulation2011" ATTR_TYPE="kml_buffer" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="OGCKML_2"
+#!   OVERRIDE="-OGCKML_2_DATASET"
+#!   DATASET="OGCKML_2/VancouverNeighborhoods.kml"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_OGCKML KML_Files(*.kml;*.kmz)|*.kml;*.kmz|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source Google KML File or URL:"
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Boundaries/VancouverNeighborhoods.kml"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiU291cmNlRGF0YXNldF9PR0NLTUwiLCJwcm9tcHQiOiJTb3VyY2UgR29vZ2xlIEtNTCBGaWxlIG9yIFVSTDoiLCJ2YWx1ZVR5cGUiOiJzdHJpbmciLCJkZWZhdWx0VmFsdWUiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vRk1FRGF0YS9GTUVEYXRhL0RhdGEvQm91bmRhcmllcy9WYW5jb3V2ZXJOZWlnaGJvcmhvb2RzLmttbCIsImRlcHJlY2F0ZWRGbGFncyI6WyJub25lIl0sInR5cGUiOiJmaWxlIiwiYWNjZXNzTW9kZSI6InJlYWQiLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJmaWx0ZXJzIjpbeyJmaWx0ZXIiOlsiKi5rbWwiLCIqLmtteiJdLCJkZXNjcmlwdGlvbiI6IktNTCBGaWxlcyJ9LHsiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdLCJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMifSx7ImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il0sImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyJ9LHsiZmlsdGVyIjpbIioiXSwiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMifV0sImFsbG93VVJMIjp0cnVlLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZX1dfQ=="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_OGCKML" 
+#!   DEFAULT_VALUE="https://s3.amazonaws.com/FMEData/FMEData/Data/Boundaries/VancouverNeighborhoods.kml"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_OGCKML KML_Files(*.kml;*.kmz)|*.kml;*.kmz|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|All_Files(*)|* Source Google KML File or URL:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="20"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Remove ID and URL&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-1720.8919689196894 740.99971875718757"
+#!   TOP_LEFT="-1720.8919689196894 740.99971875718757"
+#!   BOTTOM_RIGHT="-1305.2633126331266 741.99971875718757"
+#!   BOUNDING_RECT="-1720.8919689196894 740.99971875718757 415.62865628656289 -1"
+#!   ORDER="500000000000003"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{743e23a0-010a-4097-bb95-e13cd75d3b10}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="18"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="22"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Reproject to UTM83-10&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-1152.3086093860934 735.37406250062509"
+#!   TOP_LEFT="-1152.3086093860934 735.37406250062509"
+#!   BOTTOM_RIGHT="-666.36674996749923 636.62337499375008"
+#!   BOUNDING_RECT="-1152.3086093860934 735.37406250062509 485.94185941859416 98.750687506875067"
+#!   ORDER="500000000000004"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{215e7a3e-5ef3-4115-9a82-4803792faf56}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="2"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <LOOPS>
+#! </LOOPS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="CsmapReprojector"
+#!   VERSION="4"
+#!   POSITION="-1096.3667499674993 604.37406250062509"
+#!   BOUNDING_RECT="-1096.3667499674993 604.37406250062509 430 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="25595"
+#! >
+#!     <OUTPUT_FEAT NAME="REPROJECTED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="COORDSYS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DEST" PARM_VALUE="UTM83-10"/>
+#!     <XFORM_PARM PARM_NAME="GENERAL_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GEOID_HEIGHT_GRID" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM_NAME_SELECTION" PARM_VALUE="FME_ALL_GEOMETRIES"/>
+#!     <XFORM_PARM PARM_NAME="INTERPOLATION_TYPE_NAME" PARM_VALUE="NearestNeighbor"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_CELL_SIZE" PARM_VALUE="PreserveCells"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_TOLERANCE" PARM_VALUE="0.0"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="SOURCE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMATION" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VERTICAL_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="VERTICAL_HANDLING" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="CsmapReprojector"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="Inspector"
+#!   VERSION="5"
+#!   POSITION="655.37868753687462 604.37406250062509"
+#!   BOUNDING_RECT="655.37868753687462 604.37406250062509 430 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18284"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <XFORM_PARM PARM_NAME="AREA_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PEN_COLOR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="POINTCLOUD_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_COLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_NUM_ROWS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_COL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_START_ROW" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION_REAL" PARM_VALUE="NoReduction"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TACKATTRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_INTERVAL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_MAX_NUM_POINTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE" PARM_VALUE="NO_THINNING"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VECTOR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Output"/>
+#!     <XFORM_PARM PARM_NAME="RASTER_VISUALIZATION_OPTION" PARM_IS_LOOKUP="true" PARM_VALUE="No Reduction"/>
+#!     <XFORM_PARM PARM_NAME="THINNER_TYPE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Thinning"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="18"
+#!   TYPE="AttributeRemover"
+#!   VERSION="1"
+#!   POSITION="-1696.8919689196894 607.24903125031256"
+#!   BOUNDING_RECT="-1696.8919689196894 607.24903125031256 431 71"
+#!   ORDER="500000000000001"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="18284"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_ATTRS" PARM_VALUE="NeighborhoodId,NeighborhoodURL"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeRemover"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="23"
+#!   TYPE="SubDocumentTransformer"
+#!   VERSION="1"
+#!   POSITION="-445.8310937242706 604.37406250062509"
+#!   BOUNDING_RECT="-445.8310937242706 604.37406250062509 436 65"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PopulationDensity2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="DensityUnits" PARM_VALUE="0.000001"/>
+#!     <XFORM_PARM PARM_NAME="POPULATION" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;TotalPopulation2001&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SUB_DOC_NAME" PARM_VALUE="DensityEvaluator"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VAL_ATTR" PARM_VALUE="PopulationDensity2001"/>
+#!     <XFORM_PARM PARM_NAME="WEIGHTEDATTRIBUTE" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;WeightedAttribute&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="DensityEvaluator"/>
+#!     <XFORM_PARM PARM_NAME="__COMPOUND_PARAMETERS" PARM_VALUE=""/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="12"
+#!   TYPE="SubDocumentTransformer"
+#!   VERSION="1"
+#!   POSITION="94.799312579792428 604.37406250062509"
+#!   BOUNDING_RECT="94.799312579792428 604.37406250062509 436 65"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PopulationDensity2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="PopulationDensity2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="DensityUnits" PARM_VALUE="0.000001"/>
+#!     <XFORM_PARM PARM_NAME="POPULATION" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;TotalPopulation2011&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SUB_DOC_NAME" PARM_VALUE="DensityEvaluator"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VAL_ATTR" PARM_VALUE="PopulationDensity2011"/>
+#!     <XFORM_PARM PARM_NAME="WEIGHTEDATTRIBUTE" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;WeightedAttribute&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="DensityEvaluator_2"/>
+#!     <XFORM_PARM PARM_NAME="__COMPOUND_PARAMETERS" PARM_VALUE=""/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="RandomNumberGenerator"
+#!   VERSION="3"
+#!   POSITION="-2368.7741877418775 607.24903125031256"
+#!   BOUNDING_RECT="-2368.7741877418775 607.24903125031256 551 65"
+#!   ORDER="500000000000211"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodId" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodName" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodURL" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2001" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="TotalPopulation2011" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="MAX" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="MIN" PARM_VALUE="0.1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PLACES" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="RESULT_ATTR" PARM_VALUE="WeightedAttribute"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="RandomNumberGenerator"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="16"
+#!   SOURCE_NODE="40"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="24"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="23"
+#!   SOURCE_PORT_DESC="fo 0 REPROJECTED"
+#!   TARGET_PORT_DESC="fi 0 Input"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="17"
+#!   SOURCE_NODE="14"
+#!   TARGET_NODE="18"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="21"
+#!   SOURCE_NODE="18"
+#!   TARGET_NODE="2"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="13"
+#!   SOURCE_NODE="23"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 Input"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! <SUBDOCUMENT
+#!   NAME="DensityEvaluator"
+#!   AI_CONTEXT_ENABLED="Yes"
+#!   ARCGIS_COMPATIBILITY=""
+#!   CATEGORY="Training"
+#!   DESCRIPTION="&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A transformer to calculate the density of attribute values in a specific area.&lt;/p&gt;"
+#!   DOC_DYNAMIC_INPUT_ATTRS="0"
+#!   DOC_EXTENTS="3062.26 447"
+#!   DOC_TOP_LEFT="-1214.12 -346"
+#!   FME_DOCUMENT_GUID=""
+#!   FME_DOCUMENT_PRIORGUID=""
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_PROCESS_COUNT="NO_PARALLELISM"
+#!   FME_PROCESS_GROUPS_ORDERED="No"
+#!   FME_PROCESS_GROUP_BY=""
+#!   FME_PROCESS_PRESERVE_GROUP_ATTR="No"
+#!   FMX_ATTRIBUTE_PROPOGATION_MODE="AUTO"
+#!   HISTORY=""
+#!   IS_VISIBLE="true"
+#!   LAST_SAVE_BUILD=""
+#!   LAST_SAVE_DATE=""
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   PYTHON_COMPATIBILITY=""
+#!   REPLACED_BY=""
+#!   SUPPRESS_UPGRADE="false"
+#!   TITLE="DensityEvaluator"
+#!   USAGE=""
+#!   USE_MARKDOWN="NO"
+#!   VIEW_POSITION="-600.006 256.253"
+#!   XFORM_DEPRECATED="No"
+#!   ZOOM_SCALE="100"
+#! >
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI ATTR_ENCODED VAL_ATTR ALLOW_NEW Result"
+#!   DEFAULT_VALUE="DensityResult"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI LITERAL LOOKUP_CHOICE DensityUnits Sq&lt;space&gt;Meters,1%Sq&lt;space&gt;Kilometers,0.000001 Density Units"
+#!   DEFAULT_VALUE="0.000001"
+#!   IS_STAND_ALONE="true"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR POPULATION FME_SYNTAX%FME%FME_SUPPORTSNUMERIC%YES Population:"
+#!   DEFAULT_VALUE="&lt;at&gt;Value&lt;openparen&gt;Population&lt;closeparen&gt;"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL TEXT_EDIT_OR_ATTR WEIGHTEDATTRIBUTE FME_SYNTAX%FME%FME_SUPPORTSNUMERIC%YES WeightedAttribute"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiVkFMX0FUVFIiLCJwcm9tcHQiOiJSZXN1bHQiLCJ2YWx1ZVR5cGUiOiJzdHJpbmdFbmNvZGVkIiwiZGVmYXVsdFZhbHVlIjoiRGVuc2l0eVJlc3VsdCIsImNob2ljZVNldHRpbmdzIjp7ImNob2ljZVNldCI6ImF0dHJpYnV0ZU5hbWVzIn0sInR5cGUiOiJ0ZXh0In0seyJuYW1lIjoiRGVuc2l0eVVuaXRzIiwicHJvbXB0IjoiRGVuc2l0eSBVbml0cyIsInZhbHVlVHlwZSI6InN0cmluZyIsImRlZmF1bHRWYWx1ZSI6IjAuMDAwMDAxIiwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJub25lIl0sImNob2ljZVNldHRpbmdzIjp7InNvcnQiOiJuYXR1cmFsU29ydCIsImNob2ljZXMiOlt7ImRpc3BsYXkiOiJTcSBNZXRlcnMiLCJ2YWx1ZSI6IjEifSx7ImRpc3BsYXkiOiJTcSBLaWxvbWV0ZXJzIiwidmFsdWUiOiIwLjAwMDAwMSJ9XSwiY2hvaWNlU2V0IjoidXNlckRlZmluZWQifSwidHlwZSI6ImRyb3Bkb3duIn0seyJuYW1lIjoiUE9QVUxBVElPTiIsInByb21wdCI6IlBvcHVsYXRpb246IiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZCIsImRlZmF1bHRWYWx1ZSI6IjxhdD5WYWx1ZTxvcGVucGFyZW4+UG9wdWxhdGlvbjxjbG9zZXBhcmVuPiIsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZXhwcmVzc2lvbiIsImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoidGV4dCIsInNob3dBcml0aG1ldGljRWRpdG9yIjp0cnVlfSx7Im5hbWUiOiJXRUlHSFRFREFUVFJJQlVURSIsInByb21wdCI6IldlaWdodGVkQXR0cmlidXRlIiwidmFsdWVUeXBlIjoic3RyaW5nRW5jb2RlZCIsInJlcXVpcmVkIjpmYWxzZSwiZGVmYXVsdFZhbHVlIjoiIiwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJleHByZXNzaW9uIiwiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJ0ZXh0Iiwic2hvd0FyaXRobWV0aWNFZGl0b3IiOnRydWV9XX0="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="VAL_ATTR" 
+#!   DEFAULT_VALUE="DensityResult"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI ATTR_ENCODED VAL_ATTR ALLOW_NEW Result"
+#! />
+#!     <INFO NAME="DensityUnits" 
+#!   DEFAULT_VALUE="0.000001"
+#!   SCOPE="STAND_ALONE"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI LITERAL LOOKUP_CHOICE DensityUnits Sq&lt;space&gt;Meters,1%Sq&lt;space&gt;Kilometers,0.000001 Density Units"
+#! />
+#!     <INFO NAME="POPULATION" 
+#!   DEFAULT_VALUE="&lt;at&gt;Value&lt;openparen&gt;Population&lt;closeparen&gt;"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR POPULATION FME_SYNTAX%FME%FME_SUPPORTSNUMERIC%YES Population:"
+#! />
+#!     <INFO NAME="WEIGHTEDATTRIBUTE" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI OPTIONAL TEXT_EDIT_OR_ATTR WEIGHTEDATTRIBUTE FME_SYNTAX%FME%FME_SUPPORTSNUMERIC%YES WeightedAttribute"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="5"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Calculate Area in SQ KM&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-587.12459078593724 101.00003906312509"
+#!   TOP_LEFT="-587.12459078593724 101.00003906312509"
+#!   BOTTOM_RIGHT="-105.87027824281182 102.00003906312509"
+#!   BOUNDING_RECT="-587.12459078593724 101.00003906312509 481.25431254312542 -1"
+#!   ORDER="500000000000000"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{33dac6ba-d7d8-4e74-91df-0d2fff162a94}"
+#!   COLOUR="1,0.95686274509803926,0.80000000000000004,0.90196078431372551"
+#!   SIZE_POLICY="8"
+#!   ANCHORED_NODE="2"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <LOOPS>
+#! </LOOPS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="AreaCalculator"
+#!   VERSION="5"
+#!   POSITION="-526.12459078593724 -29.999960936874913"
+#!   BOUNDING_RECT="-526.12459078593724 -29.999960936874913 430 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="AREA_ATTR" PARM_VALUE="NeighborhoodArea"/>
+#!     <XFORM_PARM PARM_NAME="AREA_TYPE" PARM_VALUE="Plane Area"/>
+#!     <XFORM_PARM PARM_NAME="MULT" PARM_VALUE="$(DensityUnits)"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AreaCalculator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="3"
+#!   TYPE="ExpressionEvaluator"
+#!   VERSION="3"
+#!   POSITION="752.75369053687598 -29.999960936874913"
+#!   BOUNDING_RECT="752.75369053687598 -29.999960936874913 497.25880958812513 65"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#!   SHOW_BLANK_INPUT_FT="false"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DensityResult" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="$(VAL_ATTR)" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRCHOICE_ACTION" PARM_VALUE="OUTGOING"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRLIST" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="EXPRESSION" PARM_VALUE="($(POPULATION)*@Value(WeightedAttribute))/@Value(NeighborhoodArea)"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VAL_ATTR" PARM_VALUE="$(VAL_ATTR)"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ExpressionEvaluator"/>
+#!     <XFORM_PARM PARM_NAME="ACTION" PARM_IS_LOOKUP="true" PARM_VALUE="Create New Attribute"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="ExpressionEvaluator"
+#!   VERSION="3"
+#!   POSITION="752.75369053687598 -280.99996093687491"
+#!   BOUNDING_RECT="752.75369053687598 -280.99996093687491 497.25880958812513 65"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DensityResult" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="$(VAL_ATTR)" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRCHOICE_ACTION" PARM_VALUE="OUTGOING"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRLIST" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="EXPRESSION" PARM_VALUE="$(POPULATION)/@Value(NeighborhoodArea)"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="VAL_ATTR" PARM_VALUE="$(VAL_ATTR)"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="ExpressionEvaluator_2"/>
+#!     <XFORM_PARM PARM_NAME="ACTION" PARM_IS_LOOKUP="true" PARM_VALUE="Create New Attribute"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="12"
+#!   TYPE="Tester"
+#!   VERSION="4"
+#!   POSITION="118.75118751187517 -29.999960936874913"
+#!   BOUNDING_RECT="118.75118751187517 -29.999960936874913 436 65"
+#!   ORDER="500000000000001"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="24612"
+#! >
+#!     <OUTPUT_FEAT NAME="PASSED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="FAILED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Population" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="NeighborhoodArea" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="BOOL_OP" PARM_VALUE="OR"/>
+#!     <XFORM_PARM PARM_NAME="COMPOSITE_MSG" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="COMPOSITE_TEST" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="PRESERVE_FEATURE_ORDER" PARM_VALUE="PER_OUTPUT_PORT"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TEST_CLAUSE" PARM_VALUE="TEST &lt;at&gt;Value&lt;openparen&gt;WeightedAttribute&lt;closeparen&gt; &gt; 0"/>
+#!     <XFORM_PARM PARM_NAME="TEST_CLAUSE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TEST_MODE" PARM_VALUE="TEST"/>
+#!     <XFORM_PARM PARM_NAME="TEST_PREVIEW_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Tester"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <SUBDOCUMENT_IOS>
+#! <SUBDOCUMENT_IO
+#!   IDENTIFIER="6"
+#!   NAME="Input"
+#!   POSITION="-1214.1245907859372 -29.999960936874913"
+#!   BOUNDING_RECT="-1214.1245907859372 -29.999960936874913 436 65"
+#!   COLLAPSED="true"
+#!   PUBLISHED="true"
+#!   IS_SOURCE="true"
+#!   ATTR_MODE="0"
+#! >
+#!     <XFORM_ATTR ATTR_NAME="Population" ATTR_TYPE="varchar(200)" ATTR_VALUE="$(POPULATION)" />
+#!     <XFORM_ATTR ATTR_NAME="WeightedAttribute" ATTR_TYPE="real64" ATTR_VALUE="$(WEIGHTEDATTRIBUTE)" />
+#! </SUBDOCUMENT_IO>
+#! <SUBDOCUMENT_IO
+#!   IDENTIFIER="8"
+#!   NAME="Output"
+#!   POSITION="1412.1341280612523 -29.999960936874913"
+#!   BOUNDING_RECT="1412.1341280612523 -29.999960936874913 436 65"
+#!   COLLAPSED="true"
+#!   IS_SOURCE="false"
+#!   ATTR_MODE="0"
+#! >
+#! </SUBDOCUMENT_IO>
+#! </SUBDOCUMENT_IOS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="7"
+#!   SOURCE_NODE="6"
+#!   TARGET_NODE="2"
+#!   SOURCE_PORT_DESC="0"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="13"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="9"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="0"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="10"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="0"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="14"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="3"
+#!   SOURCE_PORT_DESC="fo 0 PASSED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="15"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 1 FAILED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! </SUBDOCUMENT>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_OGCKML_2,OGCKML_IN_FME_GROUP_NAMED1_OGCKML_2,OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_2,OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_2,OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_2,OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_2,OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_2,OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_2,OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_2,OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_2,OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_2,OGCKML_IN_SPATIAL_GROUP_OGCKML_2,OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_2,OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2,OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2,OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2,OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2,OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2,OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2,OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_2,OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_2
+# ============================================================================
+DEFAULT_MACRO SourceDataset_OGCKML https://s3.amazonaws.com/FMEData/FMEData/Data/Boundaries/VancouverNeighborhoods.kml
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_OGCKML$encode)} == {}} { puts_real {Parameter 'SourceDataset_OGCKML' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} OGCKML
+MULTI_READER_KEYWORD{0} OGCKML_2
+MULTI_READER_GEN_DIRECTIVES{0} SEARCH_ENVELOPE_MAXY,0,CLIP_TO_ENVELOPE,NO,KML21_APPLY_MODEL_TRANSFORMS,No,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,SEARCH_ENVELOPE_MAXX,0,USE_SEARCH_ENVELOPE,NO,EXPOSE_ATTRS_GROUP,,KML21_FAIL_ON_NETWORK_ERROR,No,NETWORK_AUTHENTICATION,,KML21_SCAN_SCHEMA,Yes,SPATIAL_GROUP,,KML21_DELETE_DOWNLOADED_FILES,Yes,COORDINATE_SYSTEM,,KML21_MOVE_TO_KML_WORLD_COORDSYS,Yes,KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH,5,KML21_TRAVERSE_NETWORKLINKS,All,OGCKML_EXPOSE_FORMAT_ATTRS,,KML21_RASTER_READ_MODE,GroundOverlay,_CS_SPATIAL_GROUP,,KML21_DATASET_ENCODING,,SEARCH_ENVELOPE_MINX,0,_MERGE_SCHEMAS,YES,SEARCH_ENVELOPE_MINY,0,UPDATE_FEATURE_TYPES,yes,KML21_LOG_VERBOSE,No
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD MULTI_DEST
+MULTI_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "OGCKML_2"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OGCKML OGCKML_2
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_OGCKML_2 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER OGCKML OGCKML_2
+DEFAULT_MACRO SourceDataset_OGCKML_2 $(SourceDataset_OGCKML)
+GUI FILE_OR_URL SourceDataset_OGCKML_2 KML_Files(*.kml;*.kmz)|*.kml;*.kmz||KML_Files(*.kml)|*.kml|KMZ_Files(*.kmz)|*.kmz|All_Files(*)|* Source Google KML File or URL:
+DEFAULT_MACRO OGCKML_IN_FME_GROUP_NAMED1_OGCKML_2 
+GUI OPTIONAL DISCLOSUREGROUP OGCKML_IN_FME_GROUP_NAMED1_OGCKML_2 OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_2%OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_2%OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_2%OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_2%OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_2%OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_2%OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_2%OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_2%OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_2 General
+DEFAULT_MACRO OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_2 No
+OGCKML_2_KML21_LOG_VERBOSE "$(OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_LOG_VERBOSE_OGCKML_2 Yes%No Verbose Logging:
+DEFAULT_MACRO OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_2 GroundOverlay
+OGCKML_2_KML21_RASTER_READ_MODE "$(OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_2)"
+GUI OPTIONAL LOOKUP_CHOICE OGCKML_IN_KML21_RASTER_READ_MODE_OGCKML_2 All%"\"Ground Overlay\",GroundOverlay"%None Read Overlays as Rasters:
+DEFAULT_MACRO OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_2 Yes
+OGCKML_2_KML21_SCAN_SCHEMA "$(OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_SCAN_SCHEMA_OGCKML_2 Yes%No Scan Schema:
+DEFAULT_MACRO OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_2 No
+OGCKML_2_KML21_FAIL_ON_NETWORK_ERROR "$(OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_FAIL_ON_NETWORK_ERROR_OGCKML_2 Yes%No Fail on Network Errors:
+DEFAULT_MACRO OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_2 Yes
+OGCKML_2_KML21_DELETE_DOWNLOADED_FILES "$(OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_DELETE_DOWNLOADED_FILES_OGCKML_2 Yes%No Delete Downloaded Files:
+DEFAULT_MACRO OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_2 All
+OGCKML_2_KML21_TRAVERSE_NETWORKLINKS "$(OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_2)"
+GUI OPTIONAL CHOICE OGCKML_IN_KML21_TRAVERSE_NETWORKLINKS_OGCKML_2 No%Local%All Traverse NetworkLinks:
+DEFAULT_MACRO OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_2 5
+OGCKML_2_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH "$(OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_2)"
+GUI OPTIONAL INTEGER OGCKML_IN_KML21_MAX_NETWORKLINK_TRAVERSAL_DEPTH_OGCKML_2 Maximum NetworkLinks Traversal Depth:
+DEFAULT_MACRO OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_2 
+OGCKML_2_KML21_DATASET_ENCODING "$(OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_2)"
+GUI OPTIONAL ENCODING OGCKML_IN_KML21_DATASET_ENCODING_OGCKML_2 * Force Dataset Encoding:
+DEFAULT_MACRO OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_2 No
+OGCKML_2_KML21_APPLY_MODEL_TRANSFORMS "$(OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_APPLY_MODEL_TRANSFORMS_OGCKML_2 Yes%No Apply Transformations To Models:
+DEFAULT_MACRO OGCKML_IN_EXPOSE_ATTRS_GROUP_OGCKML_2 
+OGCKML_2_EXPOSE_ATTRS_GROUP "$(OGCKML_IN_EXPOSE_ATTRS_GROUP_OGCKML_2)"
+DEFAULT_MACRO OGCKML_IN_SPATIAL_GROUP_OGCKML_2 
+GUI OPTIONAL DISCLOSUREGROUP OGCKML_IN_SPATIAL_GROUP_OGCKML_2 OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_2%OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_2 Spatial
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_2 NO
+OGCKML_2_USE_SEARCH_ENVELOPE "$(OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_2)"
+GUI ACTIVEDISCLOSUREGROUP OGCKML_IN_USE_SEARCH_ENVELOPE_OGCKML_2 OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2%OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2%OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2%OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2%OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2%OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2%OGCKML_IN_SEARCH_METHOD%OGCKML_IN_SEARCH_METHOD_FILTER%OGCKML_IN_SEARCH_ORDER%OGCKML_IN_SEARCH_FEATURE%OGCKML_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2 0
+OGCKML_2_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MINX_OGCKML_2 Minimum X:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2 0
+OGCKML_2_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MINY_OGCKML_2 Minimum Y:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2 0
+OGCKML_2_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MAXX_OGCKML_2 Maximum X:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2 <Unused>,0 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2 0
+OGCKML_2_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2)"
+GUI OPTIONAL FLOAT OGCKML_IN_SEARCH_ENVELOPE_MAXY_OGCKML_2 Maximum Y:
+# ===========================================================================
+GUI LOOKUP OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2 <Unused>, 
+DEFAULT_MACRO OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2 
+OGCKML_2_SEARCH_ENVELOPE "$(OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2)"
+GUI OPTIONAL COORDSYS OGCKML_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_OGCKML_2 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2 <Unused>,NO 
+DEFAULT_MACRO OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2 NO
+OGCKML_2_CLIP_TO_ENVELOPE "$(OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2)"
+GUI OPTIONAL CHECKBOX OGCKML_IN_CLIP_TO_ENVELOPE_OGCKML_2 YES%NO Clip to Search Envelope
+DEFAULT_MACRO OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_2 Yes
+OGCKML_2_KML21_MOVE_TO_KML_WORLD_COORDSYS "$(OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_2)"
+GUI CHOICE OGCKML_IN_KML21_MOVE_TO_KML_WORLD_COORDSYS_OGCKML_2 Yes%No Move To World Coordinate System:
+# ===========================================================================
+DEFAULT_MACRO OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_2 
+OGCKML_2_NETWORK_AUTHENTICATION "$(OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_2)"
+GUI OPTIONAL AUTHENTICATOR OGCKML_IN_NETWORK_AUTHENTICATION_OGCKML_2 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO OGCKML_IN_ATTRIBUTE_READING_OGCKML_2 ALL
+OGCKML_2_ATTRIBUTE_READING "$(OGCKML_IN_ATTRIBUTE_READING_OGCKML_2)"
+# ============================================================================
+OGCKML_2_GENERATE_FME_BUILD_NUM 26333
+OGCKML_2_DATASET "$(SourceDataset_OGCKML_2)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_OGCKML_2 OGCKML_2
+# -------------------------------------------------------------------------
+
+OGCKML_2_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+
+INCLUDE [ if {[info exists env(FME_TEMP)] && [file isdirectory $env(FME_TEMP)]} {set gVisualizerTemp $env(FME_TEMP)}  elseif {[info exists env(TEMP)] && [file isdirectory $env(TEMP)]}  {set gVisualizerTemp $env(TEMP)}  elseif { $tcl_platform(platform) == "unix" } {set gVisualizerTemp "/tmp"} else {set gVisualizerTemp c:};  regsub -all {[ ,&]} {$(WORKSPACE_NAME)} {_} wsname; set gVisualizerTemp $gVisualizerTemp/${wsname}_[clock format [clock seconds] -format %H%M%S];  puts "MACRO WORKSPACE_TEMP_DIR $gVisualizerTemp"; 
+MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/inspector.ffs
+MACRO VISUALIZER_CREATE_SPATIAL_INDEX YES
+# -------------------------------------------------------------------------
+OGCKML_2_DEF Neighborhoods   NeighborhoodId               kml_buffer   NeighborhoodName             kml_buffer   NeighborhoodURL              kml_buffer   TotalPopulation2001          kml_buffer   TotalPopulation2011          kml_buffer
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_OGCKML_2)   INPUT FEATURE_TYPE *    ROUTE OGCKML OGCKML_2::Neighborhoods multi_reader_keyword,$(DATASET_KEYWORD_OGCKML_2) TO FME_GENERIC ::Neighborhoods ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+OGCKML_2_MERGE_DEF OGCKML_2::Neighborhoods EXACT Neighborhoods
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "Neighborhoods_OGCKML_2 Splitter"    INPUT FEATURE_TYPE Neighborhoods    OUTPUT FEATURE_TYPE Neighborhoods_OGCKML_2
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+Tcl2 proc RandomNumberGenerator_generator {paramMin paramMax paramPlaces} {    set absoluteMax [expr abs($paramMax)];    set absoluteMin [expr abs($paramMin)];    if {$absoluteMin > $absoluteMax} {       set temp $absoluteMax;       set absoluteMax $absoluteMin;       set absoluteMin $temp;    };    set maxNumDigits 1;    if {$absoluteMax > 0} {       set maxNumDigits [expr int(log10($absoluteMax) + 1)];    };    set positiveParamPlaces [expr abs($paramPlaces)];    if {$paramMin > $paramMax} {       FME_SetAttribute {"WeightedAttribute"} NaN;    } elseif {$paramPlaces < 0 && $maxNumDigits <= $positiveParamPlaces} {       FME_SetAttribute {"WeightedAttribute"} 0;    } else {       set randomNumber [expr rand()];       set mult [expr pow(10, $paramPlaces)];       set innerMin [expr double($paramMin)];       set innerMax [expr double($paramMax)];       if {$paramPlaces > 0} {          set addValue [expr pow(10, -$paramPlaces)];          set indexDotMin [string first "." $innerMin];          set indexDotMax [string first "." $innerMax];          set countDecPlacesMin [expr [string length $innerMin] - $indexDotMin - 1];          set countDecPlacesMax [expr [string length $innerMax] - $indexDotMax - 1];          set countTruncatedDecPlaces [expr $countDecPlacesMin - $paramPlaces];          if {$countTruncatedDecPlaces > 0} {             set zeroes [string repeat "0" $countTruncatedDecPlaces];             set truncatedDecPlaces [string range $innerMin [expr $indexDotMin + 1 + $paramPlaces] [string length $innerMin]];             if {![string equal $truncatedDecPlaces $zeroes]}             {                set truncatedResult [string range $innerMin 0 [expr $indexDotMin + $paramPlaces]];                if {$innerMin > 0} {                   set truncatedResult [expr $truncatedResult + $addValue];                };                set innerMin $truncatedResult;             };          };          set countTruncatedDecPlaces [expr $countDecPlacesMax - $paramPlaces];          if {$countTruncatedDecPlaces > 0} {             set zeroes [string repeat "0" $countTruncatedDecPlaces];             set truncatedDecPlaces [string range $innerMax [expr $indexDotMax + 1 + $paramPlaces] [string length $innerMax]];             if {![string equal $truncatedDecPlaces $zeroes]}             {                set truncatedResult [string range $innerMax 0 [expr $indexDotMax + $paramPlaces]];                if {$innerMax < 0} {                   set truncatedResult [expr $truncatedResult - $addValue];                };                set innerMax $truncatedResult;             };          };       } else {          set innerMin [expr ceil($paramMin * $mult) * 1.0 / $mult];          set innerMax [expr floor($paramMax * $mult) * 1.0 / $mult];       };       set integerMin $innerMin;       set integerMax $innerMax;       set integerMin [expr wide($innerMin * $mult)];       set integerMax [expr wide($innerMax * $mult)];       set integerResult [expr $integerMin + wide($randomNumber * ($integerMax + 1 - $integerMin))];       set result [expr $integerResult * 1.0 / $mult];       set formatString "%.0f";       if {$paramPlaces > 0} {          set formatString [format "%%.%df" $paramPlaces];       };       FME_SetAttribute {"WeightedAttribute"} [format $formatString $result];    }; }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { RandomNumberGenerator_MinRejecter }    INPUT  FEATURE_TYPE Neighborhoods_OGCKML_2    TEST { "0.1" TYPE NUM ENCODED }    PRESERVE_FEATURE_ORDER PER_OUTPUT_PORT    OUTPUT { PASSED FEATURE_TYPE RandomNumberGenerator__toMaxRejecter__ }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { RandomNumberGenerator_MaxRejecter }    INPUT { FEATURE_TYPE RandomNumberGenerator__toMaxRejecter__ }    TEST { "1" TYPE NUM ENCODED }    PRESERVE_FEATURE_ORDER PER_OUTPUT_PORT    OUTPUT { PASSED FEATURE_TYPE RandomNumberGenerator__toPlacesRejecter__ }
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { RandomNumberGenerator_PlacesRejecter }    INPUT { FEATURE_TYPE RandomNumberGenerator__toPlacesRejecter__ }    TEST { "1" TYPE INT ENCODED }    PRESERVE_FEATURE_ORDER PER_OUTPUT_PORT    OUTPUT { PASSED FEATURE_TYPE RandomNumberGenerator__toOutput__ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { RandomNumberGenerator_RandomNumberGenerator }    INPUT { FEATURE_TYPE RandomNumberGenerator__toOutput__ }    OUTPUT { FEATURE_TYPE RandomNumberGenerator_OUTPUT         @Tcl2("RandomNumberGenerator_generator {0.1} {1} {1} ")          }
+# -------------------------------------------------------------------------
+# Build the List removal function and regular expression if there was any list attributes to be removed.
+# If not, then we will not have any extra list removal call to @RemoveAttributes, which speeds the
+# normal, non-list removal especially when in Bulk Mode.  Note that this computation of the regular expressions is done
+# once during mapping file parse time.
+INCLUDE [    set listAttributeRemoveRegexps {};    set anyList {no};    foreach attr [split ""] {       set attr [FME_DecodeText $attr];       set attr [regsub "{}$" $attr "{}.*"];       set attr [regsub -all "{}" $attr "\\{\[0-9\]+\\}"];       append listAttributeRemoveRegexps ",^$attr$";       set anyList {yes};    };    if { ${anyList} == {no} } {        puts {MACRO AttributeRemover_LIST_FUNC }    } else {        puts "MACRO AttributeRemover_LIST_FUNC @RemoveAttributes(fme_pcre_match\"$listAttributeRemoveRegexps\")"    }; ]
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { AttributeRemover }    INPUT  FEATURE_TYPE RandomNumberGenerator_OUTPUT    OUTPUT { FEATURE_TYPE AttributeRemover_OUTPUT        @RemoveAttributes(fme_encoded,NeighborhoodId,NeighborhoodURL)        $(AttributeRemover_LIST_FUNC)         }
+# -------------------------------------------------------------------------
+MACRO CsmapReprojector_TRANSFORMATION
+# Only pass on transformation if a source coordinate system was picked
+INCLUDE [    if { {} != {} } {       puts {MACRO CsmapReprojector_TRANSFORMATION <Unused>};    }; ]
+FACTORY_DEF {*} ReprojectFactory    FACTORY_NAME { CsmapReprojector }    INPUT  FEATURE_TYPE AttributeRemover_OUTPUT    ENGINE { ENGINE_NAME FME         SOURCE ""         DESTINATION "UTM83-10"         VERTICAL_HANDLING <Unused>         GEOID_HEIGHT_GRID "<Unused>"         TRANSFORMATION "$(CsmapReprojector_TRANSFORMATION)" }    GEOM_NAME_SELECTION { FME_ALL_GEOMETRIES }    INTERPOLATION_TYPE { NearestNeighbor }    RASTER_CELL_SIZE { PreserveCells }    RASTER_TOLERANCE { 0.0 }    OUTPUT { REPROJECTED FEATURE_TYPE CsmapReprojector_REPROJECTED          }
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "DensityEvaluator Input Input Collector"   INPUT FEATURE_TYPE CsmapReprojector_REPROJECTED   OUTPUT FEATURE_TYPE DensityEvaluator_Input
+MACRO DensityEvaluator_WORKSPACE_NAME DensityEvaluator
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_TRANSFORMER_GROUP 
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_XFORMER_NAME DensityEvaluator
+MACRO $(DensityEvaluator_WORKSPACE_NAME)___COMPOUND_PARAMETERS 
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR PopulationDensity2001
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_DensityUnits 0.000001
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_POPULATION <at>Value<openparen>TotalPopulation2001<closeparen>
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_WEIGHTEDATTRIBUTE <at>Value<openparen>WeightedAttribute<closeparen>
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_SUB_DOC_NAME DensityEvaluator
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_SUB_DOC_NAME DensityEvaluator
+DEFAULT_MACRO DensityEvaluator_WORKSPACE_NAME ""
+INCLUDE [puts {MACRO WB_OLD_CONTEXT_$(DensityEvaluator_WORKSPACE_NAME) $(WB_CURRENT_CONTEXT)};          puts {MACRO WB_CURRENT_CONTEXT $(DensityEvaluator_WORKSPACE_NAME)}]
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(DensityEvaluator_WORKSPACE_NAME)_Input1786656670 Input Splitter"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input"   OUTPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input" "@EvaluateExpression(ATTR_CREATE_EXPR_PROPAGATE_MISSING_FDIV_TYPED,Population,$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION),UTF8,WeightedAttribute,$($(DensityEvaluator_WORKSPACE_NAME)_WEIGHTEDATTRIBUTE),FLOAT, FEATURE_TYPE)"
+# -------------------------------------------------------------------------
+INCLUDE [          if { ({Plane Area} == {Sloped Area}) } {             puts {MACRO $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,SLOPED_AREAS,"@EvaluateExpression(FDIV,FLOAT,$($(DensityEvaluator_WORKSPACE_NAME)_DensityUnits),$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator)")};          } else {             puts {MACRO $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,"@EvaluateExpression(FDIV,FLOAT,$($(DensityEvaluator_WORKSPACE_NAME)_DensityUnits),$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator)")};          }          ]
+FACTORY_DEF {*} ExecuteFunctionFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_AreaCalculator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input"    FUNCTION_DEFINITION { $($(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func) }    RESULT_ATTRIBUTE { "NeighborhoodArea" }    OUTPUT { COMPLETE FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_OUTPUT"        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_Tester }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_OUTPUT"    TEST { "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>WeightedAttribute<closeparen>,$(DensityEvaluator_WORKSPACE_NAME)_Tester)" > 0 ENCODED }    BOOLEAN_OPERATOR { OR }    COMPOSITE_TEST_EXPR { "<Unused>" }    PRESERVE_FEATURE_ORDER { PER_OUTPUT_PORT }    OUTPUT { PASSED FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_PASSED"         }    OUTPUT { FAILED FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_FAILED"         }
+# -------------------------------------------------------------------------
+INCLUDE TCL
+   if {{OUTGOING} == {OUTGOING}} {      set attrs [list {$($(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR)}];    } else {      set attrAll {<Unused>};      if {[string length $attrAll] == 0} { return; };      set attrs [split {<Unused>} { }];    };    if {{NO_OP} == {NO_OP}} {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV;    } else {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV_MULTI_FEATURE;    };    foreach attr $attrs {     lappend parmList $attr;     lappend parmList {<openparen>$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION)*<at>Value<openparen>WeightedAttribute<closeparen><closeparen><solidus><at>Value<openparen>NeighborhoodArea<closeparen>};     lappend parmList {FLOAT};    };    lappend parmList {$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator};    if {{NO_OP} == {OTHER_NULL_VALUE_2}} {     lappend parmList {NO_OP};     lappend parmList {<Unused>};     lappend parmList {0};    };    puts "MACRO __fme_expressionevaluator_evaluateArgs__ [join $parmList ,]";
+END_INCLUDE
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_PASSED"    OUTPUT { FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_OUTPUT"         @EvaluateExpression($(__fme_expressionevaluator_evaluateArgs__))          }
+MACRO __fme_expressionevaluator_evaluateArgs__
+# -------------------------------------------------------------------------
+INCLUDE TCL
+   if {{OUTGOING} == {OUTGOING}} {      set attrs [list {$($(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR)}];    } else {      set attrAll {<Unused>};      if {[string length $attrAll] == 0} { return; };      set attrs [split {<Unused>} { }];    };    if {{NO_OP} == {NO_OP}} {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV;    } else {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV_MULTI_FEATURE;    };    foreach attr $attrs {     lappend parmList $attr;     lappend parmList {$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION)<solidus><at>Value<openparen>NeighborhoodArea<closeparen>};     lappend parmList {FLOAT};    };    lappend parmList {$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2};    if {{NO_OP} == {OTHER_NULL_VALUE_2}} {     lappend parmList {NO_OP};     lappend parmList {<Unused>};     lappend parmList {0};    };    puts "MACRO __fme_expressionevaluator_evaluateArgs__ [join $parmList ,]";
+END_INCLUDE
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2 }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_FAILED"    OUTPUT { FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2_OUTPUT"         @EvaluateExpression($(__fme_expressionevaluator_evaluateArgs__))          }
+MACRO __fme_expressionevaluator_evaluateArgs__
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(DensityEvaluator_WORKSPACE_NAME)_Output1786656670 Output Collector"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_OUTPUT"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2_OUTPUT"   OUTPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Output"
+INCLUDE [puts {MACRO WB_CURRENT_CONTEXT $(WB_OLD_CONTEXT_$(DensityEvaluator_WORKSPACE_NAME))}]
+FACTORY_DEF * TeeFactory   FACTORY_NAME "DensityEvaluator Output Output Renamer/Nuker"   INPUT FEATURE_TYPE DensityEvaluator_Output   OUTPUT FEATURE_TYPE DensityEvaluator_Output
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "DensityEvaluator_2 Input Input Collector"   INPUT FEATURE_TYPE DensityEvaluator_Output   OUTPUT FEATURE_TYPE DensityEvaluator_2_Input
+MACRO DensityEvaluator_WORKSPACE_NAME DensityEvaluator_2
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_TRANSFORMER_GROUP 
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_XFORMER_NAME DensityEvaluator_2
+MACRO $(DensityEvaluator_WORKSPACE_NAME)___COMPOUND_PARAMETERS 
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR PopulationDensity2011
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_DensityUnits 0.000001
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_POPULATION <at>Value<openparen>TotalPopulation2011<closeparen>
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_WEIGHTEDATTRIBUTE <at>Value<openparen>WeightedAttribute<closeparen>
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_SUB_DOC_NAME DensityEvaluator
+MACRO $(DensityEvaluator_WORKSPACE_NAME)_SUB_DOC_NAME DensityEvaluator
+DEFAULT_MACRO DensityEvaluator_WORKSPACE_NAME ""
+INCLUDE [puts {MACRO WB_OLD_CONTEXT_$(DensityEvaluator_WORKSPACE_NAME) $(WB_CURRENT_CONTEXT)};          puts {MACRO WB_CURRENT_CONTEXT $(DensityEvaluator_WORKSPACE_NAME)}]
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(DensityEvaluator_WORKSPACE_NAME)_Input1786656670 Input Splitter"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input"   OUTPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input" "@EvaluateExpression(ATTR_CREATE_EXPR_PROPAGATE_MISSING_FDIV_TYPED,Population,$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION),UTF8,WeightedAttribute,$($(DensityEvaluator_WORKSPACE_NAME)_WEIGHTEDATTRIBUTE),FLOAT, FEATURE_TYPE)"
+# -------------------------------------------------------------------------
+INCLUDE [          if { ({Plane Area} == {Sloped Area}) } {             puts {MACRO $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,SLOPED_AREAS,"@EvaluateExpression(FDIV,FLOAT,$($(DensityEvaluator_WORKSPACE_NAME)_DensityUnits),$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator)")};          } else {             puts {MACRO $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func @Area(REJECTABLE,ALLOW_NULLS,"@EvaluateExpression(FDIV,FLOAT,$($(DensityEvaluator_WORKSPACE_NAME)_DensityUnits),$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator)")};          }          ]
+FACTORY_DEF {*} ExecuteFunctionFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_AreaCalculator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Input"    FUNCTION_DEFINITION { $($(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_func) }    RESULT_ATTRIBUTE { "NeighborhoodArea" }    OUTPUT { COMPLETE FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_OUTPUT"        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_Tester }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_AreaCalculator_OUTPUT"    TEST { "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>WeightedAttribute<closeparen>,$(DensityEvaluator_WORKSPACE_NAME)_Tester)" > 0 ENCODED }    BOOLEAN_OPERATOR { OR }    COMPOSITE_TEST_EXPR { "<Unused>" }    PRESERVE_FEATURE_ORDER { PER_OUTPUT_PORT }    OUTPUT { PASSED FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_PASSED"         }    OUTPUT { FAILED FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_FAILED"         }
+# -------------------------------------------------------------------------
+INCLUDE TCL
+   if {{OUTGOING} == {OUTGOING}} {      set attrs [list {$($(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR)}];    } else {      set attrAll {<Unused>};      if {[string length $attrAll] == 0} { return; };      set attrs [split {<Unused>} { }];    };    if {{NO_OP} == {NO_OP}} {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV;    } else {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV_MULTI_FEATURE;    };    foreach attr $attrs {     lappend parmList $attr;     lappend parmList {<openparen>$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION)*<at>Value<openparen>WeightedAttribute<closeparen><closeparen><solidus><at>Value<openparen>NeighborhoodArea<closeparen>};     lappend parmList {FLOAT};    };    lappend parmList {$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator};    if {{NO_OP} == {OTHER_NULL_VALUE_2}} {     lappend parmList {NO_OP};     lappend parmList {<Unused>};     lappend parmList {0};    };    puts "MACRO __fme_expressionevaluator_evaluateArgs__ [join $parmList ,]";
+END_INCLUDE
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_PASSED"    OUTPUT { FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_OUTPUT"         @EvaluateExpression($(__fme_expressionevaluator_evaluateArgs__))          }
+MACRO __fme_expressionevaluator_evaluateArgs__
+# -------------------------------------------------------------------------
+INCLUDE TCL
+   if {{OUTGOING} == {OUTGOING}} {      set attrs [list {$($(DensityEvaluator_WORKSPACE_NAME)_VAL_ATTR)}];    } else {      set attrAll {<Unused>};      if {[string length $attrAll] == 0} { return; };      set attrs [split {<Unused>} { }];    };    if {{NO_OP} == {NO_OP}} {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV;    } else {        set parmList ATTR_CREATE_EXPR_PROPAGATE_MISSING_TYPED_FDIV_MULTI_FEATURE;    };    foreach attr $attrs {     lappend parmList $attr;     lappend parmList {$($(DensityEvaluator_WORKSPACE_NAME)_POPULATION)<solidus><at>Value<openparen>NeighborhoodArea<closeparen>};     lappend parmList {FLOAT};    };    lappend parmList {$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2};    if {{NO_OP} == {OTHER_NULL_VALUE_2}} {     lappend parmList {NO_OP};     lappend parmList {<Unused>};     lappend parmList {0};    };    puts "MACRO __fme_expressionevaluator_evaluateArgs__ [join $parmList ,]";
+END_INCLUDE
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { $(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2 }    INPUT  FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Tester_FAILED"    OUTPUT { FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2_OUTPUT"         @EvaluateExpression($(__fme_expressionevaluator_evaluateArgs__))          }
+MACRO __fme_expressionevaluator_evaluateArgs__
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(DensityEvaluator_WORKSPACE_NAME)_Output1786656670 Output Collector"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_OUTPUT"   INPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_ExpressionEvaluator_2_OUTPUT"   OUTPUT FEATURE_TYPE "$(DensityEvaluator_WORKSPACE_NAME)_Output"
+INCLUDE [puts {MACRO WB_CURRENT_CONTEXT $(WB_OLD_CONTEXT_$(DensityEvaluator_WORKSPACE_NAME))}]
+FACTORY_DEF * TeeFactory   FACTORY_NAME "DensityEvaluator_2 Output Output Renamer/Nuker"   INPUT FEATURE_TYPE DensityEvaluator_2_Output   OUTPUT FEATURE_TYPE DensityEvaluator_2_Output
+# -------------------------------------------------------------------------
+# Assumption is that the workspace temp dir has been already set and created.  See controldefs.cpp - ControlDefs::writeVisualizerTempDir
+DEFAULT_MACRO WORKSPACE_TEMP_DIR
+DEFAULT_MACRO FME_LAUNCH_VIEWER_APP NO
+INCLUDE [    set safeName "[regsub -all {[^a-zA-Z0-9]} {Output} _]_[expr round(rand() * 1000000)]_[clock clicks  -milliseconds]";    puts "MACRO SAFE_FFS_NAME $safeName"; ]
+INCLUDE [    if {{NoReduction} == {NoReduction} &&        {NO_THINNING} == {NO_THINNING}} {       puts "MACRO Output_366b9d7f_3ff4_48af_9928_73070ff7da6e0_LARGE_GEOMETRY_DATA_STORAGE REFERENCE";    } else {       puts "MACRO Output_366b9d7f_3ff4_48af_9928_73070ff7da6e0_LARGE_GEOMETRY_DATA_STORAGE FULL";    }; ]
+INCLUDE [    if {{$(FME_LAUNCH_VIEWER_APP)} != {NO}} {       puts "MACRO ENABLE_RECORDING *";    } else {       puts "MACRO ENABLE_RECORDING _NOT_THIS_TIME_";    }; ]
+FACTORY_DEF {*} InspectorFactory    FACTORY_NAME { Output_Prepper }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE DensityEvaluator_2_Output    GROUP_ATTRIBUTE __inspector_feature_type_attr__    GROUP_ATTRIBUTE_PREFIX { Output }    RASTER_REDUCTION { NoReduction }    POINT_CLOUD_REDUCTION { NO_THINNING }    OUTPUT { RESULT FEATURE_TYPE __viewme__       }
+# Now route all the features into the recorder, changing their
+# feature type to the transformer name so that they view nicely
+DEFAULT_MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/$(SAFE_FFS_NAME).ffs
+DEFAULT_MACRO VISUALIZER_CREATE_SPATIAL_INDEX NO
+# [PR#45549] The Data Inspector will limit the maximum number of features
+# it reads on WIN32, so we will correspondingly limit the number of
+# features we record here using the MAX_FEATURES_TO_RECORD directive.
+FACTORY_DEF {$(ENABLE_RECORDING)} RecorderFactory    FACTORY_NAME { Output_Recorder }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT FEATURE_TYPE __viewme__       _wb_termination_feature Yes       @FeatureType(TERMINATOR_@Value(_wb_termination_xformer))    INPUT FEATURE_TYPE __viewme__       @FeatureType(@Value(__inspector_feature_type_attr__))       @RemoveAttributes(__inspector_feature_type_attr__)    FEATURE_FILE { "$(VISUALIZER_FEATURE_FILE)" }    STORE_SCANNED_SCHEMA YES    NORMALIZE_LIST_ATTRIBUTES_ON_SCHEMA YES    CREATE_SPATIAL_INDEX { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    INSPECTOR { "$(VISUALIZER_CREATE_SPATIAL_INDEX)" }    FSC_SCHEMA { NeighborhoodName,buffer,TotalPopulation2001,buffer,TotalPopulation2011,buffer,WeightedAttribute,real64,Population,varchar<openparen>200<closeparen>,NeighborhoodArea,real64,PopulationDensity2001,real64,PopulationDensity2011,real64 }    MODE RECORD    STORE_SCANNED_METADATA    RECORD_DIRECTLY_TO_DISK YES    MAX_FEATURES_TO_RECORD WIN32 2000000    LARGE_GEOMETRY_DATA_STORAGE { $(Output_366b9d7f_3ff4_48af_9928_73070ff7da6e0_LARGE_GEOMETRY_DATA_STORAGE) }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Output_Nuker }    INPUT FEATURE_TYPE __viewme__
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+
+DEFAULT_MACRO FME_LAUNCH_VIEWER_APP NO
+FACTORY_DEF * CreationFactory    FACTORY_NAME VisualizerProcessor   CREATE_AT_END   OUTPUT FEATURE_TYPE __NUKEME__   @TCL("if {{$(FME_LAUNCH_VIEWER_APP)} == {YES}} {  if [file exists {$(WORKSPACE_TEMP_DIR)}] {set files [glob -nocomplain -directory  {$(WORKSPACE_TEMP_DIR)} -tails *.ffs];   if {[llength $files] == 1} {    set theFile {$(WORKSPACE_TEMP_DIR)/};   append theFile [lindex $files 0];   eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -f FFS \042$theFile\042 & \175;  } elseif { [llength $files] == 0 } {  catch { file delete -force {$(WORKSPACE_TEMP_DIR)} };  } else {  set filesNoExt {}; set lastfile {}; foreach {fileName} [lsort $files] { set fileNoExt [string trimright $fileName {.ffs}]; if [regexp {(.*)_[0-9]*$} $fileNoExt wholething fileNoExtBase] {  if { $fileNoExtBase == $lastfile } { continue } }; set lastfile $fileNoExt; lappend filesNoExt $fileNoExt };  eval FME_Execute System \173\042$(FME_HOME_UNIX)/fmedatainspector\042 --visualizer --single-application --delete-on-close --no-source-prompt -d {$(WORKSPACE_TEMP_DIR)} -a ffs -f FFS $filesNoExt & \175; }; }; }; ")
+FACTORY_DEF * TeeFactory    FACTORY_NAME VisualizerCleaner   INPUT FEATURE_TYPE __NUKEME__
