@@ -1,0 +1,956 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME\fme.exe" "C:\FMEData\dynam challenge 1 complete.fmw"
+#          --USER_REQUEST "Get<space>the<space>current<space>weather<space>forecast<space>for<space>Vancouver"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   AI_CONTEXT_ENABLED="Yes"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="3905.02 455"
+#!   DOC_TOP_LEFT="1806.27 -1585.01"
+#!   ENABLE_DATA_CACHING="Yes"
+#!   ENABLE_FEATURE_COUNTING="Yes"
+#!   ENABLE_PERFORMANCE_PROFILING="No"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="26333"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="76cd38f5-6d9e-433d-b859-974842075210"
+#!   FME_DOCUMENT_PRIORGUID=""
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   INCOMPLETE_CACHE_HANDLING="Stale"
+#!   LAST_SAVE_BUILD="FME(R) 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+#!   LAST_SAVE_DATE="2026-11-09T11:48:43"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PROMPT_FOR_PARAMS="Yes"
+#!   PYTHON_COMPATIBILITY="314"
+#!   PYTHON_SCRIPTS_ENABLED="Yes"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   STOP_AT_BREAKPOINTS="No"
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="93.7509 240.627"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <DEPENDENCIES>
+#! <PACKAGES>
+#! <PACKAGE
+#!   NAME="safe.mcp"
+#!   VERSION="1.2.0"
+#! />
+#! <PACKAGE
+#!   NAME="safe.openai"
+#!   VERSION="0.7.6"
+#! />
+#! </PACKAGES>
+#! </DEPENDENCIES>
+#! <CONNECTIONS>
+#! <CONNECTION
+#!   NAME="Training OpenAI (safe.openai)"
+#!   TYPE="WEB"
+#!   FAMILY="safe.openai.OpenAI"
+#!   USAGE="INTERNAL"
+#! />
+#! </CONNECTIONS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR USER_REQUEST FME_SYNTAX%FME%FME_NO_WHITESPACE%NO%FME_INCLUDEBROWSE%YES%FME_INLINE%NO%FME_SUPPORTSNUMERIC%NO Prompt to Weather MCP Server"
+#!   DEFAULT_VALUE="Get&lt;space&gt;the&lt;space&gt;current&lt;space&gt;weather&lt;space&gt;forecast&lt;space&gt;for&lt;space&gt;Vancouver"
+#!   IS_STAND_ALONE="true"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiVVNFUl9SRVFVRVNUIiwicHJvbXB0IjoiUHJvbXB0IHRvIFdlYXRoZXIgTUNQIFNlcnZlciIsInZhbHVlVHlwZSI6InN0cmluZ0VuY29kZWQiLCJkZWZhdWx0VmFsdWUiOiJHZXQ8c3BhY2U+dGhlPHNwYWNlPmN1cnJlbnQ8c3BhY2U+d2VhdGhlcjxzcGFjZT5mb3JlY2FzdDxzcGFjZT5mb3I8c3BhY2U+VmFuY291dmVyIiwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJleHByZXNzaW9uIiwiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJ0ZXh0Iiwic2hvd0lubGluZUVkaXRvciI6ZmFsc2UsInRyaW1XaGl0ZXNwYWNlIjpmYWxzZSwic2hvd0VkaXRCdXR0b24iOnRydWUsInNob3dBcml0aG1ldGljRWRpdG9yIjpmYWxzZX1dfQ=="
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="USER_REQUEST" 
+#!   DEFAULT_VALUE="Get&lt;space&gt;the&lt;space&gt;current&lt;space&gt;weather&lt;space&gt;forecast&lt;space&gt;for&lt;space&gt;Vancouver"
+#!   SCOPE="STAND_ALONE"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI TEXT_EDIT_OR_ATTR USER_REQUEST FME_SYNTAX%FME%FME_NO_WHITESPACE%NO%FME_INCLUDEBROWSE%YES%FME_INLINE%NO%FME_SUPPORTSNUMERIC%NO Prompt to Weather MCP Server"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   PALETTE_COLOR="Workflow1"
+#!   STICKY="true"
+#!   IDENTIFIER="3"
+#!   NAME="List Tools"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="1806.2685626856273 -1160.0125001250015"
+#!   ORDER="500000000000002"
+#!   BOTTOM_RIGHT="2376.7685626856273 -1585.0125001250015"
+#!   BOUNDING_RECT="1806.2685626856273 -1160.0125001250015 570.5 425"
+#!   COLOUR="0.32549019607843138,0.62352941176470589,0.92549019607843142,1"
+#!   CONTENTS="2 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   PALETTE_COLOR="Workflow2"
+#!   STICKY="true"
+#!   IDENTIFIER="5"
+#!   NAME="Call Tool"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="4118.7916879168797 -1130.0125001250015"
+#!   ORDER="500000000000004"
+#!   BOTTOM_RIGHT="4689.2916879168797 -1555.0125001250015"
+#!   BOUNDING_RECT="4118.7916879168797 -1130.0125001250015 570.5 425"
+#!   COLOUR="0.58039215686274515,0.65490196078431373,1,1"
+#!   CONTENTS="4 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <LOOPS>
+#! </LOOPS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="safe.mcp.MCPCaller"
+#!   VERSION="1"
+#!   POSITION="1856.2685626856273 -1250.0125001250015"
+#!   BOUNDING_RECT="1856.2685626856273 -1250.0125001250015 470.5 65"
+#!   ORDER="500000000000001"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#!   IS_HUB_RESOURCE="true"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="ServerInfo"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_version" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_instructions" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_protocolVersion" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_capabilities" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;Rejected&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="AUTH_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CALL_TOOL_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="*"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SCHEMA_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="PROMPTS_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="PROMPT_ARGUMENTS_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="REQUEST_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RESOURCES_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TOOLS_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="MCPCaller"/>
+#!     <XFORM_PARM PARM_NAME="___XF_AUTH_METHOD" PARM_VALUE="NONE"/>
+#!     <XFORM_PARM PARM_NAME="___XF_CONNECTION" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INCLUDE_RESOURCE_TEMPLATES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INCLUDE_RESPONSE_JSON" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INPUT_SCHEMA_PREVIEW" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_JSON_FILE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_JSON_TEXT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_MCP_METHOD" PARM_VALUE="LIST_TOOLS"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OUTPUT_GROUPING" PARM_VALUE="SINGLE_FEATURE_WITH_LIST"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OVERRIDE_SERVER_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OVERRIDE_SERVER_URL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_PROMPT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_PROMPT_ARGUMENTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_RESOURCE_URI" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_SERVER_URL" PARM_VALUE="http://weather-mcp:3000/mcp"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TIMEOUT" PARM_VALUE="30"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TOOL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TOOL_INPUT_SOURCE" PARM_VALUE="&lt;Unused&gt;"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="4"
+#!   TYPE="safe.mcp.MCPCaller"
+#!   VERSION="1"
+#!   POSITION="4168.7916879168797 -1220.0125001250015"
+#!   BOUNDING_RECT="4168.7916879168797 -1220.0125001250015 470.5 65"
+#!   ORDER="500000000000003"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#!   IS_HUB_RESOURCE="true"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.mimeType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="ServerInfo"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_version" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_instructions" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_protocolVersion" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_capabilities" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="INITIATOR"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <OUTPUT_FEAT NAME="&lt;Rejected&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="AUTH_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CALL_TOOL_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SCHEMA_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PROMPTS_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="PROMPT_ARGUMENTS_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="REQUEST_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RESOURCES_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TOOLS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="MCPCaller_2"/>
+#!     <XFORM_PARM PARM_NAME="___XF_AUTH_METHOD" PARM_VALUE="NONE"/>
+#!     <XFORM_PARM PARM_NAME="___XF_CONNECTION" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INCLUDE_RESOURCE_TEMPLATES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INCLUDE_RESPONSE_JSON" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INPUT_SCHEMA_PREVIEW" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_JSON_FILE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_JSON_TEXT" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;tool_input&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_MCP_METHOD" PARM_VALUE="CALL_TOOL"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OUTPUT_GROUPING" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OVERRIDE_SERVER_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_OVERRIDE_SERVER_URL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_PROMPT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_PROMPT_ARGUMENTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_RESOURCE_URI" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_SERVER_URL" PARM_VALUE="http://weather-mcp:3000/mcp"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TIMEOUT" PARM_VALUE="30"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TOOL" PARM_VALUE="@Value(tool_name)"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TOOL_INPUT_SOURCE" PARM_VALUE="TEXT_OR_ATTR"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="6"
+#!   TYPE="AttributeCreator"
+#!   VERSION="11"
+#!   POSITION="2426.7685626856273 -1250.0125001250015"
+#!   BOUNDING_RECT="2426.7685626856273 -1250.0125001250015 436 65"
+#!   ORDER="500000000000005"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="&quot;&quot; user_request SET_TO $(USER_REQUEST) varchar&lt;openparen&gt;200&lt;closeparen&gt;  today SET_TO &lt;at&gt;DateTimeFormat&lt;openparen&gt;&lt;at&gt;CurrentDateTime&lt;openparen&gt;&lt;closeparen&gt;&lt;comma&gt;%Y-%m-%d&lt;closeparen&gt; varchar&lt;openparen&gt;200&lt;closeparen&gt;  all_mcp_tools SET_TO &lt;at&gt;Value&lt;openparen&gt;_json_response&lt;closeparen&gt; varchar&lt;openparen&gt;200&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE" PARM_VALUE="NO_OP"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_MODIFIED_ATTRIBUTE_TYPES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeCreator"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_IS_LOOKUP="true" PARM_VALUE="No Substitution"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="8"
+#!   TYPE="safe.openai.OpenAIConnector"
+#!   VERSION="1"
+#!   POSITION="2962.7685626856273 -1250.0125001250015"
+#!   BOUNDING_RECT="2962.7685626856273 -1250.0125001250015 436 65"
+#!   ORDER="500000000000006"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#!   IS_HUB_RESOURCE="true"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="Initiator"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;Rejected&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_message" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="AUTH_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="EMBEDDING_CREATE_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="IMAGE_CREATE_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="IMAGE_EDIT_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="IMAGE_OUTPUT_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="REQUEST_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RESPONSE_CREATE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="RESPONSE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TOOLS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="OpenAIConnector"/>
+#!     <XFORM_PARM PARM_NAME="___XF_ACCOUNT" PARM_VALUE="Training OpenAI (safe.openai)"/>
+#!     <XFORM_PARM PARM_NAME="___XF_CONVERSATION_ID" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_CONVERSATION_STATE" PARM_VALUE="NONE"/>
+#!     <XFORM_PARM PARM_NAME="___XF_EMBEDDING_CREATE_DIMENSIONS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_EMBEDDING_CREATE_INPUT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_EMBEDDING_CREATE_MODEL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_COUNT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_CREATE_MODEL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_CREATE_PROMPT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_EDIT_INPUT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_EDIT_MODEL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_EDIT_PROMPT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_MODERATION" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_IMAGE_SIZE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INCLUDE_RESPONSE_JSON" PARM_VALUE="yes"/>
+#!     <XFORM_PARM PARM_NAME="___XF_INPUT_FILES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_INPUT_TEXT" PARM_VALUE="You&lt;space&gt;are&lt;space&gt;selecting&lt;space&gt;a&lt;space&gt;weather&lt;space&gt;MCP&lt;space&gt;tool&lt;space&gt;based&lt;space&gt;on&lt;space&gt;a&lt;space&gt;user&lt;space&gt;request.&lt;lf&gt;&lt;lf&gt;Available&lt;space&gt;tools&lt;comma&gt;&lt;space&gt;including&lt;space&gt;descriptions&lt;space&gt;and&lt;space&gt;input&lt;space&gt;schemas:&lt;lf&gt;&lt;at&gt;Value&lt;openparen&gt;all_mcp_tools&lt;closeparen&gt;&lt;lf&gt;&lt;lf&gt;User&lt;space&gt;request:&lt;lf&gt;&lt;at&gt;Value&lt;openparen&gt;user_request&lt;closeparen&gt;&lt;lf&gt;&lt;lf&gt;Your&lt;space&gt;task:&lt;lf&gt;Select&lt;space&gt;the&lt;space&gt;most&lt;space&gt;appropriate&lt;space&gt;weather&lt;space&gt;tool&lt;space&gt;and&lt;space&gt;construct&lt;space&gt;the&lt;space&gt;tool_input&lt;space&gt;that&lt;space&gt;matches&lt;space&gt;the&lt;space&gt;selected&lt;space&gt;tool&lt;apos&gt;s&lt;space&gt;input&lt;space&gt;schema&lt;space&gt;exactly.&lt;lf&gt;&lt;lf&gt;Rules:&lt;lf&gt;-&lt;space&gt;You&lt;space&gt;MUST&lt;space&gt;select&lt;space&gt;tool_name&lt;space&gt;exactly&lt;space&gt;from&lt;space&gt;the&lt;space&gt;provided&lt;space&gt;tool&lt;space&gt;list.&lt;lf&gt;-&lt;space&gt;You&lt;space&gt;MUST&lt;space&gt;provide&lt;space&gt;a&lt;space&gt;tool_input&lt;space&gt;that&lt;space&gt;matches&lt;space&gt;the&lt;space&gt;input&lt;space&gt;schema&lt;space&gt;of&lt;space&gt;the&lt;space&gt;selected&lt;space&gt;tool.&lt;lf&gt;-&lt;space&gt;Do&lt;space&gt;not&lt;space&gt;rename&lt;space&gt;tools&lt;space&gt;or&lt;space&gt;invent&lt;space&gt;new&lt;space&gt;ones.&lt;lf&gt;-&lt;space&gt;Vancouver&lt;space&gt;coordinates&lt;space&gt;are&lt;space&gt;latitude:&lt;space&gt;49.2827&lt;comma&gt;&lt;space&gt;longitude:&lt;space&gt;-123.1207&lt;comma&gt;&lt;space&gt;timezone:&lt;space&gt;&lt;quote&gt;America&lt;solidus&gt;Vancouver&lt;quote&gt;.&lt;lf&gt;-&lt;space&gt;Use&lt;space&gt;these&lt;space&gt;coordinates&lt;space&gt;for&lt;space&gt;any&lt;space&gt;location-based&lt;space&gt;tool&lt;space&gt;unless&lt;space&gt;the&lt;space&gt;user&lt;space&gt;specifies&lt;space&gt;a&lt;space&gt;different&lt;space&gt;location.&lt;lf&gt;-&lt;space&gt;If&lt;space&gt;you&lt;space&gt;do&lt;space&gt;not&lt;space&gt;know&lt;space&gt;the&lt;space&gt;geographic&lt;space&gt;coordinates&lt;space&gt;from&lt;space&gt;the&lt;space&gt;place&lt;space&gt;name&lt;space&gt;from&lt;space&gt;the&lt;space&gt;user&lt;space&gt;request&lt;comma&gt;&lt;space&gt;estimate&lt;space&gt;the&lt;space&gt;coordinates&lt;space&gt;from&lt;space&gt;your&lt;space&gt;knowledge&lt;space&gt;to&lt;space&gt;format&lt;space&gt;the&lt;space&gt;tool&lt;space&gt;input.&lt;lf&gt;-&lt;space&gt;For&lt;space&gt;weather_archive&lt;comma&gt;&lt;space&gt;today&lt;apos&gt;s&lt;space&gt;date&lt;space&gt;is&lt;space&gt;&lt;at&gt;Value&lt;openparen&gt;today&lt;closeparen&gt;&lt;space&gt;&lt;u2014&gt;&lt;space&gt;use&lt;space&gt;a&lt;space&gt;reasonable&lt;space&gt;past&lt;space&gt;date&lt;space&gt;range.&lt;lf&gt;-&lt;space&gt;Do&lt;space&gt;not&lt;space&gt;use&lt;space&gt;the&lt;space&gt;geocoding&lt;space&gt;tool.&lt;space&gt;&lt;lf&gt;&lt;lf&gt;&lt;lf&gt;Schema&lt;space&gt;rules:&lt;lf&gt;-&lt;space&gt;tool_input&lt;space&gt;must&lt;space&gt;strictly&lt;space&gt;follow&lt;space&gt;the&lt;space&gt;input&lt;space&gt;schema&lt;space&gt;of&lt;space&gt;the&lt;space&gt;selected&lt;space&gt;tool.&lt;lf&gt;-&lt;space&gt;Preserve&lt;space&gt;object&lt;space&gt;structure&lt;space&gt;and&lt;space&gt;nesting&lt;space&gt;exactly.&lt;lf&gt;-&lt;space&gt;Include&lt;space&gt;all&lt;space&gt;required&lt;space&gt;fields.&lt;lf&gt;-&lt;space&gt;Do&lt;space&gt;not&lt;space&gt;add&lt;space&gt;fields&lt;space&gt;not&lt;space&gt;defined&lt;space&gt;in&lt;space&gt;the&lt;space&gt;schema."/>
+#!     <XFORM_PARM PARM_NAME="___XF_INPUT_URLS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_JSON_SCHEMA" PARM_VALUE="&lt;opencurly&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;type&lt;quote&gt;:&lt;space&gt;&lt;quote&gt;object&lt;quote&gt;&lt;comma&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;properties&lt;quote&gt;:&lt;space&gt;&lt;opencurly&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;tool_name&lt;quote&gt;:&lt;space&gt;&lt;opencurly&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;type&lt;quote&gt;:&lt;space&gt;&lt;quote&gt;string&lt;quote&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;closecurly&gt;&lt;comma&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;tool_input&lt;quote&gt;:&lt;space&gt;&lt;opencurly&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;type&lt;quote&gt;:&lt;space&gt;&lt;quote&gt;object&lt;quote&gt;&lt;comma&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;additionalProperties&lt;quote&gt;:&lt;space&gt;true&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;space&gt;&lt;closecurly&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;closecurly&gt;&lt;comma&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;required&lt;quote&gt;:&lt;space&gt;&lt;openbracket&gt;&lt;quote&gt;tool_name&lt;quote&gt;&lt;comma&gt;&lt;space&gt;&lt;quote&gt;tool_input&lt;quote&gt;&lt;closebracket&gt;&lt;comma&gt;&lt;lf&gt;&lt;space&gt;&lt;space&gt;&lt;quote&gt;additionalProperties&lt;quote&gt;:&lt;space&gt;false&lt;lf&gt;&lt;closecurly&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_MODEL" PARM_VALUE="chat-latest"/>
+#!     <XFORM_PARM PARM_NAME="___XF_MODEL_INSTRUCTIONS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_PREVIOUS_RESPONSE_ID" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="___XF_REASONING_EFFORT" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_REQUEST_ACTION" PARM_VALUE="RESPONSE_CREATE"/>
+#!     <XFORM_PARM PARM_NAME="___XF_RESPONSE_VERBOSITY" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_SCHEMA_DESCRIPTION" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_SCHEMA_NAME" PARM_VALUE="tool_selection"/>
+#!     <XFORM_PARM PARM_NAME="___XF_STRUCTURED_OUTPUT_GROUP" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TEMPERATURE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_TIMEOUT" PARM_VALUE="120"/>
+#!     <XFORM_PARM PARM_NAME="___XF_TOP_P" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="___XF_WEB_SEARCH" PARM_VALUE="NO"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="JSONFlattener"
+#!   VERSION="8"
+#!   POSITION="3498.7685626856273 -1250.0125001250015"
+#!   BOUNDING_RECT="3498.7685626856273 -1250.0125001250015 436 65"
+#!   ORDER="500000000000007"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.line" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.column" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.severity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ERROR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ERROR_LIST_ATTR" PARM_VALUE="_json_error"/>
+#!     <XFORM_PARM PARM_NAME="FILEPATH_OR_URL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FLATTEN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JSON_DOCUMENT" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;_output_text&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NEW_ATTRIBUTES" PARM_VALUE="tool_name buffer tool_input buffer"/>
+#!     <XFORM_PARM PARM_NAME="PREFIX_STRING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READ_FROM_FILE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="RECURSIVE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="JSONFlattener"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="13"
+#!   TYPE="JSONFragmenter"
+#!   VERSION="10"
+#!   POSITION="4739.2916879168797 -1220.0125001250015"
+#!   BOUNDING_RECT="4739.2916879168797 -1220.0125001250015 436 65"
+#!   ORDER="500000000000008"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="FRAGMENTS"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.mimeType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_index" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_data" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.data" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.mimeType" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="EXPLODE_FORMAT" PARM_VALUE="JSON"/>
+#!     <XFORM_PARM PARM_NAME="EXTRACT_ATTR" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="FILEPATH_OR_URL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FLATTEN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JSON_ATTR" PARM_VALUE="_json_response"/>
+#!     <XFORM_PARM PARM_NAME="JSON_QUERY" PARM_VALUE="json&lt;openbracket&gt;&lt;quote&gt;content&lt;quote&gt;&lt;closebracket&gt;&lt;openbracket&gt;0&lt;closebracket&gt;&lt;openbracket&gt;&lt;quote&gt;text&lt;quote&gt;&lt;closebracket&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NEW_ATTRIBUTES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PREF_STRING" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="READ_FROM_FILE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="RECURSIVE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="REJECT_EMPTY_LISTS" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="RESULT_ATTRIBUTE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="JSONFragmenter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="15"
+#!   TYPE="JSONFlattener"
+#!   VERSION="8"
+#!   POSITION="5275.2916879168797 -1220.0125001250015"
+#!   BOUNDING_RECT="5275.2916879168797 -1220.0125001250015 436 65"
+#!   ORDER="500000000000010"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="26333"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.text" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.data" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.mimeType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="json_index" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="current.temperature_2m" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="current.precipitation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="current_units.temperature_2m" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="current_units.precipitation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="user_request" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="today" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="all_mcp_tools" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.title" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.description" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.inputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_tools{}.outputSchema" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_response" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_response_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_completed_at" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_status" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_incomplete_reason" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_input_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_tokens" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output{}" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_output_text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tool_input" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_data" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.text" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.data" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_content{}.mimeType" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="json_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="json_index" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="current.temperature_2m" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="current.precipitation" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="current_units.temperature_2m" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="current_units.precipitation" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.message" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.line" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.column" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_json_error{}.severity" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ERROR_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ERROR_LIST_ATTR" PARM_VALUE="_json_error"/>
+#!     <XFORM_PARM PARM_NAME="FILEPATH_OR_URL" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FLATTEN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INPUT_PORT_CONNECTED" PARM_VALUE="CONNECTED"/>
+#!     <XFORM_PARM PARM_NAME="INPUT_SETTINGS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JSON_DOCUMENT" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;_json_response&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NEW_ATTRIBUTES" PARM_VALUE="current.temperature_2m buffer current.precipitation buffer current_units.temperature_2m buffer current_units.precipitation buffer"/>
+#!     <XFORM_PARM PARM_NAME="PREFIX_STRING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READ_FROM_FILE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="RECURSIVE" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="SHOW_ERROR_INDICATORS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="JSONFlattener_2"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="7"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="6"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="14"
+#!   SOURCE_NODE="4"
+#!   TARGET_NODE="13"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="9"
+#!   SOURCE_NODE="6"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="8"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="12"
+#!   SOURCE_NODE="10"
+#!   TARGET_NODE="4"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="16"
+#!   SOURCE_NODE="13"
+#!   TARGET_NODE="15"
+#!   SOURCE_PORT_DESC="fo 0 FRAGMENTS"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.050980392156862744,0.050980392156862744,0.047058823529411764,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 314
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+# ============================================================================
+DEFAULT_MACRO USER_REQUEST Get<space>the<space>current<space>weather<space>forecast<space>for<space>Vancouver
+
+# ============================================================================
+INCLUDE [ if {{$(USER_REQUEST$encode)} == {}} { puts_real {Parameter 'USER_REQUEST' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD MULTI_DEST
+MULTI_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)$(WORKSPACE_NAME).log"
+LOG_APPEND NO
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2026.2.0.0 (20260617 - Build 26333 - WIN64)"
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO FME_VIEWER_APP fmedatainspector
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} CreationFactory    FACTORY_NAME { MCPCaller_Creator }    OUTPUT { FEATURE_TYPE MCPCaller_____CREATED______ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { MCPCaller_CATCHER }    INPUT { FEATURE_TYPE MCPCaller_____CREATED______ }    OUTPUT { FEATURE_TYPE MCPCaller_READY       @SupplyAttributes(___XF_VERSION, 1)           ___XF_INPUT_SCHEMA_PREVIEW ""     ___XF_AUTH_METHOD NONE     ___XF_SERVER_URL http://weather-mcp:3000/mcp     ___XF_MCP_METHOD LIST_TOOLS     ___XF_OUTPUT_GROUPING SINGLE_FEATURE_WITH_LIST     ___XF_INCLUDE_RESPONSE_JSON YES     ___XF_TIMEOUT 30     INPUT_PORT_CONNECTED *    }
+# Pass input feature to Python.
+# Remove all internal attributes before emitting feature
+# through the correct output port.
+FACTORY_DEF {*} PythonFactory     FACTORY_NAME { MCPCaller }     INPUT { FEATURE_TYPE MCPCaller_READY }     SYMBOL_NAME fme_mcp.transformer.TransformerImpl     PY_OUTPUT_TAGS { Output ServerInfo <Rejected> }     OUTPUT { Output FEATURE_TYPE MCPCaller_Output         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }     OUTPUT { <Rejected> FEATURE_TYPE MCPCaller_<Rejected>         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }
+FACTORY_DEF * BranchingFactory   FACTORY_NAME "MCPCaller_Output Brancher -1 7"   INPUT FEATURE_TYPE MCPCaller_Output   TARGET_FACTORY "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   MAXIMUM_COUNT None   OUTPUT PASSED FEATURE_TYPE *
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME MCPCaller_<Rejected> INPUT FEATURE_TYPE MCPCaller_<Rejected>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, MCPCaller<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   INPUT FEATURE_TYPE *  OUTPUT FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { AttributeCreator_Creator }    OUTPUT { FEATURE_TYPE AttributeCreator_____CREATED______ }
+FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME { AttributeCreator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT { FEATURE_TYPE AttributeCreator_____CREATED______ }    INPUT  FEATURE_TYPE MCPCaller_Output    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    NUM_OF_COLUMNS 5    ATTR_ACTION { "" "user_request" "SET_TO" "$(USER_REQUEST)" "varchar<openparen>200<closeparen>" }      ATTR_ACTION { "" "today" "SET_TO" "<at>DateTimeFormat<openparen><at>CurrentDateTime<openparen><closeparen><comma>%Y-%m-%d<closeparen>" "varchar<openparen>200<closeparen>" }      ATTR_ACTION { "" "all_mcp_tools" "SET_TO" "<at>Value<openparen>_json_response<closeparen>" "varchar<openparen>200<closeparen>" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { OpenAIConnector_Creator }    OUTPUT { FEATURE_TYPE OpenAIConnector_____CREATED______ }
+# Put config values onto input feature as internal-prefixed attributes.
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { OpenAIConnector_CATCHER }    INPUT { FEATURE_TYPE OpenAIConnector_____CREATED______ }    INPUT  FEATURE_TYPE AttributeCreator_OUTPUT    OUTPUT { FEATURE_TYPE OpenAIConnector_READY       @SupplyAttributes(___XF_VERSION, 1)           ___XF_ACCOUNT "Training OpenAI (safe.openai)"     ___XF_REQUEST_ACTION RESPONSE_CREATE     ___XF_MODEL chat-latest     ___XF_MODEL_INSTRUCTIONS ""     ___XF_INPUT_TEXT "@EvaluateExpression(FDIV,STRING_ENCODED,You<space>are<space>selecting<space>a<space>weather<space>MCP<space>tool<space>based<space>on<space>a<space>user<space>request.<lf><lf>Available<space>tools<comma><space>including<space>descriptions<space>and<space>input<space>schemas:<lf><at>Value<openparen>all_mcp_tools<closeparen><lf><lf>User<space>request:<lf><at>Value<openparen>user_request<closeparen><lf><lf>Your<space>task:<lf>Select<space>the<space>most<space>appropriate<space>weather<space>tool<space>and<space>construct<space>the<space>tool_input<space>that<space>matches<space>the<space>selected<space>tool<apos>s<space>input<space>schema<space>exactly.<lf><lf>Rules:<lf>-<space>You<space>MUST<space>select<space>tool_name<space>exactly<space>from<space>the<space>provided<space>tool<space>list.<lf>-<space>You<space>MUST<space>provide<space>a<space>tool_input<space>that<space>matches<space>the<space>input<space>schema<space>of<space>the<space>selected<space>tool.<lf>-<space>Do<space>not<space>rename<space>tools<space>or<space>invent<space>new<space>ones.<lf>-<space>Vancouver<space>coordinates<space>are<space>latitude:<space>49.2827<comma><space>longitude:<space>-123.1207<comma><space>timezone:<space><quote>America<solidus>Vancouver<quote>.<lf>-<space>Use<space>these<space>coordinates<space>for<space>any<space>location-based<space>tool<space>unless<space>the<space>user<space>specifies<space>a<space>different<space>location.<lf>-<space>If<space>you<space>do<space>not<space>know<space>the<space>geographic<space>coordinates<space>from<space>the<space>place<space>name<space>from<space>the<space>user<space>request<comma><space>estimate<space>the<space>coordinates<space>from<space>your<space>knowledge<space>to<space>format<space>the<space>tool<space>input.<lf>-<space>For<space>weather_archive<comma><space>today<apos>s<space>date<space>is<space><at>Value<openparen>today<closeparen><space><u2014><space>use<space>a<space>reasonable<space>past<space>date<space>range.<lf>-<space>Do<space>not<space>use<space>the<space>geocoding<space>tool.<space><lf><lf><lf>Schema<space>rules:<lf>-<space>tool_input<space>must<space>strictly<space>follow<space>the<space>input<space>schema<space>of<space>the<space>selected<space>tool.<lf>-<space>Preserve<space>object<space>structure<space>and<space>nesting<space>exactly.<lf>-<space>Include<space>all<space>required<space>fields.<lf>-<space>Do<space>not<space>add<space>fields<space>not<space>defined<space>in<space>the<space>schema.,OpenAIConnector)"     ___XF_INPUT_FILES ""     ___XF_INPUT_URLS ""     ___XF_CONVERSATION_STATE NONE     ___XF_WEB_SEARCH NO     ___XF_RESPONSE_VERBOSITY ""     ___XF_STRUCTURED_OUTPUT_GROUP YES     ___XF_SCHEMA_NAME tool_selection     ___XF_SCHEMA_DESCRIPTION ""     ___XF_JSON_SCHEMA <opencurly><lf><space><space><quote>type<quote>:<space><quote>object<quote><comma><lf><space><space><quote>properties<quote>:<space><opencurly><lf><space><space><space><space><quote>tool_name<quote>:<space><opencurly><lf><space><space><space><space><space><space><quote>type<quote>:<space><quote>string<quote><lf><space><space><space><space><closecurly><comma><lf><space><space><space><space><quote>tool_input<quote>:<space><opencurly><lf><space><space><space><space><space><space><quote>type<quote>:<space><quote>object<quote><comma><lf><space><space><space><space><space><space><quote>additionalProperties<quote>:<space>true<lf><space><space><space><space><closecurly><lf><space><space><closecurly><comma><lf><space><space><quote>required<quote>:<space><openbracket><quote>tool_name<quote><comma><space><quote>tool_input<quote><closebracket><comma><lf><space><space><quote>additionalProperties<quote>:<space>false<lf><closecurly>     ___XF_TEMPERATURE ""     ___XF_TOP_P ""     ___XF_REASONING_EFFORT ""     ___XF_TIMEOUT 120     ___XF_INCLUDE_RESPONSE_JSON yes     INPUT_PORT_CONNECTED CONNECTED    }
+# Pass input feature to Python.
+# Remove all internal-prefixed attributes before emitting feature
+# through the correct output port.
+FACTORY_DEF {*} PythonFactory     FACTORY_NAME { OpenAIConnector }     INPUT { FEATURE_TYPE OpenAIConnector_READY }     SYMBOL_NAME fme_openai.transformer.TransformerImpl     PY_OUTPUT_TAGS { Output <Rejected> }     OUTPUT { Output FEATURE_TYPE OpenAIConnector_Output         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }     OUTPUT { <Rejected> FEATURE_TYPE OpenAIConnector_<Rejected>         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME OpenAIConnector_<Rejected> INPUT FEATURE_TYPE OpenAIConnector_<Rejected>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, OpenAIConnector<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { JSONFlattener_Creator }    OUTPUT { FEATURE_TYPE JSONFlattener_____CREATED______ }
+FACTORY_DEF {*} JSONQueryFactory    FACTORY_NAME { JSONFlattener }    INPUT { FEATURE_TYPE JSONFlattener_____CREATED______ }    INPUT  FEATURE_TYPE OpenAIConnector_Output    MODE FLATTEN    JSON_DOCUMENT { "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>_output_text<closeparen>,JSONFlattener)" }    READ_FROM_FILE { NO }    FILEPATH_OR_URL { "<Unused>" }    EXPLODE_QUERY "json"    RECURSIVE_FLATTEN { NO }    ERROR_LIST_ATTR { "_json_error" }    OUTPUT { EXPLODED FEATURE_TYPE JSONFlattener_OUTPUT        }    OUTPUT { REJECTED FEATURE_TYPE JSONFlattener_<REJECTED>        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME JSONFlattener_<Rejected> INPUT FEATURE_TYPE JSONFlattener_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, JSONFlattener<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { MCPCaller_2_Creator }    OUTPUT { FEATURE_TYPE MCPCaller_2_____CREATED______ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { MCPCaller_2_CATCHER }    INPUT { FEATURE_TYPE MCPCaller_2_____CREATED______ }    INPUT  FEATURE_TYPE JSONFlattener_OUTPUT    OUTPUT { FEATURE_TYPE MCPCaller_2_READY       @SupplyAttributes(___XF_VERSION, 1)           ___XF_INPUT_SCHEMA_PREVIEW ""     ___XF_AUTH_METHOD NONE     ___XF_SERVER_URL http://weather-mcp:3000/mcp     ___XF_MCP_METHOD CALL_TOOL     ___XF_TOOL "@EvaluateExpression(FDIV,STRING,<at>Value<openparen>tool_name<closeparen>,MCPCaller_2)"     ___XF_TOOL_INPUT_SOURCE TEXT_OR_ATTR     ___XF_JSON_TEXT "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>tool_input<closeparen>,MCPCaller_2)"     ___XF_INCLUDE_RESPONSE_JSON YES     ___XF_TIMEOUT 30     INPUT_PORT_CONNECTED CONNECTED    }
+# Pass input feature to Python.
+# Remove all internal attributes before emitting feature
+# through the correct output port.
+FACTORY_DEF {*} PythonFactory     FACTORY_NAME { MCPCaller_2 }     INPUT { FEATURE_TYPE MCPCaller_2_READY }     SYMBOL_NAME fme_mcp.transformer.TransformerImpl     PY_OUTPUT_TAGS { Output ServerInfo <Rejected> }     OUTPUT { Output FEATURE_TYPE MCPCaller_2_Output         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }     OUTPUT { <Rejected> FEATURE_TYPE MCPCaller_2_<Rejected>         @RemoveAttributes(fme_pcre_match,^___XF_.*$|^INPUT_PORT_CONNECTED$)          }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME MCPCaller_2_<Rejected> INPUT FEATURE_TYPE MCPCaller_2_<Rejected>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, MCPCaller_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { JSONFragmenter_Creator }    OUTPUT { FEATURE_TYPE JSONFragmenter_____CREATED______ }
+FACTORY_DEF {*} JSONQueryFactory    FACTORY_NAME { JSONFragmenter }    INPUT { FEATURE_TYPE JSONFragmenter_____CREATED______ }    INPUT  FEATURE_TYPE MCPCaller_2_Output    MODE EXPLODE    EXPLODE_FORMAT { JSON }    REJECT_EMPTY_LISTS { YES }    EXTRACT_ATTR { No }    JSON_ATTR { "_json_response" }    READ_FROM_FILE { NO }    FILEPATH_OR_URL { "<Unused>" }    OUTPUT_ATTRIBUTE { "<Unused>" }    EXPLODE_QUERY { "json<openbracket><quote>content<quote><closebracket><openbracket>0<closebracket><openbracket><quote>text<quote><closebracket>" }    RECURSIVE_FLATTEN { <Unused> }    OUTPUT { EXPLODED FEATURE_TYPE JSONFragmenter_FRAGMENTS        }    OUTPUT { REJECTED FEATURE_TYPE JSONFragmenter_<REJECTED>        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME JSONFragmenter_<Rejected> INPUT FEATURE_TYPE JSONFragmenter_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, JSONFragmenter<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {CONNECTED} CreationFactory    FACTORY_NAME { JSONFlattener_2_Creator }    OUTPUT { FEATURE_TYPE JSONFlattener_2_____CREATED______ }
+FACTORY_DEF {*} JSONQueryFactory    FACTORY_NAME { JSONFlattener_2 }    INPUT { FEATURE_TYPE JSONFlattener_2_____CREATED______ }    INPUT  FEATURE_TYPE JSONFragmenter_FRAGMENTS    MODE FLATTEN    JSON_DOCUMENT { "@EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>_json_response<closeparen>,JSONFlattener_2)" }    READ_FROM_FILE { NO }    FILEPATH_OR_URL { "<Unused>" }    EXPLODE_QUERY "json"    RECURSIVE_FLATTEN { YES }    ERROR_LIST_ATTR { "_json_error" }    OUTPUT { EXPLODED FEATURE_TYPE JSONFlattener_2_OUTPUT        }    OUTPUT { REJECTED FEATURE_TYPE JSONFlattener_2_<REJECTED>        }
+FACTORY_DEF * TeeFactory   FACTORY_NAME "JSONFlattener_2 OUTPUT Transformer Output Nuker"   INPUT FEATURE_TYPE JSONFlattener_2_OUTPUT
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME JSONFlattener_2_<Rejected> INPUT FEATURE_TYPE JSONFlattener_2_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, JSONFlattener_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Log<space>and<space>Troubleshoot<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
