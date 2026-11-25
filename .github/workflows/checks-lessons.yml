@@ -1,0 +1,101 @@
+name: Lesson report
+
+# Nightly: checks the FME Academy lesson archive (safesoftware/FMETraining) against this repository and
+# publishes the report to https://s3.amazonaws.com/FMEData/reports/index.html. Skips when the archive hasn't
+# changed since the last report. A pull request that changes the check code builds the report as an
+# artifact only; it never publishes.
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/checks/**"
+      - ".github/workflows/checks-lessons.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lesson-report-${{ github.ref }}
+
+jobs:
+  report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Has anything changed since the last report?
+        id: archive
+        # Rebuild when the lesson archive or FMEData's main changed, or the last report is 5+ days old.
+        # FD010 treats a lesson index older than 7 days as stale, so the age rule keeps it enforced
+        # even when the weekly lesson export is late.
+        run: |
+          sha=$(git ls-remote https://github.com/safesoftware/FMETraining.git refs/heads/main | cut -f1)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          curl -fsS https://s3.amazonaws.com/FMEData/reports/findings.json -o last.json || echo '{}' > last.json
+          skip=$(python3 - "$sha" "${{ github.sha }}" <<'PY'
+          import json, sys
+          from datetime import datetime, timedelta, timezone
+          last = json.load(open("last.json", encoding="utf-8"))
+          try:
+              age = datetime.now(timezone.utc) - datetime.fromisoformat(last["generated_at"])
+          except (KeyError, ValueError):
+              age = timedelta(days=999)
+          same = last.get("fmetraining_sha") == sys.argv[1] and last.get("fmedata_sha") == sys.argv[2]
+          print("true" if same and age < timedelta(days=5) else "false")
+          PY
+          )
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$skip" = "true" ]; then
+            echo "Nothing changed since the last report; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out workspaces and the check code only
+        if: steps.archive.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+            *.fmw
+            *.fmwt
+
+      - name: Fetch the lesson pages
+        if: steps.archive.outputs.skip != 'true'
+        run: |
+          git clone --quiet --depth 1 --filter=blob:none --no-checkout \
+            https://github.com/safesoftware/FMETraining.git "$RUNNER_TEMP/FMETraining"
+          git -C "$RUNNER_TEMP/FMETraining" sparse-checkout set --no-cone '/*/*/*/*/index.html'
+          git -C "$RUNNER_TEMP/FMETraining" checkout --quiet
+
+      - uses: actions/setup-python@v5
+        if: steps.archive.outputs.skip != 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Build the report
+        if: steps.archive.outputs.skip != 'true'
+        working-directory: .github/checks
+        run: >
+          python -m fmedata_checks lessons --repo ../.. --fmetraining "$RUNNER_TEMP/FMETraining"
+          --out "$RUNNER_TEMP/report" --sha "${{ steps.archive.outputs.sha }}" --fmedata-sha "${{ github.sha }}"
+
+      - name: Keep the report with the run
+        if: steps.archive.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesson-report
+          path: ${{ runner.temp }}/report
+
+      - name: Configure AWS credentials
+        if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Publish to S3
+        if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: aws s3 sync "$RUNNER_TEMP/report" s3://FMEData/reports/ --delete

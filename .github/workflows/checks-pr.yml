@@ -1,0 +1,52 @@
+name: FMEData checks
+
+# Checks the workspaces and files a pull request changes. See CHECKS.md.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  # Superseded PR runs are cancelled; runs on main never are, so every merge is checked.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out workspaces and the check code only
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+            /CHECKS.md
+            *.fmw
+            *.fmwt
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: python -m pip install --disable-pip-version-check pytest==8.3.3
+
+      - name: Unit tests
+        working-directory: .github/checks
+        run: python -m pytest -q
+
+      - name: Check the changes
+        working-directory: .github/checks
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
+        run: |
+          # A new branch (all-zero "before") or a force-push (unknown "before") has no usable base: use HEAD~1.
+          if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then BASE=HEAD~1; fi
+          python -m fmedata_checks pr --repo ../.. --base "$BASE"

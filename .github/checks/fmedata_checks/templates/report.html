@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$title</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px 10px; padding: 0; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; }
+    p.meta { color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    nav a { margin-right: 1rem; }
+    input.filter { width: 100%; box-sizing: border-box; padding: 8px 12px; font: inherit; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    th { text-align: left; border-bottom: 2px solid #ddd; padding: 8px 12px; }
+    th button { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; color: inherit; }
+    td { padding: 8px 12px; border-bottom: 1px solid #eee; vertical-align: top; word-break: break-word; }
+    td.num { text-align: right; white-space: nowrap; }
+    .error { color: #b00020; font-weight: 600; }
+    .warning { color: #8a5a00; font-weight: 600; }
+    .notice { color: #555; }
+    details summary { cursor: pointer; font-weight: 600; margin: 1rem 0; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>$title</h1>
+  <p class="meta">Generated $generated. <nav><a href="index.html">Summary</a><a href="broken-links.html">Broken links</a><a href="findings.json">findings.json</a><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md">What the checks mean</a></nav></p>
+$body
+  <script>
+    document.querySelectorAll('input.filter').forEach((input) => {
+      const table = document.getElementById(input.dataset.table);
+      input.addEventListener('input', () => {
+        const term = input.value.trim().toLowerCase();
+        Array.from(table.tBodies[0].rows).forEach((row) => {
+          row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+        });
+      });
+    });
+    document.querySelectorAll('table.sortable').forEach((table) => {
+      table.querySelectorAll('th button').forEach((button, col) => {
+        let dir = 1;
+        button.addEventListener('click', () => {
+          const rows = Array.from(table.tBodies[0].rows);
+          rows.sort((a, b) => a.cells[col].textContent.localeCompare(b.cells[col].textContent, undefined, {numeric: true}) * dir);
+          rows.forEach((row) => table.tBodies[0].appendChild(row));
+          dir *= -1;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
