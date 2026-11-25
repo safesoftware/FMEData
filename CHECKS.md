@@ -121,7 +121,9 @@ names are notices in the report until they've been renamed; then FD011 is enforc
 These run nightly against the FME Academy lesson archive (<https://github.com/safesoftware/FMETraining>) and appear
 in the report, never on a pull request. Lessons are edited in Skilljar; the archive picks up the change after
 the next weekly scrape. Findings in a course's latest version are warnings; older versions are notices, because
-learners on archived content use that year's `FMEData<year>.zip` and its local paths.
+learners on archived content use that year's `FMEData<year>.zip` and its local paths. Courses whose names match
+`ignore_courses` in `.github/checks/checks.toml` (Skilljar copies such as "Clone of …" and test courses) are
+skipped.
 
 ### FT001
 
