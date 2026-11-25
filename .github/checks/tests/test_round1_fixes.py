@@ -24,11 +24,13 @@ def test_fd010_matches_case_and_globs():
     assert sorted(f.path for f in found if f.severity == "error") == ["Data/Parks/Parks.shp", "Data/Roads/Main.shp"]
 
 
-def test_unversioned_course_current_only_in_newest_archive_version():
+def test_course_without_version_in_its_name_is_never_current():
+    # Versions come from course names; a course name without one is treated as archived (Sam, 2026-11-25).
     old = parse_lesson("2022.0/p/Getting Started/L/index.html", "")
     new = parse_lesson("2025.1/p/Getting Started/L/index.html", "")
-    latest = latest_versions([old, new])
-    assert not is_current(old, latest) and is_current(new, latest)
+    versioned = parse_lesson("2026.0/p/Getting Started 2026.0/L/index.html", "")
+    latest = latest_versions([old, new, versioned])
+    assert not is_current(old, latest) and not is_current(new, latest) and is_current(versioned, latest)
 
 
 def test_fd006_user_folder_any_case_and_at_line_end():

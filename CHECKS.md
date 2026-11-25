@@ -132,6 +132,12 @@ learners on archived content use that year's `FMEData<year>.zip` and its local p
 `ignore_courses` in `.github/checks/checks.toml` (Skilljar copies such as "Clone of …" and test courses) are
 skipped.
 
+**How a course's version is read.** From its name, which ends in the FME version it teaches ("Compare Workspaces
+2026.2"), the same version Skilljar's tags and labels carry. A course's newest version in the archive is its
+latest. Versions are never read from Academy URLs: live courses' URLs have no version, and only archived courses'
+URLs carry one. A course whose name has no version, such as "MCP and FME", is treated as archived, so its findings
+are notices and FD010 only warns about its links. Adding the version to the course name makes it current.
+
 ### FT001
 
 **A lesson's `C:\FMEData` path doesn't match a file in this repository.** Fix: correct the path in the lesson, or

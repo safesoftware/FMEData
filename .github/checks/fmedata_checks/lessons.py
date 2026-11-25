@@ -149,24 +149,22 @@ def _key(version: str) -> tuple[int, ...]:
 def latest_versions(lessons: Iterable[Lesson]) -> dict[str, str]:
     latest: dict[str, str] = {}
     for lesson in lessons:
-        k, v = _course_key(lesson), _version(lesson)
-        if v and (k not in latest or _key(v) > _key(latest[k])):
-            latest[k] = v
+        v = lesson.course_version
+        if v and (lesson.course_base not in latest or _key(v) > _key(latest[lesson.course_base])):
+            latest[lesson.course_base] = v
     return latest
 
 
-def _version(lesson: Lesson) -> str:
-    """The course's own version, or for a course folder with no version suffix, the archive's version folder."""
-    return lesson.course_version or lesson.version
-
-
-def _course_key(lesson: Lesson) -> str:
-    """Course versions and archive folder versions are different scales, so they're compared separately."""
-    return lesson.course_base if lesson.course_version else f"{lesson.course_base} (no version suffix)"
-
-
 def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
-    return latest.get(_course_key(lesson)) == _version(lesson)
+    """A lesson is current when its course's name carries that course's newest version.
+
+    A course's version comes from its name, as in Skilljar's tags, labels, and course names. Academy URLs
+    carry a version only for archived courses, so versions are never read from URLs. A course whose name has
+    no version is treated as archived: its findings are notices, and FD010 only warns about its links.
+    """
+    if lesson.course_version is None:
+        return False
+    return latest.get(lesson.course_base) == lesson.course_version
 
 
 def previous_version(lesson: Lesson, lessons: Iterable[Lesson]) -> str | None:
