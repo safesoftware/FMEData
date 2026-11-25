@@ -88,3 +88,13 @@ tokens, private keys, email addresses (other than `@example.com`, `@example.org`
 Fix: remove the value from the file. If it was a real key or token, it's already exposed: revoke it and issue a new
 one, because deleting it in a later commit leaves it in the history. FME's own header comment in a workspace
 (the command line recorded on save) is reported by FD003 instead.
+
+### FD010
+
+**A pull request deletes or renames a file that FME Academy lessons still link.** Lessons link files in this
+repository by `C:\FMEData` path and by S3 URL. When `main` changes, the S3 copy changes with it, so a removed or
+renamed file breaks every lesson that links it. The finding names the lessons, from the nightly report's lesson
+index.
+
+Fix: keep the old file until the lessons are updated in Skilljar, or update the lessons first and then remove it.
+If the lesson index is more than a week old, FD010 only warns, because its list may be out of date.

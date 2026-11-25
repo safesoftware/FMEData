@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from typing import Callable
 
+from .gitdiff import Change
 from .model import Config, Finding
 from .refs import Ref
 from .tree import RepoTree
@@ -96,6 +97,24 @@ def fd006(path: str, added: list[tuple[int, str]]) -> list[Finding]:
             what = "a personal C:\\Users\\… folder"
         if what:
             found.append(Finding("FD006", path, n, f"this line adds {what}; the repository is public", "error"))
+    return found
+
+
+def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool) -> list[Finding]:
+    """A change that deletes or renames a file that lessons still link."""
+    found = []
+    for c in changes:
+        removed = c.path if c.status == "D" else c.old_path if c.status == "R" else None
+        lessons = idx.get(removed or "", [])
+        if not lessons:
+            continue
+        shown = "; ".join(lessons[:3]) + (f"; and {len(lessons) - 3} more" if len(lessons) > 3 else "")
+        msg = (f"removes {removed}, still linked by {len(lessons)} lesson(s): {shown}. "
+               "Restore it, or update those lessons in Skilljar first")
+        if stale:
+            found.append(Finding("FD010", removed, None, msg + " (lesson index is stale; check the report)", "warning"))
+        else:
+            found.append(Finding("FD010", removed, None, msg, "error"))
     return found
 
 

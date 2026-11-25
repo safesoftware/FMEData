@@ -7,8 +7,12 @@ archive's version folder.
 
 from __future__ import annotations
 
+import json
 import re
+import urllib.error
+import urllib.request
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable, Iterator
 
@@ -117,4 +121,42 @@ def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
     if lesson.course_version is None:
         return True
     return latest.get(lesson.course_base) == lesson.course_version
+
+
+def lesson_label(lesson: Lesson) -> str:
+    return f"{lesson.version} / {lesson.course} / {lesson.title}"
+
+
+def lesson_index(lessons: Iterable[Lesson]) -> dict[str, list[str]]:
+    """FMEData path -> the lessons that link it (by local path or main-branch S3 URL)."""
+    idx: dict[str, set[str]] = {}
+    for lesson in lessons:
+        for ref in [*lesson.local_refs, *lesson.s3_refs]:
+            if ref.rel:
+                idx.setdefault(ref.rel, set()).add(lesson_label(lesson))
+    return {rel: sorted(labels) for rel, labels in sorted(idx.items())}
+
+
+def write_index(idx: dict[str, list[str]], path: Path) -> None:
+    payload = {"generated_at": datetime.now(timezone.utc).isoformat(), "lesson_index": idx}
+    Path(path).write_text(json.dumps(payload, indent=1), encoding="utf-8")
+
+
+def read_index(path_or_url: str, max_age_days: int = 7) -> tuple[dict[str, list[str]], bool]:
+    """Read the lesson index from findings.json; the bool is True when it's missing or stale."""
+    try:
+        if path_or_url.startswith(("http://", "https://")):
+            with urllib.request.urlopen(path_or_url, timeout=30) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+        else:
+            data = json.loads(Path(path_or_url).read_text(encoding="utf-8"))
+    except (OSError, ValueError, urllib.error.URLError):
+        return {}, True
+    idx = data.get("lesson_index", {})
+    try:
+        generated = datetime.fromisoformat(data["generated_at"])
+        stale = datetime.now(timezone.utc) - generated > timedelta(days=max_age_days)
+    except (KeyError, ValueError, TypeError):
+        stale = True
+    return idx, stale
 
