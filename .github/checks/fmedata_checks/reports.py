@@ -101,7 +101,8 @@ def _broken_rows(lessons: list[Lesson], findings: list[Finding], statuses: dict[
 
 def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict[str, int | None],
                   idx: dict[str, list[str]], out: Path, generated_at: datetime, fmetraining_sha: str = "",
-                  exempt: list[str] | None = None, cfg: Config | None = None) -> None:
+                  exempt: list[str] | None = None, cfg: Config | None = None, fmedata_sha: str = "",
+                  current_idx: dict[str, list[str]] | None = None) -> None:
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     exempt = exempt or []
@@ -115,7 +116,9 @@ def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict
     payload = {
         "generated_at": generated_at.isoformat(),
         "fmetraining_sha": fmetraining_sha,
+        "fmedata_sha": fmedata_sha,
         "lesson_index": idx,
+        "current_index": current_idx if current_idx is not None else idx,
         "findings": [{k: redact(v) if isinstance(v, str) else v for k, v in asdict(f).items()} for f in findings],
     }
     (out / "findings.json").write_text(json.dumps(payload, indent=1, ensure_ascii=False), encoding="utf-8")

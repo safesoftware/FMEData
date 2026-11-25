@@ -7,7 +7,7 @@ from typing import Callable
 
 from .gitdiff import Change
 from .model import Config, Finding
-from .refs import Ref
+from .refs import Ref, decode_fme
 from .tree import RepoTree
 from .workspace import Workspace
 
@@ -15,6 +15,7 @@ Fetch = Callable[[str], "int | None"]
 
 # Workspaces write their results under Output/, so those paths are destinations, not data.
 OUTPUT_PREFIX = "Output/"
+WORKSPACE_EXT = (".fmw", ".fmwt")
 
 
 def _first_per_rel(refs: list[Ref]) -> list[Ref]:
@@ -78,47 +79,78 @@ _SECRET_PATTERNS = [
 ]
 _EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")
 _ALLOWED_EMAIL_DOMAINS = ("example.com", "example.org", "example.net")
-_USER_DIR = re.compile(r"[Cc]:[\\/]Users[\\/](?!Public[\\/]|…)[^\\/\s\"'<>]+[\\/]")
+_USER_DIR = re.compile(
+    r"[Cc]:[\\/]Users[\\/](?!(?:Public|Default|Default User|All Users)[\\/]|…)[^\\/\s\"'<>]+[\\/]")
+# Image density suffixes ("icon@2x.png") and git remotes ("git@github.com:") look like addresses but aren't.
+_NOT_EMAIL_TLDS = {"png", "jpg", "jpeg", "gif", "svg", "webp", "bmp", "tif", "tiff"}
+_NOT_EMAIL_USERS = {"git"}
+
+
+def _personal_data(text: str) -> str | None:
+    for m in _EMAIL.finditer(text):
+        address = m.group(0).lower()
+        user, _, domain = address.partition("@")
+        if (address.endswith(_ALLOWED_EMAIL_DOMAINS) or domain.rsplit(".", 1)[-1] in _NOT_EMAIL_TLDS
+                or user in _NOT_EMAIL_USERS):
+            continue
+        return "an email address"
+    if _USER_DIR.search(text):
+        return "a personal C:\\Users\\… folder"
+    return None
 
 
 def fd006(path: str, added: list[tuple[int, str]]) -> list[Finding]:
-    """Added lines carry no secrets, email addresses, or personal user folders (the repo is public)."""
+    """Added lines carry no secrets, email addresses, or personal user folders (the repo is public).
+
+    Workspaces write some characters as tokens (<at>, <backslash>), so their text is also checked decoded.
+    Personal data found only that way is a warning: it's usually a re-save of a workspace that already had it.
+    """
+    is_workspace = path.endswith(WORKSPACE_EXT)
     found = []
     for n, text in added:
-        what = next((label for rx, label in _SECRET_PATTERNS if rx.search(text)), None)
-        if what is None:
-            for m in _EMAIL.finditer(text):
-                if not m.group(0).lower().endswith(_ALLOWED_EMAIL_DOMAINS):
-                    what = "an email address"
-                    break
+        decoded = decode_fme(text) if is_workspace else text
+        what = next((label for rx, label in _SECRET_PATTERNS if rx.search(decoded)), None)
+        severity = "error"
         # FME records the command line it saved from as a plain "#" comment; FD003 reports that as a notice.
-        fme_comment = path.endswith((".fmw", ".fmwt")) and text.startswith("#") and not text.startswith("#!")
-        if what is None and not fme_comment and _USER_DIR.search(text):
-            what = "a personal C:\\Users\\… folder"
+        fme_comment = is_workspace and text.startswith("#") and not text.startswith("#!")
+        if what is None and not fme_comment:
+            what = _personal_data(text)
+            if what is None and decoded != text:
+                what = _personal_data(decoded)
+                severity = "warning"
         if what:
-            found.append(Finding("FD006", path, n, f"this line adds {what}; the repository is public", "error"))
+            found.append(Finding("FD006", path, n, f"this line adds {what}; the repository is public", severity))
     return found
 
 
-def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool) -> list[Finding]:
-    """A change that deletes or renames a file that lessons still link."""
+def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool,
+          current: dict[str, list[str]] | None = None, cfg: Config | None = None) -> list[Finding]:
+    """A change that deletes or renames a file that lessons still link.
+
+    It fails only when a lesson in a course's latest version links the file (current); links from older
+    course versions alone give a warning. Without a current index, every linking lesson counts.
+    """
+    allow = cfg.allow_paths if cfg else {}
     found = []
     for c in changes:
         removed = c.path if c.status == "D" else c.old_path if c.status == "R" else None
         lessons = idx.get(removed or "", [])
-        if not lessons:
+        if not lessons or removed in allow:
             continue
-        shown = "; ".join(lessons[:3]) + (f"; and {len(lessons) - 3} more" if len(lessons) > 3 else "")
-        msg = (f"removes {removed}, still linked by {len(lessons)} lesson(s): {shown}. "
-               "Restore it, or update those lessons in Skilljar first")
+        live = lessons if current is None else current.get(removed, [])
+        shown_from = live or lessons
+        shown = "; ".join(shown_from[:3]) + (f"; and {len(shown_from) - 3} more" if len(shown_from) > 3 else "")
+        if live:
+            msg = (f"removes {removed}, still linked by {len(live)} current lesson(s): {shown}. "
+                   "Restore it, or update those lessons in Skilljar first")
+        else:
+            msg = (f"removes {removed}, linked only by {len(lessons)} lesson(s) in older course versions: {shown}")
         if stale:
             found.append(Finding("FD010", removed, None, msg + " (lesson index is stale; check the report)", "warning"))
         else:
-            found.append(Finding("FD010", removed, None, msg, "error"))
+            found.append(Finding("FD010", removed, None, msg, "error" if live else "warning"))
     return found
 
-
-WORKSPACE_EXT = (".fmw", ".fmwt")
 
 
 def fd005(paths, pr_added: bool) -> list[Finding]:

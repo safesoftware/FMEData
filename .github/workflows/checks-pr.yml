@@ -11,7 +11,8 @@ permissions:
 
 concurrency:
   group: checks-${{ github.ref }}
-  cancel-in-progress: true
+  # Superseded PR runs are cancelled; runs on main never are, so every merge is checked.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   checks:
@@ -45,4 +46,7 @@ jobs:
         working-directory: .github/checks
         env:
           BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
-        run: python -m fmedata_checks pr --repo ../.. --base "$BASE"
+        run: |
+          # A new branch (all-zero "before") or a force-push (unknown "before") has no usable base: use HEAD~1.
+          if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then BASE=HEAD~1; fi
+          python -m fmedata_checks pr --repo ../.. --base "$BASE"

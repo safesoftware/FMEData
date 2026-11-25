@@ -191,13 +191,24 @@ def lesson_index(lessons: Iterable[Lesson]) -> dict[str, list[str]]:
     return {rel: sorted(labels) for rel, labels in sorted(idx.items())}
 
 
+def current_index(lessons: list[Lesson]) -> dict[str, list[str]]:
+    """The lesson index restricted to lessons in each course's latest version."""
+    latest = latest_versions(lessons)
+    return lesson_index(l for l in lessons if is_current(l, latest))
+
+
 def write_index(idx: dict[str, list[str]], path: Path) -> None:
     payload = {"generated_at": datetime.now(timezone.utc).isoformat(), "lesson_index": idx}
     Path(path).write_text(json.dumps(payload, indent=1), encoding="utf-8")
 
 
-def read_index(path_or_url: str, max_age_days: int = 7) -> tuple[dict[str, list[str]], bool]:
-    """Read the lesson index from findings.json; the bool is True when it's missing or stale."""
+def read_index(path_or_url: str, max_age_days: int = 7, with_current: bool = False):
+    """Read the lesson index from findings.json.
+
+    Returns (index, stale), or (index, current_index, stale) with with_current. stale is True when the file
+    is missing, unreadable, or older than max_age_days. A file without a current index (from an older report)
+    yields None for it, which FD010 treats as "every lesson is current".
+    """
     try:
         if path_or_url.startswith(("http://", "https://")):
             with urllib.request.urlopen(path_or_url, timeout=30) as resp:
@@ -205,12 +216,14 @@ def read_index(path_or_url: str, max_age_days: int = 7) -> tuple[dict[str, list[
         else:
             data = json.loads(Path(path_or_url).read_text(encoding="utf-8"))
     except (OSError, ValueError, urllib.error.URLError):
-        return {}, True
+        return ({}, None, True) if with_current else ({}, True)
     idx = data.get("lesson_index", {})
     try:
         generated = datetime.fromisoformat(data["generated_at"])
         stale = datetime.now(timezone.utc) - generated > timedelta(days=max_age_days)
     except (KeyError, ValueError, TypeError):
         stale = True
+    if with_current:
+        return idx, data.get("current_index"), stale
     return idx, stale
 

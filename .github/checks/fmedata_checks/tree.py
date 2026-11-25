@@ -28,7 +28,7 @@ class RepoTree:
     def from_git(cls, repo: Path, ref: str | None = None) -> "RepoTree":
         cmd = ["git", "-C", str(repo), "-c", "core.quotepath=false"]
         cmd += ["ls-tree", "-r", "--name-only", ref] if ref else ["ls-files"]
-        out = subprocess.run(cmd, check=True, capture_output=True, text=True, encoding="utf-8").stdout
+        out = subprocess.run(cmd, check=True, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
         return cls(line for line in out.splitlines() if line)
 
     def all_files(self) -> set[str]:

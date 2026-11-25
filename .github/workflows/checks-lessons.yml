@@ -24,15 +24,29 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
-      - name: Has the lesson archive changed?
+      - name: Has anything changed since the last report?
         id: archive
+        # Rebuild when the lesson archive or FMEData's main changed, or the last report is 5+ days old.
+        # FD010 treats a lesson index older than 7 days as stale, so the age rule keeps it enforced
+        # even when the weekly lesson export is late.
         run: |
           sha=$(git ls-remote https://github.com/safesoftware/FMETraining.git refs/heads/main | cut -f1)
-          last=$(curl -fsS https://s3.amazonaws.com/FMEData/reports/findings.json \
-            | python3 -c "import json,sys; print(json.load(sys.stdin).get('fmetraining_sha',''))" || true)
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$sha" = "$last" ]; then
-            echo "Archive unchanged since the last report ($sha); skipping."
+          curl -fsS https://s3.amazonaws.com/FMEData/reports/findings.json -o last.json || echo '{}' > last.json
+          skip=$(python3 - "$sha" "${{ github.sha }}" <<'PY'
+          import json, sys
+          from datetime import datetime, timedelta, timezone
+          last = json.load(open("last.json", encoding="utf-8"))
+          try:
+              age = datetime.now(timezone.utc) - datetime.fromisoformat(last["generated_at"])
+          except (KeyError, ValueError):
+              age = timedelta(days=999)
+          same = last.get("fmetraining_sha") == sys.argv[1] and last.get("fmedata_sha") == sys.argv[2]
+          print("true" if same and age < timedelta(days=5) else "false")
+          PY
+          )
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$skip" = "true" ]; then
+            echo "Nothing changed since the last report; skipping."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -65,7 +79,7 @@ jobs:
         working-directory: .github/checks
         run: >
           python -m fmedata_checks lessons --repo ../.. --fmetraining "$RUNNER_TEMP/FMETraining"
-          --out "$RUNNER_TEMP/report" --sha "${{ steps.archive.outputs.sha }}"
+          --out "$RUNNER_TEMP/report" --sha "${{ steps.archive.outputs.sha }}" --fmedata-sha "${{ github.sha }}"
 
       - name: Keep the report with the run
         if: steps.archive.outputs.skip != 'true'

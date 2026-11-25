@@ -18,7 +18,7 @@ class Change:
 
 def _git(repo: Path, *args: str) -> str:
     return subprocess.run(["git", "-C", str(repo), "-c", "core.quotepath=false", *args],
-                          check=True, capture_output=True, text=True, encoding="utf-8").stdout
+                          check=True, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
 
 
 def changed_files(repo: Path, base: str) -> list[Change]:
@@ -39,8 +39,10 @@ def changed_files(repo: Path, base: str) -> list[Change]:
 _HUNK = re.compile(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@")
 
 
-def added_lines(repo: Path, base: str, path: str) -> list[tuple[int, str]]:
-    out = _git(repo, "diff", "-U0", f"{base}...HEAD", "--", path)
+def added_lines(repo: Path, base: str, path: str, old_path: str | None = None) -> list[tuple[int, str]]:
+    """Lines the change adds to path. Pass old_path for a rename, so unchanged lines don't count as added."""
+    paths = [old_path, path] if old_path else [path]
+    out = _git(repo, "diff", "-U0", "-M", f"{base}...HEAD", "--", *paths)
     lines, n = [], 0
     for line in out.splitlines():
         m = _HUNK.match(line)

@@ -13,7 +13,7 @@ from pathlib import Path
 
 from . import checks_fd, checks_ft
 from .gitdiff import added_lines, changed_files
-from .lessons import ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
+from .lessons import current_index, ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
 from .reports import build_reports
@@ -43,12 +43,12 @@ def run_pr(args) -> int:
             findings += checks_fd.fd001(ws, tree, cfg)
             findings += checks_fd.fd002(ws, tree, cfg, fetch=None)
             findings += checks_fd.fd003(ws)
-        findings += checks_fd.fd006(c.path, added_lines(repo, args.base, c.path))
+        findings += checks_fd.fd006(c.path, added_lines(repo, args.base, c.path, old_path=c.old_path))
     new_names = [c.path for c in changes if c.status in ("A", "R")]
     findings += checks_fd.fd005(new_names, pr_added=True)
     findings += checks_fd.fd011(new_names, pr_added=True, cfg=cfg)
-    idx, stale = read_index(args.index)
-    findings += checks_fd.fd010(changes, idx, stale)
+    idx, current, stale = read_index(args.index, with_current=True)
+    findings += checks_fd.fd010(changes, idx, stale, current=current, cfg=cfg)
 
     shown = [f for f in (effective(f, cfg) for f in findings) if f.severity != "notice"]
     for f in shown:
@@ -91,7 +91,8 @@ def run_lessons(args) -> int:
 
     findings = [effective(f, cfg) for f in findings]
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),
-                  datetime.now(timezone.utc), fmetraining_sha=args.sha, exempt=list(cfg.exempt), cfg=cfg)
+                  datetime.now(timezone.utc), fmetraining_sha=args.sha, exempt=list(cfg.exempt), cfg=cfg,
+                  fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons))
     print(f"{len(lessons)} lessons, {len(findings)} findings; report in {args.out}")
     return 0
 
@@ -111,6 +112,7 @@ def main(argv: list[str] | None = None) -> int:
     les.add_argument("--no-network", action="store_true")
     les.add_argument("--workers", type=int, default=8)
     les.add_argument("--sha", default="", help="FMETraining commit the archive was read at")
+    les.add_argument("--fmedata-sha", default="", help="FMEData commit the checks ran on")
     les.add_argument("--config", default=str(DEFAULT_CONFIG))
     args = parser.parse_args(argv)
     return run_pr(args) if args.command == "pr" else run_lessons(args)

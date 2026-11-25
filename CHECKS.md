@@ -94,7 +94,9 @@ tokens, private keys, email addresses (other than `@example.com`, `@example.org`
 
 Fix: remove the value from the file. If it was a real key or token, it's already exposed: revoke it and issue a new
 one, because deleting it in a later commit leaves it in the history. FME's own header comment in a workspace
-(the command line recorded on save) is reported by FD003 instead.
+(the command line recorded on save) is reported by FD003 instead. In workspaces, FME writes some characters as
+tokens (`<at>` for `@`, `<backslash>` for `\`); an email address or user folder found only that way is a warning,
+not a failure, because it's usually a re-save of a workspace that already contained it.
 
 ### FD010
 
@@ -103,10 +105,13 @@ repository by `C:\FMEData` path and by S3 URL. When `main` changes, the S3 copy 
 renamed file breaks every lesson that links it. The finding names the lessons, from the nightly report's lesson
 index.
 
-This check fails the pull request.
+It fails the pull request when a lesson in a course's latest version links the file. When only older course
+versions link it, it's a warning: learners on archived content use that year's `FMEData<year>.zip`. If the lesson
+index is more than a week old, FD010 only warns, because its list may be out of date.
 
 Fix: keep the old file until the lessons are updated in Skilljar, or update the lessons first and then remove it.
-If the lesson index is more than a week old, FD010 only warns, because its list may be out of date.
+For a deliberate removal while the lesson updates are in progress, add the path to `[allow.paths]` with a reason,
+and remove the entry once the lessons are fixed.
 
 ### FD011
 
