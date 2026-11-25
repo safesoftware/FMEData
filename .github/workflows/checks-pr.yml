@@ -4,7 +4,8 @@ name: FMEData checks
 on:
   pull_request:
   push:
-    branches: [main]
+    # main and year branches (2026, 2027, ...); see BRANCHES.md
+    branches: [main, "20[0-9][0-9]"]
 
 permissions:
   contents: read
@@ -46,7 +47,11 @@ jobs:
         working-directory: .github/checks
         env:
           BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
+          # Lessons link main, so FD010 (removing a file a lesson links) applies only to changes landing on main.
+          TARGET: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
         run: |
           # A new branch (all-zero "before") or a force-push (unknown "before") has no usable base: use HEAD~1.
           if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then BASE=HEAD~1; fi
-          python -m fmedata_checks pr --repo ../.. --base "$BASE"
+          INDEX=https://s3.amazonaws.com/FMEData/reports/findings.json
+          if [ "$TARGET" != "main" ]; then INDEX=none; fi
+          python -m fmedata_checks pr --repo ../.. --base "$BASE" --index "$INDEX"

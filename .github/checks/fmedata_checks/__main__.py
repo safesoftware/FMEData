@@ -47,8 +47,10 @@ def run_pr(args) -> int:
     new_names = [c.path for c in changes if c.status in ("A", "R")]
     findings += checks_fd.fd005(new_names, pr_added=True)
     findings += checks_fd.fd011(new_names, pr_added=True, cfg=cfg)
-    idx, current, stale = read_index(args.index, with_current=True)
-    findings += checks_fd.fd010(changes, idx, stale, current=current, cfg=cfg)
+    # "--index none" (pull requests into a year branch): lessons link main, so FD010 doesn't apply.
+    if args.index != "none":
+        idx, current, stale = read_index(args.index, with_current=True)
+        findings += checks_fd.fd010(changes, idx, stale, current=current, cfg=cfg)
 
     shown = [f for f in (effective(f, cfg) for f in findings) if f.severity != "notice"]
     for f in shown:
@@ -103,7 +105,7 @@ def main(argv: list[str] | None = None) -> int:
     pr = sub.add_parser("pr", help="check a pull request's changes")
     pr.add_argument("--repo", default=".")
     pr.add_argument("--base", required=True)
-    pr.add_argument("--index", default=DEFAULT_INDEX, help="findings.json with the lesson index (path or URL)")
+    pr.add_argument("--index", default=DEFAULT_INDEX, help="findings.json with the lesson index (path or URL), or 'none' to skip FD010")
     pr.add_argument("--config", default=str(DEFAULT_CONFIG))
     les = sub.add_parser("lessons", help="check the lesson archive and write the report")
     les.add_argument("--repo", default=".")
