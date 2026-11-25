@@ -37,6 +37,26 @@ def git(repo: Path, *args: str, date: str | None = None) -> None:
     subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True, env=env)
 
 
+def test_history_flags_zip_and_folder_changed_on_parallel_branches(tmp_path: Path):
+    git(tmp_path, "init", "-q", "-b", "main")
+    git(tmp_path, "config", "user.email", "test@example.com")
+    git(tmp_path, "config", "user.name", "Test")
+    git(tmp_path, "config", "commit.gpgsign", "false")
+    (tmp_path / "Data" / "Parks").mkdir(parents=True)
+    (tmp_path / "Data" / "Parks" / "a.shp").write_text("1", encoding="utf-8")
+    (tmp_path / "Data" / "Parks.zip").write_text("z1", encoding="utf-8")
+    git(tmp_path, "add", ".")
+    git(tmp_path, "commit", "-q", "-m", "base")
+    git(tmp_path, "switch", "-q", "-c", "rezip")
+    (tmp_path / "Data" / "Parks.zip").write_text("z2", encoding="utf-8")
+    git(tmp_path, "commit", "-q", "-am", "rezip from the old folder")
+    git(tmp_path, "switch", "-q", "main")
+    (tmp_path / "Data" / "Parks" / "a.shp").write_text("2", encoding="utf-8")
+    git(tmp_path, "commit", "-q", "-am", "edit folder")
+    git(tmp_path, "merge", "-q", "--no-ff", "-m", "merge rezip", "rezip")
+    assert [f.path for f in fd012_history(tmp_path, RepoTree.from_git(tmp_path))] == ["Data/Parks.zip"]
+
+
 def test_history_flags_folder_changed_after_zip(tmp_path: Path):
     git(tmp_path, "init", "-q")
     git(tmp_path, "config", "user.email", "test@example.com")
@@ -51,4 +71,4 @@ def test_history_flags_folder_changed_after_zip(tmp_path: Path):
     git(tmp_path, "commit", "-q", "-am", "folder only", date="2023-07-18T12:00:00")
     found = fd012_history(tmp_path, RepoTree.from_git(tmp_path))
     assert [(f.path, f.severity) for f in found] == [("Data/Parks.zip", "warning")]
-    assert "2023-07-18" in found[0].message and "2023-07-14" in found[0].message
+    assert "2023-07-18" in found[0].message and "2023-07-14" in found[0].message and "include" in found[0].message

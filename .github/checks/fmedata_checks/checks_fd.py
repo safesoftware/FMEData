@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import fnmatch
-import subprocess
 import re
+import subprocess
 from typing import Callable
 
 from .gitdiff import Change
@@ -268,7 +268,7 @@ def fd012_changes(changes: list[Change], tree: RepoTree) -> list[Finding]:
 
 def _last_change(repo, rel: str) -> tuple[str, str]:
     """The last commit that touched rel, and its date."""
-    out = subprocess.run(["git", "-C", str(repo), "-c", "core.quotepath=false", "log", "-1", "--format=%H %cs",
+    out = subprocess.run(["git", "-C", str(repo), "-c", "core.quotepath=false", "--literal-pathspecs", "log", "-1", "--format=%H %cs",
                           "--", rel], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.split()
     return (out[0], out[1]) if len(out) == 2 else ("", "")
 
@@ -284,8 +284,9 @@ def fd012_history(repo, tree: RepoTree) -> list[Finding]:
     for zip_rel, folder in folder_zips(tree).items():
         folder_commit, folder_day = _last_change(repo, folder + "/")
         zip_commit, zip_day = _last_change(repo, zip_rel)
-        if folder_commit and zip_commit and folder_commit != zip_commit and _is_ancestor(repo, zip_commit, folder_commit):
+        # Stale unless the zip's last commit already contains the folder's last change (parallel branches count).
+        if folder_commit and zip_commit and folder_commit != zip_commit and not _is_ancestor(repo, folder_commit, zip_commit):
             found.append(Finding("FD012", zip_rel, None,
-                                 f"{folder}/ last changed on {folder_day}, after {zip_rel} ({zip_day}); "
-                                 "re-zip the folder and commit the zip", "warning"))
+                                 f"{folder}/ has changes (last on {folder_day}) that {zip_rel} (last updated "
+                                 f"{zip_day}) doesn't include; re-zip the folder and commit the zip", "warning"))
     return found
