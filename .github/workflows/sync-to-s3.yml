@@ -34,7 +34,8 @@ jobs:
           aws s3 sync . s3://FMEData/FMEData/ \
             --delete \
             --exclude ".git*" \
-            --exclude "index.html"
+            --exclude "index.html" \
+            --exclude "CHECKS.md"
  
       - name: Create and upload ZIP
         run: |
@@ -104,7 +105,7 @@ jobs:
           </head>
           <body>
             <h1>FMEData</h1>
-            <p class="meta">Generated {generated}</p>
+            <p class="meta">Generated {generated} · <a href="https://s3.amazonaws.com/FMEData/reports/index.html">Data checks and reports</a></p>
             <input type="text" id="filter" placeholder="Filter by file name...">
             <table id="fileTable">
               <thead>
