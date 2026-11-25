@@ -13,13 +13,15 @@ from zoneinfo import ZoneInfo
 
 from .lessons import Lesson
 from .links import classify_url
-from .model import Config, Finding
+from .model import CHECKS, Config, Finding
 from .refs import redact
 
 __all__ = ["build_reports", "redact"]
 
 _TEMPLATE = Template((Path(__file__).parent / "templates" / "report.html").read_text(encoding="utf-8"))
 _PACIFIC = ZoneInfo("America/Los_Angeles")
+# Checks that look at what a pull request changes, so the nightly report never counts them.
+PR_ONLY = {"FD006", "FD010"}
 
 
 def _e(text: object) -> str:
@@ -48,7 +50,7 @@ def _finding_rows(findings: list[Finding]) -> list[list[str]]:
     ] for f in findings]
 
 
-def _index_body(findings: list[Finding], exempt: list[str]) -> str:
+def _index_body(findings: list[Finding], exempt: list[str], enforce: set[str]) -> str:
     def is_exempt(f: Finding) -> bool:
         return any(f.path.startswith(p) for p in exempt)
 
@@ -57,9 +59,19 @@ def _index_body(findings: list[Finding], exempt: list[str]) -> str:
     act = Counter(f.check_id for f in enforced if f.severity != "notice")
     older = Counter(f.check_id for f in enforced if f.severity == "notice")
     skipped = Counter(f.check_id for f in not_enforced)
-    ids = sorted(set(act) | set(older) | set(skipped))
+    ids = sorted(set(CHECKS) | set(act) | set(older) | set(skipped))
+
+    def name_cell(i: str) -> str:
+        name, summary = CHECKS.get(i, ("", ""))
+        # Lesson (FT) checks run only nightly, so only repository (FD) checks can fail a pull request.
+        fails = " <strong>Fails a pull request.</strong>" if i in enforce and i.startswith("FD") else ""
+        if i in PR_ONLY:
+            fails += " Runs on pull requests only."
+        return (f'<td><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#{i.lower()}">{_e(i)}</a>'
+                f" {_e(name)}<br><small>{_e(summary)}.{fails}</small></td>")
+
     count_rows = [[
-        f'<td><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#{i.lower()}">{_e(i)}</a></td>',
+        name_cell(i),
         f'<td class="num">{act[i]}</td>', f'<td class="num">{older[i]}</td>', f'<td class="num">{skipped[i]}</td>',
     ] for i in ids]
     order = {"error": 0, "warning": 1, "notice": 2}
@@ -108,7 +120,7 @@ def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict
     exempt = exempt or []
     cfg = cfg or Config()
     (out / "index.html").write_text(
-        _page("FMEData checks", generated_at, _index_body(findings, exempt)), encoding="utf-8")
+        _page("FMEData checks", generated_at, _index_body(findings, exempt, cfg.enforce)), encoding="utf-8")
     broken = _broken_rows(lessons, findings, statuses, cfg)
     (out / "broken-links.html").write_text(_page("Broken links in FME Academy lessons", generated_at,
         f"<p>{len(broken)} links. Bot-refused links are sites that block automated checks; open them to confirm.</p>"

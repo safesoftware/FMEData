@@ -9,6 +9,25 @@ from typing import Literal
 
 Severity = Literal["error", "warning", "notice"]
 
+# Every check: id -> (short name, one-line summary). The report prints these; CHECKS.md has the full detail.
+CHECKS: dict[str, tuple[str, str]] = {
+    "FD001": ("Workspace data paths", r"C:\FMEData paths in workspaces point to files in this repository"),
+    "FD002": ("Workspace S3 links", "FMEData S3 URLs in workspaces resolve"),
+    "FD003": ("Personal folders in workspaces", r"Workspaces don't read data from a personal C:\Users folder"),
+    "FD005": ("Legacy exercise- names", "Workspaces don't use the legacy exercise- prefix, which is being phased out"),
+    "FD006": ("Public safety", "Changes add no secrets, email addresses, or personal folders"),
+    "FD010": ("Linked file removed", "A pull request doesn't remove or rename a file a current lesson links"),
+    "FD011": ("Complete workspace names", 'Complete workspace names end in "-complete"'),
+    "FT001": ("Lesson data paths", r"C:\FMEData paths in lessons point to files in this repository"),
+    "FT002": ("Lesson S3 links", "FMEData S3 links in lessons resolve"),
+    "FT003": ("Exercise workspaces", "Exercises list a complete workspace, and it exists"),
+    "FT005": ("Lesson web links", "Web links in lessons don't return an error"),
+    "FT006": ("Workspace FME version", "Linked workspaces open in the FME version the course teaches"),
+    "FT007": ("Lessons linking exercise- names", "Lessons don't link workspaces with the legacy exercise- prefix"),
+    "FT008": ("Step 1 starting workspace", "Step 1 gives the starting workspace's path, and Resources lists it"),
+    "FT009": ("Course copies in the archive", "No Skilljar course copies or test courses in the lesson archive"),
+}
+
 ALWAYS_ENFORCED = "FD006"
 # Removing a file a lesson links breaks the lesson wherever the file lives.
 WARN_EVEN_WHEN_EXEMPT = "FD010"
