@@ -43,13 +43,15 @@ def added_lines(repo: Path, base: str, path: str, old_path: str | None = None) -
     """Lines the change adds to path. Pass old_path for a rename, so unchanged lines don't count as added."""
     paths = [old_path, path] if old_path else [path]
     out = _git(repo, "diff", "-U0", "-M", f"{base}...HEAD", "--", *paths)
-    lines, n = [], 0
+    lines, n, in_hunk = [], 0, False
     for line in out.splitlines():
         m = _HUNK.match(line)
         if m:
-            n = int(m.group(1))
+            n, in_hunk = int(m.group(1)), True
             continue
-        if line.startswith("+") and not line.startswith("+++"):
+        if line.startswith("diff --git"):
+            in_hunk = False
+        if in_hunk and line.startswith("+"):
             lines.append((n, line[1:]))
             n += 1
     return lines

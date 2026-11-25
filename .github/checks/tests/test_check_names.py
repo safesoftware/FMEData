@@ -1,4 +1,4 @@
-import html
+from fmedata_checks import reports
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,7 +21,7 @@ def test_report_spells_out_every_check(tmp_path: Path):
     build_reports([], findings, {}, {}, tmp_path, datetime.now(timezone.utc))
     page = (tmp_path / "index.html").read_text(encoding="utf-8")
     for check_id, (name, summary) in CHECKS.items():
-        assert check_id in page and html.escape(name) in page and html.escape(summary) in page, check_id
+        assert check_id in page and reports._e(name) in page and reports._e(summary) in page, check_id
     assert "Fails a pull request" in page
     assert page.count("Runs on pull requests only") == 2  # FD006 and FD010 never appear in the nightly counts
 

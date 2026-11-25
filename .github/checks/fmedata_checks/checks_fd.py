@@ -134,15 +134,35 @@ def _wildcard_match(path: str, key: str) -> bool:
     return fnmatch.fnmatchcase(path, key.replace("[", "[[]"))
 
 
+_DATASET_FOLDER = re.compile(r"\.[A-Za-z0-9]{2,8}$")
+
+
+def _in_dataset_folder(path: str, key: str) -> bool:
+    """A linked folder whose name has an extension (CommunityMap.gdb) is one dataset; its files belong to it.
+
+    Plain folders (Data, Data/Parks) don't count, so a lesson linking C:\\FMEData\\Data can't block every
+    deletion under it.
+    """
+    return path.startswith(key + "/") and bool(_DATASET_FOLDER.search(key))
+
+
 def _linked(removed: str | None, idx: dict[str, list[str]], exact_only: bool = False) -> list[str]:
-    """Lessons linking a path, as lessons spell it: exactly, in another case, or by a wildcard."""
+    """Lessons linking a path, as lessons spell it: exactly, in another case, by a wildcard, or by its dataset folder.
+
+    exact_only (a case-only rename): lessons spelled like the new name still work, so matching is case-sensitive.
+    """
     if not removed:
         return []
-    if exact_only or removed in idx:
-        return idx.get(removed, [])
+    if exact_only:
+        hits = {label for key, labels in idx.items()
+                if key == removed or _wildcard_match(removed, key) or _in_dataset_folder(removed, key)
+                for label in labels}
+        return sorted(hits)
+    if removed in idx:
+        return idx[removed]
     low = removed.lower()
     hits = {label for key, labels in idx.items()
-            if key.lower() == low or _wildcard_match(low, key.lower())
+            if key.lower() == low or _wildcard_match(low, key.lower()) or _in_dataset_folder(low, key.lower())
             for label in labels}
     return sorted(hits)
 
