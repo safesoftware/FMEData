@@ -52,7 +52,7 @@ jobs:
 
       - name: Check out workspaces and the check code only
         if: steps.archive.outputs.skip != 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -69,7 +69,7 @@ jobs:
           git -C "$RUNNER_TEMP/FMETraining" sparse-checkout set --no-cone '/*/*/*/*/index.html'
           git -C "$RUNNER_TEMP/FMETraining" checkout --quiet
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.archive.outputs.skip != 'true'
         with:
           python-version: "3.12"
@@ -83,14 +83,14 @@ jobs:
 
       - name: Keep the report with the run
         if: steps.archive.outputs.skip != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lesson-report
           path: ${{ runner.temp }}/report
 
       - name: Configure AWS credentials
         if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
