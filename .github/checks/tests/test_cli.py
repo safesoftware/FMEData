@@ -114,6 +114,27 @@ def test_cli_pr_index_none_skips_fd010(tmp_path: Path, capsys):
     assert "FD010" not in capsys.readouterr().out
 
 
+def test_cli_pr_and_report_flag_stale_folder_zip(tmp_path: Path, capsys):
+    repo = make_repo(tmp_path)
+    (repo / "Data" / "Parks").mkdir()
+    (repo / "Data" / "Parks" / "a.shp").write_text("1", encoding="utf-8")
+    (repo / "Data" / "Parks.zip").write_text("z", encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-q", "-m", "folder and zip")
+    git(repo, "branch", "-f", "base")
+    (repo / "Data" / "Parks" / "a.shp").write_text("2", encoding="utf-8")
+    git(repo, "commit", "-q", "-am", "folder only")
+    code, out = run_pr(repo, tmp_path, capsys)
+    assert code == 0 and "::warning file=Data/Parks.zip::FD012" in out
+    archive = tmp_path / "FMETraining"
+    archive.mkdir()
+    out_dir = tmp_path / "out"
+    main(["lessons", "--repo", str(repo), "--fmetraining", str(archive), "--out", str(out_dir),
+          "--no-network", "--config", str(config(tmp_path))])
+    ids = [f["check_id"] for f in json.loads((out_dir / "findings.json").read_text(encoding="utf-8"))["findings"]]
+    assert "FD012" in ids
+
+
 def test_shipped_config_enforces_fd010():
     from fmedata_checks.__main__ import DEFAULT_CONFIG
     from fmedata_checks.model import load_config

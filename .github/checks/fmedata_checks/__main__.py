@@ -47,6 +47,7 @@ def run_pr(args) -> int:
     new_names = [c.path for c in changes if c.status in ("A", "R")]
     findings += checks_fd.fd005(new_names, pr_added=True)
     findings += checks_fd.fd011(new_names, pr_added=True, cfg=cfg)
+    findings += checks_fd.fd012_changes(changes, tree)
     # "--index none" (pull requests into a year branch): lessons link main, so FD010 doesn't apply.
     if args.index != "none":
         idx, current, stale = read_index(args.index, with_current=True)
@@ -75,6 +76,7 @@ def run_lessons(args) -> int:
             findings += checks_fd.fd002(ws, tree, cfg, fetch=fetch)
     findings += checks_fd.fd005(workspaces, pr_added=False)
     findings += checks_fd.fd011(workspaces, pr_added=False, cfg=cfg)
+    findings += checks_fd.fd012_history(repo, tree)
 
     lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses))
     latest = latest_versions(lessons)

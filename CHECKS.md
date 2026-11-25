@@ -123,6 +123,16 @@ links easy to get wrong. The finding gives the name to use. Accepted endings are
 Fix: rename the file (`git mv`) and update the lessons that link it; FD010 lists them on the pull request. Existing
 names are notices in the report until they've been renamed; then FD011 is enforced.
 
+### FD012
+
+**A folder dataset's zip is older than its folder.** Some datasets are folders, such as a file geodatabase
+(`CommunityMap.gdb`) or a folder of shapefiles (`Data/Parks`). Lessons link a zip of the folder, committed beside it
+(`Data/Parks.zip`), and nothing rebuilds that zip automatically. On a pull request, FD012 warns when the change
+updates the folder but not its zip; in the nightly report, it lists every zip whose folder changed after it.
+
+Fix: zip the folder again (the zip holds the folder itself at its top level), commit it next to the folder, and
+include it in the same pull request as the folder change.
+
 ## Lesson checks
 
 These run nightly against the FME Academy lesson archive (<https://github.com/safesoftware/FMETraining>) and appear
