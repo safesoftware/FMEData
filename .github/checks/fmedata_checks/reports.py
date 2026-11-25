@@ -66,7 +66,8 @@ def _index_body(findings: list[Finding], exempt: list[str], enforce: set[str]) -
         if i in PR_ONLY:
             fails += " Runs on pull requests only."
         return (f'<td><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#{i.lower()}">{_e(i)}</a>'
-                + (f" {_e(name)}<br><small>{_e(summary)}.{fails}</small>" if summary else "") + "</td>")
+                + (f" {_e(name)}<br><small>{_e(summary)}.{fails}</small>" if summary else
+                   (f"<br><small>{fails.strip()}</small>" if fails else "")) + "</td>")
 
     count_rows = [[
         name_cell(i),

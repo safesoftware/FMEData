@@ -20,6 +20,7 @@ def test_added_line_starting_with_plus_plus_is_kept(tmp_path: Path):
     git(tmp_path, "init", "-q")
     git(tmp_path, "config", "user.email", "test@example.com")
     git(tmp_path, "config", "user.name", "Test")
+    git(tmp_path, "config", "commit.gpgsign", "false")
     (tmp_path / "a.txt").write_text("one\n", encoding="utf-8")
     git(tmp_path, "add", ".")
     git(tmp_path, "commit", "-q", "-m", "base")
@@ -47,6 +48,21 @@ def test_fd010_linked_dataset_folder_counts_its_files():
                    Change("D", "Data/Other/x.csv", None)], idx, stale=False, current=idx)
     assert [(f.path, f.severity) for f in found] == [
         ("Data/CommunityMapping/CommunityMap.gdb/a00000001.gdbtable", "error")]
+
+
+def test_fd010_exact_link_does_not_hide_folder_or_case_links():
+    idx = {"Data/X.gdb/a.gdbtable": ["2025.1 / C 2025.1 / Old"], "Data/X.gdb": ["2026.2 / C 2026.2 / New"],
+           "data/x.gdb/a.gdbtable": ["2026.2 / D 2026.2 / Other"]}
+    current = {"Data/X.gdb/a.gdbtable": ["2026.2 / E 2026.2 / Exact"], "Data/X.gdb": ["2026.2 / C 2026.2 / New"],
+               "data/x.gdb/a.gdbtable": ["2026.2 / D 2026.2 / Other"]}
+    found = fd010([Change("D", "Data/X.gdb/a.gdbtable", None)], idx, stale=False, current=current)
+    assert [f.severity for f in found] == ["error"]
+    assert "C 2026.2 / New" in found[0].message and "D 2026.2 / Other" in found[0].message
+
+
+def test_fd010_only_gdb_folders_count_as_datasets():
+    idx = {"Data/Esri.Training": ["2026.2 / C 2026.2 / L"]}
+    assert fd010([Change("D", "Data/Esri.Training/x.csv", None)], idx, stale=False, current=idx) == []
 
 
 def test_fd010_case_only_rename_checks_wildcards_case_sensitively():

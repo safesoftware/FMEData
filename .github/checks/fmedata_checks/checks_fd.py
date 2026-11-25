@@ -134,14 +134,15 @@ def _wildcard_match(path: str, key: str) -> bool:
     return fnmatch.fnmatchcase(path, key.replace("[", "[[]"))
 
 
-_DATASET_FOLDER = re.compile(r"\.[A-Za-z0-9]{2,8}$")
+# Folder-based dataset formats: the folder is one dataset, so its files belong to it.
+_DATASET_FOLDER = re.compile(r"\.gdb$", re.I)
 
 
 def _in_dataset_folder(path: str, key: str) -> bool:
-    """A linked folder whose name has an extension (CommunityMap.gdb) is one dataset; its files belong to it.
+    """A linked file geodatabase folder (CommunityMap.gdb) is one dataset; its files belong to it.
 
-    Plain folders (Data, Data/Parks) don't count, so a lesson linking C:\\FMEData\\Data can't block every
-    deletion under it.
+    Other folders (Data, Data/Parks, Esri.Training) don't count, so a lesson linking C:\\FMEData\\Data can't
+    block every deletion under it.
     """
     return path.startswith(key + "/") and bool(_DATASET_FOLDER.search(key))
 
@@ -158,8 +159,6 @@ def _linked(removed: str | None, idx: dict[str, list[str]], exact_only: bool = F
                 if key == removed or _wildcard_match(removed, key) or _in_dataset_folder(removed, key)
                 for label in labels}
         return sorted(hits)
-    if removed in idx:
-        return idx[removed]
     low = removed.lower()
     hits = {label for key, labels in idx.items()
             if key.lower() == low or _wildcard_match(low, key.lower()) or _in_dataset_folder(low, key.lower())
