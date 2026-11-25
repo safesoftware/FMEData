@@ -1,0 +1,22 @@
+# Configuration for the FMEData checks. See CHECKS.md at the repository root.
+
+# Checks whose errors fail a pull request. FD006 (public safety) is always enforced.
+# Every other check starts as a warning; add its id here once its findings are trusted.
+enforce = ["FD006"]
+
+# Hosts that refuse automated requests (403) but work in a browser.
+bot_refusers = ["support.safe.com", "community.safe.com"]
+
+# Accepted endings for a complete workspace's file name (FD011).
+complete_suffixes = ["-complete"]
+
+# Folders CI does not enforce. Findings there appear in the report's "Not enforced" section.
+# FD006 still applies everywhere, and FD010 still warns.
+[exempt]
+"Resources/" = "Shared with other teams and partners; rarely used on the Academy"
+"Workspaces/AcceleratorES/" = "Spanish partner Accelerator"
+
+# Intentional exceptions. Every entry needs a reason.
+[allow.paths]
+
+[allow.urls]
