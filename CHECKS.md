@@ -51,3 +51,29 @@ python -m fmedata_checks pr --repo ../.. --base origin/main
 ```
 
 ## Checks
+
+### FD001
+
+**A workspace's `C:\FMEData` path doesn't match a file in this repository.** Learners extract FMEData to
+`C:\FMEData`, so a path that isn't in the repository fails on their machine. "Differs only in case" means the
+file exists with different capitalization: Windows doesn't mind, but the S3 copy is case-sensitive.
+
+Fix: add the missing file under `Data/` (or wherever the path points), or correct the path in the workspace and
+save it. Paths under `Output/` are ignored, because workspaces write their results there.
+
+### FD002
+
+**A workspace's FMEData S3 URL doesn't resolve.** URLs under `https://s3.amazonaws.com/FMEData/FMEData/` are this
+repository's `main` branch, so they're checked against the repository. Other FMEData URLs, such as
+`https://s3.amazonaws.com/FMEData/Orthophotos.zip`, are checked over the network in the nightly job only.
+
+Fix: as for FD001. If the file is deliberately hosted outside the repository, add the URL to `[allow.urls]`.
+
+### FD003
+
+**A workspace reads data from a personal `C:\Users\<name>` folder.** No learner has that folder, and the path puts
+a person's user name in a public repository. The check never prints the name.
+
+Fix: move the data into FMEData and point the workspace at `C:\FMEData\...` or its S3 URL. A user path in the
+workspace's header comment (the command line FME records when it saves) is only a notice; it disappears when the
+workspace is saved from `C:\FMEData`.

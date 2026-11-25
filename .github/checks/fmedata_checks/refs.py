@@ -24,6 +24,14 @@ _EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=\s)")
 _TRAILING = ".,;:)]"
 
 
+USER_PATH_RE = re.compile(r"([Cc]:[\\/]Users[\\/])([^\\/\"'<>\r\n]+?)(?=[\\/])")
+
+
+def redact(text: str) -> str:
+    """Hide the user name in C:\\Users\\<name>\\... paths."""
+    return USER_PATH_RE.sub(lambda m: m.group(1) + "…", text)
+
+
 @dataclass(frozen=True)
 class Ref:
     line: int
