@@ -1,0 +1,121 @@
+name: Yearly rollover
+
+# Archives main to a year branch and publishes FMEData<year>.zip, or rebuilds the zip for an existing year
+# branch. See BRANCHES.md. Runs only when started by hand, and only builds the zip unless dry_run is off.
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "The year being archived, such as 2026"
+        required: true
+      mode:
+        description: "archive: create the year branch from main and publish its zip. rezip: rebuild the zip from an existing year branch."
+        type: choice
+        options: [archive, rezip]
+        default: archive
+      dry_run:
+        description: "Build the zip only; don't create the branch or upload"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rollover
+
+jobs:
+  rollover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      YEAR: ${{ inputs.year }}
+      MODE: ${{ inputs.mode }}
+    steps:
+      - name: Check the inputs
+        id: check
+        run: |
+          if ! [[ "$YEAR" =~ ^20[0-9]{2}$ ]]; then
+            echo "::error::year must be a four-digit year, such as 2026"; exit 1
+          fi
+          # --exit-code: 0 = the branch exists, 2 = it doesn't; anything else is a failed lookup, so stop.
+          set +e
+          git ls-remote --exit-code --heads "https://github.com/${{ github.repository }}" "refs/heads/$YEAR" >/dev/null
+          rc=$?
+          set -e
+          if [ "$rc" != 0 ] && [ "$rc" != 2 ]; then
+            echo "::error::Couldn't check whether branch $YEAR exists (git ls-remote exit $rc). Try again."; exit 1
+          fi
+          if [ "$MODE" = archive ] && [ "$rc" = 0 ]; then
+            echo "::error::Branch $YEAR already exists. To rebuild its zip, run again with mode rezip."; exit 1
+          fi
+          if [ "$MODE" = rezip ] && [ "$rc" = 2 ]; then
+            echo "::error::Branch $YEAR doesn't exist, so there's nothing to rezip."; exit 1
+          fi
+
+      - name: Check out ${{ inputs.mode == 'archive' && 'main' || inputs.year }}
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.mode == 'archive' && 'main' || inputs.year }}
+          path: FMEData
+          fetch-depth: 0   # full history, so file dates can be restored like FMEData.zip's
+
+      - name: Restore file dates from git history
+        uses: chetan/git-restore-mtime-action@v2
+        with:
+          working-directory: FMEData
+
+      - name: Create branch ${{ inputs.year }} from main
+        if: ${{ inputs.mode == 'archive' && !inputs.dry_run }}
+        working-directory: FMEData
+        run: git push origin "HEAD:refs/heads/$YEAR"
+
+      - name: Build FMEData${{ inputs.year }}.zip
+        # Same contents and layout as FMEData.zip from sync-to-s3.yml: a top-level FMEData/ folder.
+        run: |
+          zip -q -r "FMEData$YEAR.zip" FMEData/ \
+            --exclude "FMEData/.git/*" \
+            --exclude "FMEData/.git*" \
+            --exclude "FMEData/.github/*"
+          ls -lh "FMEData$YEAR.zip"
+
+      - name: Configure AWS credentials
+        if: ${{ !inputs.dry_run }}
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload FMEData${{ inputs.year }}.zip
+        if: ${{ !inputs.dry_run }}
+        run: aws s3 cp "FMEData$YEAR.zip" "s3://FMEData/FMEData$YEAR.zip"
+
+      - name: Next steps
+        # Runs after a failure too, but only once the year passed validation (it's used in arithmetic below).
+        if: ${{ always() && steps.check.outcome == 'success' }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          next=$((YEAR + 1))
+          {
+            echo "## Rollover $YEAR ($MODE$([ '${{ inputs.dry_run }}' = true ] && echo ', dry run'))"
+            echo
+            if [ "$JOB_STATUS" != success ]; then
+              echo "The rollover failed; see the failed step above. Nothing below is done, so fix the cause and run it again."
+              exit 0
+            fi
+            if [ '${{ inputs.dry_run }}' = true ]; then
+              echo "Dry run: the zip was built but not uploaded, and no branch was created. Run again with dry_run off."
+            else
+              echo "- Zip: https://s3.amazonaws.com/FMEData/FMEData$YEAR.zip"
+            fi
+            if [ "$MODE" = archive ]; then
+              echo "- Lock branch \`$YEAR\`: add it to the archived-years branch ruleset (Settings > Rules)."
+              if git ls-remote --exit-code --heads "https://github.com/${{ github.repository }}" "refs/heads/$next" >/dev/null; then
+                echo "- Merge next year's work into main: https://github.com/${{ github.repository }}/compare/main...$next"
+              else
+                echo "- No \`$next\` branch yet; next year's updates can go straight to main."
+              fi
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

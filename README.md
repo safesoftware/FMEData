@@ -14,7 +14,9 @@ The data and workspaces herein relate to FME training, tutorials and demonstrati
 
 FMEData main
 
-See GitHub branches for specific revisions and other versions of this dataset
+See GitHub branches for specific revisions and other versions of this dataset. [BRANCHES.md](BRANCHES.md) explains
+the yearly cycle: `main` is the current year, each past year has its own branch and `FMEData<year>.zip`, and how
+the yearly rollover works. Pull requests are checked automatically; [CHECKS.md](CHECKS.md) explains each check.
 
 Updates to FMEData main are automatically synced to the FMEData S3 bucket.
 https://s3.amazonaws.com/FMEData/FMEData/index.html

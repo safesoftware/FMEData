@@ -98,6 +98,22 @@ def test_cli_lessons_reports_version_and_legacy(tmp_path: Path):
     assert {"FT006", "FT007", "FD005"} <= ids
 
 
+def test_cli_pr_index_none_skips_fd010(tmp_path: Path, capsys):
+    # PRs into a year branch: lessons link main, so FD010 doesn't apply there.
+    repo = make_repo(tmp_path)
+    git(repo, "rm", "-q", "Data/Parks.shp")
+    git(repo, "commit", "-q", "-m", "remove")
+    index = tmp_path / "findings.json"
+    index.write_text(json.dumps({"generated_at": "2999-01-01T00:00:00+00:00",
+                                 "lesson_index": {"Data/Parks.shp": ["L"]},
+                                 "current_index": {"Data/Parks.shp": ["L"]}}), encoding="utf-8")
+    cfg = str(config(tmp_path))
+    assert main(["pr", "--repo", str(repo), "--base", "base", "--index", str(index), "--config", cfg]) == 0
+    assert "FD010" in capsys.readouterr().out
+    assert main(["pr", "--repo", str(repo), "--base", "base", "--index", "none", "--config", cfg]) == 0
+    assert "FD010" not in capsys.readouterr().out
+
+
 def test_shipped_config_enforces_fd010():
     from fmedata_checks.__main__ import DEFAULT_CONFIG
     from fmedata_checks.model import load_config
