@@ -63,7 +63,8 @@ def _index_body(findings: list[Finding], exempt: list[str], enforce: set[str]) -
 
     def name_cell(i: str) -> str:
         name, summary = CHECKS.get(i, ("", ""))
-        fails = " <strong>Fails a pull request.</strong>" if i in enforce else ""
+        # Lesson (FT) checks run only nightly, so only repository (FD) checks can fail a pull request.
+        fails = " <strong>Fails a pull request.</strong>" if i in enforce and i.startswith("FD") else ""
         if i in PR_ONLY:
             fails += " Runs on pull requests only."
         return (f'<td><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#{i.lower()}">{_e(i)}</a>'

@@ -24,3 +24,11 @@ def test_report_spells_out_every_check(tmp_path: Path):
         assert check_id in page and html.escape(name) in page and html.escape(summary) in page, check_id
     assert "Fails a pull request" in page
     assert page.count("Runs on pull requests only") == 2  # FD006 and FD010 never appear in the nightly counts
+
+
+def test_lesson_checks_never_claim_to_fail_a_pull_request(tmp_path: Path):
+    from fmedata_checks.model import Config
+    build_reports([], [], {}, {}, tmp_path, datetime.now(timezone.utc), cfg=Config(enforce={"FD006", "FT005"}))
+    page = (tmp_path / "index.html").read_text(encoding="utf-8")
+    row = page[page.find("FT005"):page.find("</tr>", page.find("FT005"))]
+    assert "Fails a pull request" not in row
