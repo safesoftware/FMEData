@@ -149,9 +149,9 @@ def _key(version: str) -> tuple[int, ...]:
 def latest_versions(lessons: Iterable[Lesson]) -> dict[str, str]:
     latest: dict[str, str] = {}
     for lesson in lessons:
-        v = _version(lesson)
-        if v and (lesson.course_base not in latest or _key(v) > _key(latest[lesson.course_base])):
-            latest[lesson.course_base] = v
+        k, v = _course_key(lesson), _version(lesson)
+        if v and (k not in latest or _key(v) > _key(latest[k])):
+            latest[k] = v
     return latest
 
 
@@ -160,8 +160,13 @@ def _version(lesson: Lesson) -> str:
     return lesson.course_version or lesson.version
 
 
+def _course_key(lesson: Lesson) -> str:
+    """Course versions and archive folder versions are different scales, so they're compared separately."""
+    return lesson.course_base if lesson.course_version else f"{lesson.course_base} (no version suffix)"
+
+
 def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
-    return latest.get(lesson.course_base) == _version(lesson)
+    return latest.get(_course_key(lesson)) == _version(lesson)
 
 
 def previous_version(lesson: Lesson, lessons: Iterable[Lesson]) -> str | None:

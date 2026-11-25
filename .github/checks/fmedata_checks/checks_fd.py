@@ -82,7 +82,8 @@ _SECRET_PATTERNS = [
 _EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")
 _ALLOWED_EMAIL_DOMAINS = ("example.com", "example.org", "example.net")
 _USER_DIR = re.compile(
-    r"c:[\\/]users[\\/](?!(?:Public|Default|Default User|All Users)(?:[\\/\"'<>]|$)|…)[^\\/\"'<>]+(?:[\\/\"'<>]|$)",
+    r"c:[\\/]users[\\/](?!(?:Public|Default|Default User|All Users)(?:[\\/\"'<>\s]|$))"
+    r"[^\\/\s\"'<>…][^\\/\"'<>]*?(?:[\\/\"'<>\s]|$)",
     re.I)
 # Image density suffixes ("icon@2x.png") and git remotes ("git@github.com:") look like addresses but aren't.
 _NOT_EMAIL_TLDS = {"png", "jpg", "jpeg", "gif", "svg", "webp", "bmp", "tif", "tiff"}
@@ -126,15 +127,22 @@ def fd006(path: str, added: list[tuple[int, str]]) -> list[Finding]:
     return found
 
 
-def _linked(removed: str | None, idx: dict[str, list[str]]) -> list[str]:
+def _wildcard_match(path: str, key: str) -> bool:
+    """* and ? match within one folder level; [ and ] are literal characters."""
+    if not any(ch in key for ch in "*?") or path.count("/") != key.count("/"):
+        return False
+    return fnmatch.fnmatchcase(path, key.replace("[", "[[]"))
+
+
+def _linked(removed: str | None, idx: dict[str, list[str]], exact_only: bool = False) -> list[str]:
     """Lessons linking a path, as lessons spell it: exactly, in another case, or by a wildcard."""
     if not removed:
         return []
-    if removed in idx:
-        return idx[removed]
+    if exact_only or removed in idx:
+        return idx.get(removed, [])
     low = removed.lower()
     hits = {label for key, labels in idx.items()
-            if key.lower() == low or (any(ch in key for ch in "*?[") and fnmatch.fnmatch(low, key.lower()))
+            if key.lower() == low or _wildcard_match(low, key.lower())
             for label in labels}
     return sorted(hits)
 
@@ -150,10 +158,12 @@ def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool,
     found = []
     for c in changes:
         removed = c.path if c.status == "D" else c.old_path if c.status == "R" else None
-        lessons = _linked(removed, idx)
+        # After a case-only rename, lessons spelled like the new name still work; only the old spelling breaks.
+        exact = c.status == "R" and removed is not None and removed.lower() == c.path.lower()
+        lessons = _linked(removed, idx, exact)
         if not lessons or removed in allow:
             continue
-        live = lessons if current is None else _linked(removed, current)
+        live = lessons if current is None else _linked(removed, current, exact)
         shown_from = live or lessons
         shown = "; ".join(shown_from[:3]) + (f"; and {len(shown_from) - 3} more" if len(shown_from) > 3 else "")
         if live:
