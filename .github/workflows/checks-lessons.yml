@@ -54,6 +54,7 @@ jobs:
         if: steps.archive.outputs.skip != 'true'
         uses: actions/checkout@v7
         with:
+          fetch-depth: 0   # full history (without file contents), so FD012 can date each folder and its zip
           filter: blob:none
           sparse-checkout-cone-mode: false
           sparse-checkout: |

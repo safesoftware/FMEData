@@ -34,6 +34,9 @@ class RepoTree:
     def all_files(self) -> set[str]:
         return set(self._files)
 
+    def is_dir(self, rel: str) -> bool:
+        return rel.strip("/") in self._dirs
+
     def resolve(self, rel: str) -> Resolution:
         rel = rel.strip("/")
         if rel in self._files or rel in self._dirs:

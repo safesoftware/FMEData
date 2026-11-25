@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import fnmatch
+import subprocess
 import re
 from typing import Callable
 
@@ -245,4 +246,46 @@ def fd003(ws: Workspace) -> list[Finding]:
         found.append(Finding("FD003", ws.path, r.line,
                              "header comment contains C:\\Users\\…; harmless, but re-saving from C:\\FMEData removes it",
                              "notice"))
+    return found
+
+
+def folder_zips(tree: RepoTree) -> dict[str, str]:
+    """Folder-dataset zips: a .zip named after a folder beside it (Data/Parks.zip for Data/Parks)."""
+    return {z: z[:-4] for z in sorted(tree.all_files()) if z.lower().endswith(".zip") and tree.is_dir(z[:-4])}
+
+
+def fd012_changes(changes: list[Change], tree: RepoTree) -> list[Finding]:
+    """A pull request that changes a folder-dataset folder also updates its zip."""
+    touched = {c.path for c in changes} | {c.old_path for c in changes if c.old_path}
+    found = []
+    for zip_rel, folder in folder_zips(tree).items():
+        if zip_rel not in touched and any(p.startswith(folder + "/") for p in touched):
+            found.append(Finding("FD012", zip_rel, None,
+                                 f"this change updates {folder}/ but not {zip_rel}; re-zip the folder and commit "
+                                 "the zip, because lessons link the zip", "warning"))
+    return found
+
+
+def _last_change(repo, rel: str) -> tuple[str, str]:
+    """The last commit that touched rel, and its date."""
+    out = subprocess.run(["git", "-C", str(repo), "-c", "core.quotepath=false", "log", "-1", "--format=%H %cs",
+                          "--", rel], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.split()
+    return (out[0], out[1]) if len(out) == 2 else ("", "")
+
+
+def _is_ancestor(repo, older: str, newer: str) -> bool:
+    return subprocess.run(["git", "-C", str(repo), "merge-base", "--is-ancestor", older, newer],
+                          capture_output=True).returncode == 0
+
+
+def fd012_history(repo, tree: RepoTree) -> list[Finding]:
+    """A folder-dataset zip isn't older than the last change to its folder (by commit order, not clock time)."""
+    found = []
+    for zip_rel, folder in folder_zips(tree).items():
+        folder_commit, folder_day = _last_change(repo, folder + "/")
+        zip_commit, zip_day = _last_change(repo, zip_rel)
+        if folder_commit and zip_commit and folder_commit != zip_commit and _is_ancestor(repo, zip_commit, folder_commit):
+            found.append(Finding("FD012", zip_rel, None,
+                                 f"{folder}/ last changed on {folder_day}, after {zip_rel} ({zip_day}); "
+                                 "re-zip the folder and commit the zip", "warning"))
     return found

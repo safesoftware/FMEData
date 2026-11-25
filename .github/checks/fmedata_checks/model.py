@@ -18,6 +18,7 @@ CHECKS: dict[str, tuple[str, str]] = {
     "FD006": ("Public safety", "Changes add no secrets, email addresses, or personal folders"),
     "FD010": ("Linked file removed", "A pull request doesn't remove or rename a file a current lesson links"),
     "FD011": ("Complete workspace names", 'Complete workspace names end in "-complete"'),
+    "FD012": ("Folder dataset zips", "A folder dataset's zip is updated whenever its folder changes"),
     "FT001": ("Lesson data paths", r"C:\FMEData paths in lessons point to files in this repository"),
     "FT002": ("Lesson S3 links", "FMEData S3 links in lessons resolve"),
     "FT003": ("Exercise workspaces", "Exercises list a complete workspace, and it exists"),
