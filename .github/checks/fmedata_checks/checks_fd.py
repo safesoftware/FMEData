@@ -118,6 +118,46 @@ def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool) -> list
     return found
 
 
+WORKSPACE_EXT = (".fmw", ".fmwt")
+
+
+def fd005(paths, pr_added: bool) -> list[Finding]:
+    """A workspace still named exercise-*; the prefix is being phased out."""
+    return [Finding("FD005", p, None, "legacy exercise- prefix; drop it when the workspace is next updated",
+                    "warning" if pr_added else "notice")
+            for p in paths if p.endswith(WORKSPACE_EXT) and p.rsplit("/", 1)[-1].startswith("exercise-")]
+
+
+_COMPLETE = re.compile(r"^(?P<base>.*?)(?P<sep>-{1,2}|_|\s)?(?P<word>complete[d]?|completo|complet)$", re.I)
+
+
+def fd011(paths, pr_added: bool, cfg: Config) -> list[Finding]:
+    """A complete workspace's name ends in exactly one of the accepted suffixes (default -complete)."""
+    found = []
+    for p in paths:
+        if not p.endswith(WORKSPACE_EXT):
+            continue
+        folder, _, name = p.rpartition("/")
+        stem, ext = name.rsplit(".", 1)
+        m = _COMPLETE.match(stem)
+        if not m or not m.group("base"):
+            continue
+        # Without a separator, only a capitalized "Complete" starts a suffix ("incomplete" is a word).
+        if not m.group("sep") and not m.group("word")[0].isupper():
+            continue
+        suffix = m.group("sep") or ""
+        actual = suffix + m.group("word")
+        if actual in cfg.complete_suffixes:
+            continue
+        word = m.group("word").lower()
+        wanted = next((s for s in cfg.complete_suffixes if s.lstrip("-_ ").lower() == word), None) \
+            or next((s for s in cfg.complete_suffixes if word.startswith(s.lstrip("-_ ").lower())), None) \
+            or cfg.complete_suffixes[0]
+        target = f"{folder}/{m.group('base')}{wanted}.{ext}" if folder else f"{m.group('base')}{wanted}.{ext}"
+        found.append(Finding("FD011", p, None, f"rename to {target}", "error" if pr_added else "notice"))
+    return found
+
+
 def fd003(ws: Workspace) -> list[Finding]:
     """No personal C:\\Users paths: an error in a dataset, a notice in FME's command-line comment."""
     found = []

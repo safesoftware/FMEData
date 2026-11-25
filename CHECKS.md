@@ -78,6 +78,13 @@ Fix: move the data into FMEData and point the workspace at `C:\FMEData\...` or i
 workspace's header comment (the command line FME records when it saves) is only a notice; it disappears when the
 workspace is saved from `C:\FMEData`.
 
+### FD005
+
+**A workspace is still named `exercise-...`.** The `exercise-` prefix is being phased out. Existing names are
+listed in the report as notices; a pull request that adds a new one gets a warning.
+
+Fix: drop the prefix when the workspace is next updated, and update the lessons that link it (FD010 lists them).
+
 ### FD006
 
 **A change adds something that shouldn't be public.** This repository is public, so its files, its pull requests,
@@ -98,6 +105,16 @@ index.
 
 Fix: keep the old file until the lessons are updated in Skilljar, or update the lessons first and then remove it.
 If the lesson index is more than a week old, FD010 only warns, because its list may be out of date.
+
+### FD011
+
+**A complete workspace's name doesn't end in `-complete`.** Today the same suffix is spelled several ways
+(`-Complete`, `_Completed`, `_Complete`, `Complete`, `--complete`, `_complete`), which makes pairs hard to find and
+links easy to get wrong. The finding gives the name to use. Accepted endings are `complete_suffixes` in
+`.github/checks/checks.toml`.
+
+Fix: rename the file (`git mv`) and update the lessons that link it; FD010 lists them on the pull request. Existing
+names are notices in the report until they've been renamed; then FD011 is enforced.
 
 ## Lesson checks
 
@@ -128,3 +145,16 @@ lesson's Resources section.
 **A web link in a lesson is broken (the site answered 4xx or 5xx).** Sites that refuse automated requests
 (listed under `bot_refusers`, such as support.safe.com) and `localhost` links are listed separately in the report,
 not as broken. Fix: update or remove the link in the lesson.
+
+### FT006
+
+**A workspace linked from a lesson was saved in a newer FME version than the course teaches.** A course named
+"... 2025.1" is taken in FME 2025.1, which can't open a workspace saved in 2026.2. The report also notes, as a
+notice, a workspace that hasn't been saved since before the course's previous version.
+
+Fix: save the workspace in the course's FME version, or update the course.
+
+### FT007
+
+**A lesson links a workspace with the legacy `exercise-` prefix.** See FD005. Fix: when the workspace is renamed,
+update the lesson's links.

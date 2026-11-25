@@ -13,7 +13,7 @@ from pathlib import Path
 
 from . import checks_fd, checks_ft
 from .gitdiff import added_lines, changed_files
-from .lessons import is_current, iter_lessons, latest_versions, lesson_index, read_index
+from .lessons import is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
 from .reports import build_reports
@@ -44,6 +44,9 @@ def run_pr(args) -> int:
             findings += checks_fd.fd002(ws, tree, cfg, fetch=None)
             findings += checks_fd.fd003(ws)
         findings += checks_fd.fd006(c.path, added_lines(repo, args.base, c.path))
+    new_names = [c.path for c in changes if c.status in ("A", "R")]
+    findings += checks_fd.fd005(new_names, pr_added=True)
+    findings += checks_fd.fd011(new_names, pr_added=True, cfg=cfg)
     idx, stale = read_index(args.index)
     findings += checks_fd.fd010(changes, idx, stale)
 
@@ -62,11 +65,14 @@ def run_lessons(args) -> int:
     fetch = None if args.no_network else http_status
 
     findings: list[Finding] = []
+    workspaces = {}
     for rel in sorted(tree.all_files()):
         if rel.endswith(WORKSPACE_EXT):
-            ws = parse_workspace(rel, _read(repo / rel))
+            ws = workspaces[rel] = parse_workspace(rel, _read(repo / rel))
             findings += checks_fd.fd001(ws, tree, cfg) + checks_fd.fd003(ws)
             findings += checks_fd.fd002(ws, tree, cfg, fetch=fetch)
+    findings += checks_fd.fd005(workspaces, pr_added=False)
+    findings += checks_fd.fd011(workspaces, pr_added=False, cfg=cfg)
 
     lessons = list(iter_lessons(Path(args.fmetraining)))
     latest = latest_versions(lessons)
@@ -78,6 +84,8 @@ def run_lessons(args) -> int:
         findings += checks_ft.ft002(lesson, tree, cfg, statuses, current)
         findings += checks_ft.ft003(lesson, tree, current)
         findings += checks_ft.ft005(lesson, statuses, cfg, current)
+        findings += checks_ft.ft006(lesson, workspaces, current, previous_version(lesson, lessons))
+        findings += checks_ft.ft007(lesson, current)
 
     findings = [effective(f, cfg) for f in findings]
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),

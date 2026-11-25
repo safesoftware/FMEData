@@ -68,6 +68,36 @@ def test_cli_pr_exempt_folder_silent(tmp_path: Path, capsys):
     assert code == 0 and "Resources/c.fmw" not in out
 
 
+def test_cli_pr_new_names_flagged(tmp_path: Path, capsys):
+    repo = make_repo(tmp_path)
+    for name in ("x_Complete.fmw", "exercise-y.fmw"):
+        (repo / "Workspaces" / name).write_text("DEFAULT_MACRO S 1\n", encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-q", "-m", "names")
+    code, out = run_pr(repo, tmp_path, capsys)
+    assert code == 0
+    assert "::warning file=Workspaces/x_Complete.fmw::FD011 rename to Workspaces/x-complete.fmw" in out
+    assert "::warning file=Workspaces/exercise-y.fmw::FD005" in out
+
+
+def test_cli_lessons_reports_version_and_legacy(tmp_path: Path):
+    repo = make_repo(tmp_path)
+    (repo / "Workspaces" / "exercise-z-complete.fmw").write_text(
+        '#!   LAST_SAVE_BUILD="FME(R) 2026.2.0.0 (20260617 - Build 26333 - WIN64)"\nX\n', encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-q", "-m", "z")
+    archive = tmp_path / "FMETraining"
+    page = archive / "2026.2" / "adv" / "Course 2025.1" / "Exercise_ Z" / "index.html"
+    page.parent.mkdir(parents=True)
+    page.write_text("<h2>Resources</h2><p>Complete workspace | C:\\FMEData\\Workspaces\\exercise-z-complete.fmw</p>",
+                    encoding="utf-8")
+    out = tmp_path / "out"
+    main(["lessons", "--repo", str(repo), "--fmetraining", str(archive), "--out", str(out),
+          "--no-network", "--config", str(config(tmp_path))])
+    ids = {f["check_id"] for f in json.loads((out / "findings.json").read_text(encoding="utf-8"))["findings"]}
+    assert {"FT006", "FT007", "FD005"} <= ids
+
+
 def test_cli_lessons_no_network(tmp_path: Path, capsys):
     repo = make_repo(tmp_path)
     archive = tmp_path / "FMETraining"

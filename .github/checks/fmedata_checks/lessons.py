@@ -123,6 +123,22 @@ def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
     return latest.get(lesson.course_base) == lesson.course_version
 
 
+def previous_version(lesson: Lesson, lessons: Iterable[Lesson]) -> str | None:
+    """The course's newest version before this lesson's, if the archive has one."""
+    if not lesson.course_version:
+        return None
+    mine = _key(lesson.course_version)
+    older = {l.course_version for l in lessons
+             if l.course_base == lesson.course_base and l.course_version and _key(l.course_version) < mine}
+    return max(older, key=_key) if older else None
+
+
+def workspace_refs(lesson: Lesson) -> list[str]:
+    """Every FMEData workspace a lesson links, in order, without repeats."""
+    rels = [*lesson.starting, *lesson.complete, *(r.rel for r in [*lesson.local_refs, *lesson.s3_refs])]
+    return list(dict.fromkeys(r for r in rels if r.endswith((".fmw", ".fmwt"))))
+
+
 def lesson_label(lesson: Lesson) -> str:
     return f"{lesson.version} / {lesson.course} / {lesson.title}"
 

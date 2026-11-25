@@ -7,10 +7,11 @@ latest version gets warnings; older versions get notices.
 from __future__ import annotations
 
 from .checks_fd import OUTPUT_PREFIX, _resolution_message
-from .lessons import Lesson
+from .lessons import Lesson, workspace_refs
 from .links import classify_url
 from .model import Config, Finding, Severity
 from .tree import RepoTree
+from .workspace import Workspace
 
 
 def _sev(current: bool) -> Severity:
@@ -64,6 +65,57 @@ def ft003(lesson: Lesson, tree: RepoTree, current: bool) -> list[Finding]:
                 found.append(Finding("FT003", lesson.rel_html, None,
                                      f"{kind} workspace {rel} not found in FMEData", _sev(current)))
     return found
+
+
+def fme_version(build: str | None) -> tuple[int, int] | None:
+    if not build:
+        return None
+    parts = build.split(".")
+    try:
+        return int(parts[0]), int(parts[1])
+    except (IndexError, ValueError):
+        return None
+
+
+def _course_key(version: str) -> tuple[int, int]:
+    year, minor = version.split(".")[:2]
+    return int(year), int(minor)
+
+
+def ft006(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool,
+          previous_version: str | None) -> list[Finding]:
+    """A linked workspace opens in the FME version the course names, and has been updated since the last version."""
+    if not lesson.course_version:
+        return []
+    course = _course_key(lesson.course_version)
+    found = []
+    for rel in workspace_refs(lesson):
+        ws = workspaces_by_rel.get(rel)
+        saved = fme_version(ws.build) if ws else None
+        if saved is None:
+            continue
+        shown = f"{saved[0]}.{saved[1]}"
+        if saved > course:
+            found.append(Finding("FT006", lesson.rel_html, None,
+                                 f"{rel} was saved in FME {shown}, newer than the course's FME "
+                                 f"{lesson.course_version}; learners on {lesson.course_version} can't open it",
+                                 _sev(current)))
+        elif previous_version and saved < _course_key(previous_version):
+            found.append(Finding("FT006", lesson.rel_html, None,
+                                 f"{rel} not updated since FME {shown} (the course's previous version is "
+                                 f"{previous_version})", "notice"))
+    return found
+
+
+def is_legacy(rel: str) -> bool:
+    return rel.rsplit("/", 1)[-1].startswith("exercise-")
+
+
+def ft007(lesson: Lesson, current: bool) -> list[Finding]:
+    """A lesson still links a workspace with the legacy exercise- prefix, which is being phased out."""
+    return [Finding("FT007", lesson.rel_html, None,
+                    f"links legacy workspace name {rel}; the exercise- prefix is being phased out", _sev(current))
+            for rel in workspace_refs(lesson) if is_legacy(rel)]
 
 
 def ft005(lesson: Lesson, statuses: dict[str, int | None], cfg: Config, current: bool) -> list[Finding]:
