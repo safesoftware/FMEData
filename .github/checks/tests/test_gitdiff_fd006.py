@@ -50,7 +50,7 @@ def test_fd006_flags_each_pattern():
     secret = "AKIA" + "ABCDEFGHIJKLMNOP"
     lines = [
         (1, f"key={secret}"),
-        (2, "aws_secret" + "_access_key = abc"),
+        (2, "aws_secret" + "_access_key = " + "x" * 40),
         (3, "token ghp" + "_" + "a" * 36),
         (4, "-----BEGIN RSA " + "PRIVATE KEY-----"),
         (5, "contact jane.doe" + "@" + "corp.test"),
