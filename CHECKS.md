@@ -98,3 +98,33 @@ index.
 
 Fix: keep the old file until the lessons are updated in Skilljar, or update the lessons first and then remove it.
 If the lesson index is more than a week old, FD010 only warns, because its list may be out of date.
+
+## Lesson checks
+
+These run nightly against the FME Academy lesson archive (<https://github.com/safesoftware/FMETraining>) and appear
+in the report, never on a pull request. Lessons are edited in Skilljar; the archive picks up the change after
+the next weekly scrape. Findings in a course's latest version are warnings; older versions are notices, because
+learners on archived content use that year's `FMEData<year>.zip` and its local paths.
+
+### FT001
+
+**A lesson's `C:\FMEData` path doesn't match a file in this repository.** Fix: correct the path in the lesson, or
+add the file here.
+
+### FT002
+
+**A lesson's FMEData S3 link doesn't resolve.** Links under `FMEData/FMEData/` are checked against this repository;
+other FMEData links are checked over the network. Fix: correct the link in the lesson, or restore the file.
+
+### FT003
+
+**An exercise's Resources section doesn't list a complete workspace, or lists one that isn't in this repository.**
+A starting workspace is optional, because some exercises start from a blank workspace. "Lesson not parsed" means
+the page has no Resources section, so the check couldn't read it. Fix: add or correct the workspace link in the
+lesson's Resources section.
+
+### FT005
+
+**A web link in a lesson is broken (the site answered 4xx or 5xx).** Sites that refuse automated requests
+(listed under `bot_refusers`, such as support.safe.com) and `localhost` links are listed separately in the report,
+not as broken. Fix: update or remove the link in the lesson.
