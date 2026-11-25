@@ -13,15 +13,13 @@ from zoneinfo import ZoneInfo
 
 from .lessons import Lesson
 from .links import classify_url
-from .model import CHECKS, Config, Finding
+from .model import CHECKS, PR_ONLY, Config, Finding
 from .refs import redact
 
 __all__ = ["build_reports", "redact"]
 
 _TEMPLATE = Template((Path(__file__).parent / "templates" / "report.html").read_text(encoding="utf-8"))
 _PACIFIC = ZoneInfo("America/Los_Angeles")
-# Checks that look at what a pull request changes, so the nightly report never counts them.
-PR_ONLY = {"FD006", "FD010"}
 
 
 def _e(text: object) -> str:
@@ -68,7 +66,8 @@ def _index_body(findings: list[Finding], exempt: list[str], enforce: set[str]) -
         if i in PR_ONLY:
             fails += " Runs on pull requests only."
         return (f'<td><a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#{i.lower()}">{_e(i)}</a>'
-                f" {_e(name)}<br><small>{_e(summary)}.{fails}</small></td>")
+                + (f" {_e(name)}<br><small>{_e(summary)}.{fails}</small>" if summary else
+                   (f"<br><small>{fails.strip()}</small>" if fails else "")) + "</td>")
 
     count_rows = [[
         name_cell(i),
@@ -103,7 +102,8 @@ def _broken_rows(lessons: list[Lesson], findings: list[Finding], statuses: dict[
     by_html = {l.rel_html: l for l in lessons}
     for f in findings:
         if f.check_id == "FT002" and f.path in by_html and "returned" not in f.message:
-            rows.append((by_html[f.path], f.message.split(" ", 1)[0], "not in FMEData", "broken"))
+            status = "case mismatch" if "differs only in case" in f.message else "not in FMEData"
+            rows.append((by_html[f.path], f.message.split(" ", 1)[0], status, "broken"))
     rows.sort(key=lambda r: (r[3] != "broken", r[0].version, r[0].course, r[0].title))
     return [[
         f"<td>{_e(l.version)}</td>", f"<td>{_e(l.course)}</td>", f"<td>{_e(l.title)}</td>",

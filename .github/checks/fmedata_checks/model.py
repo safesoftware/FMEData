@@ -28,6 +28,9 @@ CHECKS: dict[str, tuple[str, str]] = {
     "FT009": ("Course copies in the archive", "No Skilljar course copies or test courses in the lesson archive"),
 }
 
+# Checks that look at what a pull request changes, so the nightly report never counts them.
+PR_ONLY = {"FD006", "FD010"}
+
 ALWAYS_ENFORCED = "FD006"
 # Removing a file a lesson links breaks the lesson wherever the file lives.
 WARN_EVEN_WHEN_EXEMPT = "FD010"
@@ -55,8 +58,15 @@ class Config:
 
 def annotation(f: Finding) -> str:
     """Render a finding as a GitHub Actions annotation line."""
-    loc = f"file={f.path}" + (f",line={f.line}" if f.line is not None else "")
-    return f"::{f.severity} {loc}::{f.check_id} {f.message} (see CHECKS.md#{f.check_id.lower()})"
+    loc = f"file={_escape(f.path, prop=True)}" + (f",line={f.line}" if f.line is not None else "")
+    message = _escape(f"{f.check_id} {f.message} (see CHECKS.md#{f.check_id.lower()})")
+    return f"::{f.severity} {loc}::{message}"
+
+
+def _escape(value: str, prop: bool = False) -> str:
+    """Escape a workflow-command value; properties also escape : and ,."""
+    value = value.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    return value.replace(":", "%3A").replace(",", "%2C") if prop else value
 
 
 def _reasoned(table: dict, name: str) -> dict[str, str]:

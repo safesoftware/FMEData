@@ -36,6 +36,10 @@ class RepoTree:
 
     def resolve(self, rel: str) -> Resolution:
         rel = rel.strip("/")
+        if rel in self._files or rel in self._dirs:
+            return "exact"
+        if rel.lower() in self._lower:
+            return "case"
         if any(ch in rel for ch in "*?["):
             pattern = rel
             if any(fnmatch.fnmatchcase(p, pattern) for p in self._files | self._dirs):
@@ -44,10 +48,6 @@ class RepoTree:
             if any(fnmatch.fnmatchcase(p.lower(), low) for p in self._files | self._dirs):
                 return "case"
             return "missing"
-        if rel in self._files or rel in self._dirs:
-            return "exact"
-        if rel.lower() in self._lower:
-            return "case"
         return "missing"
 
     def actual(self, rel: str) -> str | None:
