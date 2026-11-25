@@ -25,9 +25,9 @@ def make_repo(tmp_path: Path) -> Path:
     return repo
 
 
-def config(tmp_path: Path) -> Path:
+def config(tmp_path: Path, ignore: str = "") -> Path:
     p = tmp_path / "checks.toml"
-    p.write_text('enforce = []\n[exempt]\n"Resources/" = "shared"\n', encoding="utf-8")
+    p.write_text(f'enforce = []\n{ignore}[exempt]\n"Resources/" = "shared"\n', encoding="utf-8")
     return p
 
 
@@ -96,6 +96,31 @@ def test_cli_lessons_reports_version_and_legacy(tmp_path: Path):
           "--no-network", "--config", str(config(tmp_path))])
     ids = {f["check_id"] for f in json.loads((out / "findings.json").read_text(encoding="utf-8"))["findings"]}
     assert {"FT006", "FT007", "FD005"} <= ids
+
+
+def test_shipped_config_enforces_fd010():
+    from fmedata_checks.__main__ import DEFAULT_CONFIG
+    from fmedata_checks.model import load_config
+    cfg = load_config(DEFAULT_CONFIG)
+    assert {"FD006", "FD010"} <= cfg.enforce
+    assert "Resources/" in cfg.exempt and "Clone of *" in cfg.ignore_courses
+
+
+def test_cli_lessons_flags_copies_and_step1(tmp_path: Path):
+    repo = make_repo(tmp_path)
+    archive = tmp_path / "FMETraining"
+    for course in ("Clone of Course 2025.0", "Course 2026.2"):
+        page = archive / "2026.2" / "adv" / course / "Exercise_ A" / "index.html"
+        page.parent.mkdir(parents=True)
+        page.write_text("<h2>Resources</h2><p>Starting workspace | C:\\FMEData\\Workspaces\\a.fmw</p>"
+                        "<p>Complete workspace | C:\\FMEData\\Workspaces\\a.fmw</p>"
+                        "<h3>1) Start Workbench</h3><p>Open the starting workspace.</p>", encoding="utf-8")
+    out = tmp_path / "out"
+    main(["lessons", "--repo", str(repo), "--fmetraining", str(archive), "--out", str(out),
+          "--no-network", "--config", str(config(tmp_path, ignore='ignore_courses = ["Clone of *"]\n'))])
+    found = json.loads((out / "findings.json").read_text(encoding="utf-8"))["findings"]
+    assert [f["path"] for f in found if f["check_id"] == "FT009"] == ["2026.2/adv/Clone of Course 2025.0"]
+    assert [f["path"] for f in found if f["check_id"] == "FT008"] == ["2026.2/adv/Course 2026.2/Exercise_ A/index.html"]
 
 
 def test_cli_lessons_no_network(tmp_path: Path, capsys):

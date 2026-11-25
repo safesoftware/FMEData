@@ -103,6 +103,8 @@ repository by `C:\FMEData` path and by S3 URL. When `main` changes, the S3 copy 
 renamed file breaks every lesson that links it. The finding names the lessons, from the nightly report's lesson
 index.
 
+This check fails the pull request.
+
 Fix: keep the old file until the lessons are updated in Skilljar, or update the lessons first and then remove it.
 If the lesson index is more than a week old, FD010 only warns, because its list may be out of date.
 
@@ -160,3 +162,21 @@ Fix: save the workspace in the course's FME version, or update the course.
 
 **A lesson links a workspace with the legacy `exercise-` prefix.** See FD005. Fix: when the workspace is renamed,
 update the lesson's links.
+
+### FT008
+
+**An exercise that starts from a workspace doesn't say where to find it.** When an exercise opens a starting
+workspace, Step 1 gives its full `C:\FMEData` path and the Resources section lists it. FT008 reports Step 1
+opening a starting workspace without its path, Step 1 naming a workspace that Resources doesn't list, and Step 1
+and Resources naming different workspaces. Exercises that start from a blank workspace aren't affected.
+
+Fix: in Step 1, give the workspace's name and full path, for example "Open the starting workspace
+(`C:\FMEData\Workspaces\<folder>\<name>.fmw`)", and list the same file under Resources.
+
+### FT009
+
+**A Skilljar course copy or test course is in the lesson archive.** Course names matching `ignore_courses` in
+`.github/checks/checks.toml` (such as "Clone of ..." or containing "TEST") are skipped by the other lesson checks
+and listed here, because they shouldn't be in the public archive at all.
+
+Fix: delete or unpublish the copy in Skilljar so the export no longer includes it.

@@ -118,6 +118,30 @@ def ft007(lesson: Lesson, current: bool) -> list[Finding]:
             for rel in workspace_refs(lesson) if is_legacy(rel)]
 
 
+def ft008(lesson: Lesson, current: bool) -> list[Finding]:
+    """When an exercise starts from a workspace, Step 1 gives its C:\\FMEData path and Resources lists it."""
+    if not (lesson.is_exercise and lesson.parsed and lesson.has_step1):
+        return []
+    expected = bool(lesson.starting) or lesson.step1_mentions_start or bool(lesson.step1_workspaces)
+    if not expected:
+        return []
+    msgs = []
+    if not lesson.starting:
+        msgs.append("Step 1 opens a starting workspace, but Resources doesn't list one")
+    if not lesson.step1_workspaces:
+        msgs.append("Step 1 opens the starting workspace but doesn't give its C:\\FMEData path")
+    elif lesson.starting and not set(lesson.step1_workspaces) & set(lesson.starting):
+        msgs.append(f"Step 1 opens {lesson.step1_workspaces[0]}, but Resources lists {lesson.starting[0]}")
+    return [Finding("FT008", lesson.rel_html, None, m, _sev(current)) for m in msgs]
+
+
+def ft009(course_folders: list[str]) -> list[Finding]:
+    """Skilljar copies and test courses don't belong in the lesson archive."""
+    return [Finding("FT009", c, None,
+                    "course copy or test course in the lesson archive; remove it from Skilljar or the S3 export",
+                    "warning") for c in course_folders]
+
+
 def ft005(lesson: Lesson, statuses: dict[str, int | None], cfg: Config, current: bool) -> list[Finding]:
     """Web links in a lesson answer. Bot-refusing hosts and localhost are reported separately, not as broken."""
     found, seen = [], set()

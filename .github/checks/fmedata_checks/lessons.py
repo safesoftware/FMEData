@@ -8,6 +8,7 @@ archive's version folder.
 from __future__ import annotations
 
 import fnmatch
+import html as html_lib
 import json
 import re
 import urllib.error
@@ -43,6 +44,27 @@ class Lesson:
     local_refs: list[Ref] = field(default_factory=list)
     s3_refs: list[Ref] = field(default_factory=list)
     web_refs: list[Ref] = field(default_factory=list)
+    has_step1: bool = False
+    step1_mentions_start: bool = False
+    step1_workspaces: list[str] = field(default_factory=list)
+
+
+_HEADING = re.compile(r"<h([1-6])[^>]*>(.*?)</h\1>", re.I | re.S)
+_STEP1 = re.compile(r"^(?:step\s*)?1(?:[).:]|\s|$)", re.I)
+_MENTIONS_START = re.compile(r"starting\s+workspace|colleague.?s\s+workspace", re.I)
+
+
+def _step1(page: str) -> tuple[bool, bool, list[str]]:
+    heads = list(_HEADING.finditer(page))
+    for i, m in enumerate(heads):
+        title = html_lib.unescape(_TAG.sub("", m.group(2))).strip()
+        if _STEP1.match(title):
+            end = heads[i + 1].start() if i + 1 < len(heads) else len(page)
+            section = page[m.end():end]
+            text = html_lib.unescape(_TAG.sub(" ", section))
+            rels = [r.rel for r in find_local_paths(section) if r.rel.endswith((".fmw", ".fmwt"))]
+            return True, bool(_MENTIONS_START.search(text)), list(dict.fromkeys(rels))
+    return False, False, []
 
 
 def _kind(label: str) -> str | None:
@@ -87,7 +109,9 @@ def parse_lesson(rel_html: str, html: str) -> Lesson:
     section = _RESOURCES.search(html)
     if section:
         starting, complete = _resources(section.group(1))
+    has_step1, mentions_start, step1_ws = _step1(html) if is_exercise else (False, False, [])
     return Lesson(
+        has_step1=has_step1, step1_mentions_start=mentions_start, step1_workspaces=step1_ws,
         version=version, learning_path=learning_path, course=course, course_base=course_base,
         course_version=course_version, title=title, rel_html=rel_html, is_exercise=is_exercise,
         parsed=(not is_exercise) or section is not None,
@@ -106,6 +130,16 @@ def iter_lessons(root: Path, ignore_courses: list[str] | None = None) -> Iterato
         if not _VERSION_DIR.match(parts[0]) or any(fnmatch.fnmatchcase(parts[2], p) for p in ignore):
             continue
         yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"))
+
+
+def ignored_courses(root: Path, ignore_courses: list[str]) -> list[str]:
+    """Course folders (version/path/course) that match an ignore pattern: copies and test courses."""
+    found = set()
+    for page in Path(root).glob("*/*/*/*/index.html"):
+        version, path, course = page.relative_to(root).as_posix().split("/")[:3]
+        if _VERSION_DIR.match(version) and any(fnmatch.fnmatchcase(course, p) for p in ignore_courses):
+            found.add(f"{version}/{path}/{course}")
+    return sorted(found)
 
 
 def _key(version: str) -> tuple[int, ...]:

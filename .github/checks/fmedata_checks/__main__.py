@@ -13,7 +13,7 @@ from pathlib import Path
 
 from . import checks_fd, checks_ft
 from .gitdiff import added_lines, changed_files
-from .lessons import is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
+from .lessons import ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
 from .reports import build_reports
@@ -86,6 +86,8 @@ def run_lessons(args) -> int:
         findings += checks_ft.ft005(lesson, statuses, cfg, current)
         findings += checks_ft.ft006(lesson, workspaces, current, previous_version(lesson, lessons))
         findings += checks_ft.ft007(lesson, current)
+        findings += checks_ft.ft008(lesson, current)
+    findings += checks_ft.ft009(ignored_courses(Path(args.fmetraining), cfg.ignore_courses))
 
     findings = [effective(f, cfg) for f in findings]
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),
