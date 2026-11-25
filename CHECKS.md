@@ -77,3 +77,14 @@ a person's user name in a public repository. The check never prints the name.
 Fix: move the data into FMEData and point the workspace at `C:\FMEData\...` or its S3 URL. A user path in the
 workspace's header comment (the command line FME records when it saves) is only a notice; it disappears when the
 workspace is saved from `C:\FMEData`.
+
+### FD006
+
+**A change adds something that shouldn't be public.** This repository is public, so its files, its pull requests,
+and its Actions logs can be read by anyone. FD006 looks at the lines a pull request adds for access keys and
+tokens, private keys, email addresses (other than `@example.com`, `@example.org`, and `@example.net`), and personal
+`C:\Users\<name>` folders. It's always enforced, in every folder.
+
+Fix: remove the value from the file. If it was a real key or token, it's already exposed: revoke it and issue a new
+one, because deleting it in a later commit leaves it in the history. FME's own header comment in a workspace
+(the command line recorded on save) is reported by FD003 instead.

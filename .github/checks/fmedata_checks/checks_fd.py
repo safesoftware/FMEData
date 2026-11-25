@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Callable
 
 from .model import Config, Finding
@@ -64,6 +65,37 @@ def fd002(ws: Workspace, tree: RepoTree, cfg: Config, fetch: Fetch | None) -> li
             if status is None or status >= 400:
                 found.append(Finding("FD002", ws.path, r.line,
                                      f"{r.raw} returned {status if status else 'no response'}", "error"))
+    return found
+
+
+_SECRET_PATTERNS = [
+    (re.compile(r"AKIA[0-9A-Z]{16}"), "an AWS access key id"),
+    (re.compile(r"aws_secret_access_key", re.I), "an AWS secret key setting"),
+    (re.compile(r"\b(?:ghp|gho|ghs|ghu)_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{20,}"), "a GitHub token"),
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "a private key"),
+    (re.compile(r"xox[abprs]-[A-Za-z0-9-]{10,}"), "a Slack token"),
+]
+_EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")
+_ALLOWED_EMAIL_DOMAINS = ("example.com", "example.org", "example.net")
+_USER_DIR = re.compile(r"[Cc]:[\\/]Users[\\/](?!Public[\\/]|…)[^\\/\s\"'<>]+[\\/]")
+
+
+def fd006(path: str, added: list[tuple[int, str]]) -> list[Finding]:
+    """Added lines carry no secrets, email addresses, or personal user folders (the repo is public)."""
+    found = []
+    for n, text in added:
+        what = next((label for rx, label in _SECRET_PATTERNS if rx.search(text)), None)
+        if what is None:
+            for m in _EMAIL.finditer(text):
+                if not m.group(0).lower().endswith(_ALLOWED_EMAIL_DOMAINS):
+                    what = "an email address"
+                    break
+        # FME records the command line it saved from as a plain "#" comment; FD003 reports that as a notice.
+        fme_comment = path.endswith((".fmw", ".fmwt")) and text.startswith("#") and not text.startswith("#!")
+        if what is None and not fme_comment and _USER_DIR.search(text):
+            what = "a personal C:\\Users\\… folder"
+        if what:
+            found.append(Finding("FD006", path, n, f"this line adds {what}; the repository is public", "error"))
     return found
 
 
