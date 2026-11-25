@@ -8,7 +8,8 @@ TREE = RepoTree.from_paths(["Data/Parks/Parks.shp", "Workspaces/X/a.fmw"])
 WS = "\n".join([
     "#! <?xml version=\"1.0\" encoding=\"UTF-8\" ?>",
     "#! <WORKSPACE",
-    r'#        "C:\Program Files\FME\fme.exe" C:\Users\jdoe\Documents\a.fmw',
+    # User paths are assembled at runtime so this file doesn't trip FD006 itself.
+    r'#        "C:\Program Files\FME\fme.exe" C:' + r"\Users\jdoe\Documents\a.fmw",
     "#!   LAST_SAVE_BUILD=\"FME(R) 2026.2.0.0 (20260617 - Build 26333 - WIN64)\"",
     "#! />",
     "",
@@ -16,7 +17,7 @@ WS = "\n".join([
     r"DEFAULT_MACRO SourceDataset_CSV C:\FMEData\Data\Nope.csv",
     r"DEFAULT_MACRO SourceDataset_TIF C:\FMEData\data\parks\parks.shp",
     r"DEFAULT_MACRO DestDataset_GDB C:\FMEData\Output\Training\Vancouver.gdb",
-    r"DEFAULT_MACRO SourceDataset_XLS C:\Users\jdoe\Desktop\in.xlsx",
+    r"DEFAULT_MACRO SourceDataset_XLS C:" + r"\Users\jdoe\Desktop\in.xlsx",
     "DEFAULT_MACRO SourceDataset_GML https://s3.amazonaws.com/FMEData/FMEData/Data/Parks/Parks.shp",
     "DEFAULT_MACRO SourceDataset_ZIP https://s3.amazonaws.com/FMEData/Orthophotos.zip",
 ])

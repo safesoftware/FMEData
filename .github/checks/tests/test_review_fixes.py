@@ -58,6 +58,14 @@ def test_fd006_plain_text_email_still_error():
     assert fd006("notes.txt", [(1, "mail someone" + "@" + "corp.test")])[0].severity == "error"
 
 
+def test_fd006_aws_secret_needs_a_value():
+    ref = "          aws-secret-access-key: ${{ secrets." + "AWS_SECRET" + "_ACCESS_KEY }}"
+    assert fd006("ci.yml", [(1, ref)]) == []
+    real = "aws_secret" + "_access_key = " + "a" * 20 + "/" + "B" * 19
+    assert [f.message for f in fd006("cfg.ini", [(1, real)])] == [
+        "this line adds an AWS secret key setting; the repository is public"]
+
+
 def test_fd006_ignores_common_false_positives():
     lines = [(1, "icon@2x.png and logo@3x.jpg"), (2, "git" + "@github.com:safesoftware/FMEData.git"),
              (3, "C:" + "\\Users\\Default\\AppData\\x"), (4, "C:" + "\\Users\\Public\\Documents\\x")]

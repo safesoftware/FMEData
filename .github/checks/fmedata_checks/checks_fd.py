@@ -72,7 +72,8 @@ def fd002(ws: Workspace, tree: RepoTree, cfg: Config, fetch: Fetch | None) -> li
 
 _SECRET_PATTERNS = [
     (re.compile(r"AKIA[0-9A-Z]{16}"), "an AWS access key id"),
-    (re.compile(r"aws_secret_access_key", re.I), "an AWS secret key setting"),
+    # A literal value, not a reference such as ${{ secrets.NAME }}: AWS secret keys are 40 base64 characters.
+    (re.compile(r"aws_secret_access_key\s*[=:]\s*[\"']?[A-Za-z0-9/+]{40}", re.I), "an AWS secret key setting"),
     (re.compile(r"\b(?:ghp|gho|ghs|ghu)_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{20,}"), "a GitHub token"),
     (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "a private key"),
     (re.compile(r"xox[abprs]-[A-Za-z0-9-]{10,}"), "a Slack token"),
