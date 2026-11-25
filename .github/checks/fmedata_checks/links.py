@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import http.client
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -39,7 +40,7 @@ def http_status(url: str, timeout: float = 10.0) -> int | None:
             if method == "HEAD" and e.code in (403, 405, 501):
                 continue
             return e.code
-        except (urllib.error.URLError, OSError, ValueError):
+        except (urllib.error.URLError, http.client.HTTPException, OSError, ValueError):
             return None
     return None
 

@@ -24,7 +24,7 @@ _EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=[\s)\]])")
 _TRAILING = ".,;:)]"
 
 
-USER_PATH_RE = re.compile(r"([Cc]:[\\/]Users[\\/])([^\\/\"'<>\r\n]+?)(?=[\\/])")
+USER_PATH_RE = re.compile(r"(c:[\\/]users[\\/])([^\\/\"'<>\r\n]+?)(?=[\\/\"'<>]|$)", re.I)
 
 
 def redact(text: str) -> str:

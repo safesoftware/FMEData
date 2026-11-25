@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import fnmatch
 import re
 from typing import Callable
 
@@ -81,7 +82,8 @@ _SECRET_PATTERNS = [
 _EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")
 _ALLOWED_EMAIL_DOMAINS = ("example.com", "example.org", "example.net")
 _USER_DIR = re.compile(
-    r"[Cc]:[\\/]Users[\\/](?!(?:Public|Default|Default User|All Users)[\\/]|…)[^\\/\s\"'<>]+[\\/]")
+    r"c:[\\/]users[\\/](?!(?:Public|Default|Default User|All Users)(?:[\\/\"'<>]|$)|…)[^\\/\"'<>]+(?:[\\/\"'<>]|$)",
+    re.I)
 # Image density suffixes ("icon@2x.png") and git remotes ("git@github.com:") look like addresses but aren't.
 _NOT_EMAIL_TLDS = {"png", "jpg", "jpeg", "gif", "svg", "webp", "bmp", "tif", "tiff"}
 _NOT_EMAIL_USERS = {"git"}
@@ -91,7 +93,7 @@ def _personal_data(text: str) -> str | None:
     for m in _EMAIL.finditer(text):
         address = m.group(0).lower()
         user, _, domain = address.partition("@")
-        if (address.endswith(_ALLOWED_EMAIL_DOMAINS) or domain.rsplit(".", 1)[-1] in _NOT_EMAIL_TLDS
+        if (any(domain == d or domain.endswith("." + d) for d in _ALLOWED_EMAIL_DOMAINS) or domain.rsplit(".", 1)[-1] in _NOT_EMAIL_TLDS
                 or user in _NOT_EMAIL_USERS):
             continue
         return "an email address"
@@ -124,6 +126,19 @@ def fd006(path: str, added: list[tuple[int, str]]) -> list[Finding]:
     return found
 
 
+def _linked(removed: str | None, idx: dict[str, list[str]]) -> list[str]:
+    """Lessons linking a path, as lessons spell it: exactly, in another case, or by a wildcard."""
+    if not removed:
+        return []
+    if removed in idx:
+        return idx[removed]
+    low = removed.lower()
+    hits = {label for key, labels in idx.items()
+            if key.lower() == low or (any(ch in key for ch in "*?[") and fnmatch.fnmatch(low, key.lower()))
+            for label in labels}
+    return sorted(hits)
+
+
 def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool,
           current: dict[str, list[str]] | None = None, cfg: Config | None = None) -> list[Finding]:
     """A change that deletes or renames a file that lessons still link.
@@ -135,10 +150,10 @@ def fd010(changes: list[Change], idx: dict[str, list[str]], stale: bool,
     found = []
     for c in changes:
         removed = c.path if c.status == "D" else c.old_path if c.status == "R" else None
-        lessons = idx.get(removed or "", [])
+        lessons = _linked(removed, idx)
         if not lessons or removed in allow:
             continue
-        live = lessons if current is None else current.get(removed, [])
+        live = lessons if current is None else _linked(removed, current)
         shown_from = live or lessons
         shown = "; ".join(shown_from[:3]) + (f"; and {len(shown_from) - 3} more" if len(shown_from) > 3 else "")
         if live:
