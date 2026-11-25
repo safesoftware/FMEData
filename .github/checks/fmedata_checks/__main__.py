@@ -74,7 +74,7 @@ def run_lessons(args) -> int:
     findings += checks_fd.fd005(workspaces, pr_added=False)
     findings += checks_fd.fd011(workspaces, pr_added=False, cfg=cfg)
 
-    lessons = list(iter_lessons(Path(args.fmetraining)))
+    lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses))
     latest = latest_versions(lessons)
     urls = {r.raw for l in lessons for r in [*l.web_refs, *l.s3_refs] if not r.rel}
     statuses = {} if args.no_network else check_urls(urls, http_status, workers=args.workers)

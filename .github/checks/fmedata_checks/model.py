@@ -31,6 +31,7 @@ class Config:
     bot_refusers: list[str] = field(default_factory=list)
     complete_suffixes: list[str] = field(default_factory=lambda: ["-complete"])
     exempt: dict[str, str] = field(default_factory=dict)
+    ignore_courses: list[str] = field(default_factory=list)
 
 
 def annotation(f: Finding) -> str:
@@ -56,6 +57,7 @@ def load_config(path: Path) -> Config:
         bot_refusers=list(data.get("bot_refusers", [])),
         complete_suffixes=list(data.get("complete_suffixes", ["-complete"])),
         exempt=_reasoned(data.get("exempt", {}), "exempt"),
+        ignore_courses=list(data.get("ignore_courses", [])),
     )
 
 

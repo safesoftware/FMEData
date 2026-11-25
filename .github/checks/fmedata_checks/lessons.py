@@ -7,6 +7,7 @@ archive's version folder.
 
 from __future__ import annotations
 
+import fnmatch
 import json
 import re
 import urllib.error
@@ -95,11 +96,14 @@ def parse_lesson(rel_html: str, html: str) -> Lesson:
     )
 
 
-def iter_lessons(root: Path) -> Iterator[Lesson]:
+def iter_lessons(root: Path, ignore_courses: list[str] | None = None) -> Iterator[Lesson]:
+    """Lesson pages under a version folder, skipping courses whose name matches an ignore pattern."""
     root = Path(root)
+    ignore = ignore_courses or []
     for page in sorted(root.glob("*/*/*/*/index.html")):
         rel = page.relative_to(root).as_posix()
-        if not _VERSION_DIR.match(rel.split("/", 1)[0]):
+        parts = rel.split("/")
+        if not _VERSION_DIR.match(parts[0]) or any(fnmatch.fnmatchcase(parts[2], p) for p in ignore):
             continue
         yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"))
 

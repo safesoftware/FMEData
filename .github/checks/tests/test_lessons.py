@@ -78,6 +78,15 @@ def test_latest_versions():
     assert not is_current(old, latest) and is_current(newer, latest)
 
 
+def test_iter_lessons_skips_ignored_courses(tmp_path: Path):
+    for course in ("Clone of Transform Data 2025.0", "SM TEST - Clone of Connect 2025.0", "Transform Data 2026.1"):
+        p = tmp_path / "2026.2" / "p" / course / "L" / "index.html"
+        p.parent.mkdir(parents=True)
+        p.write_text("<p>x</p>", encoding="utf-8")
+    kept = [l.course for l in iter_lessons(tmp_path, ignore_courses=["Clone of *", "*TEST*"])]
+    assert kept == ["Transform Data 2026.1"]
+
+
 def test_iter_lessons_skips_non_version_dirs(tmp_path: Path):
     for rel in (REL, ".github/x/y/z/index.html", "2026.2/p/C 2026.2/L/images/index.html"):
         p = tmp_path / rel

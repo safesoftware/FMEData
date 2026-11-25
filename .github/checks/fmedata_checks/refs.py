@@ -19,8 +19,8 @@ S3_FMEDATA = "s3.amazonaws.com/FMEData/"
 S3_MAIN_PREFIX = "s3.amazonaws.com/FMEData/FMEData/"
 
 _LOCAL_RE = re.compile(r"[Cc]:[\\/]FMEData[\\/]([^\"'<>\r\n,;|\t{}]+)")
-_URL_RE = re.compile(r"https?://[^\s\"'<>]+")
-_EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=\s)")
+_URL_RE = re.compile(r"https?://[^\s\"'<>{}]+")
+_EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=[\s)\]])")
 _TRAILING = ".,;:)]"
 
 

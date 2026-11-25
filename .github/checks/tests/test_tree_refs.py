@@ -78,6 +78,16 @@ def test_find_s3_urls_comma_joined_and_encoded():
     assert [r.rel for r in find_s3_urls(text)] == ["Data/A B.zip", "Data/C.zip"]
 
 
+def test_find_s3_urls_strip_macro_brace():
+    refs = find_s3_urls("$(X){https://s3.amazonaws.com/FMEData/FMEData/Data/Addresses.zip}")
+    assert [r.rel for r in refs] == ["Data/Addresses.zip"]
+
+
+def test_find_local_paths_stops_at_paren_then_prose():
+    refs = find_local_paths(r"(C:\FMEData\Data\Culture\PublicArt.xlsx). The steps are the same")
+    assert [r.rel for r in refs] == ["Data/Culture/PublicArt.xlsx"]
+
+
 def test_find_s3_off_prefix():
     refs = find_s3_urls("see https://s3.amazonaws.com/FMEData/Orthophotos.zip now")
     assert [(r.raw, r.rel) for r in refs] == [("https://s3.amazonaws.com/FMEData/Orthophotos.zip", "")]

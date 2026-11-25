@@ -41,6 +41,12 @@ def test_fd006_always_enforced(tmp_path: Path):
     assert "FD006" in load_config(p).enforce
 
 
+def test_load_ignore_courses(tmp_path: Path):
+    p = tmp_path / "checks.toml"
+    p.write_text('ignore_courses = ["Clone of *"]\n', encoding="utf-8")
+    assert load_config(p).ignore_courses == ["Clone of *"]
+
+
 def test_allowlist_requires_reason(tmp_path: Path):
     p = tmp_path / "checks.toml"
     p.write_text('[allow.paths]\n"Data/x.shp" = ""\n', encoding="utf-8")
