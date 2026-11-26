@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import tomllib
 from dataclasses import dataclass, field, replace
 from pathlib import Path
@@ -55,6 +56,20 @@ class Config:
     complete_suffixes: list[str] = field(default_factory=lambda: ["-complete"])
     exempt: dict[str, str] = field(default_factory=dict)
     ignore_courses: list[str] = field(default_factory=list)
+    # Course name -> the version Skilljar publishes as current, where the archive's newest version isn't it.
+    course_versions: dict[str, str] = field(default_factory=dict)
+    # Courses (names or patterns) with no current version on Skilljar: every version is archived.
+    archived_courses: list[str] = field(default_factory=list)
+
+
+_VERSION = re.compile(r"^\d{4}\.\d+$")
+
+
+def _course_versions(table: dict) -> dict[str, str]:
+    for name, version in table.items():
+        if not _VERSION.match(str(version)):
+            raise ValueError(f"courses.current entry {name!r} needs a version like 2026.2, not {version!r}")
+    return {str(k): str(v) for k, v in table.items()}
 
 
 def annotation(f: Finding) -> str:
@@ -88,6 +103,8 @@ def load_config(path: Path) -> Config:
         complete_suffixes=list(data.get("complete_suffixes", ["-complete"])),
         exempt=_reasoned(data.get("exempt", {}), "exempt"),
         ignore_courses=list(data.get("ignore_courses", [])),
+        course_versions=_course_versions(data.get("courses", {}).get("current", {})),
+        archived_courses=list(data.get("courses", {}).get("archived", [])),
     )
 
 

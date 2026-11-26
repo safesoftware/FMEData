@@ -98,11 +98,18 @@ def _resources(section: str) -> tuple[list[str], list[str]]:
     return starting, complete
 
 
-def parse_lesson(rel_html: str, html: str) -> Lesson:
+def parse_lesson(rel_html: str, html: str, course_versions: dict[str, str] | None = None) -> Lesson:
+    """Parse one lesson page.
+
+    course_versions names courses whose names carry no version (checks.toml [courses.current]); their lessons
+    take the version of the archive folder they sit in, so each copy of the course has a version.
+    """
     parts = rel_html.replace("\\", "/").split("/")
     version, learning_path, course, title = parts[0], parts[1], parts[2], parts[3]
     m = _COURSE_VERSION.match(course)
     course_base, course_version = (m.group(1), m.group(2)) if m else (course, None)
+    if course_version is None and course in (course_versions or {}):
+        course_version = version
     is_exercise = title.startswith("Exercise_")
     starting: list[str] = []
     complete: list[str] = []
@@ -120,7 +127,8 @@ def parse_lesson(rel_html: str, html: str) -> Lesson:
     )
 
 
-def iter_lessons(root: Path, ignore_courses: list[str] | None = None) -> Iterator[Lesson]:
+def iter_lessons(root: Path, ignore_courses: list[str] | None = None,
+                 course_versions: dict[str, str] | None = None) -> Iterator[Lesson]:
     """Lesson pages under a version folder, skipping courses whose name matches an ignore pattern."""
     root = Path(root)
     ignore = ignore_courses or []
@@ -129,7 +137,7 @@ def iter_lessons(root: Path, ignore_courses: list[str] | None = None) -> Iterato
         parts = rel.split("/")
         if not _VERSION_DIR.match(parts[0]) or any(fnmatch.fnmatchcase(parts[2], p) for p in ignore):
             continue
-        yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"))
+        yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"), course_versions)
 
 
 def ignored_courses(root: Path, ignore_courses: list[str]) -> list[str]:
@@ -146,13 +154,24 @@ def _key(version: str) -> tuple[int, ...]:
     return tuple(int(p) for p in version.split("."))
 
 
-def latest_versions(lessons: Iterable[Lesson]) -> dict[str, str]:
+def latest_versions(lessons: Iterable[Lesson], current: dict[str, str] | None = None,
+                    archived: list[str] | None = None) -> dict[str, str]:
+    """Course name -> its current version: the newest in the archive, unless checks.toml says otherwise.
+
+    current (checks.toml [courses.current]) sets the version Skilljar publishes as current; archived
+    ([courses] archived) names courses with no current version, so none of their lessons count as current.
+    Both are refreshed from Skilljar's published catalog with `python -m fmedata_checks courses`.
+    """
     latest: dict[str, str] = {}
     for lesson in lessons:
         v = lesson.course_version
         if v and (lesson.course_base not in latest or _key(v) > _key(latest[lesson.course_base])):
             latest[lesson.course_base] = v
-    return latest
+    for name, version in (current or {}).items():
+        if name in latest:
+            latest[name] = version
+    patterns = archived or []
+    return {name: v for name, v in latest.items() if not any(fnmatch.fnmatchcase(name, p) for p in patterns)}
 
 
 def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
@@ -160,7 +179,8 @@ def is_current(lesson: Lesson, latest: dict[str, str]) -> bool:
 
     A course's version comes from its name, as in Skilljar's tags, labels, and course names. Academy URLs
     carry a version only for archived courses, so versions are never read from URLs. A course whose name has
-    no version is treated as archived: its findings are notices, and FD010 only warns about its links.
+    no version is treated as archived (unless checks.toml [courses.current] names it): its findings are notices,
+    and FD010 only warns about its links.
     """
     if lesson.course_version is None:
         return False
@@ -197,9 +217,10 @@ def lesson_index(lessons: Iterable[Lesson]) -> dict[str, list[str]]:
     return {rel: sorted(labels) for rel, labels in sorted(idx.items())}
 
 
-def current_index(lessons: list[Lesson]) -> dict[str, list[str]]:
-    """The lesson index restricted to lessons in each course's latest version."""
-    latest = latest_versions(lessons)
+def current_index(lessons: list[Lesson], current: dict[str, str] | None = None,
+                  archived: list[str] | None = None) -> dict[str, list[str]]:
+    """The lesson index restricted to lessons in each course's current version."""
+    latest = latest_versions(lessons, current, archived)
     return lesson_index(l for l in lessons if is_current(l, latest))
 
 

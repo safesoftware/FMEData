@@ -14,6 +14,29 @@ ignore_courses = ["Clone of *", "*TEST*"]
 # Accepted endings for a complete workspace's file name (FD011).
 complete_suffixes = ["-complete"]
 
+# Which course versions are current, where the archive's newest version isn't the answer. A course's current
+# version is the one Skilljar publishes on its unversioned URL. Refreshed by hand from Skilljar's published
+# catalog (CI can't call Skilljar): python -m fmedata_checks courses --fmetraining <archive>  (see CHECKS.md).
+# archived: courses Skilljar publishes only on versioned URLs, so no version of them is current.
+# current: course name -> current version. A course whose name has no version ("MCP and FME") is current in
+# the archive folder for that version; adding the version to its name in Skilljar makes its entry unneeded.
+[courses]
+archived = [
+    "Build Basic Automations",
+    "Build Basic Self-Serve Workflows",
+    "Build Versatile Automations",
+    "Build Versatile Self-Serve Workflows",
+    "Connect Automations with Job Orchestration",
+    "Enhance Workflow Control with Parameters",
+    "Publish Workflows to the Web",
+    "Unlock the Power of FME Flow",
+]
+
+[courses.current]
+"Continuous Data Processing with Streams - Live Online Course" = "2026.2"
+"FME Accelerator" = "2024.0"
+"MCP and FME" = "2026.2"
+
 # Folders CI does not enforce. Findings there appear in the report's "Not enforced" section.
 # FD006 still applies everywhere, and FD010 still warns.
 [exempt]

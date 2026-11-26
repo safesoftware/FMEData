@@ -144,9 +144,30 @@ skipped.
 
 **How a course's version is read.** From its name, which ends in the FME version it teaches ("Compare Workspaces
 2026.2"), the same version Skilljar's tags and labels carry. A course's newest version in the archive is its
-latest. Versions are never read from Academy URLs: live courses' URLs have no version, and only archived courses'
-URLs carry one. A course whose name has no version, such as "MCP and FME", is treated as archived, so its findings
-are notices and FD010 only warns about its links. Adding the version to the course name makes it current.
+latest, unless the `[courses]` table in `.github/checks/checks.toml` says otherwise. Versions are never read from
+Academy URLs: live courses' URLs have no version, and only archived courses' URLs carry one. A course whose name
+has no version is treated as archived, so its findings are notices and FD010 only warns about its links. Adding
+the version to the course name makes it current.
+
+**The `[courses]` table** records what Skilljar's published catalog says about current versions. On the Academy,
+the published course with the unversioned URL (`/compare-workspaces`) is a course's current version.
+
+- `archived` lists courses Skilljar publishes only on versioned URLs, such as "Publish Workflows to the Web":
+  none of their versions is current.
+- `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
+  has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
+  Once its Skilljar name carries the version, its entry is no longer needed.
+
+CI can't call Skilljar, so the table is refreshed by hand, with a Skilljar API key in the environment (read-only):
+
+```
+cd .github/checks
+SKILLJAR_API_KEY=... python -m fmedata_checks courses --fmetraining ../../../FMETraining
+```
+
+It prints the `[courses]` table to paste into `checks.toml`, and the courses whose Skilljar names should carry
+their version. `--catalog <file>` reads a saved list of published courses (`[{"title": ..., "slug": ...}]`)
+instead of calling the API.
 
 ### FT001
 
