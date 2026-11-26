@@ -115,13 +115,16 @@ and remove the entry once the lessons are fixed.
 
 ### FD011
 
-**A complete workspace's name doesn't end in `-complete`.** Today the same suffix is spelled several ways
-(`-Complete`, `_Completed`, `_Complete`, `Complete`, `--complete`, `_complete`), which makes pairs hard to find and
-links easy to get wrong. The finding gives the name to use. Accepted endings are `complete_suffixes` in
-`.github/checks/checks.toml`.
+**A complete workspace's name doesn't end in `-complete`.** Other spellings of the suffix (`-Complete`,
+`_Completed`, `_Complete`, `Complete`, `--complete`, `_complete`) make pairs hard to find and links easy to get wrong. The finding gives the name to use.
+Accepted endings are `complete_suffixes` in `.github/checks/checks.toml`.
 
-Fix: rename the file (`git mv`) and update the lessons that link it; FD010 lists them on the pull request. Existing
-names are notices in the report until they've been renamed; then FD011 is enforced.
+A pull request that adds a workspace, or renames one, to a name with another spelling fails. Editing a workspace
+that already has such a name doesn't, and names in the folders that aren't enforced are only notices.
+
+Fix: rename the file (`git mv`) and update the lessons that link it; FD010 lists them on the pull request. On
+Windows, a rename that only changes case (`-Complete` to `-complete`) takes two steps, because the file system
+treats both names as the same file: `git mv a-Complete.fmw a-tmp.fmw`, then `git mv a-tmp.fmw a-complete.fmw`.
 
 ### FD012
 
