@@ -80,3 +80,17 @@ def test_ft001_still_reports_a_missing_path_followed_by_words():
 def test_url_keeps_its_own_closing_bracket(text, expected):
     from fmedata_checks.refs import find_web_urls
     assert [r.raw for r in find_web_urls(text)] == [expected]
+
+
+def test_a_url_later_in_the_sentence_is_not_more_path():
+    assert rels(r"Open C:\FMEData\Output\a.json. See https://docs.safe.com/x") == ["Output/a.json"]
+    assert rels(r"Browse to C:\FMEData\Output. See https://docs.safe.com/x") == ["Output"]
+
+
+@pytest.mark.parametrize("text, expected", [
+    (r"C:\FMEData\Data\St. Louis.shp", "Data/St. Louis.shp"),
+    (r"(C:\FMEData\Data\Parks (old)\a.shp)", "Data/Parks (old)/a.shp"),
+])
+def test_workspace_paths_keep_the_plain_rule(text, expected):
+    # workspaces hold paths, not prose: the sentence-end rules apply only to lessons
+    assert [r.rel for r in find_local_paths(text, prose=False)] == [expected]
