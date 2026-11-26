@@ -11,6 +11,7 @@ from .tree import RepoTree
 MANIFEST = "Data/manifest.toml"
 SCOPE = "Data/"
 _KEYS = {"source", "license", "url", "files"}
+_DEFAULT_KEYS = {"source", "license", "url"}
 
 
 @dataclass(frozen=True)
@@ -19,6 +20,8 @@ class Entry:
     license: str
     files: tuple[str, ...]
     line: int | None = None
+    # The [default] table: applies to every file no [[entry]] matches.
+    default: bool = False
     # Each pattern's line in the manifest, for pointing a finding at it.
     file_lines: dict[str, int | None] = field(default_factory=dict, compare=False)
 
@@ -65,8 +68,9 @@ def load_manifest(text: str) -> tuple[list[Entry], list[tuple[int | None, str]]]
     data = tomllib.loads(text)
     lines = text.splitlines()
     headers = [n for n, line in enumerate(lines) if re.match(r"\s*\[\[\s*entry\s*\]\]", line)]
-    errors: list[tuple[int | None, str]] = [(None, f"unknown top-level key {k!r}; entries are [[entry]] tables")
-                                            for k in data if k != "entry"]
+    errors: list[tuple[int | None, str]] = [
+        (None, f"unknown top-level key {k!r}; the manifest has a [default] table and [[entry]] tables")
+        for k in data if k not in ("entry", "default")]
     entries = []
     for i, raw in enumerate(data.get("entry", [])):
         start = headers[i] if i < len(headers) else 0
@@ -84,9 +88,32 @@ def load_manifest(text: str) -> tuple[list[Entry], list[tuple[int | None, str]]]
             license_ = raw.get("license")
             entries.append(Entry(source.strip(), license_.strip() if isinstance(license_, str) else "",
                                  tuple(files), line,
-                                 {p: _line_after(lines, start, f'"{p}"') or _line_after(lines, start, f"'{p}'")
+                                 file_lines={p: _line_after(lines, start, f'"{p}"') or _line_after(lines, start, f"'{p}'")
                                   for p in files}))
+    if "default" in data:
+        entries += _load_default(data["default"], lines, errors)
     return entries, errors
+
+
+def _load_default(raw, lines: list[str], errors: list[tuple[int | None, str]]) -> list[Entry]:
+    line = next((n + 1 for n, text in enumerate(lines) if re.match(r"\s*\[\s*default\s*\]", text)), None)
+    if not isinstance(raw, dict):
+        errors.append((line, "default must be a table with source and license"))
+        return []
+    errors += [(line, f"unknown key {k!r}; the default has source, license, and url, and covers every file no "
+                      "entry matches") for k in raw if k not in _DEFAULT_KEYS]
+    values = {k: raw.get(k) for k in ("source", "license")}
+    missing = [k for k, v in values.items() if not isinstance(v, str) or not v.strip()]
+    errors += [(line, f"the default needs a {k}") for k in missing]
+    if missing:
+        return []
+    return [Entry(values["source"].strip(), values["license"].strip(), ("**",), line, default=True)]
+
+
+def attribution(path: str, entries: list[Entry]) -> list[Entry]:
+    """The entries that apply to a file: those that match it, or else the default."""
+    specific = [e for e in entries if not e.default and any(matches(p, path) for p in e.files)]
+    return specific or [e for e in entries if e.default]
 
 
 def _folder(path: str) -> str:
@@ -95,11 +122,10 @@ def _folder(path: str) -> str:
 
 
 def coverage(tree: RepoTree, entries: list[Entry]) -> dict[str, tuple[int, int]]:
-    """For each folder under Data/: (files with a source and license, all files)."""
-    complete = [_regex(p) for e in entries if e.license for p in e.files]
+    """For each folder under Data/: (files with a source and license, from an entry or the default; all files)."""
     counts: dict[str, list[int]] = {}
     for path in data_files(tree):
         c = counts.setdefault(_folder(path), [0, 0])
         c[1] += 1
-        c[0] += any(rx.fullmatch(path) for rx in complete)
+        c[0] += any(e.license for e in attribution(path, entries))
     return {k: (v[0], v[1]) for k, v in sorted(counts.items())}

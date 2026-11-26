@@ -102,7 +102,8 @@ not a failure, because it's usually a re-save of a workspace that already contai
 
 **A data file under `Data/` has no source or license in `Data/manifest.toml`.** The license for these tutorials
 requires anyone who redistributes them to keep each data source's notice, so every dataset needs a recorded source
-and license. The manifest ties them to files: each `[[entry]]` has a `source`, a `license`, an optional `url`, and
+and license. The notices are the Data Sources sections of `README.md` and of the
+[FME Training Terms of Use](https://www.safe.com/legal/#fme-training-terms-of-use). The manifest ties them to files: each `[[entry]]` has a `source`, a `license`, an optional `url`, and
 the `files` it covers, as exact paths or globs:
 
 ```toml
@@ -115,6 +116,11 @@ files = ["Data/OpenStreetMap/**"]
 
 In `files`, `*` and `?` match within one folder and `**` matches across folders, so `Data/OpenStreetMap/**` covers
 the whole folder. Paths are case-sensitive. A file whose data comes from several sources can match several entries.
+
+A `[default]` table (`source`, `license`, and an optional `url`, but no `files`) applies to every file that no entry
+matches. FMEData's default is the City of Vancouver's open data, as the Data Sources notices say. A file an entry
+matches takes only that entry's attribution, so an entry with no license leaves its files reported even though a
+default exists.
 
 FD008 runs in the nightly report only, as warnings. It reports files with no entry once per folder, files whose
 entry names a source but no license, and manifest entries whose `files` match nothing (usually a renamed or deleted

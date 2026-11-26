@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from fmedata_checks.checks_fd import fd008
-from fmedata_checks.manifest import MANIFEST, coverage, load_manifest, matches
+from fmedata_checks.manifest import MANIFEST, attribution, coverage, load_manifest, matches
 from fmedata_checks.reports import build_reports
 from fmedata_checks.tree import RepoTree
 
@@ -141,3 +141,32 @@ def test_shipped_manifest_reads_cleanly_and_has_no_stale_entries():
     assert entries and errors == []
     stale = [f for f in fd008(RepoTree.from_git(REPO), text) if f.path == MANIFEST]
     assert stale == []
+
+
+DEFAULT = '[default]\nsource = "City"\nlicense = "City licence"\n'
+
+
+def test_default_covers_files_no_entry_matches():
+    entries, errors = load_manifest(DEFAULT + manifest(("OSM", "L", "Data/OpenStreetMap/**")))
+    assert errors == []
+    assert fd008(TREE, DEFAULT) == []
+    assert coverage(TREE, entries) == {"Data/GPS": (2, 2), "Data/OpenStreetMap": (2, 2), "Data/Parks": (2, 2)}
+
+
+def test_specific_entry_overrides_the_default():
+    # A matching entry without a license isn't filled in from the default.
+    text = DEFAULT + manifest(("Trail maker", "", "Data/GPS/WalkingTrail.csv"))
+    found = fd008(TREE, text)
+    assert by_id(found) == [("Data/GPS/", None, "1 file(s) name a source (Trail maker) but no license: WalkingTrail.csv")]
+    entries, _ = load_manifest(text)
+    assert coverage(TREE, entries)["Data/GPS"] == (1, 2)
+    assert [e.source for e in attribution("Data/GPS/WalkingTrail.csv", entries)] == ["Trail maker"]
+    assert [e.source for e in attribution("Data/Parks/Parks.tab", entries)] == ["City"]
+
+
+def test_default_needs_source_and_license_and_no_files():
+    found = fd008(TREE, '[default]\nsource = "City"\nfiles = ["Data/**"]\n')
+    messages = [f.message for f in found if f.path == MANIFEST]
+    assert any("default needs a license" in m for m in messages)
+    assert any("unknown key 'files'" in m for m in messages)
+    assert all(f.line == 1 for f in found if f.path == MANIFEST)

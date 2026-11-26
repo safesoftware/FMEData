@@ -9,7 +9,7 @@ import tomllib
 from typing import Callable
 
 from .gitdiff import Change
-from .manifest import MANIFEST, data_files, load_manifest, matches
+from .manifest import MANIFEST, attribution, data_files, load_manifest, matches
 from .model import Config, Finding
 from .refs import Ref, decode_fme
 from .tree import RepoTree
@@ -302,6 +302,8 @@ def _names(paths: list[str], shown: int = 5) -> str:
 def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
     """Every data file under Data/ has a source and license in Data/manifest.toml, and every entry matches a file.
 
+    A file takes its attribution from the entries that match it, or else from the manifest's [default].
+
     Files without one are reported once per folder, so a folder dataset of hundreds of files is one finding.
     """
     if text is None:
@@ -313,7 +315,7 @@ def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
         return [Finding("FD008", MANIFEST, None, f"{MANIFEST} can't be read: {exc}", "warning")]
     found = [Finding("FD008", MANIFEST, line, msg, "warning") for line, msg in errors]
     files = data_files(tree)
-    for e in entries:
+    for e in (e for e in entries if not e.default):
         for pattern in e.files:
             if any(matches(pattern, f) for f in files):
                 continue
@@ -324,7 +326,7 @@ def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
     missing: dict[str, list[str]] = {}
     no_license: dict[tuple[str, str], list[str]] = {}
     for f in files:
-        hits = [e for e in entries if any(matches(p, f) for p in e.files)]
+        hits = attribution(f, entries)
         if any(e.license for e in hits):
             continue
         folder = f.rsplit("/", 1)[0] + "/"

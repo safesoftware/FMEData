@@ -1,9 +1,18 @@
 # Where the data under Data/ comes from, and its license. CHECKS.md#fd008 explains the check that reads this file.
 #
-# Each [[entry]] names a source and a license, and lists the files they apply to under `files`: an exact path
-# (Data/GPS/WalkingTrail.csv), or a glob, where * and ? stay within one folder and ** spans folders
-# (Data/OpenStreetMap/** is everything in that folder). Paths are case-sensitive. A file may match more than one
-# entry when its data comes from more than one source. `url` is optional.
+# The notices come from the Data Sources sections of README.md and LICENSE.md, and of the FME Training Terms of Use
+# (https://www.safe.com/legal/#fme-training-terms-of-use).
+#
+# [default] applies to every file that no [[entry]] matches. Each [[entry]] names a source and a license, and lists
+# the files they apply to under `files`: an exact path (Data/GPS/WalkingTrail.csv), or a glob, where * and ? stay
+# within one folder and ** spans folders (Data/OpenStreetMap/** is everything in that folder). Paths are
+# case-sensitive. A file may match more than one entry when its data comes from more than one source, and a file an
+# entry matches doesn't take the default. `url` is optional.
+
+[default]
+source = "City of Vancouver, British Columbia, open data"
+license = "Open Government License - Vancouver"
+url = "https://opendata.vancouver.ca/pages/licence/"
 
 [[entry]]
 source = "OpenStreetMap contributors"
@@ -24,6 +33,13 @@ files = ["Data/ElevationModel/DEM-*.dem"]
 source = "Wikipedia, Vancouver Fire and Rescue Services (some attribute data adapted from content © 2013)"
 license = "Creative Commons Attribution-ShareAlike"
 url = "http://en.wikipedia.org/wiki/Vancouver_Fire_and_Rescue_Services"
+files = ["Data/Emergency/FireHalls*"]
+
+# Only some of the fire halls' attribute data is from Wikipedia; the rest is the City's, as the default says.
+[[entry]]
+source = "City of Vancouver, British Columbia, open data"
+license = "Open Government License - Vancouver"
+url = "https://opendata.vancouver.ca/pages/licence/"
 files = ["Data/Emergency/FireHalls*"]
 
 [[entry]]
