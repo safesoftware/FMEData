@@ -219,28 +219,81 @@ def write_index(idx: dict[str, list[str]], path: Path) -> None:
     Path(path).write_text(json.dumps(payload, indent=1), encoding="utf-8")
 
 
-def read_index(path_or_url: str, max_age_days: int = 7, with_current: bool = False):
-    """Read the lesson index from findings.json.
+def load_report(path_or_url: str) -> dict | None:
+    """findings.json from a path or URL, or None when it's missing or unreadable."""
+    try:
+        if path_or_url.startswith(("http://", "https://")):
+            with urllib.request.urlopen(path_or_url, timeout=30) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        return json.loads(Path(path_or_url).read_text(encoding="utf-8"))
+    except (OSError, ValueError, urllib.error.URLError):
+        return None
+
+
+def _stale(data: dict, max_age_days: int) -> bool:
+    try:
+        return datetime.now(timezone.utc) - datetime.fromisoformat(data["generated_at"]) > timedelta(days=max_age_days)
+    except (KeyError, ValueError, TypeError):
+        return True
+
+
+def read_index(path_or_url: "str | dict | None", max_age_days: int = 7, with_current: bool = False):
+    """Read the lesson index from findings.json (a path, a URL, or a report already loaded).
 
     Returns (index, stale), or (index, current_index, stale) with with_current. stale is True when the file
     is missing, unreadable, or older than max_age_days. A file without a current index (from an older report)
     yields None for it, which FD010 treats as "every lesson is current".
     """
-    try:
-        if path_or_url.startswith(("http://", "https://")):
-            with urllib.request.urlopen(path_or_url, timeout=30) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-        else:
-            data = json.loads(Path(path_or_url).read_text(encoding="utf-8"))
-    except (OSError, ValueError, urllib.error.URLError):
+    data = load_report(path_or_url) if isinstance(path_or_url, str) else path_or_url
+    if data is None:
         return ({}, None, True) if with_current else ({}, True)
     idx = data.get("lesson_index", {})
-    try:
-        generated = datetime.fromisoformat(data["generated_at"])
-        stale = datetime.now(timezone.utc) - generated > timedelta(days=max_age_days)
-    except (KeyError, ValueError, TypeError):
-        stale = True
+    stale = _stale(data, max_age_days)
     if with_current:
         return idx, data.get("current_index"), stale
     return idx, stale
 
+
+@dataclass(frozen=True)
+class Exercise:
+    """What FD004 needs from an exercise lesson; the nightly report publishes these for pull requests."""
+    label: str
+    current: bool
+    starting: tuple[str, ...]
+    complete: tuple[str, ...]
+    step1_start: bool
+
+
+def exercises(lessons: Iterable[Lesson], latest: dict[str, str]) -> list[Exercise]:
+    """Every lesson whose Resources lists a complete workspace (newer exercises' titles don't say "Exercise")."""
+    return [Exercise(lesson_label(l), is_current(l, latest), tuple(l.starting), tuple(l.complete),
+                     l.step1_mentions_start) for l in lessons if l.complete]
+
+
+def exercise_json(ex: Exercise) -> dict:
+    """One exercise for findings.json; empty lists and false flags are left out to keep the file small."""
+    out: dict = {"lesson": ex.label, "current": ex.current}
+    if ex.starting:
+        out["starting"] = list(ex.starting)
+    out["complete"] = list(ex.complete)
+    if ex.step1_start:
+        out["step1_start"] = True
+    return out
+
+
+def read_exercises(path_or_url: "str | dict | None", max_age_days: int = 7) -> tuple[list[Exercise] | None, bool]:
+    """The exercises from findings.json, and whether the file is stale.
+
+    None when the file is missing, unreadable, or from a report that predates the exercise list.
+    """
+    data = load_report(path_or_url) if isinstance(path_or_url, str) else path_or_url
+    if data is None:
+        return None, True
+    if not isinstance(data.get("exercises"), list):
+        return None, _stale(data, max_age_days)
+    try:
+        found = [Exercise(str(e["lesson"]), bool(e.get("current")), tuple(e.get("starting", [])),
+                          tuple(e["complete"]), bool(e.get("step1_start"))) for e in data["exercises"]]
+    except (KeyError, TypeError):
+        return None, _stale(data, max_age_days)
+    return found, _stale(data, max_age_days)

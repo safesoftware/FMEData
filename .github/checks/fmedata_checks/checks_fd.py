@@ -344,35 +344,40 @@ def starting_partners(rel: str, paths) -> list[str]:
     return found
 
 
-def fd004(paths, lessons, latest: dict[str, str], tree: RepoTree) -> list[Finding]:
+def fd004(paths, exercises, tree: RepoTree, only: set[str] | None = None,
+          renamed: dict[str, str] | None = None) -> list[Finding]:
     """A complete workspace whose exercise starts from a workspace has that starting workspace beside it.
 
     Only the exercise says whether one is needed: many start from a blank canvas or from an earlier exercise's
     result. So a complete workspace without a starting partner is reported only when a lesson listing it as the
     complete workspace starts from a workspace that isn't in the repository, or opens one in Step 1 without
     listing it. Complete workspaces no lesson lists aren't guessed at.
-    """
-    from .lessons import is_current, lesson_label
 
+    exercises come from the lessons (nightly) or from the published findings.json (pull requests). only limits
+    the check to some complete workspaces; renamed maps a renamed workspace to its old name, which lessons still use.
+    """
     paths = [p for p in paths if p.endswith(WORKSPACE_EXT)]
+    renamed = renamed or {}
     by_complete: dict[str, list] = {}
-    for lesson in lessons:
-        for rel in lesson.complete:
-            by_complete.setdefault(rel, []).append(lesson)
+    for ex in exercises:
+        for rel in ex.complete:
+            by_complete.setdefault(rel, []).append(ex)
     found = []
     for rel in paths:
-        if rel not in by_complete or complete_base(_stem(rel)[1]) is None or starting_partners(rel, paths):
+        listing = by_complete.get(rel, []) + by_complete.get(renamed.get(rel, ""), [])
+        if ((only is not None and rel not in only) or not listing or complete_base(_stem(rel)[1]) is None
+                or starting_partners(rel, paths)):
             continue
         reasons, current = [], False
-        for lesson in by_complete[rel]:
-            missing = [s for s in lesson.starting if tree.resolve(s) == "missing"]
-            if lesson.starting and len(missing) == len(lesson.starting):
-                reasons.append(f"{lesson_label(lesson)} starts from {missing[0]}, which isn't in FMEData")
-            elif not lesson.starting and lesson.step1_mentions_start:
-                reasons.append(f"{lesson_label(lesson)} opens a starting workspace in Step 1 but doesn't list one")
+        for ex in listing:
+            missing = [s for s in ex.starting if tree.resolve(s) == "missing"]
+            if ex.starting and len(missing) == len(ex.starting):
+                reasons.append(f"{ex.label} starts from {missing[0]}, which isn't in FMEData")
+            elif not ex.starting and ex.step1_start:
+                reasons.append(f"{ex.label} opens a starting workspace in Step 1 but doesn't list one")
             else:
                 continue
-            current = current or is_current(lesson, latest)
+            current = current or ex.current
         if reasons:
             more = f" (and {len(reasons) - 1} more lesson(s))" if len(reasons) > 1 else ""
             found.append(Finding("FD004", rel, None,
@@ -380,6 +385,18 @@ def fd004(paths, lessons, latest: dict[str, str], tree: RepoTree) -> list[Findin
                                  "Add the starting workspace next to it, or fix the lesson",
                                  "warning" if current else "notice"))
     return found
+
+
+def fd004_changes(changes: list[Change], exercises, tree: RepoTree) -> list[Finding]:
+    """FD004 on a pull request: complete workspaces it adds or renames, and those whose starting workspace it removes."""
+    only = {c.path for c in changes if c.status in ("A", "R") and c.path.endswith(WORKSPACE_EXT)}
+    removed = {c.path if c.status == "D" else c.old_path for c in changes if c.status in ("D", "R")}
+    for ex in exercises:
+        if removed & set(ex.starting):
+            only.update(ex.complete)
+    renamed = {c.path: c.old_path for c in changes if c.status == "R" and c.old_path}
+    paths = [p for p in tree.all_files() if p.endswith(WORKSPACE_EXT)]
+    return fd004(paths, exercises, tree, only=only, renamed=renamed)
 
 
 def _dataset(rel: str) -> str:

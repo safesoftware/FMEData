@@ -8,7 +8,7 @@ import pytest
 
 from fmedata_checks.checks_fd import complete_base, fd004, fd007, starting_partners
 from fmedata_checks.checks_ft import ft004
-from fmedata_checks.lessons import latest_versions, parse_lesson
+from fmedata_checks.lessons import exercises, latest_versions, parse_lesson
 from fmedata_checks.tree import RepoTree
 from fmedata_checks.workspace import parse_workspace
 
@@ -70,7 +70,7 @@ def _res(complete, starting=None):
 
 def _fd004(paths, lessons):
     tree = RepoTree.from_paths(paths)
-    return fd004(paths, lessons, latest_versions(lessons), tree)
+    return fd004(paths, exercises(lessons, latest_versions(lessons)), tree)
 
 
 def test_fd004_exercise_starts_from_a_workspace_that_is_missing():

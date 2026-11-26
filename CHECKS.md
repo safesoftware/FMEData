@@ -95,6 +95,12 @@ pair with the same name without the suffix, or with `start`, `begin`, `initial`,
 Fix: add the starting workspace next to the complete one, or correct the lesson's Resources section and Step 1.
 FT003 lists the same lesson from the lesson's side.
 
+FD004 runs in the nightly report and on pull requests. The nightly report publishes each exercise's workspaces in
+`findings.json`, and a pull request uses that list to check the complete workspaces it adds or renames, and the
+complete workspaces whose starting workspace it removes. On a pull request it's a warning and never fails. When the
+published report is missing, more than 7 days old, or older than the exercise list, the pull request's log says
+FD004 was skipped.
+
 ### FD005
 
 **A workspace is still named `exercise-...`.** The `exercise-` prefix is being phased out. Existing names are

@@ -11,7 +11,7 @@ from pathlib import Path
 from string import Template
 from zoneinfo import ZoneInfo
 
-from .lessons import Lesson
+from .lessons import Exercise, Lesson, exercise_json
 from .links import classify_url
 from .model import CHECKS, PR_ONLY, Config, Finding
 from .refs import redact
@@ -114,7 +114,8 @@ def _broken_rows(lessons: list[Lesson], findings: list[Finding], statuses: dict[
 def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict[str, int | None],
                   idx: dict[str, list[str]], out: Path, generated_at: datetime, fmetraining_sha: str = "",
                   exempt: list[str] | None = None, cfg: Config | None = None, fmedata_sha: str = "",
-                  current_idx: dict[str, list[str]] | None = None) -> None:
+                  current_idx: dict[str, list[str]] | None = None,
+                  exercises: list[Exercise] | None = None) -> None:
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     exempt = exempt or []
@@ -131,6 +132,7 @@ def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict
         "fmedata_sha": fmedata_sha,
         "lesson_index": idx,
         "current_index": current_idx if current_idx is not None else idx,
+        "exercises": [exercise_json(e) for e in exercises or []],
         "findings": [{k: redact(v) if isinstance(v, str) else v for k, v in asdict(f).items()} for f in findings],
     }
     (out / "findings.json").write_text(json.dumps(payload, indent=1, ensure_ascii=False), encoding="utf-8")
