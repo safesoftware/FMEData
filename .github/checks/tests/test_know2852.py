@@ -40,6 +40,14 @@ def test_config_rejects_bad_course_version(tmp_path: Path):
         load_config(p)
 
 
+def test_config_rejects_an_unquoted_course_version(tmp_path: Path):
+    # TOML reads 2026.10 as the number 2026.1, which would silently name another version
+    p = tmp_path / "checks.toml"
+    p.write_text('[courses.current]\n"MCP and FME" = 2026.10\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="quoted"):
+        load_config(p)
+
+
 def test_repo_config_lists_the_live_unversioned_courses():
     cfg = load_config(Path(__file__).resolve().parent.parent / "checks.toml")
     assert cfg.course_versions["MCP and FME"] == "2026.2"

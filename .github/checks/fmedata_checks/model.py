@@ -70,9 +70,10 @@ ANNUAL = "annual"
 
 def _course_versions(table: dict) -> dict[str, str]:
     for name, version in table.items():
-        if version != ANNUAL and not _VERSION.match(str(version)):
-            raise ValueError(f"courses.current entry {name!r} needs a version like 2026.2 or \"{ANNUAL}\", "
-                             f"not {version!r}")
+        # Quoted only: TOML reads an unquoted 2026.10 as the number 2026.1.
+        if not isinstance(version, str) or (version != ANNUAL and not _VERSION.match(version)):
+            raise ValueError(f"courses.current entry {name!r} needs a quoted version like \"2026.2\" or "
+                             f"\"{ANNUAL}\", not {version!r}")
     return {str(k): str(v) for k, v in table.items()}
 
 
