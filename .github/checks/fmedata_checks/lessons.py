@@ -47,6 +47,9 @@ class Lesson:
     has_step1: bool = False
     step1_mentions_start: bool = False
     step1_workspaces: list[str] = field(default_factory=list)
+    # An unversioned course that is always current ("annual" in checks.toml): FT006 holds its workspaces to
+    # the current year's FME release rather than to course_version, which is only its archive folder.
+    annual: bool = False
 
 
 _HEADING = re.compile(r"<h([1-6])[^>]*>(.*?)</h\1>", re.I | re.S)
@@ -102,14 +105,17 @@ def parse_lesson(rel_html: str, html: str, course_versions: dict[str, str] | Non
     """Parse one lesson page.
 
     course_versions names courses whose names carry no version (checks.toml [courses.current]); their lessons
-    take the version of the archive folder they sit in, so each copy of the course has a version.
+    take the version of the archive folder they sit in, so each copy of the course has a version. A course
+    mapped to "annual" is also marked annual.
     """
     parts = rel_html.replace("\\", "/").split("/")
     version, learning_path, course, title = parts[0], parts[1], parts[2], parts[3]
     m = _COURSE_VERSION.match(course)
     course_base, course_version = (m.group(1), m.group(2)) if m else (course, None)
+    annual = False
     if course_version is None and course in (course_versions or {}):
         course_version = version
+        annual = course_versions[course] == "annual"
     is_exercise = title.startswith("Exercise_")
     starting: list[str] = []
     complete: list[str] = []
@@ -119,7 +125,7 @@ def parse_lesson(rel_html: str, html: str, course_versions: dict[str, str] | Non
     has_step1, mentions_start, step1_ws = _step1(html) if is_exercise else (False, False, [])
     return Lesson(
         has_step1=has_step1, step1_mentions_start=mentions_start, step1_workspaces=step1_ws,
-        version=version, learning_path=learning_path, course=course, course_base=course_base,
+        annual=annual, version=version, learning_path=learning_path, course=course, course_base=course_base,
         course_version=course_version, title=title, rel_html=rel_html, is_exercise=is_exercise,
         parsed=(not is_exercise) or section is not None,
         starting=starting, complete=complete,
@@ -168,7 +174,8 @@ def latest_versions(lessons: Iterable[Lesson], current: dict[str, str] | None = 
         if v and (lesson.course_base not in latest or _key(v) > _key(latest[lesson.course_base])):
             latest[lesson.course_base] = v
     for name, version in (current or {}).items():
-        if name in latest:
+        # An annual course is current in its newest archive folder, which latest already holds.
+        if name in latest and version != "annual":
             latest[name] = version
     patterns = archived or []
     return {name: v for name, v in latest.items() if not any(fnmatch.fnmatchcase(name, p) for p in patterns)}

@@ -6,6 +6,8 @@ latest version gets warnings; older versions get notices.
 
 from __future__ import annotations
 
+from datetime import date, datetime, timezone
+
 from .checks_fd import OUTPUT_PREFIX, _resolution_message
 from .lessons import Lesson, workspace_refs
 from .links import classify_url
@@ -82,9 +84,35 @@ def _course_key(version: str) -> tuple[int, int]:
     return int(year), int(minor)
 
 
+def annual_year(today: date) -> int:
+    """The FME release year an annual course's workspaces must be on: this year's from May 1, last year's before."""
+    return today.year if (today.month, today.day) >= (5, 1) else today.year - 1
+
+
+def _ft006_annual(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool,
+                  today: date) -> list[Finding]:
+    year = annual_year(today)
+    found = []
+    for rel in workspace_refs(lesson):
+        ws = workspaces_by_rel.get(rel)
+        saved = fme_version(ws.build) if ws else None
+        if saved is not None and saved[0] < year:
+            found.append(Finding("FT006", lesson.rel_html, None,
+                                 f"{rel} was saved in FME {saved[0]}.{saved[1]}; this course has no version, so its "
+                                 f"workspaces follow each year's FME release, due by April 30 (FME {year} "
+                                 f"since May 1, {year})", _sev(current)))
+    return found
+
+
 def ft006(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool,
-          previous_version: str | None) -> list[Finding]:
-    """A linked workspace opens in the FME version the course names, and has been updated since the last version."""
+          previous_version: str | None, today: date | None = None) -> list[Finding]:
+    """A linked workspace opens in the FME version the course names, and has been updated since the last version.
+
+    An annual course (unversioned and always current) has no version to compare with: its workspaces must be on
+    the current year's FME release from May 1, and may still be on last year's before then.
+    """
+    if lesson.annual:
+        return _ft006_annual(lesson, workspaces_by_rel, current, today or datetime.now(timezone.utc).date())
     if not lesson.course_version:
         return []
     course = _course_key(lesson.course_version)

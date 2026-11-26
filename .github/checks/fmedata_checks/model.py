@@ -56,19 +56,23 @@ class Config:
     complete_suffixes: list[str] = field(default_factory=lambda: ["-complete"])
     exempt: dict[str, str] = field(default_factory=dict)
     ignore_courses: list[str] = field(default_factory=list)
-    # Course name -> the version Skilljar publishes as current, where the archive's newest version isn't it.
+    # Course name -> the version Skilljar publishes as current, where the archive's newest version isn't it,
+    # or "annual" for an unversioned course that is always current.
     course_versions: dict[str, str] = field(default_factory=dict)
     # Courses (names or patterns) with no current version on Skilljar: every version is archived.
     archived_courses: list[str] = field(default_factory=list)
 
 
 _VERSION = re.compile(r"^\d{4}\.\d+$")
+# An unversioned course that is always current: its workspaces follow each year's FME release (FT006).
+ANNUAL = "annual"
 
 
 def _course_versions(table: dict) -> dict[str, str]:
     for name, version in table.items():
-        if not _VERSION.match(str(version)):
-            raise ValueError(f"courses.current entry {name!r} needs a version like 2026.2, not {version!r}")
+        if version != ANNUAL and not _VERSION.match(str(version)):
+            raise ValueError(f"courses.current entry {name!r} needs a version like 2026.2 or \"{ANNUAL}\", "
+                             f"not {version!r}")
     return {str(k): str(v) for k, v in table.items()}
 
 

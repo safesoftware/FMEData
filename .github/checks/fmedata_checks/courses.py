@@ -10,7 +10,9 @@ archive:
 - its current version is the version in the title of the published course with an unversioned slug;
 - if no published course has an unversioned slug, every version is archived;
 - if that course's title carries no version ("MCP and FME"), the current copy is the course's newest archive
-  folder, and the course is worth renaming in Skilljar to carry the version.
+  folder, and the course is worth renaming in Skilljar to carry the version;
+- unless checks.toml already marks it "annual": an unversioned course that stays current and follows each year's
+  FME release (FT006). Skilljar can't tell the two apart, so "annual" is set by hand and kept on regeneration.
 
 Only overrides are written: a course whose newest archive version is already its current one needs no entry.
 """
@@ -62,8 +64,12 @@ def catalog_rows(rows: Iterable[dict]) -> list[dict]:
 
 
 def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
-           ignore_courses: list[str] | None = None) -> CourseConfig:
-    """archive: (archive version folder, course folder name) pairs. catalog: published courses on one domain."""
+           ignore_courses: list[str] | None = None, annual: Iterable[str] = ()) -> CourseConfig:
+    """archive: (archive version folder, course folder name) pairs. catalog: published courses on one domain.
+
+    annual: courses checks.toml marks "annual"; while they're live and unversioned they stay annual.
+    """
+    annual = set(annual)
     ignore = ignore_courses or []
     folders: dict[str, set[str]] = {}
     versions: dict[str, set[str]] = {}
@@ -87,7 +93,9 @@ def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
             if newest:
                 result.archived.append(base)
             continue
-        if newest is None:
+        if newest is None and base in annual:
+            result.current[base] = "annual"
+        elif newest is None:
             folder = max(folders[base], key=_key)
             result.current[base] = folder
             result.renames.append((base, f"{base} {folder}"))

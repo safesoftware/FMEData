@@ -199,3 +199,96 @@ def test_courses_command_prints_config_from_a_catalog_file(tmp_path: Path, capsy
     assert '"MCP and FME" = "2026.2"' in out
     assert '"Publish Workflows to the Web"' in out
     assert "MCP and FME -> MCP and FME 2026.2" in out
+
+
+# --- unversioned current courses follow the annual FME version ------------------------------------------------
+
+from datetime import date
+
+from fmedata_checks.checks_ft import annual_year, ft006
+from fmedata_checks.workspace import Workspace
+
+ACCEL = "2024.0/live-course/FME Accelerator/Exercise_ E/index.html"
+WS = "Workspaces/X/a-complete.fmw"
+
+
+def annual_lesson():
+    html = f'<h2>Resources</h2><ul><li><a href="https://s3.amazonaws.com/FMEData/FMEData/{WS}">Complete workspace</a></li></ul>'
+    return parse_lesson(ACCEL, html, course_versions={"FME Accelerator": "annual"})
+
+
+def saved(build):
+    return {WS: Workspace(WS, build, 1)}
+
+
+def test_config_accepts_annual(tmp_path: Path):
+    p = tmp_path / "checks.toml"
+    p.write_text('[courses.current]\n"FME Accelerator" = "annual"\n', encoding="utf-8")
+    assert load_config(p).course_versions == {"FME Accelerator": "annual"}
+    p.write_text('[courses.current]\n"FME Accelerator" = "yearly"\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="annual"):
+        load_config(p)
+
+
+def test_repo_config_has_fme_accelerator_annual():
+    cfg = load_config(Path(__file__).resolve().parent.parent / "checks.toml")
+    assert cfg.course_versions["FME Accelerator"] == "annual"
+
+
+def test_annual_course_is_current_in_its_newest_folder():
+    versions = {"FME Accelerator": "annual"}
+    old = lesson("2023.0/live-course/FME Accelerator/L/index.html", course_versions=versions)
+    new = lesson("2024.0/live-course/FME Accelerator/L/index.html", course_versions=versions)
+    assert new.annual and old.annual
+    latest = latest_versions([old, new], current=versions)
+    assert is_current(new, latest) and not is_current(old, latest)
+
+
+def test_annual_year_turns_over_on_may_1():
+    assert annual_year(date(2027, 4, 30)) == 2026
+    assert annual_year(date(2027, 5, 1)) == 2027
+    assert annual_year(date(2027, 1, 1)) == 2026
+    assert annual_year(date(2027, 12, 31)) == 2027
+
+
+def test_ft006_annual_course_last_year_ok_until_april_30():
+    assert ft006(annual_lesson(), saved("2026.2.0.0"), current=True, previous_version=None,
+                 today=date(2027, 4, 30)) == []
+
+
+def test_ft006_annual_course_needs_this_year_from_may_1():
+    found = ft006(annual_lesson(), saved("2026.2.0.0"), current=True, previous_version=None, today=date(2027, 5, 1))
+    assert [(f.check_id, f.severity) for f in found] == [("FT006", "warning")]
+    assert "2026.2" in found[0].message and "FME 2027" in found[0].message and "April 30" in found[0].message
+
+
+def test_ft006_annual_course_this_year_ok():
+    assert ft006(annual_lesson(), saved("2027.0.0.0"), current=True, previous_version=None,
+                 today=date(2027, 5, 1)) == []
+
+
+def test_ft006_annual_course_ignores_its_folder_version():
+    # The archive files it under 2024.0, but an annual course isn't "newer than the course" for a 2026 workspace.
+    assert ft006(annual_lesson(), saved("2026.1.0.0"), current=True, previous_version="2023.0",
+                 today=date(2026, 11, 26)) == []
+
+
+def test_ft006_annual_course_older_than_last_year_warns_before_may():
+    found = ft006(annual_lesson(), saved("2025.1.0.0"), current=True, previous_version=None, today=date(2027, 4, 30))
+    assert len(found) == 1 and "FME 2026" in found[0].message
+
+
+def test_derive_keeps_annual_courses_without_a_rename(tmp_path: Path):
+    archive = [*ARCHIVE, ("2024.0", "FME Accelerator")]
+    catalog = [*CATALOG, {"title": "FME Accelerator", "slug": "fme-accelerator"}]
+    found = courses.derive(archive, catalog, ignore_courses=["Clone of *"], annual=["FME Accelerator"])
+    assert found.current["FME Accelerator"] == "annual"
+    assert "FME Accelerator" not in [old for old, _ in found.renames]
+    p = tmp_path / "checks.toml"
+    p.write_text(courses.render_toml(found), encoding="utf-8")
+    assert load_config(p).course_versions["FME Accelerator"] == "annual"
+
+
+def test_derive_drops_annual_course_no_longer_live():
+    found = courses.derive(ARCHIVE + [("2024.0", "FME Accelerator")], CATALOG, annual=["FME Accelerator"])
+    assert "FME Accelerator" not in found.current

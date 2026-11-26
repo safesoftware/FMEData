@@ -116,7 +116,8 @@ def run_courses(args) -> int:
                   file=sys.stderr)
             return 2
         catalog = courses.fetch_catalog(args.domain, key)
-    found = courses.derive(courses.archive_courses(Path(args.fmetraining)), catalog, cfg.ignore_courses)
+    annual = [name for name, version in cfg.course_versions.items() if version == "annual"]
+    found = courses.derive(courses.archive_courses(Path(args.fmetraining)), catalog, cfg.ignore_courses, annual)
     print(f"# From {len(catalog)} published courses on {args.domain}. Replace the [courses] table in checks.toml.")
     print(courses.render_toml(found), end="")
     if found.renames:

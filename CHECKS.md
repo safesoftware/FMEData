@@ -157,6 +157,9 @@ the published course with the unversioned URL (`/compare-workspaces`) is a cours
 - `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
   has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
   Once its Skilljar name carries the version, its entry is no longer needed.
+- `"annual"` in `current` marks a course that has no version and stays current, such as "FME Accelerator": it's
+  never archived per version, so FT006 holds it to each year's FME release instead. Skilljar's catalog can't tell
+  such a course from one that's missing its version, so `annual` is set by hand, and regenerating keeps it.
 
 CI can't call Skilljar, so the table is refreshed by hand, with a Skilljar API key in the environment (read-only):
 
@@ -198,7 +201,13 @@ not as broken. Fix: update or remove the link in the lesson.
 "... 2025.1" is taken in FME 2025.1, which can't open a workspace saved in 2026.2. The report also notes, as a
 notice, a workspace that hasn't been saved since before the course's previous version.
 
-Fix: save the workspace in the course's FME version, or update the course.
+A course marked `"annual"` in `checks.toml` has no version to compare with. Its workspaces follow each year's FME
+release, due by April 30: from May 1 of a year, a workspace saved in an earlier year's release is a finding; until
+April 30, last year's release is still fine. On 2027-04-30, a workspace saved in FME 2026.2 passes; on 2027-05-01,
+it needs FME 2027.
+
+Fix: save the workspace in the course's FME version (for an annual course, the current year's release), or update
+the course.
 
 ### FT007
 
