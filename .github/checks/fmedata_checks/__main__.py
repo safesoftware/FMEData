@@ -14,6 +14,7 @@ from pathlib import Path
 from . import checks_fd, checks_ft
 from .gitdiff import added_lines, changed_files
 from .lessons import current_index, ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
+from .manifest import MANIFEST, coverage, load_manifest
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
 from .reports import build_reports
@@ -77,6 +78,12 @@ def run_lessons(args) -> int:
     findings += checks_fd.fd005(workspaces, pr_added=False)
     findings += checks_fd.fd011(workspaces, pr_added=False, cfg=cfg)
     findings += checks_fd.fd012_history(repo, tree)
+    manifest_text = _read(repo / MANIFEST) if (repo / MANIFEST).is_file() else None
+    findings += checks_fd.fd008(tree, manifest_text)
+    try:
+        attribution = coverage(tree, load_manifest(manifest_text)[0] if manifest_text else [])
+    except ValueError:  # unreadable TOML; FD008 already reports it
+        attribution = coverage(tree, [])
 
     lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses))
     latest = latest_versions(lessons)
@@ -96,7 +103,8 @@ def run_lessons(args) -> int:
     findings = [effective(f, cfg) for f in findings]
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),
                   datetime.now(timezone.utc), fmetraining_sha=args.sha, exempt=list(cfg.exempt), cfg=cfg,
-                  fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons))
+                  fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons),
+                  attribution=attribution)
     print(f"{len(lessons)} lessons, {len(findings)} findings; report in {args.out}")
     return 0
 
