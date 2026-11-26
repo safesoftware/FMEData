@@ -291,9 +291,13 @@ def read_exercises(path_or_url: "str | dict | None", max_age_days: int = 7) -> t
         return None, True
     if not isinstance(data.get("exercises"), list):
         return None, _stale(data, max_age_days)
+    def paths(value) -> tuple[str, ...]:
+        if not isinstance(value, list) or not all(isinstance(p, str) for p in value):
+            raise TypeError("expected a list of paths")
+        return tuple(value)
     try:
-        found = [Exercise(str(e["lesson"]), bool(e.get("current")), tuple(e.get("starting", [])),
-                          tuple(e["complete"]), bool(e.get("step1_start"))) for e in data["exercises"]]
-    except (KeyError, TypeError):
+        found = [Exercise(str(e["lesson"]), bool(e.get("current")), paths(e.get("starting", [])),
+                          paths(e["complete"]), bool(e.get("step1_start"))) for e in data["exercises"]]
+    except (KeyError, TypeError, AttributeError):
         return None, _stale(data, max_age_days)
     return found, _stale(data, max_age_days)

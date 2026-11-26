@@ -117,3 +117,19 @@ def test_cli_pr_warns_with_fd004(tmp_path: Path, capsys):
 def test_cli_pr_skips_fd004_without_a_usable_index(tmp_path: Path, capsys):
     out = _run(_repo(tmp_path), tmp_path, tmp_path / "missing.json", capsys)
     assert "FD004" not in out.split("FD004 skipped")[0] and "FD004 skipped" in out
+
+
+def test_pr_removing_the_starting_workspace_a_step1_exercise_opens():
+    # the lesson lists only the complete workspace and opens "the starting workspace" in Step 1
+    ex = Exercise("2026.2 / C 2026.2 / Ex", True, (), ("W/a-complete.fmw",), True)
+    tree = RepoTree.from_paths(["W/a-complete.fmw"])
+    found = fd004_changes([Change("D", "W/a.fmw", None)], [ex], tree)
+    assert [(f.check_id, f.path) for f in found] == [("FD004", "W/a-complete.fmw")]
+
+
+def test_read_exercises_rejects_a_path_that_is_not_a_list(tmp_path: Path):
+    p = tmp_path / "f.json"
+    p.write_text(json.dumps({"generated_at": datetime.now(timezone.utc).isoformat(),
+                             "exercises": [{"lesson": "L", "complete": ["W/a-complete.fmw"], "starting": "W/a.fmw"}]}),
+                 encoding="utf-8")
+    assert read_exercises(str(p))[0] is None

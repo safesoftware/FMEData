@@ -90,7 +90,8 @@ without listing one. Complete workspaces that no lesson lists aren't reported.
 Names aren't standardized yet, so FD004 pairs workspaces tolerantly: in the same folder, ignoring case and
 separators, `-complete`, `--complete`, `_Complete`, `_Completed`, `Complete`, `_Completo`, and `.Complete` all
 pair with the same name without the suffix, or with `start`, `begin`, `initial`, `inicio`, or `blank` in its place
-(`Ex2.0_Reading_Completed` pairs with `Ex2.0_Reading_Begin`).
+(`Ex2.0_Reading_Completed` pairs with `Ex2.0_Reading_Begin`). A suffix with no separator must be capitalized
+(`Ex1Complete`), because a lowercase one is part of a word (`incomplete`).
 
 Fix: add the starting workspace next to the complete one, or correct the lesson's Resources section and Step 1.
 FT003 lists the same lesson from the lesson's side.

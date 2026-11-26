@@ -247,3 +247,18 @@ def test_cli_lessons_reports_fd004_fd007_ft004(tmp_path: Path):
     by_id = {f["check_id"]: f["path"] for f in found if f["check_id"] in ("FD004", "FD007", "FT004")}
     assert by_id == {"FD004": "Workspaces/a-complete.fmw", "FD007": "Data/Spare.csv",
                      "FT004": "2026.2/p/Course 2026.2/Exercise_ A/index.html"}
+
+
+def test_complete_base_tries_each_complete_in_the_name():
+    assert complete_base("Ex1-Incomplete-Complete") == "ex1incomplete"
+    assert complete_base("Ex1-incomplete-complete") == "ex1incomplete"
+
+
+def test_fd004_lesson_spelling_may_differ_in_case_from_the_repo():
+    paths = ["Workspaces/Ex1-Complete.fmw"]
+    lesson = _lesson("C 2026.2", _res("workspaces/Ex1-Complete.fmw", "Workspaces/ex1-start.fmw"))
+    assert [f.path for f in _fd004(paths, [lesson])] == ["Workspaces/Ex1-Complete.fmw"]
+
+
+def test_ft004_a_name_inside_a_longer_name_does_not_count():
+    assert len(_ft004(LISTED + "<li>MainPublicArt.xlsx</li>")) == 1

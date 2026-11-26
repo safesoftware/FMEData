@@ -6,6 +6,8 @@ latest version gets warnings; older versions get notices.
 
 from __future__ import annotations
 
+import re
+
 from .checks_fd import OUTPUT_PREFIX, _resolution_message
 from .lessons import Lesson, workspace_refs
 from .links import classify_url
@@ -67,6 +69,11 @@ def ft003(lesson: Lesson, tree: RepoTree, current: bool) -> list[Finding]:
     return found
 
 
+def _mentions(text: str, token: str) -> bool:
+    """token appears in text as a whole name, not inside a longer one (roads.csv isn't in mainroads.csv)."""
+    return re.search(r"(?<![\w.-])" + re.escape(token) + r"(?![\w-])", text) is not None
+
+
 def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
     """The lesson names a data file: by path or link, by file name, or by the zip or folder it's shipped as.
 
@@ -78,12 +85,12 @@ def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
     parts = low.split("/")
     name = parts[-1]
     text = lesson.text
-    if low in links or name in text:
+    if low in links or _mentions(text, name):
         return True
-    if name.endswith(".zip") and (name[:-4] in text or any(l.startswith(low[:-4] + "/") for l in links)):
+    if name.endswith(".zip") and (_mentions(text, name[:-4]) or any(l.startswith(low[:-4] + "/") for l in links)):
         return True
     for folder in parts[1:-1]:
-        if folder + ".zip" in text or (folder.endswith(".gdb") and folder in text):
+        if _mentions(text, folder + ".zip") or (folder.endswith(".gdb") and _mentions(text, folder)):
             return True
     return False
 

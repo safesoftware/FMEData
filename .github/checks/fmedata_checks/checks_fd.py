@@ -294,8 +294,7 @@ def fd012_history(repo, tree: RepoTree) -> list[Finding]:
 
 # FD004. Names aren't standardized yet, so "complete" has many spellings (-complete, --complete, _Completed,
 # -Complete, Complete, _Completo, _complete, .Complete), sometimes followed by more ("-complete-advanced").
-_COMPLETE_ANY = re.compile(r"^(?P<base>.+?)(?P<sep>-{1,2}|_|\.|\s)?(?P<word>completed?|completo|complet)"
-                           r"(?P<tail>(?:[-_.\s].*)?)$", re.I)
+_COMPLETE_WORD = re.compile(r"(?P<sep>-{1,2}|_|\.|\s)?(?P<word>completed?|completo|complet)(?=[-_.\s]|$)", re.I)
 # Words a starting workspace's name may carry where the complete one says "complete".
 _START_WORDS = ("", "start", "starting", "begin", "beginning", "initial", "inicio", "blank")
 
@@ -306,14 +305,15 @@ def _squash(name: str) -> str:
 
 
 def _complete_parts(stem: str) -> tuple[str, str] | None:
-    m = _COMPLETE_ANY.match(stem)
-    if not m:
-        return None
-    # Without a separator, only a capitalized "Complete" starts a suffix ("incomplete" is a word).
-    if not m.group("sep") and not m.group("word")[0].isupper():
-        return None
-    base = _squash(m.group("base"))
-    return (base, _squash(m.group("tail")).lstrip(".")) if base else None
+    # Each "complete" in the name is a candidate, so "Ex1-Incomplete-Complete" pairs on its second one.
+    for m in _COMPLETE_WORD.finditer(stem):
+        # Without a separator, only a capitalized "Complete" starts a suffix ("incomplete" is a word).
+        if not m.group("sep") and not m.group("word")[0].isupper():
+            continue
+        base = _squash(stem[:m.start()])
+        if base:
+            return base, _squash(stem[m.end():]).lstrip(".")
+    return None
 
 
 def complete_base(stem: str) -> str | None:
@@ -361,10 +361,11 @@ def fd004(paths, exercises, tree: RepoTree, only: set[str] | None = None,
     by_complete: dict[str, list] = {}
     for ex in exercises:
         for rel in ex.complete:
-            by_complete.setdefault(rel, []).append(ex)
+            by_complete.setdefault(rel.lower(), []).append(ex)
     found = []
     for rel in paths:
-        listing = by_complete.get(rel, []) + by_complete.get(renamed.get(rel, ""), [])
+        # Lessons type paths by hand and Windows ignores case, so a lesson's spelling may differ from the repo's.
+        listing = by_complete.get(rel.lower(), []) + by_complete.get(renamed.get(rel, "").lower(), [])
         if ((only is not None and rel not in only) or not listing or complete_base(_stem(rel)[1]) is None
                 or starting_partners(rel, paths)):
             continue
@@ -391,11 +392,18 @@ def fd004_changes(changes: list[Change], exercises, tree: RepoTree) -> list[Find
     """FD004 on a pull request: complete workspaces it adds or renames, and those whose starting workspace it removes."""
     only = {c.path for c in changes if c.status in ("A", "R") and c.path.endswith(WORKSPACE_EXT)}
     removed = {c.path if c.status == "D" else c.old_path for c in changes if c.status in ("D", "R")}
-    for ex in exercises:
-        if removed & set(ex.starting):
-            only.update(ex.complete)
-    renamed = {c.path: c.old_path for c in changes if c.status == "R" and c.old_path}
+    removed_low = {r.lower() for r in removed}
     paths = [p for p in tree.all_files() if p.endswith(WORKSPACE_EXT)]
+    # The workspaces before the PR, so a removed starting workspace can still be paired with its complete one.
+    before = {p.lower(): p for p in [*paths, *(r for r in removed if r.endswith(WORKSPACE_EXT))]}
+    for ex in exercises:
+        # A starting workspace the lesson lists, or (Step 1 cases) the one beside the complete workspace.
+        hit = removed_low & {s.lower() for s in ex.starting}
+        hit = hit or any(p.lower() in removed_low for c in ex.complete if c.lower() in before
+                         for p in starting_partners(before[c.lower()], before.values()))
+        if hit:
+            only.update(before.get(c.lower(), c) for c in ex.complete)
+    renamed = {c.path: c.old_path for c in changes if c.status == "R" and c.old_path}
     return fd004(paths, exercises, tree, only=only, renamed=renamed)
 
 
