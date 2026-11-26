@@ -6,7 +6,9 @@ name: Lesson report
 # artifact only; it never publishes.
 #
 # GitHub Pages copy: off until a repository admin sets Settings > Pages > Source to "GitHub Actions" and
-# adds the repository variable REPORT_PAGES = true. Then each published report also goes to Pages.
+# adds the repository variable REPORT_PAGES = true. Then each published report also goes to Pages, at
+# https://safesoftware.github.io/FMEData/. Run the workflow by hand once after turning it on: a manual run
+# never skips, while a scheduled run skips until the archive or main changes or the report is 5 days old.
 on:
   schedule:
     - cron: "0 2 * * *"
@@ -116,6 +118,7 @@ jobs:
     needs: report
     if: needs.report.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write
