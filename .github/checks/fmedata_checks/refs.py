@@ -20,8 +20,23 @@ S3_MAIN_PREFIX = "s3.amazonaws.com/FMEData/FMEData/"
 
 _LOCAL_RE = re.compile(r"[Cc]:[\\/]FMEData[\\/]([^\"'<>\r\n,;|\t{}]+)")
 _URL_RE = re.compile(r"https?://[^\s\"'<>{}]+")
-_EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=[\s)\]])")
+_EXT_THEN_SPACE = re.compile(r"^(.*?\.[A-Za-z0-9]{1,8})(?=[.,;:!?]?(?:[\s)\]]|$))")
+# A full stop and a space, or a separator and a space, start the next words of the sentence, not more path.
+_SENTENCE_BREAK = re.compile(r"\.\s|[\\/]\s")
 _TRAILING = ".,;:)]"
+
+
+def _cut_unmatched_paren(path: str) -> str:
+    """'...\\BuildingFootprints) of the data': a ')' with no '(' before it in the path closes the sentence's bracket."""
+    depth = 0
+    for i, ch in enumerate(path):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            if depth == 0:
+                return path[:i]
+            depth -= 1
+    return path
 
 
 USER_PATH_RE = re.compile(r"(c:[\\/]users[\\/])([^\s\\/\"'<>…][^\\/\"'<>\r\n]*?)(?=[\\/\"'<>]|$)", re.I)
@@ -54,7 +69,12 @@ def _lines(text: str):
 
 
 def _clean_local(captured: str) -> str:
-    path = captured.strip()
+    path = _cut_unmatched_paren(captured.strip())
+    for brk in _SENTENCE_BREAK.finditer(path):
+        # "3. Make a Workspace Endpoint\a.fmw" is a numbered folder: more path follows, so it isn't a break.
+        if "\\" not in path[brk.end():] and "/" not in path[brk.end():]:
+            path = path[:brk.start() + 1]
+            break
     # Prose after a path ("...\Parks.shp in Workbench"): stop after the first file name with an extension.
     m = _EXT_THEN_SPACE.match(path)
     if m and "\\" not in path[m.end():] and "/" not in path[m.end():]:

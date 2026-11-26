@@ -18,14 +18,32 @@ def _sev(current: bool) -> Severity:
     return "warning" if current else "notice"
 
 
+def _trim_trailing_words(rel: str, tree: RepoTree) -> str:
+    """'Data/Orthophotos is faster than ...' -> 'Data/Orthophotos' when only a shorter prefix is in the tree.
+
+    A path in prose has no end marker, and folder names can contain spaces, so the tree decides: drop words from
+    the end of the last segment until what is left exists. If nothing shorter exists, the path is kept whole.
+    """
+    if tree.resolve(rel) != "missing":
+        return rel
+    head, _, last = rel.rpartition("/")
+    words = last.split(" ")
+    for n in range(len(words) - 1, 0, -1):
+        candidate = (head + "/" if head else "") + " ".join(words[:n]).rstrip(".,;:")
+        if tree.resolve(candidate) != "missing":
+            return candidate
+    return rel
+
+
 def ft001(lesson: Lesson, tree: RepoTree, cfg: Config, current: bool) -> list[Finding]:
     """C:\\FMEData paths in a lesson resolve to files in FMEData."""
     found, seen = [], set()
     for r in lesson.local_refs:
-        if r.rel in seen or r.rel.startswith(OUTPUT_PREFIX) or r.rel in cfg.allow_paths:
+        rel = _trim_trailing_words(r.rel, tree)
+        if rel in seen or rel.startswith(OUTPUT_PREFIX) or rel in cfg.allow_paths:
             continue
-        seen.add(r.rel)
-        msg = _resolution_message(r.rel, tree, r.rel)
+        seen.add(rel)
+        msg = _resolution_message(rel, tree, rel)
         if msg:
             found.append(Finding("FT001", lesson.rel_html, None, msg, _sev(current)))
     return found
