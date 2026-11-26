@@ -12,6 +12,7 @@ import html as html_lib
 import json
 import re
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -47,6 +48,14 @@ class Lesson:
     has_step1: bool = False
     step1_mentions_start: bool = False
     step1_workspaces: list[str] = field(default_factory=list)
+    # The page's words and link targets, lowercased, with / for \ (FT004 looks for data file names in it).
+    text: str = ""
+
+
+def _page_text(page: str) -> str:
+    hrefs = " ".join(urllib.parse.unquote(m.group(1)) for m in _ANCHOR.finditer(page))
+    words = html_lib.unescape(_TAG.sub(" ", page))
+    return re.sub(r"\s+", " ", f"{words} {hrefs}").replace("\\", "/").lower()
 
 
 _HEADING = re.compile(r"<h([1-6])[^>]*>(.*?)</h\1>", re.I | re.S)
@@ -109,7 +118,8 @@ def parse_lesson(rel_html: str, html: str) -> Lesson:
     section = _RESOURCES.search(html)
     if section:
         starting, complete = _resources(section.group(1))
-    has_step1, mentions_start, step1_ws = _step1(html) if is_exercise else (False, False, [])
+    # Newer exercises' titles don't start with "Exercise"; listing a complete workspace marks them too (FD004).
+    has_step1, mentions_start, step1_ws = _step1(html) if is_exercise or complete else (False, False, [])
     return Lesson(
         has_step1=has_step1, step1_mentions_start=mentions_start, step1_workspaces=step1_ws,
         version=version, learning_path=learning_path, course=course, course_base=course_base,
@@ -117,6 +127,7 @@ def parse_lesson(rel_html: str, html: str) -> Lesson:
         parsed=(not is_exercise) or section is not None,
         starting=starting, complete=complete,
         local_refs=find_local_paths(html), s3_refs=find_s3_urls(html), web_refs=find_web_urls(html),
+        text=_page_text(html),
     )
 
 

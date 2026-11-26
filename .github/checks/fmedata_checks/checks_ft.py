@@ -67,6 +67,56 @@ def ft003(lesson: Lesson, tree: RepoTree, current: bool) -> list[Finding]:
     return found
 
 
+def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
+    """The lesson names a data file: by path or link, by file name, or by the zip or folder it's shipped as.
+
+    A file in a folder is named by the folder's zip (Data/Orthophotos/02-03-HI.tif by Orthophotos.zip); a file in a
+    geodatabase by the .gdb or its zip; a zip by its name without .zip (CommunityMap.gdb.zip by CommunityMap.gdb)
+    or by a path into its folder (Data/Parks.zip by C:\\FMEData\\Data\\Parks\\Parks.tab).
+    """
+    low = rel.lower()
+    parts = low.split("/")
+    name = parts[-1]
+    text = lesson.text
+    if low in links or name in text:
+        return True
+    if name.endswith(".zip") and (name[:-4] in text or any(l.startswith(low[:-4] + "/") for l in links)):
+        return True
+    for folder in parts[1:-1]:
+        if folder + ".zip" in text or (folder.endswith(".gdb") and folder in text):
+            return True
+    return False
+
+
+def ft004(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool) -> list[Finding]:
+    """An exercise in a course's latest version names every data file its complete workspace reads.
+
+    An exercise is any lesson whose Resources lists a complete workspace (newer exercises' titles don't start
+    with "Exercise"). Paths under Output/ are destinations, and other workspaces aren't data.
+    """
+    if not (current and lesson.complete):
+        return []
+    links = {r.rel.lower() for r in [*lesson.local_refs, *lesson.s3_refs] if r.rel}
+    start_reads = {r.rel for s in lesson.starting if s in workspaces_by_rel
+                   for r in [*workspaces_by_rel[s].local_refs, *workspaces_by_rel[s].s3_refs]}
+    found, seen = [], set()
+    for complete in lesson.complete:
+        ws = workspaces_by_rel.get(complete)
+        if ws is None:
+            continue
+        for r in [*ws.local_refs, *ws.s3_refs]:
+            rel = r.rel
+            if (not rel or rel in seen or rel == "Output" or rel.startswith(OUTPUT_PREFIX)
+                    or rel.endswith((".fmw", ".fmwt")) or _named(rel, lesson, links)):
+                continue
+            seen.add(rel)
+            note = "; the starting workspace already reads it" if rel in start_reads else ""
+            found.append(Finding("FT004", lesson.rel_html, None,
+                                 f"{complete} reads {rel}, but the lesson doesn't name it{note}. "
+                                 "List it under Resources", "warning"))
+    return found
+
+
 def fme_version(build: str | None) -> tuple[int, int] | None:
     if not build:
         return None

@@ -80,6 +80,9 @@ def run_lessons(args) -> int:
 
     lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses))
     latest = latest_versions(lessons)
+    findings += checks_fd.fd004(workspaces, lessons, latest, tree)
+    refs = [r.rel for item in [*workspaces.values(), *lessons] for r in [*item.local_refs, *item.s3_refs] if r.rel]
+    findings += checks_fd.fd007(tree, refs)
     urls = {r.raw for l in lessons for r in [*l.web_refs, *l.s3_refs] if not r.rel}
     statuses = {} if args.no_network else check_urls(urls, http_status, workers=args.workers)
     for lesson in lessons:
@@ -87,6 +90,7 @@ def run_lessons(args) -> int:
         findings += checks_ft.ft001(lesson, tree, cfg, current)
         findings += checks_ft.ft002(lesson, tree, cfg, statuses, current)
         findings += checks_ft.ft003(lesson, tree, current)
+        findings += checks_ft.ft004(lesson, workspaces, current)
         findings += checks_ft.ft005(lesson, statuses, cfg, current)
         findings += checks_ft.ft006(lesson, workspaces, current, previous_version(lesson, lessons))
         findings += checks_ft.ft007(lesson, current)
