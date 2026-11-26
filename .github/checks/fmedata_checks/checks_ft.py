@@ -29,7 +29,7 @@ def _trim_trailing_words(rel: str, tree: RepoTree) -> str:
     head, _, last = rel.rpartition("/")
     words = last.split(" ")
     for n in range(len(words) - 1, 0, -1):
-        candidate = (head + "/" if head else "") + " ".join(words[:n]).rstrip(".,;:")
+        candidate = (head + "/" if head else "") + " ".join(words[:n]).rstrip(".,;:!?")
         if tree.resolve(candidate) != "missing":
             return candidate
     return rel

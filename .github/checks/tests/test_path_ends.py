@@ -94,3 +94,8 @@ def test_a_url_later_in_the_sentence_is_not_more_path():
 def test_workspace_paths_keep_the_plain_rule(text, expected):
     # workspaces hold paths, not prose: the sentence-end rules apply only to lessons
     assert [r.rel for r in find_local_paths(text, prose=False)] == [expected]
+
+
+def test_trimmed_candidate_drops_a_question_mark_rather_than_globbing():
+    lesson = parse_lesson(REL, r"<p>Go to C:\FMEData\Data\Orthophotos? Yes</p>")
+    assert ft001(lesson, TREE, Config(), current=True) == []
