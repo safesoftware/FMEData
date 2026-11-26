@@ -4,6 +4,9 @@ name: Lesson report
 # publishes the report to https://s3.amazonaws.com/FMEData/reports/index.html. Skips when the archive hasn't
 # changed since the last report. A pull request that changes the check code builds the report as an
 # artifact only; it never publishes.
+#
+# GitHub Pages copy: off until a repository admin sets Settings > Pages > Source to "GitHub Actions" and
+# adds the repository variable REPORT_PAGES = true. Then each published report also goes to Pages.
 on:
   schedule:
     - cron: "0 2 * * *"
@@ -23,6 +26,8 @@ jobs:
   report:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
+    outputs:
+      skip: ${{ steps.archive.outputs.skip }}
     steps:
       - name: Has anything changed since the last report?
         id: archive
@@ -100,3 +105,24 @@ jobs:
       - name: Publish to S3
         if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: aws s3 sync "$RUNNER_TEMP/report" s3://FMEData/reports/ --delete
+
+      - name: Stage the report for GitHub Pages
+        if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ runner.temp }}/report
+
+  pages:
+    needs: report
+    if: needs.report.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v5
