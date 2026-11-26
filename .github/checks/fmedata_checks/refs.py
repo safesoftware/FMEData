@@ -93,11 +93,20 @@ def find_local_paths(text: str) -> list[Ref]:
     return refs
 
 
+def _strip_url_end(url: str) -> str:
+    """Drop sentence punctuation after a URL, but keep a ')' that closes a '(' inside it (Battleship_(game))."""
+    while url and url[-1] in _TRAILING:
+        if url[-1] == ")" and url.count("(") >= url.count(")"):
+            break
+        url = url[:-1]
+    return url
+
+
 def _urls(text: str):
     for n, line in _lines(text):
         for m in _URL_RE.finditer(line):
             for part in m.group(0).split(","):
-                part = part.rstrip(_TRAILING)
+                part = _strip_url_end(part)
                 if part.startswith("http"):
                     yield n, part
 

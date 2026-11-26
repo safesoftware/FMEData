@@ -68,3 +68,15 @@ def test_ft001_still_reports_a_missing_path_followed_by_words():
     lesson = parse_lesson(REL, r"<p>Reading C:\FMEData\Data\Nowhere is faster than reading the .zip</p>")
     found = ft001(lesson, TREE, Config(), current=True)
     assert len(found) == 1 and "Data/Nowhere is faster than reading the .zip" in found[0].message
+
+
+@pytest.mark.parametrize("text, expected", [
+    # a closing bracket that belongs to the URL is kept
+    ('<a href="https://en.wikipedia.org/wiki/Battleship_(game)">', "https://en.wikipedia.org/wiki/Battleship_(game)"),
+    ("see https://en.wikipedia.org/wiki/Glob_(programming).", "https://en.wikipedia.org/wiki/Glob_(programming)"),
+    # a closing bracket that belongs to the sentence is not
+    ("(see https://example.com/page)", "https://example.com/page"),
+])
+def test_url_keeps_its_own_closing_bracket(text, expected):
+    from fmedata_checks.refs import find_web_urls
+    assert [r.raw for r in find_web_urls(text)] == [expected]
