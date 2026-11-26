@@ -72,10 +72,22 @@ def load_manifest(text: str) -> tuple[list[Entry], list[tuple[int | None, str]]]
         (None, f"unknown top-level key {k!r}; the manifest has a [default] table and [[entry]] tables")
         for k in data if k not in ("entry", "default")]
     entries = []
-    for i, raw in enumerate(data.get("entry", [])):
+    raw_entries = data.get("entry", [])
+    if not isinstance(raw_entries, list):
+        errors.append((None, "entry must be [[entry]] tables, each with source, license, files, and url"))
+        raw_entries = []
+    # Line numbers come from the [[entry]] headers in the text; if they don't line up with the parsed entries
+    # (an inline array, say), findings carry no line rather than a wrong one.
+    if len(headers) != len(raw_entries):
+        headers = []
+    for i, raw in enumerate(raw_entries):
         start = headers[i] if i < len(headers) else 0
         line = start + 1 if i < len(headers) else None
+        if not isinstance(raw, dict):
+            errors.append((line, "each entry must be a table with source, license, files, and url"))
+            continue
         errors += [(line, f"unknown key {k!r}; an entry has source, license, files, and url") for k in raw if k not in _KEYS]
+        errors += [(line, f"{k} must be text") for k in ("license", "url") if k in raw and not isinstance(raw[k], str)]
         source, files = raw.get("source"), raw.get("files")
         ok = True
         if not isinstance(source, str) or not source.strip():
@@ -111,7 +123,7 @@ def _load_default(raw, lines: list[str], errors: list[tuple[int | None, str]]) -
 
 
 def attribution(path: str, entries: list[Entry]) -> list[Entry]:
-    """The entries that apply to a file: those that match it, or else the default."""
+    """The entries that apply to a file: those that match it, or else the default. Each one needs a license."""
     specific = [e for e in entries if not e.default and any(matches(p, path) for p in e.files)]
     return specific or [e for e in entries if e.default]
 
@@ -127,5 +139,6 @@ def coverage(tree: RepoTree, entries: list[Entry]) -> dict[str, tuple[int, int]]
     for path in data_files(tree):
         c = counts.setdefault(_folder(path), [0, 0])
         c[1] += 1
-        c[0] += any(e.license for e in attribution(path, entries))
+        hits = attribution(path, entries)
+        c[0] += bool(hits) and all(e.license for e in hits)
     return {k: (v[0], v[1]) for k, v in sorted(counts.items())}

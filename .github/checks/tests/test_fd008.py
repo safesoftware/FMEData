@@ -5,6 +5,8 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pytest
+
 from fmedata_checks.checks_fd import fd008
 from fmedata_checks.manifest import MANIFEST, attribution, coverage, load_manifest, matches
 from fmedata_checks.reports import build_reports
@@ -143,7 +145,7 @@ def test_shipped_manifest_reads_cleanly_and_has_no_stale_entries():
     assert stale == []
 
 
-DEFAULT = '[default]\nsource = "City"\nlicense = "City licence"\n'
+DEFAULT = '[default]\nsource = "City"\nlicense = "City license"\n'
 
 
 def test_default_covers_files_no_entry_matches():
@@ -170,3 +172,35 @@ def test_default_needs_source_and_license_and_no_files():
     assert any("default needs a license" in m for m in messages)
     assert any("unknown key 'files'" in m for m in messages)
     assert all(f.line == 1 for f in found if f.path == MANIFEST)
+
+
+@pytest.mark.parametrize("text", [
+    '[entry]\nsource = "A"\nfiles = ["Data/**"]\n',
+    'entry = "x"\n',
+    'entry = [1]\n',
+])
+def test_wrong_shape_is_a_finding_not_a_crash(text):
+    found = fd008(RepoTree.from_paths(["Data/a.csv"]), text)
+    assert any("entry" in f.message for f in found)
+
+
+def test_a_license_that_is_not_text_is_reported_at_its_entry():
+    text = '[[entry]]\nsource = "A"\nlicense = 5\nfiles = ["Data/**"]\n'
+    found = fd008(RepoTree.from_paths(["Data/a.csv"]), text)
+    assert any(f.line == 1 and "license must be text" in f.message for f in found)
+
+
+def test_every_matching_entry_needs_a_license():
+    text = ('[[entry]]\nsource = "A"\nlicense = "L"\nfiles = ["Data/a.csv"]\n'
+            '[[entry]]\nsource = "B"\nfiles = ["Data/*.csv"]\n')
+    tree = RepoTree.from_paths(["Data/a.csv"])
+    found = fd008(tree, text)
+    assert any("(B) but no license" in f.message for f in found)
+    assert coverage(tree, load_manifest(text)[0]) == {"Data": (0, 1)}
+
+
+def test_entries_get_no_line_when_headers_do_not_line_up():
+    # a "[[entry]]" line inside a multi-line string is not a header; no line beats a wrong one
+    text = '[[entry]]\nsource = """\n[[entry]]\n"""\nlicense = "L"\nfiles = ["Data/**"]\n'
+    entries, errors = load_manifest(text)
+    assert errors == [] and [e.line for e in entries] == [None]

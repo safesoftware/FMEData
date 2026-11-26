@@ -102,7 +102,7 @@ not a failure, because it's usually a re-save of a workspace that already contai
 
 **A data file under `Data/` has no source or license in `Data/manifest.toml`.** The license for these tutorials
 requires anyone who redistributes them to keep each data source's notice, so every dataset needs a recorded source
-and license. The notices are the Data Sources sections of `README.md` and of the
+and license. The notices are the Data Sources sections of `README.md`, `LICENSE.md`, and the
 [FME Training Terms of Use](https://www.safe.com/legal/#fme-training-terms-of-use). The manifest ties them to files: each `[[entry]]` has a `source`, a `license`, an optional `url`, and
 the `files` it covers, as exact paths or globs:
 

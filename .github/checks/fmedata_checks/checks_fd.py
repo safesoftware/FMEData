@@ -327,13 +327,12 @@ def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
     no_license: dict[tuple[str, str], list[str]] = {}
     for f in files:
         hits = attribution(f, entries)
-        if any(e.license for e in hits):
-            continue
         folder = f.rsplit("/", 1)[0] + "/"
-        if hits:
-            no_license.setdefault((folder, hits[0].source), []).append(f)
-        else:
+        if not hits:
             missing.setdefault(folder, []).append(f)
+        for e in hits:
+            if not e.license:
+                no_license.setdefault((folder, e.source), []).append(f)
     groups = [(folder, f"{len(fs)} file(s) have no source or license in {MANIFEST}: {_names(fs)}")
               for folder, fs in missing.items()]
     groups += [(folder, f"{len(fs)} file(s) name a source ({source}) but no license: {_names(fs)}")
