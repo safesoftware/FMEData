@@ -9,6 +9,7 @@ name: Lesson report
 # adds the repository variable REPORT_PAGES = true. Then each published report also goes to Pages, at
 # https://safesoftware.github.io/FMEData/. Run the workflow by hand once after turning it on: a manual run
 # never skips, while a scheduled run skips until the archive or main changes or the report is 5 days old.
+# The Pages copy is best effort: if staging it fails, the run stays green, logs a warning, and skips the deploy.
 on:
   schedule:
     - cron: "0 2 * * *"
@@ -117,6 +118,10 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/report
+
+      - name: Warn that the Pages copy wasn't updated
+        if: steps.stage.outcome == 'failure'
+        run: echo "::warning::GitHub Pages staging failed; the Pages copy was not updated (S3 has the new report)."
 
   pages:
     needs: report
