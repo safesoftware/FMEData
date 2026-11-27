@@ -116,7 +116,7 @@ def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
             if newest:
                 result.archived.append(base)
             continue
-        if newest is None and base in annual:
+        if base in annual and (newest is None or live[base] is None):
             result.current[base] = "annual"
         elif newest is None:
             folder = max(folders[base], key=_key)

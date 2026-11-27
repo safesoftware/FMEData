@@ -297,6 +297,13 @@ def test_derive_keeps_annual_courses_without_a_rename(tmp_path: Path):
     assert load_config(p).course_versions["FME Accelerator"] == "annual"
 
 
+def test_derive_keeps_annual_beside_a_versioned_folder():
+    archive = [*ARCHIVE, ("2026.2", "FME Accelerator"), ("2024.0", "FME Accelerator 2024.0")]
+    catalog = [*CATALOG, {"title": "FME Accelerator", "slug": "fme-accelerator"}]
+    found = courses.derive(archive, catalog, ignore_courses=["Clone of *"], annual=["FME Accelerator"])
+    assert found.current["FME Accelerator"] == "annual"
+
+
 def test_derive_drops_annual_course_no_longer_live():
     found = courses.derive(ARCHIVE + [("2024.0", "FME Accelerator")], CATALOG, annual=["FME Accelerator"])
     assert "FME Accelerator" not in found.current
