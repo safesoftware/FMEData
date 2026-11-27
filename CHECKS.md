@@ -85,7 +85,8 @@ lists a complete workspace, and often a starting one. When the starting workspac
 the exercise. Many exercises start from a blank canvas or from an earlier exercise's result, so a complete
 workspace with no starting partner is fine on its own. FD004 reports one only when a lesson listing it as the
 complete workspace starts from a workspace that isn't in this repository, or opens a starting workspace in Step 1
-without listing one. Complete workspaces that no lesson lists aren't reported.
+without listing one. A Step 1 that gives the path of a workspace in this repository, such as an earlier exercise's
+result, isn't reported. Complete workspaces that no lesson lists aren't reported.
 
 Names aren't standardized yet, so FD004 pairs workspaces tolerantly: in the same folder, ignoring case and
 separators, `-complete`, `--complete`, `_Complete`, `_Completed`, `Complete`, `_Completo`, and `.Complete` all
@@ -207,7 +208,8 @@ lesson's Resources section.
 **An exercise doesn't name a data file its complete workspace reads.** Learners who don't have FMEData installed
 download each dataset from the Resources section, so a dataset the workspace reads but the lesson never names is
 one they can't find. FT004 checks lessons in each course's latest version that list a complete workspace. A data
-file counts as named when the lesson links it or gives its path, mentions its file name, or names the zip or
+file counts as named when the lesson links it or gives its path or a folder it's in (`C:\FMEData\Data\Orthophotos`
+names the tiles inside), mentions its file name, or names the zip or
 geodatabase it's shipped in (`Orthophotos.zip` names the tiles in `Data/Orthophotos/`; `CommunityMap.gdb` names
 `CommunityMap.gdb.zip`). Paths under `Output/` and other workspaces are skipped. The finding notes when the
 starting workspace already reads the file, so learners with FMEData installed aren't blocked.

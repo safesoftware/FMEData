@@ -75,7 +75,8 @@ def _mentions(text: str, token: str) -> bool:
 
 
 def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
-    """The lesson names a data file: by path or link, by file name, or by the zip or folder it's shipped as.
+    """The lesson names a data file: by path or link, by file name, by a folder it's in, or by the zip or folder
+    it's shipped as.
 
     A file in a folder is named by the folder's zip (Data/Orthophotos/02-03-HI.tif by Orthophotos.zip); a file in a
     geodatabase by the .gdb or its zip; a zip by its name without .zip (CommunityMap.gdb.zip by CommunityMap.gdb)
@@ -86,6 +87,9 @@ def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
     name = parts[-1]
     text = lesson.text
     if low in links or _mentions(text, name):
+        return True
+    # A folder the lesson names or links (C:\FMEData\Data\Orthophotos) names the files in it; Data itself doesn't.
+    if any(l.count("/") >= 1 and low.startswith(l.rstrip("/") + "/") for l in links):
         return True
     if name.endswith(".zip") and (_mentions(text, name[:-4]) or any(l.startswith(low[:-4] + "/") for l in links)):
         return True

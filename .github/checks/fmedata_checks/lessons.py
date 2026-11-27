@@ -262,12 +262,15 @@ class Exercise:
     starting: tuple[str, ...]
     complete: tuple[str, ...]
     step1_start: bool
+    # Workspaces Step 1 names by path, kept only when Step 1 opens a starting workspace (FD004 reads them then).
+    step1_workspaces: tuple[str, ...] = ()
 
 
 def exercises(lessons: Iterable[Lesson], latest: dict[str, str]) -> list[Exercise]:
     """Every lesson whose Resources lists a complete workspace (newer exercises' titles don't say "Exercise")."""
     return [Exercise(lesson_label(l), is_current(l, latest), tuple(l.starting), tuple(l.complete),
-                     l.step1_mentions_start) for l in lessons if l.complete]
+                     l.step1_mentions_start, tuple(l.step1_workspaces) if l.step1_mentions_start else ())
+            for l in lessons if l.complete]
 
 
 def exercise_json(ex: Exercise) -> dict:
@@ -278,6 +281,8 @@ def exercise_json(ex: Exercise) -> dict:
     out["complete"] = list(ex.complete)
     if ex.step1_start:
         out["step1_start"] = True
+    if ex.step1_workspaces:
+        out["step1_workspaces"] = list(ex.step1_workspaces)
     return out
 
 
@@ -297,7 +302,8 @@ def read_exercises(path_or_url: "str | dict | None", max_age_days: int = 7) -> t
         return tuple(value)
     try:
         found = [Exercise(str(e["lesson"]), bool(e.get("current")), paths(e.get("starting", [])),
-                          paths(e["complete"]), bool(e.get("step1_start"))) for e in data["exercises"]]
+                          paths(e["complete"]), bool(e.get("step1_start")), paths(e.get("step1_workspaces", [])))
+                 for e in data["exercises"]]
     except (KeyError, TypeError, AttributeError):
         return None, _stale(data, max_age_days)
     return found, _stale(data, max_age_days)

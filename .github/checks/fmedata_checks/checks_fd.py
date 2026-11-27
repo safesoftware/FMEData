@@ -374,7 +374,9 @@ def fd004(paths, exercises, tree: RepoTree, only: set[str] | None = None,
             missing = [s for s in ex.starting if tree.resolve(s) == "missing"]
             if ex.starting and len(missing) == len(ex.starting):
                 reasons.append(f"{ex.label} starts from {missing[0]}, which isn't in FMEData")
-            elif not ex.starting and ex.step1_start:
+            elif (not ex.starting and ex.step1_start
+                  and not any(tree.resolve(w) != "missing" for w in ex.step1_workspaces)):
+                # Step 1 naming a workspace that exists (often an earlier exercise's result) is a start, too.
                 reasons.append(f"{ex.label} opens a starting workspace in Step 1 but doesn't list one")
             else:
                 continue

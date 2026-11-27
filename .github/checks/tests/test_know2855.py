@@ -262,3 +262,30 @@ def test_fd004_lesson_spelling_may_differ_in_case_from_the_repo():
 
 def test_ft004_a_name_inside_a_longer_name_does_not_count():
     assert len(_ft004(LISTED + "<li>MainPublicArt.xlsx</li>")) == 1
+
+
+def test_ft004_a_named_folder_names_the_files_in_it():
+    # LISTED names Orthophotos.zip; drop it and name the plain folder instead
+    folder_only = LISTED.replace("<li>Orthophotos.zip C:\\FMEData\\Data\\Orthophotos.zip</li>",
+                                 "<li>C:\\FMEData\\Data\\Orthophotos</li>")
+    assert _ft004(folder_only + "<li>PublicArt.xlsx</li>") == []
+
+
+def test_ft004_naming_data_itself_names_nothing():
+    found = _ft004(LISTED + "<li>C:\\FMEData\\Data</li>")
+    assert [f.check_id for f in found] == ["FT004"]
+
+
+def test_fd004_step1_naming_an_existing_workspace_is_a_start():
+    paths = ["W/a-complete.fmw", "Workspaces/W/ex2-complete.fmw"]
+    lesson = _lesson("C 2026.2", _res("W/a-complete.fmw"),
+                     step1="<p>Open the starting workspace you saved in Exercise 2, "
+                           "C:\\FMEData\\Workspaces\\W\\ex2-complete.fmw.</p>")
+    assert _fd004(paths, [lesson]) == []
+
+
+def test_fd004_step1_naming_a_missing_workspace_is_still_reported():
+    paths = ["W/a-complete.fmw"]
+    lesson = _lesson("C 2026.2", _res("W/a-complete.fmw"),
+                     step1="<p>Open the starting workspace C:\\FMEData\\Workspaces\\W\\gone.fmw.</p>")
+    assert [f.check_id for f in _fd004(paths, [lesson])] == ["FD004"]

@@ -133,3 +133,11 @@ def test_read_exercises_rejects_a_path_that_is_not_a_list(tmp_path: Path):
                              "exercises": [{"lesson": "L", "complete": ["W/a-complete.fmw"], "starting": "W/a.fmw"}]}),
                  encoding="utf-8")
     assert read_exercises(str(p))[0] is None
+
+
+def test_step1_workspaces_round_trip_through_findings_json(tmp_path: Path):
+    ex = Exercise("L", True, (), ("W/a-complete.fmw",), True, ("Workspaces/W/ex2-complete.fmw",))
+    build_reports([], [], {}, {}, tmp_path, datetime.now(timezone.utc), exercises=[ex])
+    data = json.loads((tmp_path / "findings.json").read_text(encoding="utf-8"))
+    assert data["exercises"][0]["step1_workspaces"] == ["Workspaces/W/ex2-complete.fmw"]
+    assert read_exercises(str(tmp_path / "findings.json")) == ([ex], False)
