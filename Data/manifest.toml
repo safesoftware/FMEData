@@ -7,7 +7,8 @@
 # the files they apply to under `files`: an exact path (Data/GPS/WalkingTrail.csv), or a glob, where * and ? stay
 # within one folder and ** spans folders (Data/OpenStreetMap/** is everything in that folder). Paths are
 # case-sensitive. A file may match more than one entry when its data comes from more than one source, and a file an
-# entry matches doesn't take the default. `url` is optional.
+# entry matches doesn't take the default. `url` is optional. A folder zip (Data/Addresses.zip) lists every source
+# of the files inside it, so when one of those files has its own entry, the zip needs that entry and the City's.
 
 [default]
 source = "City of Vancouver, British Columbia, open data"
@@ -23,7 +24,7 @@ files = ["Data/OpenStreetMap/**"]
 [[entry]]
 source = "Statistics Canada, 2011 Census Digital Boundary Files, 2013; includes information copied with permission from Canada Post Corporation"
 license = "Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada"
-files = ["Data/Addresses/ForwardSortationAreas.*"]
+files = ["Data/Addresses/ForwardSortationAreas.*", "Data/Addresses.zip"]
 
 [[entry]]
 source = "GeoBase®"
@@ -35,12 +36,13 @@ license = "Creative Commons Attribution-ShareAlike"
 url = "http://en.wikipedia.org/wiki/Vancouver_Fire_and_Rescue_Services"
 files = ["Data/Emergency/FireHalls*"]
 
-# Only some of the fire halls' attribute data is from Wikipedia; the rest is the City's, as the default says.
+# The City's data, where a file also has another source: only some of the fire halls' attribute data is from
+# Wikipedia, and Data/Addresses.zip holds the Forward Sortation Areas beside the City's address data.
 [[entry]]
 source = "City of Vancouver, British Columbia, open data"
 license = "Open Government License - Vancouver"
 url = "https://opendata.vancouver.ca/pages/licence/"
-files = ["Data/Emergency/FireHalls*"]
+files = ["Data/Emergency/FireHalls*", "Data/Addresses.zip"]
 
 [[entry]]
 source = "VancouverTrails.com (Stanley Park GPS trail)"

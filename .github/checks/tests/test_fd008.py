@@ -145,6 +145,17 @@ def test_shipped_manifest_reads_cleanly_and_has_no_stale_entries():
     assert stale == []
 
 
+def test_shipped_folder_zips_credit_every_source_inside_them():
+    import zipfile
+    entries, _ = load_manifest((REPO / MANIFEST).read_text(encoding="utf-8"))
+    tree = RepoTree.from_git(REPO)
+    for z in sorted(p for p in tree.all_files() if p.startswith("Data/") and p.endswith(".zip")):
+        parent = z.rsplit("/", 1)[0]
+        inside = {e.source for n in zipfile.ZipFile(REPO / z).namelist() if not n.endswith("/")
+                  for e in attribution(f"{parent}/{n}", entries)}
+        assert inside <= {e.source for e in attribution(z, entries)}, z
+
+
 DEFAULT = '[default]\nsource = "City"\nlicense = "City license"\n'
 
 
