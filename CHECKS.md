@@ -120,10 +120,12 @@ the whole folder. Paths are case-sensitive. A file whose data comes from several
 A `[default]` table (`source`, `license`, and an optional `url`, but no `files`) applies to every file that no entry
 matches. FMEData's default is the City of Vancouver's open data, as the Data Sources notices say. A file an entry
 matches takes only that entry's attribution, so an entry with no license leaves its files reported even though a
-default exists.
+default exists. A folder zip (`Data/Addresses.zip`) credits every source of the files inside it: when one of
+those files has its own entry, list the zip in that entry and in an entry for the City's data, which repeats the
+default's source, license, and url. FD008 doesn't open zips; a unit test checks the shipped ones.
 
 FD008 runs in the nightly report only, as warnings. It reports files with no entry once per folder, files whose
-entry names a source but no license, and manifest entries whose `files` match nothing (usually a renamed or deleted
+matching entry names a source but no license (a file several entries match needs a license from each), and manifest entries whose `files` match nothing (usually a renamed or deleted
 dataset, or a folder written without `/**`). The report's "Data attribution" table shows how many files in each
 folder are covered.
 

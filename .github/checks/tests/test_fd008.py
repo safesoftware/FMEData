@@ -146,14 +146,28 @@ def test_shipped_manifest_reads_cleanly_and_has_no_stale_entries():
 
 
 def test_shipped_folder_zips_credit_every_source_inside_them():
+    # A zip member counts when it mirrors a file in the repo (Data/Addresses.zip's Addresses/x is Data/Addresses/x).
+    # Inner zips are repo files too, so each is checked as its own zip. CI's sparse checkout has no zips.
     import zipfile
     entries, _ = load_manifest((REPO / MANIFEST).read_text(encoding="utf-8"))
     tree = RepoTree.from_git(REPO)
-    for z in sorted(p for p in tree.all_files() if p.startswith("Data/") and p.endswith(".zip")):
+    files = tree.all_files()
+    zips = sorted(p for p in files if p.startswith("Data/") and p.endswith(".zip") and (REPO / p).is_file())
+    if not zips:
+        pytest.skip("the data zips aren't checked out")
+    for z in zips:
         parent = z.rsplit("/", 1)[0]
-        inside = {e.source for n in zipfile.ZipFile(REPO / z).namelist() if not n.endswith("/")
-                  for e in attribution(f"{parent}/{n}", entries)}
-        assert inside <= {e.source for e in attribution(z, entries)}, z
+        with zipfile.ZipFile(REPO / z) as zf:
+            members = [f"{parent}/{n}" for n in zf.namelist() if f"{parent}/{n}" in files]
+        inside = {(e.source, e.license) for m in members for e in attribution(m, entries)}
+        assert inside <= {(e.source, e.license) for e in attribution(z, entries)}, z
+
+
+def test_shipped_city_entry_matches_the_default():
+    entries, _ = load_manifest((REPO / MANIFEST).read_text(encoding="utf-8"))
+    [default] = [e for e in entries if e.default]
+    city = [e for e in entries if not e.default and e.source == default.source]
+    assert city and all(e.license == default.license for e in city)
 
 
 DEFAULT = '[default]\nsource = "City"\nlicense = "City license"\n'
