@@ -30,6 +30,7 @@ jobs:
     timeout-minutes: 45
     outputs:
       skip: ${{ steps.archive.outputs.skip }}
+      staged: ${{ steps.stage.outcome }}
     steps:
       - name: Has anything changed since the last report?
         id: archive
@@ -109,14 +110,17 @@ jobs:
         run: aws s3 sync "$RUNNER_TEMP/report" s3://FMEData/reports/ --delete
 
       - name: Stage the report for GitHub Pages
+        id: stage
         if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+        # The Pages copy is optional: a failure here mustn't turn a run that already published to S3 red.
+        continue-on-error: true
         uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/report
 
   pages:
     needs: report
-    if: needs.report.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+    if: needs.report.outputs.staged == 'success' && needs.report.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
