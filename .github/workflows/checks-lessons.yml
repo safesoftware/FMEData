@@ -4,6 +4,12 @@ name: Lesson report
 # publishes the report to https://s3.amazonaws.com/FMEData/reports/index.html. Skips when the archive hasn't
 # changed since the last report. A pull request that changes the check code builds the report as an
 # artifact only; it never publishes.
+#
+# GitHub Pages copy: off until a repository admin sets Settings > Pages > Source to "GitHub Actions" and
+# adds the repository variable REPORT_PAGES = true. Then each published report also goes to Pages, at
+# https://safesoftware.github.io/FMEData/. Run the workflow by hand once after turning it on: a manual run
+# never skips, while a scheduled run skips until the archive or main changes or the report is 5 days old.
+# The Pages copy is best effort: if staging it fails, the run stays green, logs a warning, and skips the deploy.
 on:
   schedule:
     - cron: "0 2 * * *"
@@ -24,6 +30,9 @@ jobs:
   report:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
+    outputs:
+      skip: ${{ steps.archive.outputs.skip }}
+      staged: ${{ steps.stage.outcome }}
     steps:
       - name: Has anything changed since the last report?
         id: archive
@@ -102,3 +111,32 @@ jobs:
       - name: Publish to S3
         if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: aws s3 sync "$RUNNER_TEMP/report" s3://FMEData/reports/ --delete
+
+      - name: Stage the report for GitHub Pages
+        id: stage
+        if: steps.archive.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+        # The Pages copy is optional: a failure here mustn't turn a run that already published to S3 red.
+        continue-on-error: true
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ runner.temp }}/report
+
+      - name: Warn that the Pages copy wasn't updated
+        if: steps.stage.outcome == 'failure'
+        run: echo "::warning::GitHub Pages staging failed; the Pages copy was not updated (S3 has the new report)."
+
+  pages:
+    needs: report
+    if: needs.report.outputs.staged == 'success' && needs.report.outputs.skip != 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.REPORT_PAGES == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v5
