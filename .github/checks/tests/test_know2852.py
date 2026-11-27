@@ -339,5 +339,36 @@ def test_courses_command_fails_on_a_conflict(tmp_path: Path, capsys):
     catalog = tmp_path / "catalog.json"
     catalog.write_text(json.dumps([*CATALOG, {"title": "Compare Workspaces 2025.1", "slug": "cw-partner"}]),
                        encoding="utf-8")
-    assert main(["courses", "--fmetraining", str(tmp_path / "archive"), "--catalog", str(catalog)]) == 1
-    assert "Compare Workspaces: Compare Workspaces 2026.1 (compare-workspaces)" in capsys.readouterr().out
+    config = tmp_path / "checks.toml"
+    config.write_text('[courses.current]\n"Compare Workspaces" = "2026.1"\n', encoding="utf-8")
+    assert main(["courses", "--fmetraining", str(tmp_path / "archive"), "--catalog", str(catalog),
+                 "--config", str(config)]) == 1
+    out, err = capsys.readouterr()
+    assert "Compare Workspaces: Compare Workspaces 2026.1 (compare-workspaces)" in err
+    assert '"Compare Workspaces" = "2026.1"' in out  # checks.toml's entry is kept
+
+
+def test_conflicted_course_keeps_its_existing_entry():
+    catalog = [*CATALOG, {"title": "Compare Workspaces 2025.1", "slug": "compare-workspaces-partner"}]
+    found = courses.derive(ARCHIVE, catalog, ignore_courses=["Clone of *"], keep_current={"Compare Workspaces": "2026.1"})
+    assert found.current["Compare Workspaces"] == "2026.1" and found.conflicts
+
+
+def _archive(tmp_path, *rels):
+    for rel in rels:
+        p = tmp_path / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("<p>x</p>", encoding="utf-8")
+
+
+def test_annual_course_keeps_annual_beside_a_versioned_folder(tmp_path: Path):
+    _archive(tmp_path, "2026.2/p/FME Accelerator/L/index.html", "2024.0/p/FME Accelerator 2024.0/L/index.html")
+    found = {l.course: l for l in iter_lessons(tmp_path, course_versions={"FME Accelerator": "annual"})}
+    assert found["FME Accelerator"].annual
+
+
+def test_ignored_or_stray_versioned_folders_dont_unversion_a_course(tmp_path: Path):
+    _archive(tmp_path, "2026.2/p/MCP and FME/L/index.html", "2026.2/p/Clone of MCP and FME 2026.2/L/index.html",
+             "drafts/p/MCP and FME 2026.2/L/index.html")
+    found = {l.course: l for l in iter_lessons(tmp_path, ["Clone of *"], {"MCP and FME": "2026.2"})}
+    assert found["MCP and FME"].course_version == "2026.2"

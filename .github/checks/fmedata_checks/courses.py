@@ -42,7 +42,7 @@ class CourseConfig:
     archived: list[str] = field(default_factory=list)
     renames: list[tuple[str, str]] = field(default_factory=list)
     # Courses with more than one live unversioned copy at different versions: (name, ["title (slug)", ...]).
-    # Neither copy is taken as current; a person decides, and the course gets no entry until then.
+    # Neither copy is taken as current; a person decides, and checks.toml's existing entry is kept until then.
     conflicts: list[tuple[str, list[str]]] = field(default_factory=list)
 
 
@@ -67,11 +67,15 @@ def catalog_rows(rows: Iterable[dict]) -> list[dict]:
 
 
 def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
-           ignore_courses: list[str] | None = None, annual: Iterable[str] = ()) -> CourseConfig:
+           ignore_courses: list[str] | None = None, annual: Iterable[str] = (),
+           keep_current: dict[str, str] | None = None, keep_archived: Iterable[str] = ()) -> CourseConfig:
     """archive: (archive version folder, course folder name) pairs. catalog: published courses on one domain.
 
     annual: courses checks.toml marks "annual"; while they're live and unversioned they stay annual.
+    keep_current, keep_archived: checks.toml's existing entries, kept as they are for a course in conflict.
     """
+    keep_current = keep_current or {}
+    keep_archived = set(keep_archived)
     annual = set(annual)
     ignore = ignore_courses or []
     folders: dict[str, set[str]] = {}
@@ -102,6 +106,10 @@ def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
                 result.conflicts.append((base, [label for _, label in copies]))
     for base in sorted(folders):
         if base in conflicted:
+            if base in keep_current:
+                result.current[base] = keep_current[base]
+            elif base in keep_archived:
+                result.archived.append(base)
             continue
         newest = max(versions[base], key=_key) if versions[base] else None
         if base not in live:

@@ -117,20 +117,22 @@ def run_courses(args) -> int:
             return 2
         catalog = courses.fetch_catalog(args.domain, key)
     annual = [name for name, version in cfg.course_versions.items() if version == "annual"]
-    found = courses.derive(courses.archive_courses(Path(args.fmetraining)), catalog, cfg.ignore_courses, annual)
+    found = courses.derive(courses.archive_courses(Path(args.fmetraining)), catalog, cfg.ignore_courses, annual,
+                           keep_current=cfg.course_versions, keep_archived=cfg.archived_courses)
+    if found.conflicts:
+        # Before the table, and on stderr, so a redirected run still shows it.
+        print("Courses with more than one live unversioned copy at different versions. The table keeps checks.toml's "
+              "entry for each; hide or rename all but the current copy in Skilljar, or edit the entry by hand:",
+              file=sys.stderr)
+        for name, copies in found.conflicts:
+            print(f"  {name}: {'; '.join(copies)}", file=sys.stderr)
     print(f"# From {len(catalog)} published courses on {args.domain}. Replace the [courses] table in checks.toml.")
     print(courses.render_toml(found), end="")
     if found.renames:
         print("\n# Courses to rename in Skilljar so their names carry their version:")
         for old, new in found.renames:
             print(f"#   {old} -> {new}")
-    if found.conflicts:
-        print("\n# Courses with more than one live unversioned copy at different versions; none is written above."
-              "\n# Hide or rename all but the current one in Skilljar, or add the entry by hand:")
-        for name, copies in found.conflicts:
-            print(f"#   {name}: {'; '.join(copies)}")
-        return 1
-    return 0
+    return 1 if found.conflicts else 0
 
 
 def main(argv: list[str] | None = None) -> int:

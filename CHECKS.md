@@ -152,14 +152,14 @@ the version to the course name makes it current.
 **The `[courses]` table** records what Skilljar's published catalog says about current versions. On the Academy,
 the published course with the unversioned URL (`/compare-workspaces`) is a course's current version. Hidden
 courses don't count. If two live courses with unversioned URLs name different versions of one course, the command
-leaves that course out of the table, lists both copies, and exits with status 1, so a person decides.
+keeps that course's existing entry, lists both copies on stderr, and exits with status 1, so a person decides.
 
 - `archived` lists courses Skilljar publishes only on versioned URLs, such as "Publish Workflows to the Web":
   none of their versions is current.
 - `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
   has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
   This applies only to a course with no versioned folder anywhere in the archive; an unversioned copy of a
-  versioned course is never current.
+  versioned course is never current. An `"annual"` course is always unversioned, so the rule doesn't apply to it.
   Once its Skilljar name carries the version, its entry is no longer needed.
 - `"annual"` in `current` marks a course that has no version and stays current, such as "FME Accelerator": it's
   never archived per version, so FT006 holds it to each year's FME release instead. Skilljar's catalog can't tell
