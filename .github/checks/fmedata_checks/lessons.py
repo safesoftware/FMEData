@@ -12,6 +12,7 @@ import html as html_lib
 import json
 import re
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -50,6 +51,14 @@ class Lesson:
     # An unversioned course that is always current ("annual" in checks.toml): FT006 holds its workspaces to
     # the current year's FME release rather than to course_version, which is only its archive folder.
     annual: bool = False
+    # The page's words and link targets, lowercased, with / for \ (FT004 looks for data file names in it).
+    text: str = ""
+
+
+def _page_text(page: str) -> str:
+    hrefs = " ".join(urllib.parse.unquote(m.group(1)) for m in _ANCHOR.finditer(page))
+    words = html_lib.unescape(_TAG.sub(" ", page))
+    return re.sub(r"\s+", " ", f"{words} {hrefs}").replace("\\", "/").lower()
 
 
 _HEADING = re.compile(r"<h([1-6])[^>]*>(.*?)</h\1>", re.I | re.S)
@@ -122,7 +131,8 @@ def parse_lesson(rel_html: str, html: str, course_versions: dict[str, str] | Non
     section = _RESOURCES.search(html)
     if section:
         starting, complete = _resources(section.group(1))
-    has_step1, mentions_start, step1_ws = _step1(html) if is_exercise else (False, False, [])
+    # Newer exercises' titles don't start with "Exercise"; listing a complete workspace marks them too (FD004).
+    has_step1, mentions_start, step1_ws = _step1(html) if is_exercise or complete else (False, False, [])
     return Lesson(
         has_step1=has_step1, step1_mentions_start=mentions_start, step1_workspaces=step1_ws,
         annual=annual, version=version, learning_path=learning_path, course=course, course_base=course_base,
@@ -130,6 +140,7 @@ def parse_lesson(rel_html: str, html: str, course_versions: dict[str, str] | Non
         parsed=(not is_exercise) or section is not None,
         starting=starting, complete=complete,
         local_refs=find_local_paths(html), s3_refs=find_s3_urls(html), web_refs=find_web_urls(html),
+        text=_page_text(html),
     )
 
 
@@ -246,28 +257,91 @@ def write_index(idx: dict[str, list[str]], path: Path) -> None:
     Path(path).write_text(json.dumps(payload, indent=1), encoding="utf-8")
 
 
-def read_index(path_or_url: str, max_age_days: int = 7, with_current: bool = False):
-    """Read the lesson index from findings.json.
+def load_report(path_or_url: str) -> dict | None:
+    """findings.json from a path or URL, or None when it's missing or unreadable."""
+    try:
+        if path_or_url.startswith(("http://", "https://")):
+            with urllib.request.urlopen(path_or_url, timeout=30) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        return json.loads(Path(path_or_url).read_text(encoding="utf-8"))
+    except (OSError, ValueError, urllib.error.URLError):
+        return None
+
+
+def _stale(data: dict, max_age_days: int) -> bool:
+    try:
+        return datetime.now(timezone.utc) - datetime.fromisoformat(data["generated_at"]) > timedelta(days=max_age_days)
+    except (KeyError, ValueError, TypeError):
+        return True
+
+
+def read_index(path_or_url: "str | dict | None", max_age_days: int = 7, with_current: bool = False):
+    """Read the lesson index from findings.json (a path, a URL, or a report already loaded).
 
     Returns (index, stale), or (index, current_index, stale) with with_current. stale is True when the file
     is missing, unreadable, or older than max_age_days. A file without a current index (from an older report)
     yields None for it, which FD010 treats as "every lesson is current".
     """
-    try:
-        if path_or_url.startswith(("http://", "https://")):
-            with urllib.request.urlopen(path_or_url, timeout=30) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-        else:
-            data = json.loads(Path(path_or_url).read_text(encoding="utf-8"))
-    except (OSError, ValueError, urllib.error.URLError):
+    data = load_report(path_or_url) if isinstance(path_or_url, str) else path_or_url
+    if data is None:
         return ({}, None, True) if with_current else ({}, True)
     idx = data.get("lesson_index", {})
-    try:
-        generated = datetime.fromisoformat(data["generated_at"])
-        stale = datetime.now(timezone.utc) - generated > timedelta(days=max_age_days)
-    except (KeyError, ValueError, TypeError):
-        stale = True
+    stale = _stale(data, max_age_days)
     if with_current:
         return idx, data.get("current_index"), stale
     return idx, stale
 
+
+@dataclass(frozen=True)
+class Exercise:
+    """What FD004 needs from an exercise lesson; the nightly report publishes these for pull requests."""
+    label: str
+    current: bool
+    starting: tuple[str, ...]
+    complete: tuple[str, ...]
+    step1_start: bool
+    # Workspaces Step 1 names by path, kept only when Step 1 opens a starting workspace (FD004 reads them then).
+    step1_workspaces: tuple[str, ...] = ()
+
+
+def exercises(lessons: Iterable[Lesson], latest: dict[str, str]) -> list[Exercise]:
+    """Every lesson whose Resources lists a complete workspace (newer exercises' titles don't say "Exercise")."""
+    return [Exercise(lesson_label(l), is_current(l, latest), tuple(l.starting), tuple(l.complete),
+                     l.step1_mentions_start, tuple(l.step1_workspaces) if l.step1_mentions_start else ())
+            for l in lessons if l.complete]
+
+
+def exercise_json(ex: Exercise) -> dict:
+    """One exercise for findings.json; empty lists and false flags are left out to keep the file small."""
+    out: dict = {"lesson": ex.label, "current": ex.current}
+    if ex.starting:
+        out["starting"] = list(ex.starting)
+    out["complete"] = list(ex.complete)
+    if ex.step1_start:
+        out["step1_start"] = True
+    if ex.step1_workspaces:
+        out["step1_workspaces"] = list(ex.step1_workspaces)
+    return out
+
+
+def read_exercises(path_or_url: "str | dict | None", max_age_days: int = 7) -> tuple[list[Exercise] | None, bool]:
+    """The exercises from findings.json, and whether the file is stale.
+
+    None when the file is missing, unreadable, or from a report that predates the exercise list.
+    """
+    data = load_report(path_or_url) if isinstance(path_or_url, str) else path_or_url
+    if data is None:
+        return None, True
+    if not isinstance(data.get("exercises"), list):
+        return None, _stale(data, max_age_days)
+    def paths(value) -> tuple[str, ...]:
+        if not isinstance(value, list) or not all(isinstance(p, str) for p in value):
+            raise TypeError("expected a list of paths")
+        return tuple(value)
+    try:
+        found = [Exercise(str(e["lesson"]), bool(e.get("current")), paths(e.get("starting", [])),
+                          paths(e["complete"]), bool(e.get("step1_start")), paths(e.get("step1_workspaces", [])))
+                 for e in data["exercises"]]
+    except (KeyError, TypeError, AttributeError):
+        return None, _stale(data, max_age_days)
+    return found, _stale(data, max_age_days)

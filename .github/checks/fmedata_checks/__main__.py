@@ -16,7 +16,7 @@ from pathlib import Path
 
 from . import checks_fd, checks_ft, courses
 from .gitdiff import added_lines, changed_files
-from .lessons import current_index, ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, read_index
+from .lessons import current_index, exercises, ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, load_report, read_exercises, read_index
 from .manifest import MANIFEST, coverage, load_manifest
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
@@ -53,13 +53,25 @@ def run_pr(args) -> int:
     findings += checks_fd.fd011(new_names, pr_added=True, cfg=cfg)
     findings += checks_fd.fd012_changes(changes, tree)
     # "--index none" (pull requests into a year branch): lessons link main, so FD010 doesn't apply.
+    skipped = []
     if args.index != "none":
-        idx, current, stale = read_index(args.index, with_current=True)
+        report = load_report(args.index)
+        idx, current, stale = read_index(report, with_current=True)
         findings += checks_fd.fd010(changes, idx, stale, current=current, cfg=cfg)
+        # FD004 needs each exercise's workspaces, which only a recent report publishes.
+        exercise_list, ex_stale = read_exercises(report)
+        if exercise_list is None or ex_stale:
+            why = ("can't be read" if report is None else
+                   "predates the exercise list" if exercise_list is None else "is more than 7 days old")
+            skipped.append(f"FD004 skipped: the lesson report {why}. See CHECKS.md#fd004.")
+        else:
+            findings += checks_fd.fd004_changes(changes, exercise_list, tree)
 
     shown = [f for f in (effective(f, cfg) for f in findings) if f.severity != "notice"]
     for f in shown:
         print(annotation(f))
+    for line in skipped:
+        print(line)
     errors = sum(f.severity == "error" for f in shown)
     print(f"{len(changes)} changed file(s): {errors} error(s), {len(shown) - errors} warning(s). See CHECKS.md.")
     return 1 if errors else 0
@@ -90,6 +102,10 @@ def run_lessons(args) -> int:
 
     lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses, cfg.course_versions))
     latest = latest_versions(lessons, cfg.course_versions, cfg.archived_courses)
+    exercise_list = exercises(lessons, latest)
+    findings += checks_fd.fd004(workspaces, exercise_list, tree)
+    refs = [r.rel for item in [*workspaces.values(), *lessons] for r in [*item.local_refs, *item.s3_refs] if r.rel]
+    findings += checks_fd.fd007(tree, refs)
     urls = {r.raw for l in lessons for r in [*l.web_refs, *l.s3_refs] if not r.rel}
     statuses = {} if args.no_network else check_urls(urls, http_status, workers=args.workers)
     for lesson in lessons:
@@ -97,6 +113,7 @@ def run_lessons(args) -> int:
         findings += checks_ft.ft001(lesson, tree, cfg, current)
         findings += checks_ft.ft002(lesson, tree, cfg, statuses, current)
         findings += checks_ft.ft003(lesson, tree, current)
+        findings += checks_ft.ft004(lesson, workspaces, current)
         findings += checks_ft.ft005(lesson, statuses, cfg, current)
         findings += checks_ft.ft006(lesson, workspaces, current, previous_version(lesson, lessons))
         findings += checks_ft.ft007(lesson, current)
@@ -107,7 +124,7 @@ def run_lessons(args) -> int:
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),
                   datetime.now(timezone.utc), fmetraining_sha=args.sha, exempt=list(cfg.exempt), cfg=cfg,
                   fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons, cfg.course_versions, cfg.archived_courses),
-                  attribution=attribution)
+                  exercises=exercise_list, attribution=attribution)
     print(f"{len(lessons)} lessons, {len(findings)} findings; report in {args.out}")
     return 0
 
