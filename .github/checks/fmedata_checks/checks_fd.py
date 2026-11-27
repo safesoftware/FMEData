@@ -375,7 +375,8 @@ def fd004(paths, exercises, tree: RepoTree, only: set[str] | None = None,
             if ex.starting and len(missing) == len(ex.starting):
                 reasons.append(f"{ex.label} starts from {missing[0]}, which isn't in FMEData")
             elif (not ex.starting and ex.step1_start
-                  and not any(tree.resolve(w) != "missing" for w in ex.step1_workspaces)):
+                  and not any(tree.resolve(w) != "missing" for w in ex.step1_workspaces
+                              if w.lower() not in {c.lower() for c in ex.complete})):
                 # Step 1 naming a workspace that exists (often an earlier exercise's result) is a start, too.
                 reasons.append(f"{ex.label} opens a starting workspace in Step 1 but doesn't list one")
             else:
@@ -399,8 +400,8 @@ def fd004_changes(changes: list[Change], exercises, tree: RepoTree) -> list[Find
     # The workspaces before the PR, so a removed starting workspace can still be paired with its complete one.
     before = {p.lower(): p for p in [*paths, *(r for r in removed if r.endswith(WORKSPACE_EXT))]}
     for ex in exercises:
-        # A starting workspace the lesson lists, or (Step 1 cases) the one beside the complete workspace.
-        hit = removed_low & {s.lower() for s in ex.starting}
+        # A starting workspace the lesson lists or Step 1 names, or (Step 1 cases) the one beside the complete one.
+        hit = removed_low & {s.lower() for s in (*ex.starting, *ex.step1_workspaces)}
         hit = hit or any(p.lower() in removed_low for c in ex.complete if c.lower() in before
                          for p in starting_partners(before[c.lower()], before.values()))
         if hit:

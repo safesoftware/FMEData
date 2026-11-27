@@ -141,3 +141,17 @@ def test_step1_workspaces_round_trip_through_findings_json(tmp_path: Path):
     data = json.loads((tmp_path / "findings.json").read_text(encoding="utf-8"))
     assert data["exercises"][0]["step1_workspaces"] == ["Workspaces/W/ex2-complete.fmw"]
     assert read_exercises(str(tmp_path / "findings.json")) == ([ex], False)
+
+
+def test_step1_naming_only_its_own_complete_workspace_is_still_reported():
+    ex = Exercise("L", True, (), ("W/a-complete.fmw",), True, ("W/a-complete.fmw",))
+    tree = RepoTree.from_paths(["W/a-complete.fmw"])
+    found = fd004_changes([Change("A", "W/a-complete.fmw", None)], [ex], tree)
+    assert [f.check_id for f in found] == ["FD004"]
+
+
+def test_pr_removing_the_workspace_step1_opens():
+    ex = Exercise("L", True, (), ("W/a-complete.fmw",), True, ("W/ex2-complete.fmw",))
+    tree = RepoTree.from_paths(["W/a-complete.fmw"])
+    found = fd004_changes([Change("D", "W/ex2-complete.fmw", None)], [ex], tree)
+    assert [(f.check_id, f.path) for f in found] == [("FD004", "W/a-complete.fmw")]
