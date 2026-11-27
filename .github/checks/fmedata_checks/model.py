@@ -17,6 +17,7 @@ CHECKS: dict[str, tuple[str, str]] = {
     "FD003": ("Personal folders in workspaces", r"Workspaces don't read data from a personal C:\Users folder"),
     "FD005": ("Legacy exercise- names", "Workspaces don't use the legacy exercise- prefix, which is being phased out"),
     "FD006": ("Public safety", "Changes add no secrets, email addresses, or personal folders"),
+    "FD008": ("Data attribution", "Every data file under Data/ has a source and license in Data/manifest.toml"),
     "FD010": ("Linked file removed", "A pull request doesn't remove or rename a file a current lesson links"),
     "FD011": ("Complete workspace names", 'Complete workspace names end in "-complete"'),
     "FD012": ("Folder dataset zips", "A folder dataset's zip is updated whenever its folder changes"),
