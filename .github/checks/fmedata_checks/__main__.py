@@ -2,18 +2,22 @@
 
     python -m fmedata_checks pr --repo . --base origin/main
     python -m fmedata_checks lessons --repo . --fmetraining ../FMETraining --out out
+    python -m fmedata_checks courses --fmetraining ../FMETraining   (local only: reads Skilljar's catalog)
 """
 
 from __future__ import annotations
 
 import argparse
+import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import checks_fd, checks_ft
+from . import checks_fd, checks_ft, courses
 from .gitdiff import added_lines, changed_files
 from .lessons import current_index, exercises, ignored_courses, is_current, iter_lessons, latest_versions, lesson_index, previous_version, load_report, read_exercises, read_index
+from .manifest import MANIFEST, coverage, load_manifest
 from .links import check_urls, http_status
 from .model import Finding, annotation, effective, load_config
 from .reports import build_reports
@@ -89,9 +93,15 @@ def run_lessons(args) -> int:
     findings += checks_fd.fd005(workspaces, pr_added=False)
     findings += checks_fd.fd011(workspaces, pr_added=False, cfg=cfg)
     findings += checks_fd.fd012_history(repo, tree)
+    manifest_text = _read(repo / MANIFEST) if (repo / MANIFEST).is_file() else None
+    findings += checks_fd.fd008(tree, manifest_text)
+    try:
+        attribution = coverage(tree, load_manifest(manifest_text)[0] if manifest_text else [])
+    except ValueError:  # unreadable TOML; FD008 already reports it
+        attribution = coverage(tree, [])
 
-    lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses))
-    latest = latest_versions(lessons)
+    lessons = list(iter_lessons(Path(args.fmetraining), cfg.ignore_courses, cfg.course_versions))
+    latest = latest_versions(lessons, cfg.course_versions, cfg.archived_courses)
     exercise_list = exercises(lessons, latest)
     findings += checks_fd.fd004(workspaces, exercise_list, tree)
     refs = [r.rel for item in [*workspaces.values(), *lessons] for r in [*item.local_refs, *item.s3_refs] if r.rel]
@@ -113,9 +123,41 @@ def run_lessons(args) -> int:
     findings = [effective(f, cfg) for f in findings]
     build_reports(lessons, findings, statuses, lesson_index(lessons), Path(args.out),
                   datetime.now(timezone.utc), fmetraining_sha=args.sha, exempt=list(cfg.exempt), cfg=cfg,
-                  fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons), exercises=exercise_list)
+                  fmedata_sha=args.fmedata_sha, current_idx=current_index(lessons, cfg.course_versions, cfg.archived_courses),
+                  exercises=exercise_list, attribution=attribution)
     print(f"{len(lessons)} lessons, {len(findings)} findings; report in {args.out}")
     return 0
+
+
+def run_courses(args) -> int:
+    """Print checks.toml's [courses] table from Skilljar's published catalog, and the renames it suggests."""
+    cfg = load_config(Path(args.config))
+    if args.catalog:
+        catalog = courses.catalog_rows(json.loads(Path(args.catalog).read_text(encoding="utf-8")))
+    else:
+        key = os.environ.get("SKILLJAR_API_KEY")
+        if not key:
+            print("Set SKILLJAR_API_KEY (read-only use) or pass --catalog with a saved list of {title, slug}.",
+                  file=sys.stderr)
+            return 2
+        catalog = courses.fetch_catalog(args.domain, key)
+    annual = [name for name, version in cfg.course_versions.items() if version == "annual"]
+    found = courses.derive(courses.archive_courses(Path(args.fmetraining)), catalog, cfg.ignore_courses, annual,
+                           keep_current=cfg.course_versions, keep_archived=cfg.archived_courses)
+    if found.conflicts:
+        # Before the table, and on stderr, so a redirected run still shows it.
+        print("Courses with more than one live unversioned copy at different versions. The table keeps checks.toml's "
+              "entry for each; hide or rename all but the current copy in Skilljar, or edit the entry by hand:",
+              file=sys.stderr)
+        for name, copies in found.conflicts:
+            print(f"  {name}: {'; '.join(copies)}", file=sys.stderr)
+    print(f"# From {len(catalog)} published courses on {args.domain}. Replace the [courses] table in checks.toml.")
+    print(courses.render_toml(found), end="")
+    if found.renames:
+        print("\n# Courses to rename in Skilljar so their names carry their version:")
+        for old, new in found.renames:
+            print(f"#   {old} -> {new}")
+    return 1 if found.conflicts else 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -135,8 +177,13 @@ def main(argv: list[str] | None = None) -> int:
     les.add_argument("--sha", default="", help="FMETraining commit the archive was read at")
     les.add_argument("--fmedata-sha", default="", help="FMEData commit the checks ran on")
     les.add_argument("--config", default=str(DEFAULT_CONFIG))
+    crs = sub.add_parser("courses", help="print checks.toml's [courses] table from Skilljar's catalog (local only)")
+    crs.add_argument("--fmetraining", required=True)
+    crs.add_argument("--catalog", help="saved JSON list of published courses ({title, slug}); else SKILLJAR_API_KEY")
+    crs.add_argument("--domain", default="academy.safe.com")
+    crs.add_argument("--config", default=str(DEFAULT_CONFIG))
     args = parser.parse_args(argv)
-    return run_pr(args) if args.command == "pr" else run_lessons(args)
+    return {"pr": run_pr, "lessons": run_lessons, "courses": run_courses}[args.command](args)
 
 
 if __name__ == "__main__":

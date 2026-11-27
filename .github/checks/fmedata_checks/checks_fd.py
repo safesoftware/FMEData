@@ -5,9 +5,11 @@ from __future__ import annotations
 import fnmatch
 import re
 import subprocess
+import tomllib
 from typing import Callable
 
 from .gitdiff import Change
+from .manifest import MANIFEST, attribution, data_files, load_manifest, matches
 from .model import Config, Finding
 from .refs import Ref, decode_fme
 from .tree import RepoTree
@@ -490,3 +492,50 @@ def _unused_findings(files: list[str], unused: list[str]) -> list[Finding]:
                              f"no workspace or lesson uses {what}. Check that nothing else needs it before removing it",
                              "notice"))
     return sorted(found, key=lambda x: x.path)
+
+
+def _names(paths: list[str], shown: int = 5) -> str:
+    names = [p.rsplit("/", 1)[-1] for p in paths]
+    return ", ".join(names[:shown]) + (f", and {len(names) - shown} more" if len(names) > shown else "")
+
+
+def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
+    """Every data file under Data/ has a source and license in Data/manifest.toml, and every entry matches a file.
+
+    A file takes its attribution from the entries that match it, or else from the manifest's [default].
+
+    Files without one are reported once per folder, so a folder dataset of hundreds of files is one finding.
+    """
+    if text is None:
+        return [Finding("FD008", MANIFEST, None, f"{MANIFEST} is missing; every data file needs a source and license",
+                        "warning")]
+    try:
+        entries, errors = load_manifest(text)
+    except tomllib.TOMLDecodeError as exc:
+        return [Finding("FD008", MANIFEST, None, f"{MANIFEST} can't be read: {exc}", "warning")]
+    found = [Finding("FD008", MANIFEST, line, msg, "warning") for line, msg in errors]
+    files = data_files(tree)
+    for e in (e for e in entries if not e.default):
+        for pattern in e.files:
+            if any(matches(pattern, f) for f in files):
+                continue
+            msg = f"{pattern} ({e.source}) matches no file under Data/"
+            if tree.is_dir(pattern):
+                msg += f"; to cover a folder, write {pattern.rstrip('/')}/**"
+            found.append(Finding("FD008", MANIFEST, e.file_lines.get(pattern), msg, "warning"))
+    missing: dict[str, list[str]] = {}
+    no_license: dict[tuple[str, str], list[str]] = {}
+    for f in files:
+        hits = attribution(f, entries)
+        folder = f.rsplit("/", 1)[0] + "/"
+        if not hits:
+            missing.setdefault(folder, []).append(f)
+        for e in hits:
+            if not e.license:
+                no_license.setdefault((folder, e.source), []).append(f)
+    groups = [(folder, f"{len(fs)} file(s) have no source or license in {MANIFEST}: {_names(fs)}")
+              for folder, fs in missing.items()]
+    groups += [(folder, f"{len(fs)} file(s) name a source ({source}) but no license: {_names(fs)}")
+               for (folder, source), fs in no_license.items()]
+    found += [Finding("FD008", folder, None, msg, "warning") for folder, msg in sorted(groups)]
+    return found
