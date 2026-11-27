@@ -78,6 +78,31 @@ Fix: move the data into FMEData and point the workspace at `C:\FMEData\...` or i
 workspace's header comment (the command line FME records when it saves) is only a notice; it disappears when the
 workspace is saved from `C:\FMEData`.
 
+### FD004
+
+**An exercise starts from a workspace that isn't beside its complete workspace.** An exercise's Resources section
+lists a complete workspace, and often a starting one. When the starting workspace is missing, learners can't begin
+the exercise. Many exercises start from a blank canvas or from an earlier exercise's result, so a complete
+workspace with no starting partner is fine on its own. FD004 reports one only when a lesson listing it as the
+complete workspace starts from a workspace that isn't in this repository, or opens a starting workspace in Step 1
+without listing one. A Step 1 that gives the path of a workspace in this repository, such as an earlier exercise's
+result, isn't reported. Complete workspaces that no lesson lists aren't reported.
+
+Names aren't standardized yet, so FD004 pairs workspaces tolerantly: in the same folder, ignoring case and
+separators, `-complete`, `--complete`, `_Complete`, `_Completed`, `Complete`, `_Completo`, and `.Complete` all
+pair with the same name without the suffix, or with `start`, `begin`, `initial`, `inicio`, or `blank` in its place
+(`Ex2.0_Reading_Completed` pairs with `Ex2.0_Reading_Begin`). A suffix with no separator must be capitalized
+(`Ex1Complete`), because a lowercase one is part of a word (`incomplete`).
+
+Fix: add the starting workspace next to the complete one, or correct the lesson's Resources section and Step 1.
+FT003 lists the same lesson from the lesson's side.
+
+FD004 runs in the nightly report and on pull requests. The nightly report publishes each exercise's workspaces in
+`findings.json`, and a pull request uses that list to check the complete workspaces it adds or renames, and the
+complete workspaces whose starting workspace it removes. On a pull request it's a warning and never fails. When the
+published report is missing, more than 7 days old, or older than the exercise list, the pull request's log says
+FD004 was skipped.
+
 ### FD005
 
 **A workspace is still named `exercise-...`.** The `exercise-` prefix is being phased out. Existing names are
@@ -97,6 +122,54 @@ one, because deleting it in a later commit leaves it in the history. FME's own h
 (the command line recorded on save) is reported by FD003 instead. In workspaces, FME writes some characters as
 tokens (`<at>` for `@`, `<backslash>` for `\`); an email address or user folder found only that way is a warning,
 not a failure, because it's usually a re-save of a workspace that already contained it.
+
+### FD007
+
+**A data file under `Data/` isn't used by any workspace or lesson.** Unused data makes `FMEData.zip` bigger for
+every learner and hides the data that matters. A file counts as used when any workspace in this repository or any
+lesson in the archive (every course version) points at it by `C:\FMEData` path or S3 URL. A reference uses the
+whole dataset: a shapefile's other parts, everything in a referenced folder (such as a `.gdb`), and a folder
+dataset's zip. A folder whose files are all unused is reported once.
+
+This is a report only. It never removes anything, and it can't see every use: other teams, partner courses, and
+live classes may use data that no workspace or lesson here mentions. Fix: before removing a file, check with the
+people who might use it. If it's still needed, link it from the workspace or lesson that uses it. FD010 stops a
+removal that breaks a lesson.
+
+### FD008
+
+**A data file under `Data/` has no source or license in `Data/manifest.toml`.** The license for these tutorials
+requires anyone who redistributes them to keep each data source's notice, so every dataset needs a recorded source
+and license. The notices are the Data Sources sections of `README.md`, `LICENSE.md`, and the
+[FME Training Terms of Use](https://www.safe.com/legal/#fme-training-terms-of-use). The manifest ties them to files: each `[[entry]]` has a `source`, a `license`, an optional `url`, and
+the `files` it covers, as exact paths or globs:
+
+```toml
+[[entry]]
+source = "OpenStreetMap contributors"
+license = "© OpenStreetMap contributors"
+url = "http://www.openstreetmap.org/copyright"
+files = ["Data/OpenStreetMap/**"]
+```
+
+In `files`, `*` and `?` match within one folder and `**` matches across folders, so `Data/OpenStreetMap/**` covers
+the whole folder. Paths are case-sensitive. A file whose data comes from several sources can match several entries.
+
+A `[default]` table (`source`, `license`, and an optional `url`, but no `files`) applies to every file that no entry
+matches. FMEData's default is the City of Vancouver's open data, as the Data Sources notices say. A file an entry
+matches takes only that entry's attribution, so an entry with no license leaves its files reported even though a
+default exists. A folder zip (`Data/Addresses.zip`) credits every source of the files inside it: when one of
+those files has its own entry, list the zip in that entry and in an entry for the City's data, which repeats the
+default's source, license, and url. FD008 doesn't open zips; a unit test checks the shipped ones.
+
+FD008 runs in the nightly report only, as warnings. It reports files with no entry once per folder, files whose
+matching entry names a source but no license (a file several entries match needs a license from each), and manifest entries whose `files` match nothing (usually a renamed or deleted
+dataset, or a folder written without `/**`). The report's "Data attribution" table shows how many files in each
+folder are covered.
+
+Fix: add or extend an entry with the dataset's source and license, or correct the pattern. Only `Data/` is checked:
+workspaces are written by Safe Software, and `Resources/` is shared with other teams (see "Folders that aren't
+enforced").
 
 ### FD010
 
@@ -144,9 +217,37 @@ skipped.
 
 **How a course's version is read.** From its name, which ends in the FME version it teaches ("Compare Workspaces
 2026.2"), the same version Skilljar's tags and labels carry. A course's newest version in the archive is its
-latest. Versions are never read from Academy URLs: live courses' URLs have no version, and only archived courses'
-URLs carry one. A course whose name has no version, such as "MCP and FME", is treated as archived, so its findings
-are notices and FD010 only warns about its links. Adding the version to the course name makes it current.
+latest, unless the `[courses]` table in `.github/checks/checks.toml` says otherwise. Versions are never read from
+Academy URLs: live courses' URLs have no version, and only archived courses' URLs carry one. A course whose name
+has no version is treated as archived, so its findings are notices and FD010 only warns about its links. Adding
+the version to the course name makes it current.
+
+**The `[courses]` table** records what Skilljar's published catalog says about current versions. On the Academy,
+the published course with the unversioned URL (`/compare-workspaces`) is a course's current version. Hidden
+courses don't count. If two live courses with unversioned URLs name different versions of one course, the command
+keeps that course's existing entry, lists both copies on stderr, and exits with status 1, so a person decides.
+
+- `archived` lists courses Skilljar publishes only on versioned URLs, such as "Publish Workflows to the Web":
+  none of their versions is current.
+- `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
+  has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
+  This applies only to a course with no versioned folder anywhere in the archive; an unversioned copy of a
+  versioned course is never current. An `"annual"` course is always unversioned, so the rule doesn't apply to it.
+  Once its Skilljar name carries the version, its entry is no longer needed.
+- `"annual"` in `current` marks a course that has no version and stays current, such as "FME Accelerator": it's
+  never archived per version, so FT006 holds it to each year's FME release instead. Skilljar's catalog can't tell
+  such a course from one that's missing its version, so `annual` is set by hand, and regenerating keeps it.
+
+CI can't call Skilljar, so the table is refreshed by hand, with a Skilljar API key in the environment (read-only):
+
+```
+cd .github/checks
+SKILLJAR_API_KEY=... python -m fmedata_checks courses --fmetraining ../../../FMETraining
+```
+
+It prints the `[courses]` table to paste into `checks.toml`, and the courses whose Skilljar names should carry
+their version. `--catalog <file>` reads a saved list of published courses (`[{"title": ..., "slug": ...}]`)
+instead of calling the API.
 
 ### FT001
 
@@ -165,6 +266,19 @@ A starting workspace is optional, because some exercises start from a blank work
 the page has no Resources section, so the check couldn't read it. Fix: add or correct the workspace link in the
 lesson's Resources section.
 
+### FT004
+
+**An exercise doesn't name a data file its complete workspace reads.** Learners who don't have FMEData installed
+download each dataset from the Resources section, so a dataset the workspace reads but the lesson never names is
+one they can't find. FT004 checks lessons in each course's latest version that list a complete workspace. A data
+file counts as named when the lesson links it or gives its path or a folder it's in (`C:\FMEData\Data\Orthophotos`
+names the tiles inside), mentions its file name, or names the zip or
+geodatabase it's shipped in (`Orthophotos.zip` names the tiles in `Data/Orthophotos/`; `CommunityMap.gdb` names
+`CommunityMap.gdb.zip`). Paths under `Output/` and other workspaces are skipped. The finding notes when the
+starting workspace already reads the file, so learners with FMEData installed aren't blocked.
+
+Fix: list the dataset in the lesson's Resources section, with its download link and `C:\FMEData` path.
+
 ### FT005
 
 **A web link in a lesson is broken (the site answered 4xx or 5xx).** Sites that refuse automated requests
@@ -177,7 +291,13 @@ not as broken. Fix: update or remove the link in the lesson.
 "... 2025.1" is taken in FME 2025.1, which can't open a workspace saved in 2026.2. The report also notes, as a
 notice, a workspace that hasn't been saved since before the course's previous version.
 
-Fix: save the workspace in the course's FME version, or update the course.
+A course marked `"annual"` in `checks.toml` has no version to compare with. Its workspaces follow each year's FME
+release, due by April 30: from May 1 of a year, a workspace saved in an earlier year's release is a finding; until
+April 30, last year's release is still fine. On 2027-04-30, a workspace saved in FME 2026.2 passes; on 2027-05-01,
+it needs FME 2027. Only the current copy of an annual course is checked this way; older copies are archived.
+
+Fix: save the workspace in the course's FME version (for an annual course, the current year's release), or update
+the course.
 
 ### FT007
 

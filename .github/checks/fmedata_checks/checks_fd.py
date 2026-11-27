@@ -5,9 +5,11 @@ from __future__ import annotations
 import fnmatch
 import re
 import subprocess
+import tomllib
 from typing import Callable
 
 from .gitdiff import Change
+from .manifest import MANIFEST, attribution, data_files, load_manifest, matches
 from .model import Config, Finding
 from .refs import Ref, decode_fme
 from .tree import RepoTree
@@ -289,4 +291,251 @@ def fd012_history(repo, tree: RepoTree) -> list[Finding]:
             found.append(Finding("FD012", zip_rel, None,
                                  f"{folder}/ has changes (last on {folder_day}) that {zip_rel} (last updated "
                                  f"{zip_day}) doesn't include; re-zip the folder and commit the zip", "warning"))
+    return found
+
+
+# FD004. Names aren't standardized yet, so "complete" has many spellings (-complete, --complete, _Completed,
+# -Complete, Complete, _Completo, _complete, .Complete), sometimes followed by more ("-complete-advanced").
+_COMPLETE_WORD = re.compile(r"(?P<sep>-{1,2}|_|\.|\s)?(?P<word>completed?|completo|complet)(?=[-_.\s]|$)", re.I)
+# Words a starting workspace's name may carry where the complete one says "complete".
+_START_WORDS = ("", "start", "starting", "begin", "beginning", "initial", "inicio", "blank")
+
+
+def _squash(name: str) -> str:
+    """A name without case or separators, so "Ex3.1_Writing" and "ex3.1-writing" compare equal."""
+    return re.sub(r"[-_\s]+", "", name).lower()
+
+
+def _complete_parts(stem: str) -> tuple[str, str] | None:
+    # Each "complete" in the name is a candidate, so "Ex1-Incomplete-Complete" pairs on its second one.
+    for m in _COMPLETE_WORD.finditer(stem):
+        # Without a separator, only a capitalized "Complete" starts a suffix ("incomplete" is a word).
+        if not m.group("sep") and not m.group("word")[0].isupper():
+            continue
+        base = _squash(stem[:m.start()])
+        if base:
+            return base, _squash(stem[m.end():]).lstrip(".")
+    return None
+
+
+def complete_base(stem: str) -> str | None:
+    """The squashed name a complete workspace shares with its starting one, or None if it isn't a complete one."""
+    parts = _complete_parts(stem)
+    return parts[0] + parts[1] if parts else None
+
+
+def _stem(rel: str) -> tuple[str, str]:
+    folder, _, name = rel.rpartition("/")
+    return folder, name.rsplit(".", 1)[0]
+
+
+def starting_partners(rel: str, paths) -> list[str]:
+    """Workspaces in rel's folder named like rel with "complete" removed or swapped for a start word."""
+    folder, stem = _stem(rel)
+    parts = _complete_parts(stem)
+    if parts is None:
+        return []
+    base, tail = parts
+    wanted = {name for w in _START_WORDS for name in (base + w + tail, base + tail + w, w + base + tail)}
+    found = []
+    for p in paths:
+        other_folder, other = _stem(p)
+        if (p != rel and p.endswith(WORKSPACE_EXT) and other_folder == folder and _complete_parts(other) is None
+                and _squash(other) in wanted):
+            found.append(p)
+    return found
+
+
+def fd004(paths, exercises, tree: RepoTree, only: set[str] | None = None,
+          renamed: dict[str, str] | None = None) -> list[Finding]:
+    """A complete workspace whose exercise starts from a workspace has that starting workspace beside it.
+
+    Only the exercise says whether one is needed: many start from a blank canvas or from an earlier exercise's
+    result. So a complete workspace without a starting partner is reported only when a lesson listing it as the
+    complete workspace starts from a workspace that isn't in the repository, or opens one in Step 1 without
+    listing it. Complete workspaces no lesson lists aren't guessed at.
+
+    exercises come from the lessons (nightly) or from the published findings.json (pull requests). only limits
+    the check to some complete workspaces; renamed maps a renamed workspace to its old name, which lessons still use.
+    """
+    paths = [p for p in paths if p.endswith(WORKSPACE_EXT)]
+    renamed = renamed or {}
+    by_complete: dict[str, list] = {}
+    for ex in exercises:
+        for rel in ex.complete:
+            by_complete.setdefault(rel.lower(), []).append(ex)
+    found = []
+    for rel in paths:
+        # Lessons type paths by hand and Windows ignores case, so a lesson's spelling may differ from the repo's.
+        listing = by_complete.get(rel.lower(), []) + by_complete.get(renamed.get(rel, "").lower(), [])
+        if ((only is not None and rel not in only) or not listing or complete_base(_stem(rel)[1]) is None
+                or starting_partners(rel, paths)):
+            continue
+        reasons, current = [], False
+        for ex in listing:
+            missing = [s for s in ex.starting if tree.resolve(s) == "missing"]
+            if ex.starting and len(missing) == len(ex.starting):
+                reasons.append(f"{ex.label} starts from {missing[0]}, which isn't in FMEData")
+            elif (not ex.starting and ex.step1_start
+                  and not any(tree.resolve(w) != "missing" for w in ex.step1_workspaces
+                              if w.lower() not in {c.lower() for c in ex.complete})):
+                # Step 1 naming a workspace that exists (often an earlier exercise's result) is a start, too.
+                reasons.append(f"{ex.label} opens a starting workspace in Step 1 but doesn't list one")
+            else:
+                continue
+            current = current or ex.current
+        if reasons:
+            more = f" (and {len(reasons) - 1} more lesson(s))" if len(reasons) > 1 else ""
+            found.append(Finding("FD004", rel, None,
+                                 f"no starting workspace beside this complete one, but {reasons[0]}{more}. "
+                                 "Add the starting workspace next to it, or fix the lesson",
+                                 "warning" if current else "notice"))
+    return found
+
+
+def fd004_changes(changes: list[Change], exercises, tree: RepoTree) -> list[Finding]:
+    """FD004 on a pull request: complete workspaces it adds or renames, and those whose starting workspace it removes."""
+    only = {c.path for c in changes if c.status in ("A", "R") and c.path.endswith(WORKSPACE_EXT)}
+    removed = {c.path if c.status == "D" else c.old_path for c in changes if c.status in ("D", "R")}
+    removed_low = {r.lower() for r in removed}
+    paths = [p for p in tree.all_files() if p.endswith(WORKSPACE_EXT)]
+    # The workspaces before the PR, so a removed starting workspace can still be paired with its complete one.
+    before = {p.lower(): p for p in [*paths, *(r for r in removed if r.endswith(WORKSPACE_EXT))]}
+    for ex in exercises:
+        # A starting workspace the lesson lists or Step 1 names, or (Step 1 cases) the one beside the complete one.
+        hit = removed_low & {s.lower() for s in (*ex.starting, *ex.step1_workspaces)}
+        hit = hit or any(p.lower() in removed_low for c in ex.complete if c.lower() in before
+                         for p in starting_partners(before[c.lower()], before.values()))
+        if hit:
+            only.update(before.get(c.lower(), c) for c in ex.complete)
+    renamed = {c.path: c.old_path for c in changes if c.status == "R" and c.old_path}
+    return fd004(paths, exercises, tree, only=only, renamed=renamed)
+
+
+def _dataset(rel: str) -> str:
+    """A file's dataset: its folder and name up to the first dot (Parks.shp, Parks.dbf, and Parks.prj are one)."""
+    folder, _, name = rel.rpartition("/")
+    return f"{folder}/{name.split('.', 1)[0]}".lower()
+
+
+def fd007(tree: RepoTree, refs) -> list[Finding]:
+    """Data files under Data/ that no workspace or lesson references. Report only; a person decides what to remove.
+
+    A reference uses the whole dataset: a file's same-named siblings (a shapefile's parts), everything in a
+    referenced folder, a folder dataset and its zip (Data/Parks and Data/Parks.zip), and a zip whose folder a
+    path reads into (Data/City/CityProperties/CityProperties.shp uses Data/City/CityProperties.zip). Matching
+    ignores case, because Windows does. A reference to Data itself uses nothing.
+    """
+    files = sorted(f for f in tree.all_files() if f.startswith("Data/"))
+    low = {f.lower(): f for f in files}
+    used_files: set[str] = set()
+    used_prefixes: set[str] = set()
+    used_datasets: set[str] = set()
+    patterns: list[str] = []
+    for ref in refs:
+        r = ref.replace("\\", "/").strip("/").lower()
+        if not r.startswith("data/"):
+            continue
+        if any(ch in r for ch in "*?["):
+            patterns.append(r)
+            continue
+        used_prefixes.add(r + "/")
+        parts = r.split("/")
+        for i in range(2, len(parts) + 1):
+            head = "/".join(parts[:i])
+            if head + ".zip" in low:  # a folder dataset's zip, or the zip a path reads into
+                used_files.add(head + ".zip")
+            if head.endswith(".zip"):  # a zip's folder dataset
+                used_prefixes.add(head[:-4] + "/")
+        if r in low:
+            used_files.add(r)
+            used_datasets.add(_dataset(low[r]))
+    for f in files:
+        if any(fnmatch.fnmatchcase(f.lower(), p) for p in patterns):
+            used_datasets.add(_dataset(f))
+    unused = [f for f in files
+              if not (f.lower() in used_files or _dataset(f) in used_datasets
+                      or any(f.lower().startswith(p) for p in used_prefixes))]
+    return _unused_findings(files, unused)
+
+
+def _unused_findings(files: list[str], unused: list[str]) -> list[Finding]:
+    """One finding per wholly unused folder (the topmost below Data/), and one per other unused dataset."""
+    unused_set = set(unused)
+    by_folder: dict[str, list[str]] = {}
+    for f in files:
+        parts = f.split("/")
+        for i in range(2, len(parts)):
+            by_folder.setdefault("/".join(parts[:i]), []).append(f)
+    whole = sorted(d for d, fs in by_folder.items() if all(f in unused_set for f in fs))
+    whole = [d for d in whole if not any(d.startswith(o + "/") for o in whole)]
+    found, done = [], set()
+    for d in whole:
+        fs = by_folder[d]
+        zip_rel = d + ".zip"
+        also = f", nor its zip {zip_rel}" if zip_rel in unused_set else ""
+        found.append(Finding("FD007", d + "/", None,
+                             f"no workspace or lesson uses the {len(fs)} file(s) in this folder "
+                             f"({len({_dataset(f) for f in fs})} datasets){also}. Check that nothing else needs "
+                             "them before removing them", "notice"))
+        done.update(fs)
+        if also:
+            done.add(zip_rel)
+    groups: dict[str, list[str]] = {}
+    for f in unused:
+        if f not in done:
+            groups.setdefault(_dataset(f), []).append(f)
+    for fs in groups.values():
+        where = fs[0] if len(fs) == 1 else f"{fs[0].rsplit('.', 1)[0]}.*"
+        what = "this file" if len(fs) == 1 else f"these {len(fs)} files"
+        found.append(Finding("FD007", where, None,
+                             f"no workspace or lesson uses {what}. Check that nothing else needs it before removing it",
+                             "notice"))
+    return sorted(found, key=lambda x: x.path)
+
+
+def _names(paths: list[str], shown: int = 5) -> str:
+    names = [p.rsplit("/", 1)[-1] for p in paths]
+    return ", ".join(names[:shown]) + (f", and {len(names) - shown} more" if len(names) > shown else "")
+
+
+def fd008(tree: RepoTree, text: str | None) -> list[Finding]:
+    """Every data file under Data/ has a source and license in Data/manifest.toml, and every entry matches a file.
+
+    A file takes its attribution from the entries that match it, or else from the manifest's [default].
+
+    Files without one are reported once per folder, so a folder dataset of hundreds of files is one finding.
+    """
+    if text is None:
+        return [Finding("FD008", MANIFEST, None, f"{MANIFEST} is missing; every data file needs a source and license",
+                        "warning")]
+    try:
+        entries, errors = load_manifest(text)
+    except tomllib.TOMLDecodeError as exc:
+        return [Finding("FD008", MANIFEST, None, f"{MANIFEST} can't be read: {exc}", "warning")]
+    found = [Finding("FD008", MANIFEST, line, msg, "warning") for line, msg in errors]
+    files = data_files(tree)
+    for e in (e for e in entries if not e.default):
+        for pattern in e.files:
+            if any(matches(pattern, f) for f in files):
+                continue
+            msg = f"{pattern} ({e.source}) matches no file under Data/"
+            if tree.is_dir(pattern):
+                msg += f"; to cover a folder, write {pattern.rstrip('/')}/**"
+            found.append(Finding("FD008", MANIFEST, e.file_lines.get(pattern), msg, "warning"))
+    missing: dict[str, list[str]] = {}
+    no_license: dict[tuple[str, str], list[str]] = {}
+    for f in files:
+        hits = attribution(f, entries)
+        folder = f.rsplit("/", 1)[0] + "/"
+        if not hits:
+            missing.setdefault(folder, []).append(f)
+        for e in hits:
+            if not e.license:
+                no_license.setdefault((folder, e.source), []).append(f)
+    groups = [(folder, f"{len(fs)} file(s) have no source or license in {MANIFEST}: {_names(fs)}")
+              for folder, fs in missing.items()]
+    groups += [(folder, f"{len(fs)} file(s) name a source ({source}) but no license: {_names(fs)}")
+               for (folder, source), fs in no_license.items()]
+    found += [Finding("FD008", folder, None, msg, "warning") for folder, msg in sorted(groups)]
     return found

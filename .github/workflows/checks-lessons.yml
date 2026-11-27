@@ -18,6 +18,7 @@ on:
     paths:
       - ".github/checks/**"
       - ".github/workflows/checks-lessons.yml"
+      - "Data/manifest.toml"
 
 permissions:
   contents: read
@@ -59,7 +60,7 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Check out workspaces and the check code only
+      - name: Check out workspaces, the data manifest, and the check code only
         if: steps.archive.outputs.skip != 'true'
         uses: actions/checkout@v7
         with:
@@ -68,6 +69,7 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /.github/
+            /Data/manifest.toml
             *.fmw
             *.fmwt
 

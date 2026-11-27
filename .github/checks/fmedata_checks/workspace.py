@@ -46,7 +46,7 @@ def parse_workspace(path: str, text: str) -> Workspace:
         path=path,
         build=m.group(1) if m else None,
         build_num=int(m.group(2)) if m else None,
-        local_refs=find_local_paths(text),
+        local_refs=find_local_paths(text, prose=False),
         s3_refs=find_s3_urls(text),
         header_user_paths=header_users,
         dataset_user_paths=dataset_users,

@@ -6,6 +6,9 @@ latest version gets warnings; older versions get notices.
 
 from __future__ import annotations
 
+import re
+from datetime import date, datetime, timezone
+
 from .checks_fd import OUTPUT_PREFIX, _resolution_message
 from .lessons import Lesson, workspace_refs
 from .links import classify_url
@@ -18,14 +21,32 @@ def _sev(current: bool) -> Severity:
     return "warning" if current else "notice"
 
 
+def _trim_trailing_words(rel: str, tree: RepoTree) -> str:
+    """'Data/Orthophotos is faster than ...' -> 'Data/Orthophotos' when only a shorter prefix is in the tree.
+
+    A path in prose has no end marker, and folder names can contain spaces, so the tree decides: drop words from
+    the end of the last segment until what is left exists. If nothing shorter exists, the path is kept whole.
+    """
+    if tree.resolve(rel) != "missing":
+        return rel
+    head, _, last = rel.rpartition("/")
+    words = last.split(" ")
+    for n in range(len(words) - 1, 0, -1):
+        candidate = (head + "/" if head else "") + " ".join(words[:n]).rstrip(".,;:!?")
+        if tree.resolve(candidate) != "missing":
+            return candidate
+    return rel
+
+
 def ft001(lesson: Lesson, tree: RepoTree, cfg: Config, current: bool) -> list[Finding]:
     """C:\\FMEData paths in a lesson resolve to files in FMEData."""
     found, seen = [], set()
     for r in lesson.local_refs:
-        if r.rel in seen or r.rel.startswith(OUTPUT_PREFIX) or r.rel in cfg.allow_paths:
+        rel = _trim_trailing_words(r.rel, tree)
+        if rel in seen or rel.startswith(OUTPUT_PREFIX) or rel in cfg.allow_paths:
             continue
-        seen.add(r.rel)
-        msg = _resolution_message(r.rel, tree, r.rel)
+        seen.add(rel)
+        msg = _resolution_message(rel, tree, rel)
         if msg:
             found.append(Finding("FT001", lesson.rel_html, None, msg, _sev(current)))
     return found
@@ -67,6 +88,65 @@ def ft003(lesson: Lesson, tree: RepoTree, current: bool) -> list[Finding]:
     return found
 
 
+def _mentions(text: str, token: str) -> bool:
+    """token appears in text as a whole name, not inside a longer one (roads.csv isn't in mainroads.csv)."""
+    return re.search(r"(?<![\w.-])" + re.escape(token) + r"(?![\w-])", text) is not None
+
+
+def _named(rel: str, lesson: Lesson, links: set[str]) -> bool:
+    """The lesson names a data file: by path or link, by file name, by a folder it's in, or by the zip or folder
+    it's shipped as.
+
+    A file in a folder is named by the folder's zip (Data/Orthophotos/02-03-HI.tif by Orthophotos.zip); a file in a
+    geodatabase by the .gdb or its zip; a zip by its name without .zip (CommunityMap.gdb.zip by CommunityMap.gdb)
+    or by a path into its folder (Data/Parks.zip by C:\\FMEData\\Data\\Parks\\Parks.tab).
+    """
+    low = rel.lower()
+    parts = low.split("/")
+    name = parts[-1]
+    text = lesson.text
+    if low in links or _mentions(text, name):
+        return True
+    # A folder the lesson names or links (C:\FMEData\Data\Orthophotos) names the files in it; Data itself doesn't.
+    if any(l.count("/") >= 1 and low.startswith(l.rstrip("/") + "/") for l in links):
+        return True
+    if name.endswith(".zip") and (_mentions(text, name[:-4]) or any(l.startswith(low[:-4] + "/") for l in links)):
+        return True
+    for folder in parts[1:-1]:
+        if _mentions(text, folder + ".zip") or (folder.endswith(".gdb") and _mentions(text, folder)):
+            return True
+    return False
+
+
+def ft004(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool) -> list[Finding]:
+    """An exercise in a course's latest version names every data file its complete workspace reads.
+
+    An exercise is any lesson whose Resources lists a complete workspace (newer exercises' titles don't start
+    with "Exercise"). Paths under Output/ are destinations, and other workspaces aren't data.
+    """
+    if not (current and lesson.complete):
+        return []
+    links = {r.rel.lower() for r in [*lesson.local_refs, *lesson.s3_refs] if r.rel}
+    start_reads = {r.rel for s in lesson.starting if s in workspaces_by_rel
+                   for r in [*workspaces_by_rel[s].local_refs, *workspaces_by_rel[s].s3_refs]}
+    found, seen = [], set()
+    for complete in lesson.complete:
+        ws = workspaces_by_rel.get(complete)
+        if ws is None:
+            continue
+        for r in [*ws.local_refs, *ws.s3_refs]:
+            rel = r.rel
+            if (not rel or rel in seen or rel == "Output" or rel.startswith(OUTPUT_PREFIX)
+                    or rel.endswith((".fmw", ".fmwt")) or _named(rel, lesson, links)):
+                continue
+            seen.add(rel)
+            note = "; the starting workspace already reads it" if rel in start_reads else ""
+            found.append(Finding("FT004", lesson.rel_html, None,
+                                 f"{complete} reads {rel}, but the lesson doesn't name it{note}. "
+                                 "List it under Resources", "warning"))
+    return found
+
+
 def fme_version(build: str | None) -> tuple[int, int] | None:
     if not build:
         return None
@@ -82,9 +162,38 @@ def _course_key(version: str) -> tuple[int, int]:
     return int(year), int(minor)
 
 
+def annual_year(today: date) -> int:
+    """The FME release year an annual course's workspaces must be on: this year's from May 1, last year's before."""
+    return today.year if (today.month, today.day) >= (5, 1) else today.year - 1
+
+
+def _ft006_annual(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool,
+                  today: date) -> list[Finding]:
+    year = annual_year(today)
+    found = []
+    for rel in workspace_refs(lesson):
+        ws = workspaces_by_rel.get(rel)
+        saved = fme_version(ws.build) if ws else None
+        if saved is not None and saved[0] < year:
+            found.append(Finding("FT006", lesson.rel_html, None,
+                                 f"{rel} was saved in FME {saved[0]}.{saved[1]}; this course has no version, so its "
+                                 f"workspaces follow each year's FME release, due by April 30 (FME {year} "
+                                 f"since May 1, {year})", _sev(current)))
+    return found
+
+
 def ft006(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool,
-          previous_version: str | None) -> list[Finding]:
-    """A linked workspace opens in the FME version the course names, and has been updated since the last version."""
+          previous_version: str | None, today: date | None = None) -> list[Finding]:
+    """A linked workspace opens in the FME version the course names, and has been updated since the last version.
+
+    An annual course (unversioned and always current) has no version to compare with: its workspaces must be on
+    the current year's FME release from May 1, and may still be on last year's before then.
+    """
+    if lesson.annual:
+        # Only the current copy follows each year's release; older copies are archived and nobody updates them.
+        if not current:
+            return []
+        return _ft006_annual(lesson, workspaces_by_rel, current, today or datetime.now(timezone.utc).date())
     if not lesson.course_version:
         return []
     course = _course_key(lesson.course_version)

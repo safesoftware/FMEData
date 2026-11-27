@@ -1,0 +1,52 @@
+# Where the data under Data/ comes from, and its license. CHECKS.md#fd008 explains the check that reads this file.
+#
+# The notices come from the Data Sources sections of README.md and LICENSE.md, and of the FME Training Terms of Use
+# (https://www.safe.com/legal/#fme-training-terms-of-use).
+#
+# [default] applies to every file that no [[entry]] matches. Each [[entry]] names a source and a license, and lists
+# the files they apply to under `files`: an exact path (Data/GPS/WalkingTrail.csv), or a glob, where * and ? stay
+# within one folder and ** spans folders (Data/OpenStreetMap/** is everything in that folder). Paths are
+# case-sensitive. A file may match more than one entry when its data comes from more than one source, and a file an
+# entry matches doesn't take the default. `url` is optional. A folder zip (Data/Addresses.zip) lists every source
+# of the files inside it, including the City's when the rest of its files take the default. An entry for the
+# City's data repeats [default]'s source, license, and url exactly.
+
+[default]
+source = "City of Vancouver, British Columbia, open data"
+license = "Open Government License - Vancouver"
+url = "https://opendata.vancouver.ca/pages/licence/"
+
+[[entry]]
+source = "OpenStreetMap contributors"
+license = "© OpenStreetMap contributors"
+url = "http://www.openstreetmap.org/copyright"
+files = ["Data/OpenStreetMap/**"]
+
+[[entry]]
+source = "Statistics Canada, 2011 Census Digital Boundary Files, 2013; includes information copied with permission from Canada Post Corporation"
+license = "Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada"
+files = ["Data/Addresses/ForwardSortationAreas.*", "Data/Addresses.zip"]
+
+[[entry]]
+source = "GeoBase®"
+files = ["Data/ElevationModel/DEM-*.dem"]
+
+[[entry]]
+source = "Wikipedia, Vancouver Fire and Rescue Services (some attribute data adapted from content © 2013)"
+license = "Creative Commons Attribution-ShareAlike"
+url = "http://en.wikipedia.org/wiki/Vancouver_Fire_and_Rescue_Services"
+files = ["Data/Emergency/FireHalls*"]
+
+# The City's data, where a file also has another source: only some of the fire halls' attribute data is from
+# Wikipedia, and Data/Addresses.zip holds the Forward Sortation Areas beside the City's address data.
+[[entry]]
+source = "City of Vancouver, British Columbia, open data"
+license = "Open Government License - Vancouver"
+url = "https://opendata.vancouver.ca/pages/licence/"
+files = ["Data/Emergency/FireHalls*", "Data/Addresses.zip"]
+
+[[entry]]
+source = "VancouverTrails.com (Stanley Park GPS trail)"
+license = "Used with kind permission of VancouverTrails.com"
+url = "http://www.vancouvertrails.com/trails/stanley-park/"
+files = ["Data/GPS/WalkingTrail.csv"]

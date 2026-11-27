@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import tomllib
 from dataclasses import dataclass, field, replace
 from pathlib import Path
@@ -14,14 +15,18 @@ CHECKS: dict[str, tuple[str, str]] = {
     "FD001": ("Workspace data paths", r"C:\FMEData paths in workspaces point to files in this repository"),
     "FD002": ("Workspace S3 links", "FMEData S3 URLs in workspaces resolve"),
     "FD003": ("Personal folders in workspaces", r"Workspaces don't read data from a personal C:\Users folder"),
+    "FD004": ("Workspace pairs", "A complete workspace has its starting workspace when the exercise starts from one"),
     "FD005": ("Legacy exercise- names", "Workspaces don't use the legacy exercise- prefix, which is being phased out"),
     "FD006": ("Public safety", "Changes add no secrets, email addresses, or personal folders"),
+    "FD007": ("Unused data", "Every data file is used by a workspace or a lesson"),
+    "FD008": ("Data attribution", "Every data file under Data/ has a source and license in Data/manifest.toml"),
     "FD010": ("Linked file removed", "A pull request doesn't remove or rename a file a current lesson links"),
     "FD011": ("Complete workspace names", 'Complete workspace names end in "-complete"'),
     "FD012": ("Folder dataset zips", "A folder dataset's zip is updated whenever its folder changes"),
     "FT001": ("Lesson data paths", r"C:\FMEData paths in lessons point to files in this repository"),
     "FT002": ("Lesson S3 links", "FMEData S3 links in lessons resolve"),
     "FT003": ("Exercise workspaces", "Exercises list a complete workspace, and it exists"),
+    "FT004": ("Data named in the exercise", "Exercises name every data file their complete workspace reads"),
     "FT005": ("Lesson web links", "Web links in lessons don't return an error"),
     "FT006": ("Workspace FME version", "Linked workspaces open in the FME version the course teaches"),
     "FT007": ("Lessons linking exercise- names", "Lessons don't link workspaces with the legacy exercise- prefix"),
@@ -55,6 +60,25 @@ class Config:
     complete_suffixes: list[str] = field(default_factory=lambda: ["-complete"])
     exempt: dict[str, str] = field(default_factory=dict)
     ignore_courses: list[str] = field(default_factory=list)
+    # Course name -> the version Skilljar publishes as current, where the archive's newest version isn't it,
+    # or "annual" for an unversioned course that is always current.
+    course_versions: dict[str, str] = field(default_factory=dict)
+    # Courses (names or patterns) with no current version on Skilljar: every version is archived.
+    archived_courses: list[str] = field(default_factory=list)
+
+
+_VERSION = re.compile(r"^\d{4}\.\d+$")
+# An unversioned course that is always current: its workspaces follow each year's FME release (FT006).
+ANNUAL = "annual"
+
+
+def _course_versions(table: dict) -> dict[str, str]:
+    for name, version in table.items():
+        # Quoted only: TOML reads an unquoted 2026.10 as the number 2026.1.
+        if not isinstance(version, str) or (version != ANNUAL and not _VERSION.match(version)):
+            raise ValueError(f"courses.current entry {name!r} needs a quoted version like \"2026.2\" or "
+                             f"\"{ANNUAL}\", not {version!r}")
+    return {str(k): str(v) for k, v in table.items()}
 
 
 def annotation(f: Finding) -> str:
@@ -88,6 +112,8 @@ def load_config(path: Path) -> Config:
         complete_suffixes=list(data.get("complete_suffixes", ["-complete"])),
         exempt=_reasoned(data.get("exempt", {}), "exempt"),
         ignore_courses=list(data.get("ignore_courses", [])),
+        course_versions=_course_versions(data.get("courses", {}).get("current", {})),
+        archived_courses=list(data.get("courses", {}).get("archived", [])),
     )
 
 

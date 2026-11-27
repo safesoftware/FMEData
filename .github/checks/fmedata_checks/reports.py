@@ -11,7 +11,7 @@ from pathlib import Path
 from string import Template
 from zoneinfo import ZoneInfo
 
-from .lessons import Lesson
+from .lessons import Exercise, Lesson, exercise_json
 from .links import classify_url
 from .model import CHECKS, PR_ONLY, Config, Finding
 from .refs import redact
@@ -87,6 +87,20 @@ def _index_body(findings: list[Finding], exempt: list[str], enforce: set[str]) -
     )
 
 
+def _attribution_body(attribution: dict[str, tuple[int, int]]) -> str:
+    covered = sum(c for c, _ in attribution.values())
+    total = sum(t for _, t in attribution.values())
+    rows = [[f"<td>{_e(folder)}</td>", f'<td class="num">{c}</td>', f'<td class="num">{t}</td>']
+            for folder, (c, t) in attribution.items()]
+    return (
+        "<h2>Data attribution</h2>"
+        f"<p>{covered} of {total} data files have a source and license in "
+        '<a href="https://github.com/safesoftware/FMEData/blob/main/Data/manifest.toml">Data/manifest.toml</a> '
+        '(<a href="https://github.com/safesoftware/FMEData/blob/main/CHECKS.md#fd008">FD008</a>).</p>'
+        + _table("attribution", ["Folder", "With source and license", "Files"], rows, filter_box=False)
+    )
+
+
 def _broken_rows(lessons: list[Lesson], findings: list[Finding], statuses: dict[str, int | None],
                  cfg: Config) -> list[list[str]]:
     rows, seen = [], set()
@@ -114,13 +128,16 @@ def _broken_rows(lessons: list[Lesson], findings: list[Finding], statuses: dict[
 def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict[str, int | None],
                   idx: dict[str, list[str]], out: Path, generated_at: datetime, fmetraining_sha: str = "",
                   exempt: list[str] | None = None, cfg: Config | None = None, fmedata_sha: str = "",
-                  current_idx: dict[str, list[str]] | None = None) -> None:
+                  current_idx: dict[str, list[str]] | None = None,
+                  exercises: list[Exercise] | None = None,
+                  attribution: dict[str, tuple[int, int]] | None = None) -> None:
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     exempt = exempt or []
     cfg = cfg or Config()
     (out / "index.html").write_text(
-        _page("FMEData checks", generated_at, _index_body(findings, exempt, cfg.enforce)), encoding="utf-8")
+        _page("FMEData checks", generated_at, _index_body(findings, exempt, cfg.enforce)
+                            + (_attribution_body(attribution) if attribution else "")), encoding="utf-8")
     broken = _broken_rows(lessons, findings, statuses, cfg)
     (out / "broken-links.html").write_text(_page("Broken links in FME Academy lessons", generated_at,
         f"<p>{len(broken)} links. Bot-refused links are sites that block automated checks; open them to confirm.</p>"
@@ -131,6 +148,8 @@ def build_reports(lessons: list[Lesson], findings: list[Finding], statuses: dict
         "fmedata_sha": fmedata_sha,
         "lesson_index": idx,
         "current_index": current_idx if current_idx is not None else idx,
+        "exercises": [exercise_json(e) for e in exercises or []],
+        "attribution_coverage": {k: list(v) for k, v in (attribution or {}).items()},
         "findings": [{k: redact(v) if isinstance(v, str) else v for k, v in asdict(f).items()} for f in findings],
     }
     (out / "findings.json").write_text(json.dumps(payload, indent=1, ensure_ascii=False), encoding="utf-8")
