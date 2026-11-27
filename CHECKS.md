@@ -179,9 +179,37 @@ skipped.
 
 **How a course's version is read.** From its name, which ends in the FME version it teaches ("Compare Workspaces
 2026.2"), the same version Skilljar's tags and labels carry. A course's newest version in the archive is its
-latest. Versions are never read from Academy URLs: live courses' URLs have no version, and only archived courses'
-URLs carry one. A course whose name has no version, such as "MCP and FME", is treated as archived, so its findings
-are notices and FD010 only warns about its links. Adding the version to the course name makes it current.
+latest, unless the `[courses]` table in `.github/checks/checks.toml` says otherwise. Versions are never read from
+Academy URLs: live courses' URLs have no version, and only archived courses' URLs carry one. A course whose name
+has no version is treated as archived, so its findings are notices and FD010 only warns about its links. Adding
+the version to the course name makes it current.
+
+**The `[courses]` table** records what Skilljar's published catalog says about current versions. On the Academy,
+the published course with the unversioned URL (`/compare-workspaces`) is a course's current version. Hidden
+courses don't count. If two live courses with unversioned URLs name different versions of one course, the command
+keeps that course's existing entry, lists both copies on stderr, and exits with status 1, so a person decides.
+
+- `archived` lists courses Skilljar publishes only on versioned URLs, such as "Publish Workflows to the Web":
+  none of their versions is current.
+- `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
+  has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
+  This applies only to a course with no versioned folder anywhere in the archive; an unversioned copy of a
+  versioned course is never current. An `"annual"` course is always unversioned, so the rule doesn't apply to it.
+  Once its Skilljar name carries the version, its entry is no longer needed.
+- `"annual"` in `current` marks a course that has no version and stays current, such as "FME Accelerator": it's
+  never archived per version, so FT006 holds it to each year's FME release instead. Skilljar's catalog can't tell
+  such a course from one that's missing its version, so `annual` is set by hand, and regenerating keeps it.
+
+CI can't call Skilljar, so the table is refreshed by hand, with a Skilljar API key in the environment (read-only):
+
+```
+cd .github/checks
+SKILLJAR_API_KEY=... python -m fmedata_checks courses --fmetraining ../../../FMETraining
+```
+
+It prints the `[courses]` table to paste into `checks.toml`, and the courses whose Skilljar names should carry
+their version. `--catalog <file>` reads a saved list of published courses (`[{"title": ..., "slug": ...}]`)
+instead of calling the API.
 
 ### FT001
 
@@ -212,7 +240,13 @@ not as broken. Fix: update or remove the link in the lesson.
 "... 2025.1" is taken in FME 2025.1, which can't open a workspace saved in 2026.2. The report also notes, as a
 notice, a workspace that hasn't been saved since before the course's previous version.
 
-Fix: save the workspace in the course's FME version, or update the course.
+A course marked `"annual"` in `checks.toml` has no version to compare with. Its workspaces follow each year's FME
+release, due by April 30: from May 1 of a year, a workspace saved in an earlier year's release is a finding; until
+April 30, last year's release is still fine. On 2027-04-30, a workspace saved in FME 2026.2 passes; on 2027-05-01,
+it needs FME 2027. Only the current copy of an annual course is checked this way; older copies are archived.
+
+Fix: save the workspace in the course's FME version (for an annual course, the current year's release), or update
+the course.
 
 ### FT007
 
