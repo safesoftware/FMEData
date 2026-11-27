@@ -124,6 +124,12 @@ def run_courses(args) -> int:
         print("\n# Courses to rename in Skilljar so their names carry their version:")
         for old, new in found.renames:
             print(f"#   {old} -> {new}")
+    if found.conflicts:
+        print("\n# Courses with more than one live unversioned copy at different versions; none is written above."
+              "\n# Hide or rename all but the current one in Skilljar, or add the entry by hand:")
+        for name, copies in found.conflicts:
+            print(f"#   {name}: {'; '.join(copies)}")
+        return 1
     return 0
 
 

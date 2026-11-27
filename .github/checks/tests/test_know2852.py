@@ -157,8 +157,8 @@ def test_archive_name_matches_folder_spelling():
 
 
 def test_catalog_rows_accept_v1_shape():
-    rows = courses.catalog_rows([{"slug": "mcp-and-fme", "course": {"title": "MCP and FME"}}])
-    assert rows == [{"title": "MCP and FME", "slug": "mcp-and-fme"}]
+    rows = courses.catalog_rows([{"slug": "mcp-and-fme", "course": {"title": "MCP and FME"}, "hidden": True}])
+    assert rows == [{"title": "MCP and FME", "slug": "mcp-and-fme", "hidden": True}]
 
 
 def test_render_toml_round_trips(tmp_path: Path):
@@ -300,3 +300,44 @@ def test_derive_keeps_annual_courses_without_a_rename(tmp_path: Path):
 def test_derive_drops_annual_course_no_longer_live():
     found = courses.derive(ARCHIVE + [("2024.0", "FME Accelerator")], CATALOG, annual=["FME Accelerator"])
     assert "FME Accelerator" not in found.current
+
+
+def test_derive_skips_hidden_published_courses():
+    catalog = [*CATALOG, {"title": "Compare Workspaces 2025.1", "slug": "compare-workspaces-partner", "hidden": True}]
+    found = courses.derive(ARCHIVE, catalog, ignore_courses=["Clone of *"])
+    assert found.current["Compare Workspaces"] == "2026.1" and found.conflicts == []
+
+
+def test_derive_reports_two_live_unversioned_copies_instead_of_picking_one():
+    catalog = [*CATALOG, {"title": "Compare Workspaces 2025.1", "slug": "compare-workspaces-partner"}]
+    found = courses.derive(ARCHIVE, catalog, ignore_courses=["Clone of *"])
+    assert "Compare Workspaces" not in found.current and "Compare Workspaces" not in found.archived
+    assert found.conflicts == [("Compare Workspaces", ["Compare Workspaces 2026.1 (compare-workspaces)",
+                                                       "Compare Workspaces 2025.1 (compare-workspaces-partner)"])]
+
+
+def test_old_unversioned_copy_of_a_versioned_course_stays_unversioned(tmp_path: Path):
+    for rel in ("2026.2/p/Compare Workspaces 2026.2/L/index.html", "2025.1/p/Compare Workspaces/L/index.html"):
+        p = tmp_path / rel
+        p.parent.mkdir(parents=True)
+        p.write_text("<p>x</p>", encoding="utf-8")
+    found = {l.course: l for l in iter_lessons(tmp_path, course_versions={"Compare Workspaces": "2025.1"})}
+    assert found["Compare Workspaces"].course_version is None
+    assert found["Compare Workspaces 2026.2"].course_version == "2026.2"
+
+
+def test_ft006_annual_rule_skips_older_copies():
+    assert ft006(annual_lesson(), saved("2025.1.0.0"), current=False, previous_version=None,
+                 today=date(2027, 5, 1)) == []
+
+
+def test_courses_command_fails_on_a_conflict(tmp_path: Path, capsys):
+    for version, course in ARCHIVE:
+        p = tmp_path / "archive" / version / "p" / course / "L" / "index.html"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("<p>x</p>", encoding="utf-8")
+    catalog = tmp_path / "catalog.json"
+    catalog.write_text(json.dumps([*CATALOG, {"title": "Compare Workspaces 2025.1", "slug": "cw-partner"}]),
+                       encoding="utf-8")
+    assert main(["courses", "--fmetraining", str(tmp_path / "archive"), "--catalog", str(catalog)]) == 1
+    assert "Compare Workspaces: Compare Workspaces 2026.1 (compare-workspaces)" in capsys.readouterr().out

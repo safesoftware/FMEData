@@ -41,6 +41,9 @@ class CourseConfig:
     current: dict[str, str] = field(default_factory=dict)
     archived: list[str] = field(default_factory=list)
     renames: list[tuple[str, str]] = field(default_factory=list)
+    # Courses with more than one live unversioned copy at different versions: (name, ["title (slug)", ...]).
+    # Neither copy is taken as current; a person decides, and the course gets no entry until then.
+    conflicts: list[tuple[str, list[str]]] = field(default_factory=list)
 
 
 def archive_name(title: str) -> str:
@@ -54,12 +57,12 @@ def _split(name: str) -> tuple[str, str | None]:
 
 
 def catalog_rows(rows: Iterable[dict]) -> list[dict]:
-    """Normalize published-course rows (v1 API rows, or a saved list of {title, slug}) to {title, slug}."""
+    """Normalize published-course rows (v1 API rows, or a saved list of {title, slug}) to {title, slug, hidden}."""
     out = []
     for r in rows:
         title = r.get("title") or (r.get("course") or {}).get("title")
         if title and r.get("slug"):
-            out.append({"title": title, "slug": r["slug"]})
+            out.append({"title": title, "slug": r["slug"], "hidden": bool(r.get("hidden"))})
     return out
 
 
@@ -82,12 +85,24 @@ def derive(archive: Iterable[tuple[str, str]], catalog: Iterable[dict],
         if version:
             versions[base].add(version)
     live: dict[str, str | None] = {}
+    seen: dict[str, list[tuple[str | None, str]]] = {}
     for row in catalog_rows(catalog):
-        if not _VERSIONED_SLUG.search(row["slug"]):
-            base, version = _split(archive_name(row["title"]))
-            live[base] = version
+        # A hidden course isn't on the Academy catalog, so it says nothing about which copy is current.
+        if row.get("hidden") or _VERSIONED_SLUG.search(row["slug"]):
+            continue
+        base, version = _split(archive_name(row["title"]))
+        seen.setdefault(base, []).append((version, f"{row['title']} ({row['slug']})"))
+        live[base] = version
     result = CourseConfig()
+    conflicted = set()
+    for base, copies in sorted(seen.items()):
+        if len({v for v, _ in copies}) > 1:
+            conflicted.add(base)
+            if base in folders:
+                result.conflicts.append((base, [label for _, label in copies]))
     for base in sorted(folders):
+        if base in conflicted:
+            continue
         newest = max(versions[base], key=_key) if versions[base] else None
         if base not in live:
             if newest:

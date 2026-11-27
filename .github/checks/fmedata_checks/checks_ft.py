@@ -112,6 +112,9 @@ def ft006(lesson: Lesson, workspaces_by_rel: dict[str, Workspace], current: bool
     the current year's FME release from May 1, and may still be on last year's before then.
     """
     if lesson.annual:
+        # Only the current copy follows each year's release; older copies are archived and nobody updates them.
+        if not current:
+            return []
         return _ft006_annual(lesson, workspaces_by_rel, current, today or datetime.now(timezone.utc).date())
     if not lesson.course_version:
         return []

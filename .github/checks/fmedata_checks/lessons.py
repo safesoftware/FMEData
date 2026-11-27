@@ -138,12 +138,18 @@ def iter_lessons(root: Path, ignore_courses: list[str] | None = None,
     """Lesson pages under a version folder, skipping courses whose name matches an ignore pattern."""
     root = Path(root)
     ignore = ignore_courses or []
-    for page in sorted(root.glob("*/*/*/*/index.html")):
+    pages = sorted(root.glob("*/*/*/*/index.html"))
+    # A course folder takes its archive folder's version only when the course has no versioned folder anywhere:
+    # an old unversioned copy of a versioned course ("Compare Workspaces" beside "Compare Workspaces 2026.2")
+    # stays unversioned, so it never counts as current.
+    versioned = {m.group(1) for p in pages if (m := _COURSE_VERSION.match(p.parent.parent.name))}
+    unversioned_only = {k: v for k, v in (course_versions or {}).items() if k not in versioned}
+    for page in pages:
         rel = page.relative_to(root).as_posix()
         parts = rel.split("/")
         if not _VERSION_DIR.match(parts[0]) or any(fnmatch.fnmatchcase(parts[2], p) for p in ignore):
             continue
-        yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"), course_versions)
+        yield parse_lesson(rel, page.read_text(encoding="utf-8", errors="replace"), unversioned_only)
 
 
 def ignored_courses(root: Path, ignore_courses: list[str]) -> list[str]:

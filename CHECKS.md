@@ -150,12 +150,16 @@ has no version is treated as archived, so its findings are notices and FD010 onl
 the version to the course name makes it current.
 
 **The `[courses]` table** records what Skilljar's published catalog says about current versions. On the Academy,
-the published course with the unversioned URL (`/compare-workspaces`) is a course's current version.
+the published course with the unversioned URL (`/compare-workspaces`) is a course's current version. Hidden
+courses don't count. If two live courses with unversioned URLs name different versions of one course, the command
+leaves that course out of the table, lists both copies, and exits with status 1, so a person decides.
 
 - `archived` lists courses Skilljar publishes only on versioned URLs, such as "Publish Workflows to the Web":
   none of their versions is current.
 - `current` maps a course name to its current version when that isn't the archive's newest. A course whose name
   has no version and is live on Skilljar, such as "MCP and FME", is current in the archive folder for that version.
+  This applies only to a course with no versioned folder anywhere in the archive; an unversioned copy of a
+  versioned course is never current.
   Once its Skilljar name carries the version, its entry is no longer needed.
 - `"annual"` in `current` marks a course that has no version and stays current, such as "FME Accelerator": it's
   never archived per version, so FT006 holds it to each year's FME release instead. Skilljar's catalog can't tell
@@ -204,7 +208,7 @@ notice, a workspace that hasn't been saved since before the course's previous ve
 A course marked `"annual"` in `checks.toml` has no version to compare with. Its workspaces follow each year's FME
 release, due by April 30: from May 1 of a year, a workspace saved in an earlier year's release is a finding; until
 April 30, last year's release is still fine. On 2027-04-30, a workspace saved in FME 2026.2 passes; on 2027-05-01,
-it needs FME 2027.
+it needs FME 2027. Only the current copy of an annual course is checked this way; older copies are archived.
 
 Fix: save the workspace in the course's FME version (for an annual course, the current year's release), or update
 the course.
